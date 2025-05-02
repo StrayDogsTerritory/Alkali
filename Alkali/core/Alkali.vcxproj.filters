@@ -9,11 +9,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LogWriter.h">
-      <Filter>Engine</Filter>
-    </ClInclude>
     <ClInclude Include="include\system\String.h">
       <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\LogWriter.h">
+      <Filter>Engine</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

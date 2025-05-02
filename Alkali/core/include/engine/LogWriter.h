@@ -4,6 +4,16 @@
 #include "system\String.h"
 
 namespace alk {
+
+	enum eMessageType
+	{
+		eTypeNormal,
+		eTypeWarning,
+		eTypeError,
+		eTypeFatalError,
+		eTypeDebug
+	};
+
 	class cLogWriter
 	{
 	public:
