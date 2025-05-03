@@ -22,9 +22,18 @@ namespace alk {
 
 		void Write(const tString &asMessage);
 
+		void SetFileName(const twString& asFile);
+
+	private:
+
+		void ReopenFile();
+
+		
+
+		FILE* mpFile;
+		twString msFileName;
+
 	};
-
-
 	void Log(const char* asMessage, eMessageType = eTypeNormal);
 
 
