@@ -15,9 +15,13 @@
     <ClInclude Include="include\engine\LogWriter.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="include\Alkali.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\Main.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>

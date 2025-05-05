@@ -14,6 +14,8 @@ namespace alk {
 		eTypeDebug
 	};
 
+	//----------------------------
+
 	class cLogWriter
 	{
 	public:
@@ -28,14 +30,15 @@ namespace alk {
 
 		void ReopenFile();
 
-		
 
 		FILE* mpFile;
 		twString msFileName;
 
 	};
-	void Log(const char* asMessage, eMessageType = eTypeNormal);
+	//----------------------------
+	void Log(const char* asMessage, eMessageType = eTypeNormal, ...);
 
 
 }
+
 #endif

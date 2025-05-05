@@ -1,3 +1,4 @@
+#pragma warning(disable: 4996) // disable deprecation warning for _wfopen and vsprintf
 
 #include "stdio.h"
 #include <cstdarg>
@@ -67,15 +68,21 @@ namespace alk {
 	// LOG FUNCTION
 	//----------------------------
 
-	void Log(const char* asMessage, eMessageType eType)
+	void SetLogFile(const twString& asFile)
 	{
-		char TextBuffer[4096];
-		va_list args;
+		LogFile.SetFileName(asFile);
+	}
+
+
+	void Log(const char* asMessage, eMessageType eType, ...)
+	{
+		char Text[4096];
+		va_list ap;
 		if (asMessage == NULL)
 			return;	
-		va_start(args, asMessage);
-		vsnprintf(TextBuffer, sizeof(TextBuffer), asMessage, args);
-		va_end(args);
+		va_start(ap, asMessage);
+		vsprintf(Text, asMessage, ap);
+		va_end(ap);
 
 		tString sMessage;
 		switch (eType)
@@ -96,12 +103,12 @@ namespace alk {
 			sMessage = "Debug: ";
 			break;
 		}
-		sMessage += TextBuffer;
+		sMessage += Text;
 		LogFile.Write(sMessage);
 
 		if (eType == eTypeFatalError)
 		{
-			//@TODO: make this spit out a fatal error box. and kill SDL when I add it to the project... which I should have already done...
+			//@TODO: make this spit out a fatal error message box. and kill SDL when I add it to the project... which I should have already done...
 			exit(1);
 		}
 	}
