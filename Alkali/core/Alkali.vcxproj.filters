@@ -16,6 +16,9 @@
       <Filter>Engine</Filter>
     </ClInclude>
     <ClInclude Include="include\Alkali.h" />
+    <ClInclude Include="include\system\SystemTypes.h">
+      <Filter>System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">

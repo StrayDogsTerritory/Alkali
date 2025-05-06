@@ -1,28 +1,25 @@
 #ifndef ALK_LOGWRITER_H
 #define ALK_LOGWRITER_H
 
+#pragma warning(disable: 4996) // disable deprecation warning for _wfopen and vsprintf
+
 #include "system\String.h"
+
+#include "system\SystemTypes.h"
 
 namespace alk {
 
-	enum eMessageType
-	{
-		eTypeNormal,
-		eTypeWarning,
-		eTypeError,
-		eTypeFatalError,
-		eTypeDebug
-	};
 
 	//----------------------------
 
 	class cLogWriter
 	{
 	public:
-		cLogWriter(const twString &asFile);
+		cLogWriter(const twString &asDefaultFile);
 		~cLogWriter();
 
 		void Write(const tString &asMessage);
+		void Clear();
 
 		void SetFileName(const twString& asFile);
 
@@ -36,8 +33,18 @@ namespace alk {
 
 	};
 	//----------------------------
-	void Log(const char* asMessage, eMessageType = eTypeNormal, ...);
 
+	extern void SetLogFile(const twString& asFile);
+
+	extern void Log(const char* asMessage, ...);
+
+	extern void Error(const char* asMessage, ...);
+
+	extern void Warning(const char* asMessage, ...);
+
+	extern void Debug(const char* asMessage, ...);
+
+	//void FatalError(const char* asMessage, ...);
 
 }
 

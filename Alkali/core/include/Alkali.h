@@ -2,6 +2,9 @@
 #define ALK_ALKALI_H
 
 #include "system/String.h"
+#include "system/SystemTypes.h"
+
+
 
 #include "engine/LogWriter.h"
 

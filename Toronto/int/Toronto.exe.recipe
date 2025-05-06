@@ -2,7 +2,7 @@
 <Project>
   <ProjectOutputs>
     <ProjectOutput>
-      <FullPath>X:\Alkali\Redist\Toronto.exe</FullPath>
+      <FullPath>X:\Alkali\Toronto\redist\Toronto.exe</FullPath>
     </ProjectOutput>
   </ProjectOutputs>
   <ContentFiles />

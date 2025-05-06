@@ -1,4 +1,4 @@
-#pragma warning(disable: 4996) // disable deprecation warning for _wfopen and vsprintf
+
 
 #include "stdio.h"
 #include <cstdarg>
@@ -13,14 +13,14 @@ namespace alk {
 
 	//----------------------------
 
-	static cLogWriter LogFile(L"alkali.log");
+	static cLogWriter LogWriter(_W("alkali.log"));
 
 	//----------------------------
 
-	cLogWriter::cLogWriter(const twString& asFile)
+	cLogWriter::cLogWriter(const twString& asFileName)
 	{
+		msFileName = asFileName;
 		mpFile = NULL;
-		msFileName = asFile;
 	}
 
 	//----------------------------
@@ -32,6 +32,26 @@ namespace alk {
 	}
 
 	//----------------------------
+
+	void cLogWriter::Write(const tString& asMessage)
+	{
+		if (!mpFile)
+			ReopenFile();
+
+		if (mpFile)
+		{
+			fprintf(mpFile, "%s", asMessage.c_str());
+			fflush(mpFile);
+		}
+	}
+
+	//----------------------------
+
+	void cLogWriter::Clear()
+	{
+		ReopenFile();
+		if (mpFile) fflush(mpFile);
+	}
 
 	void cLogWriter::SetFileName(const twString& asFile)
 	{
@@ -48,21 +68,13 @@ namespace alk {
 	{
 		if (mpFile)
 			fclose(mpFile);
-		mpFile = _wfopen(msFileName.c_str(),L"W");
+
+		mpFile = _wfopen(msFileName.c_str(),_W("w"));
 	}
 
 	//----------------------------
 
-	void cLogWriter::Write(const tString& asMessage)
-	{
-		if (mpFile == NULL)
-			ReopenFile();
-		if (mpFile)
-		{
-			fprintf(mpFile, "%s\n", asMessage.c_str());
-			fflush(mpFile);
-		}
-	}
+	
 
 	//----------------------------
 	// LOG FUNCTION
@@ -70,11 +82,11 @@ namespace alk {
 
 	void SetLogFile(const twString& asFile)
 	{
-		LogFile.SetFileName(asFile);
+		LogWriter.SetFileName(asFile);
 	}
 
 
-	void Log(const char* asMessage, eMessageType eType, ...)
+	void Log(const char* asMessage, ...)
 	{
 		char Text[4096];
 		va_list ap;
@@ -84,34 +96,70 @@ namespace alk {
 		vsprintf(Text, asMessage, ap);
 		va_end(ap);
 
-		tString sMessage;
-		switch (eType)
-		{
-		case eTypeNormal:
-			sMessage = "";
-			break;
-		case eTypeError:
-			sMessage = "Error: ";
-			break;
-		case eTypeWarning:
-			sMessage = "Warning: ";
-			break;
-		case eTypeFatalError:
-			sMessage = "Fatal Error: ";
-			break;
-		case eTypeDebug:
-			sMessage = "Debug: ";
-			break;
-		}
+		tString sMessage = "";
+		
 		sMessage += Text;
-		LogFile.Write(sMessage);
+		LogWriter.Write(sMessage);
 
-		if (eType == eTypeFatalError)
-		{
-			//@TODO: make this spit out a fatal error message box. and kill SDL when I add it to the project... which I should have already done...
-			exit(1);
-		}
 	}
 
-	
+	void Error(const char* asMessage, ...)
+	{
+		char Text[4096];
+		va_list ap;
+		if (asMessage == NULL)
+			return;
+		va_start(ap, asMessage);
+		vsprintf(Text, asMessage, ap);
+		va_end(ap);
+		tString sMessage = "[ERROR]: ";
+
+		sMessage += Text;
+		LogWriter.Write(sMessage);
+	}
+
+	void Warning(const char* asMessage, ...)
+	{
+		char Text[2048];
+		va_list ap;
+		if (asMessage == NULL)
+			return;
+		va_start(ap, asMessage);
+		vsprintf(Text, asMessage, ap);
+		va_end(ap);
+		tString sMessage = "[Warning]: ";
+		sMessage += Text;
+		LogWriter.Write(sMessage);
+	}
+
+	void Debug(const char* asMessage, ...)
+	{
+		char Text[2048];
+		va_list ap;
+		if (asMessage == NULL)
+			return;
+		va_start(ap, asMessage);
+		vsprintf(Text, asMessage, ap);
+		va_end(ap);
+		tString sMessage = "[Debug]: ";
+		sMessage += Text;
+		LogWriter.Write(sMessage);
+	}
+
+	///////////////////
+	// Commenting this out until I have SDL exit up and running
+
+	/*void FatalError(const char* asMessage, ...)
+	{
+		char Text[2048];
+		va_list ap;
+		if (asMessage == NULL)
+			return;
+		va_start(ap, asMessage);
+		vsprintf(Text, asMessage, ap);
+		va_end(ap);
+		tString sMessage = "[FATAL ERROR!]: ";
+		sMessage += Text;
+		LogWriter.Write(sMessage);
+	}*/
 }
