@@ -44,7 +44,7 @@ namespace alk {
 
 	extern void Debug(const char* asMessage, ...);
 
-	//void FatalError(const char* asMessage, ...);
+	//extern void FatalError(const char* asMessage, ...);
 
 }
 
