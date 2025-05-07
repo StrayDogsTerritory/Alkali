@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Engine">
+      <UniqueIdentifier>{78defa3f-ab15-46fd-be4f-9d10d2c0545e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System">
+      <UniqueIdentifier>{2cd727c0-6237-4418-a658-22925e2a0389}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="include\system\String.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\LogWriter.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Alkali.h" />
+    <ClInclude Include="include\system\SystemTypes.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\MemoryManager.h">
+      <Filter>System</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="source\engine\LogWriter.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\Main.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
