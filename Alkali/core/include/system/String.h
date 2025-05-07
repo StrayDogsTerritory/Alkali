@@ -13,9 +13,10 @@ namespace alk {
 	class cString
 	{
 	public:
+//		twString To16Char(const tString& asString);
 
 	private:
-
+		
 	};
 
 }
