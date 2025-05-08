@@ -19,6 +19,9 @@
     <ClInclude Include="include\system\SystemTypes.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="include\system\MemoryManager.h">
+      <Filter>System</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">
@@ -26,6 +29,9 @@
     </ClCompile>
     <ClCompile Include="source\engine\Main.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\MemoryManager.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
