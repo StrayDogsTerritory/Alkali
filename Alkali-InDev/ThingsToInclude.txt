@@ -1,0 +1,75 @@
+
+	----------ALKALI ENGINE----------
+	Things the engine needs to have
+
+*Engine functionality
+    *update loop
+    *module initialization
+    *---l-o-g-g-i-n-g---
+    *profiling (of the performance variety, cops are not invited to Alkali's development)
+
+  *Graphics
+    *OpenGL base
+    *2d completely, no z coords
+    *backend shader support should be robust and flexible at runtime, for modders
+    *2d lighting system (ray-tracing* might be feasible *not really ray-tracing, but an approximation would work)
+
+  *System stuff
+    *file reading/writing
+    *multi-threading
+    *custom string class (for ease of use)
+    *memory management
+    *Unix support (only when windows works, refactoring will be a bitch though)
+    *XML support (though I will kill myself before I let it really be used)
+    
+  *Input
+    *full keyboard support (maybe not macro keys like on mine)
+    *mouse support (including mouse 5 and co. buttons)
+    *Controller support (modifiable so that people can add their own controllers to it)
+
+  *Sound
+    *OGG, MP3 support
+    *Maybe Fmod support (if it's FOSS (it's not really but good enough))
+
+  *Scene (or world/level stuff)
+    *runtime map compilation(to avoid how much of a pain in the ass it is in source)
+    *triggers
+    *fog
+    *static world objects (like HPL's StatObjs)
+    *tileing system
+    *should support isometric and sideways 2d camera angles
+    *particles
+    *text displayed in the world
+    *save games
+    *texture decals on top of things
+
+  *Entities
+    *animation
+    *ai decision making
+    *interaction
+    *texture components (so characters can change cloths, etc.)
+
+  *Gui
+    *buttons!
+    *sliders!
+    *menu widgets!
+    *messages!
+    *Oh My!
+    
+
+  *Runtime script loading
+	This isn't really in bullet points like the rest is, but I'd like if most game logic can be done at runtime,
+	only so that modders don't need a PhD in x64 assembly to read and write their own code. Modding will make the 
+	games more popular and engender a better community around the game, win win either way in my book. AngleScript is
+	probably the way to go then, only because I have experiance with it.
+
+  *Math
+    *ray tracer (ouch)
+    *no rotations other than reflection and mirroring (because euler and quaternions fail in the second dimension)    
+
+  *Development Tools
+
+  *Network (not at all priority, but would be fun, if very resource consuming)
+	NOTE: If you're future me trying to add this for real, fork the engine so that you don't have to worry about releasing Alkali as FOSS once I'm done with the prior version.
+	Because you know some freak can, and will inevitably try to spread malware on our cute little farm sim. 
+	With that being said...
