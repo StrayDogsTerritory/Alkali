@@ -1,4 +1,5 @@
-I live! I breathe again!
-[ERROR]: I am an error!
-[Warning]: I am a warning!
-[Debug]: I am a debug message!
+----------Memory Manager After Action Report----------
+|
+| No memory leaks detected. Memory Left: 0
+|
+-----------------------------------------------------

@@ -2,7 +2,6 @@
 #include "stdio.h"
 #include <cstdarg>
 
-
 #include "engine/LogWriter.h"
 
 namespace alk {
@@ -86,80 +85,81 @@ namespace alk {
 	}
 
 
-	void Log(const char* asMessage, ...)
+	void Log(const char* asMessage,...)
 	{
 		char Text[4096];
 		va_list ap;
 		if (asMessage == NULL)
-			return;	
+			return;
 		va_start(ap, asMessage);
 		vsprintf(Text, asMessage, ap);
 		va_end(ap);
 
 		tString sMessage = "";
 		
-		sMessage += Text;
-		LogWriter.Write(sMessage);
+			sMessage += Text;
+			LogWriter.Write(sMessage);
 
-	}
+		}
 
-	void Error(const char* asMessage, ...)
-	{
-		char Text[4096];
-		va_list ap;
-		if (asMessage == NULL)
-			return;
-		va_start(ap, asMessage);
-		vsprintf(Text, asMessage, ap);
-		va_end(ap);
-		tString sMessage = "[ERROR]: ";
+		void Error(const char* asMessage, ...)
+		{
+			char Text[4096];
+			va_list ap;
+			if (asMessage == NULL)
+				return;
+			va_start(ap, asMessage);
+			vsprintf(Text, asMessage, ap);
+			va_end(ap);
+			tString sMessage = "[ERROR]: ";
 
-		sMessage += Text;
-		LogWriter.Write(sMessage);
-	}
+			sMessage += Text;
+			LogWriter.Write(sMessage);
+		}
 
-	void Warning(const char* asMessage, ...)
-	{
-		char Text[2048];
-		va_list ap;
-		if (asMessage == NULL)
-			return;
-		va_start(ap, asMessage);
-		vsprintf(Text, asMessage, ap);
-		va_end(ap);
-		tString sMessage = "[Warning]: ";
-		sMessage += Text;
-		LogWriter.Write(sMessage);
-	}
+		void Warning(const char* asMessage, ...)
+		{
+			char Text[2048];
+			va_list ap;
+			if (asMessage == NULL)
+				return;
+			va_start(ap, asMessage);
+			vsprintf(Text, asMessage, ap);
+			va_end(ap);
+			tString sMessage = "[Warning]: ";
+			sMessage += Text;
+			LogWriter.Write(sMessage);
+		}
 
-	void Debug(const char* asMessage, ...)
-	{
-		char Text[2048];
-		va_list ap;
-		if (asMessage == NULL)
-			return;
-		va_start(ap, asMessage);
-		vsprintf(Text, asMessage, ap);
-		va_end(ap);
-		tString sMessage = "[Debug]: ";
-		sMessage += Text;
-		LogWriter.Write(sMessage);
-	}
+		void Debug(const char* asMessage, ...)
+		{
+			char Text[2048];
+			va_list ap;
+			if (asMessage == NULL)
+				return;
+			va_start(ap, asMessage);
+			vsprintf(Text, asMessage, ap);
+			va_end(ap);
+			tString sMessage = "[Debug]: ";
+			sMessage += Text;
+			LogWriter.Write(sMessage);
+		}
 
-	///////////////////
-	// Commenting this out until I have SDL exit up and running
+		///////////////////
+		// Commenting this out until I have SDL exit up and running
 
-	/*void FatalError(const char* asMessage, ...)
-	{
-		char Text[2048];
-		va_list ap;
-		if (asMessage == NULL)
-			return;
-		va_start(ap, asMessage);
-		vsprintf(Text, asMessage, ap);
-		va_end(ap);
-		tString sMessage = "[FATAL ERROR!]: ";
-		sMessage += Text;
-		LogWriter.Write(sMessage);
-	}*/
+		/*void FatalError(const char* asMessage, ...)
+		{
+			char Text[2048];
+			va_list ap;
+			if (asMessage == NULL)
+				return;
+			va_start(ap, asMessage);
+			vsprintf(Text, asMessage, ap);
+			va_end(ap);
+			tString sMessage = "[FATAL ERROR!]: ";
+			sMessage += Text;
+			LogWriter.Write(sMessage);
+		}*/
+	
 }

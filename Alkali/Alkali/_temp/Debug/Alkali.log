@@ -1,10 +1,4 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(498,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
 C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Microsoft\VC\v160\Microsoft.CppBuild.targets(499,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
-  LogWriter.cpp
-  Main.cpp
-C:\Users\ss7442\source\repos\Alkali\Alkali\core\source\engine\LogWriter.cpp(72,12): warning C4996: '_wfopen': This function or variable may be unsafe. Consider using _wfopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\ss7442\source\repos\Alkali\Alkali\core\source\engine\LogWriter.cpp(96,3): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\ss7442\source\repos\Alkali\Alkali\core\source\engine\LogWriter.cpp(113,3): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\ss7442\source\repos\Alkali\Alkali\core\source\engine\LogWriter.cpp(128,3): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\ss7442\source\repos\Alkali\Alkali\core\source\engine\LogWriter.cpp(142,3): warning C4996: 'vsprintf': This function or variable may be unsafe. Consider using vsprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  GraphicsSDL.cpp
   Alkali.vcxproj -> C:\Users\ss7442\source\repos\Alkali\Alkali\lib\Alkali_Debug.lib

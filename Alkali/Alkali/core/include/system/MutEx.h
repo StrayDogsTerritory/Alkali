@@ -2,7 +2,6 @@
 #define ALK_MUTEX_H
 
 namespace alk {
-
 	class iMutex
 	{
 	public:

@@ -15,4 +15,12 @@ enum eMessageType
 	eTypeDebug
 };
 
+enum eMessageBoxType
+{
+	eBoxTypeMessage,
+	eBoxTypeWarning,
+	eBoxTypeError,
+	eBoxTypeFatalError
+};
+
 #endif //ALK_SYSTEMTYPES_H

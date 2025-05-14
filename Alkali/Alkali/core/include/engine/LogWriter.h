@@ -1,7 +1,7 @@
 #ifndef ALK_LOGWRITER_H
 #define ALK_LOGWRITER_H
 
-//#pragma warning(disable: 4996) // disable deprecation warning for _wfopen and vsprintf
+#pragma warning(disable: 4996) // disable deprecation warning for _wfopen and vsprintf
 
 #include "system\String.h"
 
@@ -44,7 +44,7 @@ namespace alk {
 
 	extern void Debug(const char* asMessage, ...);
 
-	//void FatalError(const char* asMessage, ...);
+	//extern void FatalError(const char* asMessage, ...);
 
 }
 

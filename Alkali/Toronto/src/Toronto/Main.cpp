@@ -1,9 +1,12 @@
 #include "TorMain.h"
 
-
 int AlkaliMain(const tString& asCommandLine)
 {
-	Log("_temp message ");
+	// Initialize the memory manager
+
+	
+
+	cMemoryManager::MemoryLog();
 
 	return 0;
 }
