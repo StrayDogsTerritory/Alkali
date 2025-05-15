@@ -7,6 +7,27 @@
     <Filter Include="System">
       <UniqueIdentifier>{2cd727c0-6237-4418-a658-22925e2a0389}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{5eec1480-d745-4b70-9384-b2ce0bee55fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Input">
+      <UniqueIdentifier>{5eaf992a-6744-4d8f-8d05-6e77775a6b49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Gui">
+      <UniqueIdentifier>{702cbf84-a418-4239-982f-a0543dab3089}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Math">
+      <UniqueIdentifier>{72d85e26-faa9-4562-adb6-af34ec360088}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{0f906dbb-c38a-4100-ab5d-fe3ac13cd5d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Xml">
+      <UniqueIdentifier>{58645e84-565b-4c31-a403-b58555e3d573}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\PlatformSpecific">
+      <UniqueIdentifier>{fcf8a895-8c52-4ddf-a504-2fd384c2edec}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\system\String.h">
@@ -22,6 +43,24 @@
     <ClInclude Include="include\system\MemoryManager.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="include\system\Platform.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\Date.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\MutEx.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\Thread.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\GraphicsSDL.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\Engine.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">
@@ -32,6 +71,27 @@
     </ClCompile>
     <ClCompile Include="source\system\MemoryManager.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\Thread.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\String.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\MutEx.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\Platform.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="source\graphics\GraphicsSDL.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\platform_specific\PlatfromWindows.cpp">
+      <Filter>System\PlatformSpecific</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\Engine.cpp">
+      <Filter>Engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

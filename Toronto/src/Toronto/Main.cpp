@@ -2,6 +2,8 @@
 
 int AlkaliMain(const tString& asCommandLine)
 {
+	
+
 	// Initialize the memory manager
 	cMemoryManager::MemoryLog();
 
