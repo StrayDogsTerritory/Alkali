@@ -7,9 +7,14 @@
 #include "system/Platform.h"
 #include "system/Mutex.h"
 
-#include "graphics/GraphicsSDL.h"
+#include "video/VideoSDL.h"
+
+#include "graphics/Graphics.h"
 
 #include "engine/LogWriter.h"
+#include "engine/Engine.h"
+#include "engine/EngineSDL.h"
+
 
 
 
