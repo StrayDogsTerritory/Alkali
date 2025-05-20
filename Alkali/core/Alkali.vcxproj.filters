@@ -28,6 +28,9 @@
     <Filter Include="System\PlatformSpecific">
       <UniqueIdentifier>{fcf8a895-8c52-4ddf-a504-2fd384c2edec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Video">
+      <UniqueIdentifier>{8f95796f-edea-480b-9cee-34a9b6724afd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\system\String.h">
@@ -55,11 +58,26 @@
     <ClInclude Include="include\system\Thread.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\GraphicsSDL.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="include\engine\Engine.h">
       <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\gui\Gui.h">
+      <Filter>Gui</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\Input.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\EngineSDL.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Graphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\video\VideoInterface.h">
+      <Filter>Video</Filter>
+    </ClInclude>
+    <ClInclude Include="include\video\VideoSDL.h">
+      <Filter>Video</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -84,14 +102,29 @@
     <ClCompile Include="source\system\Platform.cpp">
       <Filter>System</Filter>
     </ClCompile>
-    <ClCompile Include="source\graphics\GraphicsSDL.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="source\system\platform_specific\PlatfromWindows.cpp">
       <Filter>System\PlatformSpecific</Filter>
     </ClCompile>
     <ClCompile Include="source\engine\Engine.cpp">
       <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\gui\Gui.cpp">
+      <Filter>Gui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\input\Input.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\EngineSDL.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\graphics\Graphics.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\video\VideoInterface.cpp">
+      <Filter>Video</Filter>
+    </ClCompile>
+    <ClCompile Include="source\video\VideoSDL.cpp">
+      <Filter>Video</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

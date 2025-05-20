@@ -58,7 +58,7 @@
       <SDLCheck>
       </SDLCheck>
       <ConformanceMode>Default</ConformanceMode>
-      <AdditionalIncludeDirectories>..\dependencies\include;./include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\Alkali\dependencies\include;./include</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FunctionLevelLinking>
@@ -96,8 +96,11 @@
   <ItemGroup>
     <ClInclude Include="include\Alkali.h" />
     <ClInclude Include="include\engine\Engine.h" />
+    <ClInclude Include="include\engine\EngineSDL.h" />
     <ClInclude Include="include\engine\LogWriter.h" />
-    <ClInclude Include="include\graphics\GraphicsSDL.h" />
+    <ClInclude Include="include\graphics\Graphics.h" />
+    <ClInclude Include="include\gui\Gui.h" />
+    <ClInclude Include="include\input\Input.h" />
     <ClInclude Include="include\system\Date.h" />
     <ClInclude Include="include\system\MemoryManager.h" />
     <ClInclude Include="include\system\MutEx.h" />
@@ -105,18 +108,25 @@
     <ClInclude Include="include\system\String.h" />
     <ClInclude Include="include\system\SystemTypes.h" />
     <ClInclude Include="include\system\Thread.h" />
+    <ClInclude Include="include\video\VideoInterface.h" />
+    <ClInclude Include="include\video\VideoSDL.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\Engine.cpp" />
+    <ClCompile Include="source\engine\EngineSDL.cpp" />
     <ClCompile Include="source\engine\LogWriter.cpp" />
     <ClCompile Include="source\engine\Main.cpp" />
-    <ClCompile Include="source\graphics\GraphicsSDL.cpp" />
+    <ClCompile Include="source\graphics\Graphics.cpp" />
+    <ClCompile Include="source\gui\Gui.cpp" />
+    <ClCompile Include="source\input\Input.cpp" />
     <ClCompile Include="source\system\MemoryManager.cpp" />
     <ClCompile Include="source\system\MutEx.cpp" />
     <ClCompile Include="source\system\Platform.cpp" />
     <ClCompile Include="source\system\platform_specific\PlatfromWindows.cpp" />
     <ClCompile Include="source\system\String.cpp" />
     <ClCompile Include="source\system\Thread.cpp" />
+    <ClCompile Include="source\video\VideoInterface.cpp" />
+    <ClCompile Include="source\video\VideoSDL.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

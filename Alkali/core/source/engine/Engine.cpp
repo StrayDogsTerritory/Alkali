@@ -1,13 +1,21 @@
-#include "engine/Engine.h"
 #include "system/MemoryManager.h"
-#include "graphics/GraphicsSDL.h"
+#include "engine/Engine.h"
 
 namespace alk {
 
-	bool cEngine::init()
+
+	cEngine* CreateAlkaliEngine()
 	{
 
+	//	alkNew();
 
+		return alkNew(cEngine, ());
+	}
+
+
+
+	bool cEngine::init()
+	{
 
 		mbGameDone = false;
 		return true;
@@ -25,6 +33,9 @@ namespace alk {
 
 	bool cEngine::IsGameDone()
 	{
-		return mbGameDone;
+		bool bDone = mbGameDone;
+
+		return bDone;
 	}
+	
 }

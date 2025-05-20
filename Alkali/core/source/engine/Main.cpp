@@ -3,8 +3,11 @@
 #include "system/String.h"
 #include <Windows.h>
 
+
 #include "SDL3/SDL.h"
 
+#include "video/VideoSDL.h"
+#include "system/MemoryManager.h"
 
 extern int AlkaliMain(const alk::tString &asCommandLine);
 
