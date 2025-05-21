@@ -79,6 +79,9 @@
     <ClInclude Include="include\video\VideoSDL.h">
       <Filter>Video</Filter>
     </ClInclude>
+    <ClInclude Include="include\engine\EngineSetupInterface.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">

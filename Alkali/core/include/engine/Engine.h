@@ -2,6 +2,9 @@
 #define ALK_ENGINE_H
 
 
+class cVideoSDL;
+
+
 namespace alk {
 
 	class cEngine;
@@ -19,9 +22,12 @@ namespace alk {
 	private:
 
 		bool IsGameDone();
-
-
 		bool mbGameDone;
+
+
+
+
+		cVideoSDL* mpVideoSDL;
 	};
 
 

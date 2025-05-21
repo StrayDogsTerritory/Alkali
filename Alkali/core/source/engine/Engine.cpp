@@ -1,5 +1,8 @@
 #include "system/MemoryManager.h"
 #include "engine/Engine.h"
+#include "engine/EngineSDL.h"
+
+
 
 namespace alk {
 
@@ -7,7 +10,7 @@ namespace alk {
 	cEngine* CreateAlkaliEngine()
 	{
 
-	//	alkNew();
+		alkNew(cSDLEngine, ());
 
 		return alkNew(cEngine, ());
 	}
@@ -19,6 +22,11 @@ namespace alk {
 
 		mbGameDone = false;
 		return true;
+
+
+
+
+
 	}
 
 	void cEngine::Run()

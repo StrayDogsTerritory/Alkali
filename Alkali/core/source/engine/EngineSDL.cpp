@@ -13,6 +13,13 @@ namespace alk {
 		
 	}
 
+	cSDLEngine::~cSDLEngine()
+	{
+	
+	
+	}
+
+
 
 }
 

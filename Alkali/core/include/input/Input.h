@@ -4,7 +4,7 @@
 class cInput
 {
 	cInput();
-	~cInput
+	~cInput();
 
 };
 

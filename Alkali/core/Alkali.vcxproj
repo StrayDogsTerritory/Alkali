@@ -21,7 +21,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -97,6 +97,7 @@
     <ClInclude Include="include\Alkali.h" />
     <ClInclude Include="include\engine\Engine.h" />
     <ClInclude Include="include\engine\EngineSDL.h" />
+    <ClInclude Include="include\engine\EngineSetupInterface.h" />
     <ClInclude Include="include\engine\LogWriter.h" />
     <ClInclude Include="include\graphics\Graphics.h" />
     <ClInclude Include="include\gui\Gui.h" />
@@ -113,7 +114,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\Engine.cpp" />
-    <ClCompile Include="source\engine\EngineSDL.cpp" />
+    <ClCompile Include="source\engine\EngineSDL.cpp">
+      <DeploymentContent>true</DeploymentContent>
+    </ClCompile>
     <ClCompile Include="source\engine\LogWriter.cpp" />
     <ClCompile Include="source\engine\Main.cpp" />
     <ClCompile Include="source\graphics\Graphics.cpp" />
