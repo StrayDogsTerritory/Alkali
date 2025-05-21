@@ -5,7 +5,7 @@ class iVideo
 {
 public:
 	virtual ~iVideo() {};
-	virtual bool Init() = 0;
+	virtual bool Init(int alHeight, int alWidth, bool abIsFullScreen = false) = 0;
 
 
 };
