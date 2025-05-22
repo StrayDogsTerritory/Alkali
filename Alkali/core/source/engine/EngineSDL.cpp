@@ -19,7 +19,12 @@ namespace alk {
 	
 	}
 
+	cVideoSDL* cSDLEngine::CreateVideoModule()
+	{
+		cVideoSDL* pVideoSDL = alkNew(cVideoSDL, ());
 
+		return pVideoSDL;
+	}
 
 }
 
