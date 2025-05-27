@@ -2,20 +2,24 @@
 #define ALK_ENGINE_H
 
 
-class cVideoSDL;
 
 
 namespace alk {
 
 	class cEngine;
-
+	class cVideoSDL;
+	class iEngineSetup;
 
 	extern cEngine* CreateAlkaliEngine();
+	extern void DestroyAlkaliEngine(cEngine* apEngine);
 
 	class cEngine
 	{
 	public:
-		bool init();
+		cEngine(iEngineSetup* apGameSetup);
+		~cEngine();
+
+		bool init(iEngineSetup* apGame);
 
 		void Run();
 
@@ -24,7 +28,7 @@ namespace alk {
 		bool IsGameDone();
 		bool mbGameDone;
 
-
+		iEngineSetup* mpGame;
 
 
 		cVideoSDL* mpVideoSDL;

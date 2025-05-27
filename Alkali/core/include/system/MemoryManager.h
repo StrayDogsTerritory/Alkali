@@ -65,21 +65,21 @@ namespace alk {
 #define alkNewArray(classType, amount) \
 	( classType* ) cMemoryManager::AddPointer(alk::cAllocatedPointer( new classType[amount], __FILE__, __LINE__, amount * sizeof(classType) )))
 
-#define alkMalloc (amount) \
-	( void* ) cMemoryManager::AddPointer(alk::cAllocatedPointer( malloc(size), __FILE__, __LINE__, amount))
+#define alkMalloc(amount) \
+	 cMemoryManager::AddPointer(alk::cAllocatedPointer( malloc(size), __FILE__, __LINE__, amount))
 
-#define alkRealloc (oldPointer, amount) \
-	( void* ) cMemoryManager::UpdatePointer(oldPointer, alk::cAllocatedPointer( realloc(oldPointer, size), __FILE__, __LINE__, amount))
+#define alkRealloc(oldPointer, amount) \
+	 cMemoryManager::UpdatePointer(oldPointer, alk::cAllocatedPointer( realloc(oldPointer, size), __FILE__, __LINE__, amount))
 
-#define alkDelete (data) \
-	alk::cMemoryManager::DeletePointer(alk::cMemoryManager::DeleteAndReturn(data), __FILE__, __LINE__,)
-
-#define alkDeleteArray (data) \
-	alk::cMemoryManager::DeletePointer(alk::cMemoryManager::DeleteArrayAndReturn(data), __FILE__, __LINE__,)
-
-#define alkFree (data) \
-	alk::cMemoryManager::DeletePointer(alk::cMemoryManager::FreeAndReturn(data), __FILE__, __LINE__,)
-
+#define alkDelete(data){ \
+			alk::cMemoryManager::DeletePointer(alk::cMemoryManager::DeleteAndReturn(data),__FILE__,__LINE__); \
+			}//delete data;
+#define alkDeleteArray(data){ \
+	alk::cMemoryManager::DeletePointer(alk::cMemoryManager::DeleteArrayAndReturn(data), __FILE__, __LINE__); \
+	}
+#define alkFree(data){ \
+	alk::cMemoryManager::DeletePointer(alk::cMemoryManager::FreeAndReturn(data), __FILE__, __LINE__); \
+	}
 
 }
 #endif

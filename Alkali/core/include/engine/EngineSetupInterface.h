@@ -8,6 +8,7 @@ namespace alk {
 	class iEngineSetup
 	{
 	public:
+		iEngineSetup() {};
 		virtual ~iEngineSetup(){}
 
 

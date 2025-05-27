@@ -15,7 +15,7 @@ namespace alk {
 
 	cSDLEngine::~cSDLEngine()
 	{
-	
+		alkDelete(mpVideoSDL);
 	
 	}
 
