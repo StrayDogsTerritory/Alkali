@@ -13,8 +13,6 @@ namespace alk {
 
 		pGameSetup = alkNew(cSDLEngine, ());
 
-		
-
 		return alkNew(cEngine, (pGameSetup));
 	}
 
@@ -37,6 +35,11 @@ namespace alk {
 
 	cEngine::~cEngine()
 	{
+		alkDelete( mpVideo );
+
+		alkDelete( mpGame );
+
+
 	}
 
 	bool cEngine::init(iEngineSetup* apGame)
@@ -47,8 +50,8 @@ namespace alk {
 		mbGameDone = false;
 		return true;
 
-		mpVideoSDL = mpGame->CreateVideoModule();
-		mpVideoSDL->Init(600, 800, false);
+		mpVideo = mpGame->CreateVideoModule();
+		mpVideo->Init(640, 720, 0);
 
 
 	}
@@ -59,6 +62,12 @@ namespace alk {
 		{
 			/*if (mpVideoSDL->mbWorked)
 				mbGameDone = true;*/
+
+			for (int i; i < 25000; ++i)
+			{
+				if (i == 25000)
+					mbGameDone = true;
+			}
 		}
 
 

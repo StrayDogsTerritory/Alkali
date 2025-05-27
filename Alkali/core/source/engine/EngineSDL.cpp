@@ -1,6 +1,8 @@
 #include "engine/EngineSDL.h"
 #include "system/MemoryManager.h"
 #include "video/VideoSDL.h"
+#include "engine/LogWriter.h"
+#include "video/Video.h"
 
 namespace alk {
 
@@ -17,13 +19,17 @@ namespace alk {
 	{
 		alkDelete(mpVideoSDL);
 	
+
+		Log("SDL modules exit successfully");
 	}
 
-	cVideoSDL* cSDLEngine::CreateVideoModule()
+	cVideo* cSDLEngine::CreateVideoModule()
 	{
-		cVideoSDL* pVideoSDL = alkNew(cVideoSDL, ());
+		cVideo* pVideo = alkNew(cVideo, (mpVideoSDL));
 
-		return pVideoSDL;
+		Log("Video Module Done Init!\n");
+
+		return pVideo;
 	}
 
 }

@@ -9,6 +9,7 @@ namespace alk {
 	class cEngine;
 	class cVideoSDL;
 	class iEngineSetup;
+	class cVideo;
 
 	extern cEngine* CreateAlkaliEngine();
 	extern void DestroyAlkaliEngine(cEngine* apEngine);
@@ -31,7 +32,7 @@ namespace alk {
 		iEngineSetup* mpGame;
 
 
-		cVideoSDL* mpVideoSDL;
+		cVideo* mpVideo;
 	};
 
 

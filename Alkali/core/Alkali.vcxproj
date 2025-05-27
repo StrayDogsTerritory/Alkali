@@ -109,6 +109,7 @@
     <ClInclude Include="include\system\String.h" />
     <ClInclude Include="include\system\SystemTypes.h" />
     <ClInclude Include="include\system\Thread.h" />
+    <ClInclude Include="include\video\Video.h" />
     <ClInclude Include="include\video\VideoInterface.h" />
     <ClInclude Include="include\video\VideoSDL.h" />
   </ItemGroup>
@@ -128,6 +129,7 @@
     <ClCompile Include="source\system\platform_specific\PlatfromWindows.cpp" />
     <ClCompile Include="source\system\String.cpp" />
     <ClCompile Include="source\system\Thread.cpp" />
+    <ClCompile Include="source\video\Video.cpp" />
     <ClCompile Include="source\video\VideoInterface.cpp" />
     <ClCompile Include="source\video\VideoSDL.cpp" />
   </ItemGroup>

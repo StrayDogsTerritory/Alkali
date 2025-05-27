@@ -2,7 +2,11 @@
 
 int AlkaliMain(const tString& asCommandLine)
 {
+
+
 	mpGame = CreateAlkaliEngine();
+
+	
 
 	if(mpGame)
 		DestroyAlkaliEngine(mpGame);

@@ -5,8 +5,8 @@
 
 namespace alk {
 
-	class cVideoSDL;
-
+	class iVideo;
+	class cVideo;
 
 	class cSDLEngine : public iEngineSetup
 	{
@@ -14,11 +14,11 @@ namespace alk {
 		cSDLEngine();
 		~cSDLEngine();
 
-		cVideoSDL* CreateVideoModule();
+		cVideo* CreateVideoModule();
 
 	private:
 
-		cVideoSDL* mpVideoSDL;
+		iVideo* mpVideoSDL;
 
 	};
 

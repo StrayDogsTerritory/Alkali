@@ -82,6 +82,9 @@
     <ClInclude Include="include\engine\EngineSetupInterface.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="include\video\Video.h">
+      <Filter>Video</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">
@@ -127,6 +130,9 @@
       <Filter>Video</Filter>
     </ClCompile>
     <ClCompile Include="source\video\VideoSDL.cpp">
+      <Filter>Video</Filter>
+    </ClCompile>
+    <ClCompile Include="source\video\Video.cpp">
       <Filter>Video</Filter>
     </ClCompile>
   </ItemGroup>

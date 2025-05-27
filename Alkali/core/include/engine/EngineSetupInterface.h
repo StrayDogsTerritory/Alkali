@@ -4,6 +4,7 @@
 namespace alk {
 
 	class cVideoSDL;
+	class cVideo;
 
 	class iEngineSetup
 	{
@@ -12,7 +13,7 @@ namespace alk {
 		virtual ~iEngineSetup(){}
 
 
-		virtual cVideoSDL* CreateVideoModule()=0;
+		virtual cVideo* CreateVideoModule()=0;
 	};
 
 }
