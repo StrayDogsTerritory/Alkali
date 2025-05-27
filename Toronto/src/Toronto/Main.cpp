@@ -3,6 +3,8 @@
 int AlkaliMain(const tString& asCommandLine)
 {
 	
+	CreateAlkaliEngine();
+
 
 	// Initialize the memory manager
 	cMemoryManager::MemoryLog();

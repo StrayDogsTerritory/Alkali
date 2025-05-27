@@ -71,15 +71,15 @@ namespace alk {
 #define alkRealloc (oldPointer, amount) \
 	( void* ) cMemoryManager::UpdatePointer(oldPointer, alk::cAllocatedPointer( realloc(oldPointer, size), __FILE__, __LINE__, amount))
 
-#define alkDelete (data) \
-	alk::cMemoryManager::DeletePointer(alk::cMemoryManager::DeleteAndReturn(data), __FILE__, __LINE__,)
-
-#define alkDeleteArray (data) \
-	alk::cMemoryManager::DeletePointer(alk::cMemoryManager::DeleteArrayAndReturn(data), __FILE__, __LINE__,)
-
-#define alkFree (data) \
-	alk::cMemoryManager::DeletePointer(alk::cMemoryManager::FreeAndReturn(data), __FILE__, __LINE__,)
-
+#define alkDelete (data){ \
+	alk::cMemoryManager::DeletePointer(alk::cMemoryManager::DeleteAndReturn(data), __FILE__, __LINE__,); \
+	}
+#define alkDeleteArray (data){ \
+	alk::cMemoryManager::DeletePointer(alk::cMemoryManager::DeleteArrayAndReturn(data), __FILE__, __LINE__,); \
+	}
+#define alkFree (data){ \
+	alk::cMemoryManager::DeletePointer(alk::cMemoryManager::FreeAndReturn(data), __FILE__, __LINE__,); \
+	}
 
 }
 #endif
