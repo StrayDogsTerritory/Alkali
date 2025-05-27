@@ -12,8 +12,11 @@ namespace alk {
 		cVideoSDL();
 		~cVideoSDL();
 		bool Init(int alHeight, int alWidth, bool abIsFullScreen);
+
+		bool mbWorked = false;
 	private:
 
+		
 		SDL_Window* mpSDLWindow;
 	};
 

@@ -10,9 +10,11 @@ namespace alk {
 	{
 	}
 
-	bool cVideoSDL::Init(int alHeight, int alWidth, bool abIsFullScreen = false)
+	bool cVideoSDL::Init(int alHeight, int alWidth, bool abIsFullScreen)
 	{
 		mpSDLWindow = SDL_CreateWindow("Alkali", alWidth, alHeight, 0);
+
+		mbWorked = true;
 
 		return true;
 	}
