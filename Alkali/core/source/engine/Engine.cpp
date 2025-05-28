@@ -3,7 +3,7 @@
 #include "engine/EngineSDL.h"
 #include "engine/EngineSetupInterface.h"
 #include "video/VideoSDL.h"
-
+#include "video/Video.h"
 namespace alk {
 
 
@@ -48,12 +48,12 @@ namespace alk {
 
 
 		mbGameDone = false;
-		return true;
+		
 
 		mpVideo = mpGame->CreateVideoModule();
 		mpVideo->Init(640, 720, 0);
 
-
+		return true;
 	}
 
 	void cEngine::Run()
@@ -63,7 +63,7 @@ namespace alk {
 			/*if (mpVideoSDL->mbWorked)
 				mbGameDone = true;*/
 
-			for (int i; i < 25000; ++i)
+			for (int i = 0; i < 25000; ++i)
 			{
 				if (i == 25000)
 					mbGameDone = true;

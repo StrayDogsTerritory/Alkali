@@ -35,7 +35,7 @@ namespace alk {
 	bool cMemoryManager::DeletePointer(void* apData, const char* apFileString, int alLine)
 	{
 		bool bFound = false;
-		tAllocatedPointermapIterator it = m_mapPointers.find(apData);
+		tAllocatedPointermapIterator it = m_mapPointers.upper_bound(apData);
 		it--;
 		if (it != m_mapPointers.end())
 		{

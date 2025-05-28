@@ -20,7 +20,7 @@ namespace alk {
 		alkDelete(mpVideoSDL);
 	
 
-		Log("SDL modules exit successfully");
+		Log("SDL modules exit successfully\n");
 	}
 
 	cVideo* cSDLEngine::CreateVideoModule()

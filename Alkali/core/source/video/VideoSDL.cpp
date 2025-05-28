@@ -14,7 +14,7 @@ namespace alk {
 
 	bool cVideoSDL::Init(int alHeight, int alWidth, int alWindowMode)
 	{
-		mpSDLWindow = SDL_CreateWindow("Alkali", alWidth, alHeight, 0);
+		mpSDLWindow = SDL_CreateWindow("Alkali", alWidth, alHeight, alWindowMode);
 
 
 		Log("Init Window finished!\n");
