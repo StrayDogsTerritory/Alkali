@@ -50,6 +50,7 @@ namespace alk {
 		mbGameDone = false;
 		
 
+
 		mpVideo = mpGame->CreateVideoModule();
 		mpVideo->Init(640, 720, 0);
 
@@ -63,11 +64,7 @@ namespace alk {
 			/*if (mpVideoSDL->mbWorked)
 				mbGameDone = true;*/
 
-			for (int i = 0; i < 25000; ++i)
-			{
-				if (i == 25000)
-					mbGameDone = true;
-			}
+			//mbGameDone = true;
 		}
 
 

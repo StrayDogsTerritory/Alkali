@@ -10,7 +10,7 @@ namespace alk {
 	cSDLEngine::cSDLEngine()
 	{
 
-		mpVideoSDL = alkNew(cVideoSDL, ());
+   		mpVideoSDL = alkNew(cVideoSDL, ());
 
 		
 	}
