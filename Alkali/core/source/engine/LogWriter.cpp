@@ -4,6 +4,8 @@
 
 #include "engine/LogWriter.h"
 
+#include "SDL3/SDL.h"
+
 namespace alk {
 
 	/////////////////////////////////////////////////////
@@ -148,7 +150,7 @@ namespace alk {
 		///////////////////
 		// Commenting this out until I have SDL exit up and running
 
-		/*void FatalError(const char* asMessage, ...)
+		void FatalError(const char* asMessage, ...)
 		{
 			char Text[2048];
 			va_list ap;
@@ -160,6 +162,10 @@ namespace alk {
 			tString sMessage = "[FATAL ERROR!]: ";
 			sMessage += Text;
 			LogWriter.Write(sMessage);
-		}*/
+
+			SDL_Quit();
+
+			exit(1);
+		}
 	
 }

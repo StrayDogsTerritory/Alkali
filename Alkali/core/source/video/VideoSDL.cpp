@@ -10,6 +10,7 @@ namespace alk {
 
 	cVideoSDL::~cVideoSDL()
 	{
+		SDL_DestroyWindow(mpSDLWindow);
 	}
 
 	bool cVideoSDL::Init(int alHeight, int alWidth, int alWindowMode)

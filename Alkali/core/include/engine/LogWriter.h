@@ -4,10 +4,12 @@
 #pragma warning(disable: 4996) // disable deprecation warning for _wfopen and vsprintf
 
 #include "system\String.h"
-
 #include "system\SystemTypes.h"
+#include "stdio.h"
 
 namespace alk {
+
+#define NORETURN
 
 
 	//----------------------------
@@ -44,7 +46,7 @@ namespace alk {
 
 	extern void Debug(const char* asMessage, ...);
 
-	//extern void FatalError(const char* asMessage, ...);
+	extern  void  FatalError(const char* asMessage, ...) NORETURN;
 
 }
 

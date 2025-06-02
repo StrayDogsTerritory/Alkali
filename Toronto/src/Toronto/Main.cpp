@@ -6,7 +6,9 @@ int AlkaliMain(const tString& asCommandLine)
 
 	mpGame = CreateAlkaliEngine();
 
+	
 	mpGame->Run();
+
 
 	if(mpGame)
 		DestroyAlkaliEngine(mpGame);

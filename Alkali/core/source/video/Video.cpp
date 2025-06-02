@@ -2,7 +2,7 @@
 #include "system/MemoryManager.h"
 #include "engine/LogWriter.h"
 #include "video/VideoInterface.h"
-
+#include "SDL3/SDL_video.h"
 
 namespace alk {
 
@@ -16,7 +16,7 @@ namespace alk {
 
 	cVideo::~cVideo()
 	{
-	
+		
 	}
 	bool cVideo::Init(int alHeight, int alWidth, int alWindowMode)
 	{

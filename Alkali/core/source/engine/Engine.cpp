@@ -52,7 +52,7 @@ namespace alk {
 
 
 		mpVideo = mpGame->CreateVideoModule();
-		mpVideo->Init(640, 720, 0);
+		mpVideo->Init( 680, 720 , 0);
 
 		return true;
 	}
