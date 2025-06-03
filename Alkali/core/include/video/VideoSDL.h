@@ -2,7 +2,9 @@
 #define ALK_VIDEOSDL_H
 
 #include "video/VideoInterface.h"
-#include "SDL3/SDL_video.h"
+#include "SDL3/SDL.h"
+
+#include "GL/glew.h"
 
 namespace alk {
 
@@ -15,7 +17,7 @@ namespace alk {
 
 		
 	private:
-
+		SDL_GLContext mGLContext;
 		
 		SDL_Window* mpSDLWindow;
 	};

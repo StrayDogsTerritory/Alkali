@@ -98,6 +98,7 @@
     <ClInclude Include="include\engine\Engine.h" />
     <ClInclude Include="include\engine\EngineSDL.h" />
     <ClInclude Include="include\engine\EngineSetupInterface.h" />
+    <ClInclude Include="include\engine\InitVars.h" />
     <ClInclude Include="include\engine\LogWriter.h" />
     <ClInclude Include="include\graphics\Graphics.h" />
     <ClInclude Include="include\gui\Gui.h" />

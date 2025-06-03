@@ -15,11 +15,17 @@ namespace alk {
 
 	bool cVideoSDL::Init(int alHeight, int alWidth, int alWindowMode)
 	{
+
+		unsigned int mlFlags = SDL_WINDOW_OPENGL;
+
+
 		mpSDLWindow = SDL_CreateWindow("Alkali", alWidth, alHeight, alWindowMode);
-
-
-		Log("Init Window finished!\n");
 		
+		if (mpSDLWindow == NULL)
+			FatalError("Error initialising display: %s\n", SDL_GetError());
+		
+		mGLContext = SDL_GL_CreateContext(mpSDLWindow);
+
 		return true;
 	}
 

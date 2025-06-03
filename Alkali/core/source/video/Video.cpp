@@ -9,11 +9,11 @@ namespace alk {
 	cVideo::cVideo(iVideo* apVideo)
 	{
 		mpiVideo = apVideo;
-		Log("video.cpp loaded\n");
+		
 	}
 
 	//--------------------------------
-
+	
 	cVideo::~cVideo()
 	{
 		
