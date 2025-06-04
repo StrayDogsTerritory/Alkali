@@ -26,7 +26,15 @@ namespace alk {
 		
 		mGLContext = SDL_GL_CreateContext(mpSDLWindow);
 
+
+		InitOpenGL();
+
 		return true;
+	}
+
+	bool cVideoSDL::InitOpenGL()
+	{
+		
 	}
 
 };

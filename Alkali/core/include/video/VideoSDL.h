@@ -14,7 +14,7 @@ namespace alk {
 		cVideoSDL();
 		~cVideoSDL();
 		bool Init(int alHeight, int alWidth, int alWindowMode);
-
+		bool InitOpenGL();
 		
 	private:
 		SDL_GLContext mGLContext;

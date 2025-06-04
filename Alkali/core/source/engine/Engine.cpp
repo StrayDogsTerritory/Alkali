@@ -70,9 +70,9 @@ namespace alk {
 
 	bool cEngine::IsGameDone()
 	{
-		bool bDone = mbGameDone;
+		mbGameDone;
 
-		return bDone;
+		return  mbGameDone;
 	}
 	
 }
