@@ -19,7 +19,7 @@ namespace alk {
 		unsigned int mlFlags = SDL_WINDOW_OPENGL;
 
 
-		mpSDLWindow = SDL_CreateWindow("Alkali", alWidth, alHeight, alWindowMode);
+		mpSDLWindow = SDL_CreateWindow("Alkali", alWidth, alHeight, mlFlags);
 		
 		if (mpSDLWindow == NULL)
 			FatalError("Error initialising display: %s\n", SDL_GetError());

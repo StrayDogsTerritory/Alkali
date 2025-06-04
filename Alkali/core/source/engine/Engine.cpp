@@ -18,9 +18,8 @@ namespace alk {
 
 	void DestroyAlkaliEngine(cEngine* apEngine)
 	{
+
 		alkDelete( apEngine );
-
-
 		
 	}
 
@@ -28,7 +27,6 @@ namespace alk {
 
 	cEngine::cEngine(iEngineSetup* apGameSetup)
 	{
-		//mpGame = apGameSetup;
 
 		init(apGameSetup);
 	}
