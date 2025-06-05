@@ -4,6 +4,8 @@
 #include "engine/EngineSetupInterface.h"
 #include "video/VideoSDL.h"
 #include "video/Video.h"
+#include "engine/LogWriter.h"
+
 namespace alk {
 
 
@@ -48,7 +50,7 @@ namespace alk {
 		mbGameDone = false;
 		
 
-
+		Log("Creating Graphics Module\n");
 		mpVideo = mpGame->CreateVideoModule();
 		mpVideo->Init( 680, 720 , 0);
 

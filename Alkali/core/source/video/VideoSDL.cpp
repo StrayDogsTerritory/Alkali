@@ -26,6 +26,13 @@ namespace alk {
 		
 		mGLContext = SDL_GL_CreateContext(mpSDLWindow);
 
+		// init GLEW
+		Log("Setting up GLEW: ");
+		if (glewInit() == GLEW_OK)
+			Log("running\n");
+		else
+			Error("Glew Failed!\n");
+
 
 		InitOpenGL();
 
@@ -35,6 +42,7 @@ namespace alk {
 	bool cVideoSDL::InitOpenGL()
 	{
 		
+		return true;
 	}
 
 };

@@ -5,7 +5,7 @@ namespace alk {
 
 	class cGraphics
 	{
-		bool Init()
+		bool Init();
 
 	};
 
