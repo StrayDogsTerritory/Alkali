@@ -9,6 +9,9 @@
 
 namespace alk {
 
+	class cGraphics;
+
+
 	class cVideoSDL : public iVideo
 	{
 	public:
@@ -20,6 +23,7 @@ namespace alk {
 	private:
 		SDL_GLContext mGLContext;
 		SDL_Window* mpSDLWindow;
+		cGraphics* mpGraphics;
 	};
 
 	

@@ -1,5 +1,6 @@
 #include "video/VideoSDL.h"
 #include "engine/LogWriter.h"
+#include "graphics/Graphics.h"
 
 namespace alk {
 
@@ -27,22 +28,23 @@ namespace alk {
 		mGLContext = SDL_GL_CreateContext(mpSDLWindow);
 
 		// init GLEW
+		unsigned int GLEWWorks = glewInit();
+
 		Log("Setting up GLEW: ");
-		if (glewInit() == GLEW_OK)
+		//temp 
+		GLEWWorks = NULL;
+
+		if (GLEWWorks == GLEW_OK)
 			Log("running\n");
 		else
-			Error("Glew Failed!\n");
+			Error("Glew Failed! Reason: %s\n", glewGetErrorString(GLEWWorks));
 
 
-		InitOpenGL();
+		mpGraphics->InitOpenGL();
 
 		return true;
 	}
 
-	bool cVideoSDL::InitOpenGL()
-	{
-		
-		return true;
-	}
+	
 
 };

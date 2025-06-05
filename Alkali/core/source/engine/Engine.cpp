@@ -6,6 +6,8 @@
 #include "video/Video.h"
 #include "engine/LogWriter.h"
 
+#include "graphics/Graphics.h"
+
 namespace alk {
 
 
@@ -36,6 +38,8 @@ namespace alk {
 	cEngine::~cEngine()
 	{
 		alkDelete( mpVideo );
+		alkDelete( mpGraphics );
+
 
 		alkDelete( mpGame );
 
@@ -49,9 +53,17 @@ namespace alk {
 
 		mbGameDone = false;
 		
+		//create the modules
+		Log("Creating graphics module\n");
+		mpGraphics = alkNew(cGraphics, ());
 
-		Log("Creating Graphics Module\n");
+		Log("Creating Video module\n");
 		mpVideo = mpGame->CreateVideoModule();
+		
+
+
+		//init the modules
+
 		mpVideo->Init( 680, 720 , 0);
 
 		return true;

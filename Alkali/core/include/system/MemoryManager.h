@@ -59,11 +59,11 @@ namespace alk {
 
 	
 
-#define alkNew(classType, constructor) \
-	( classType* ) cMemoryManager::AddPointer(alk::cAllocatedPointer( new classType constructor, __FILE__, __LINE__, sizeof(classType)))
+#define alkNew(constructor, params) \
+	( constructor* ) cMemoryManager::AddPointer(alk::cAllocatedPointer( new constructor params, __FILE__, __LINE__, sizeof(constructor)))
 
-#define alkNewArray(classType, amount) \
-	( classType* ) cMemoryManager::AddPointer(alk::cAllocatedPointer( new classType[amount], __FILE__, __LINE__, amount * sizeof(classType) )))
+#define alkNewArray(constructor, amount) \
+	( classType* ) cMemoryManager::AddPointer(alk::cAllocatedPointer( new constructor[amount], __FILE__, __LINE__, amount * sizeof(constructor) )))
 
 #define alkMalloc(amount) \
 	 cMemoryManager::AddPointer(alk::cAllocatedPointer( malloc(size), __FILE__, __LINE__, amount))
@@ -73,7 +73,7 @@ namespace alk {
 
 #define alkDelete(data){ \
 			alk::cMemoryManager::DeletePointer(alk::cMemoryManager::DeleteAndReturn(data),__FILE__,__LINE__); \
-			}//delete data;
+			}
 #define alkDeleteArray(data){ \
 	alk::cMemoryManager::DeletePointer(alk::cMemoryManager::DeleteArrayAndReturn(data), __FILE__, __LINE__); \
 	}

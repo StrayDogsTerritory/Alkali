@@ -149,6 +149,7 @@ namespace alk {
 
 		///////////////////
 		// Commenting this out until I have SDL exit up and running
+		//	I've got this now!
 
 		void FatalError(const char* asMessage, ...)
 		{

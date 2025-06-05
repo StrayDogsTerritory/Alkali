@@ -5,7 +5,11 @@ namespace alk {
 
 	class cGraphics
 	{
-		bool Init();
+	public:
+		cGraphics();
+		~cGraphics();
+
+		bool InitOpenGL();
 
 	};
 
