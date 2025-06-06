@@ -3,12 +3,15 @@
 #include "video/VideoSDL.h"
 #include "engine/LogWriter.h"
 #include "video/Video.h"
+#include "SDL3/SDL.h"
 
 namespace alk {
 
 
 	cSDLEngine::cSDLEngine()
 	{
+
+		SDL_DisableScreenSaver();
 
    		mpVideoSDL = alkNew(cVideoSDL, ());
 

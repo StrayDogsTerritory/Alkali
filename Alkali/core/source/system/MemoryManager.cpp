@@ -20,7 +20,7 @@ namespace alk {
 		m_mapPointers.insert(tAllocatedPointerMap::value_type(asAllocatedPointer.mpData,asAllocatedPointer));
 		mlTotalMemoryUsage += asAllocatedPointer.mlMemorySize;
 
-		Log("Creating a Pointer 0x%x at: %s, line: %d\n", asAllocatedPointer.mpData, asAllocatedPointer.msFile.c_str(),asAllocatedPointer.mlLine);
+		//Log("Creating a Pointer 0x%x at: %s, line: %d\n", asAllocatedPointer.mpData, asAllocatedPointer.msFile.c_str(),asAllocatedPointer.mlLine);
 
 		return asAllocatedPointer.mpData;
 	}

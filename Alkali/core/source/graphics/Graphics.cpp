@@ -3,10 +3,14 @@
 namespace alk {
 
 	cGraphics::cGraphics()
-	{}
+	{ 
+	
+	}
 
 	cGraphics::~cGraphics()
-	{}
+	{
+	
+	}
 
 
 	bool cGraphics::InitOpenGL()
