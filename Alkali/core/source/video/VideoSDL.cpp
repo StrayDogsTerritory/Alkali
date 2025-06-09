@@ -31,14 +31,13 @@ namespace alk {
 		unsigned int GLEWWorks = glewInit();
 
 		Log("Setting up GLEW: ");
-		//temp 
-		GLEWWorks = NULL;
-
+		
 		if (GLEWWorks == GLEW_OK)
 			Log("running\n");
 		else
 			Error("Glew Failed! Reason: %s\n", glewGetErrorString(GLEWWorks));
 
+		
 
 		mpGraphics->InitOpenGL();
 
