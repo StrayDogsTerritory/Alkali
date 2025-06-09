@@ -8,6 +8,9 @@
 
 #include "graphics/Graphics.h"
 
+// temp 
+#include "SDL3/SDL.h"
+
 namespace alk {
 
 
@@ -71,12 +74,21 @@ namespace alk {
 
 	void cEngine::Run()
 	{
+		SDL_Event mSDLEvent;
+
 		while (!IsGameDone())
 		{
-			/*if (mpVideoSDL->mbWorked)
-				mbGameDone = true;*/
 
-			//mbGameDone = true;
+			//this is all temporary, do this in an actual input module
+			while(SDL_PollEvent(&mSDLEvent))
+			{
+				if (mSDLEvent.type == SDL_EVENT_QUIT)
+				{
+					mbGameDone = true;
+				}
+			
+			}
+			
 		}
 
 
@@ -84,8 +96,6 @@ namespace alk {
 
 	bool cEngine::IsGameDone()
 	{
-		mbGameDone;
-
 		return  mbGameDone;
 	}
 	
