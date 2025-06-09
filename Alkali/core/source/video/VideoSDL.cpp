@@ -45,5 +45,8 @@ namespace alk {
 	}
 
 	
-
+	SDL_Window* cVideoSDL::GetWindow()
+	{
+		return mpSDLWindow;
+	}
 };
