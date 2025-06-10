@@ -2,6 +2,10 @@
 #include "engine/LogWriter.h"
 #include "graphics/Graphics.h"
 
+
+#pragma comment(lib, "OpenGL32.lib")
+
+
 namespace alk {
 
 	cVideoSDL::cVideoSDL()
@@ -41,9 +45,15 @@ namespace alk {
 
 		mpGraphics->InitOpenGL();
 
+		mpGraphics->DrawTriangle();
 		return true;
 	}
 
-	
+	void cVideoSDL::SwapBuffer()
+	{
+		SDL_GL_SwapWindow(mpSDLWindow);
+	}
+
+
 
 };
