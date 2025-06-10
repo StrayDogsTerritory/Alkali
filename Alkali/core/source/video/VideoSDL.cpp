@@ -95,6 +95,14 @@ namespace alk {
 	}
 
 	
+<<<<<<< HEAD
 
 >>>>>>> parent of e1637d2 (technically broken, need to add buffer swapping manually, because for some reason the screen pointer hates me. Fuck you screen pointer, make my life easier you shitty little thing. Fuck you so much you pathetic little pointer.)
+=======
+	SDL_Window* cVideoSDL::GetWindow()
+	{
+		return mpSDLWindow;
+	}
+>>>>>>> e1637d263fa7994d5ce3a7276463df609a269e2f
+>>>>>>> d9dde0ee5dadd39e1b8cc25b534e2432db9054c2
 };
