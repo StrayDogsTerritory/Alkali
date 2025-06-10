@@ -37,9 +37,9 @@ namespace alk {
 		else
 			Error("Glew Failed! Reason: %s\n", glewGetErrorString(GLEWWorks));
 
-		
-
 		mpGraphics->InitOpenGL();
+
+		SDL_GL_SwapWindow(mpSDLWindow);
 
 		return true;
 	}
