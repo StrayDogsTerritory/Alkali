@@ -9,7 +9,7 @@
 
 namespace alk {
 
-	class cGraphics; 
+	class cGraphics;
 
 
 	class cVideoSDL : public iVideo
@@ -18,7 +18,7 @@ namespace alk {
 		cVideoSDL();
 		~cVideoSDL();
 		bool Init(int alHeight, int alWidth, int alWindowMode);
-		SDL_Window* GetWindow();
+		bool InitOpenGL();
 		
 	private:
 		SDL_GLContext mGLContext;
