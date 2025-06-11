@@ -3,7 +3,7 @@
 
 namespace alk {
 
-	class cVideoSDL;
+	
 	class iVideo;
 
 	class cVideo
@@ -13,8 +13,10 @@ namespace alk {
 		~cVideo();
 		bool Init(int alHeight, int alWidth, int alWindowMode);
 
+		iVideo* GetVideo();
+
 	private:
-		iVideo* mpiVideo;
+		iVideo* mpVideo;
 	};
 
 }

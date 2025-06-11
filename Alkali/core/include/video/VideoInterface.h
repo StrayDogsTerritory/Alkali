@@ -10,7 +10,8 @@ namespace alk {
 	public:
 		virtual ~iVideo() {};
 		virtual bool Init(int alHeight, int alWidth, int alWindowMode) = 0;
-		
+		virtual bool InitOpenGL() = 0;
+
 		virtual void SwapBuffer() = 0;
 	
 		

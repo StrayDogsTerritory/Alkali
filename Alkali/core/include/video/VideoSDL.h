@@ -18,7 +18,8 @@ namespace alk {
 		cVideoSDL();
 		~cVideoSDL();
 		bool Init(int alHeight, int alWidth, int alWindowMode);
-		
+		bool InitOpenGL();
+
 		void SwapBuffer();
 		
 	private:

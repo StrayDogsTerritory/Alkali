@@ -8,7 +8,7 @@ namespace alk {
 
 	cVideo::cVideo(iVideo* apVideo)
 	{
-		mpiVideo = apVideo;
+		mpVideo = apVideo;
 		
 	}
 
@@ -21,8 +21,13 @@ namespace alk {
 	bool cVideo::Init(int alHeight, int alWidth, int alWindowMode)
 	{
 	
-		mpiVideo->Init(alHeight, alWidth, alWindowMode);
+		mpVideo->Init(alHeight, alWidth, alWindowMode);
 
 		return true;
+	}
+
+	iVideo* cVideo::GetVideo()
+	{
+		return mpVideo;
 	}
 }

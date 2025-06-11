@@ -87,7 +87,10 @@ namespace alk {
 					mbGameDone = true;
 				}
 			
+
 			}
+			
+			mpVideo->GetVideo()->InitOpenGL();
 			
 		}
 

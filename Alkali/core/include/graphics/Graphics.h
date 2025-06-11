@@ -6,7 +6,7 @@
 
 namespace alk {
 
-	class cVideoSDL;
+	class iVideo;
 
 	class cGraphics
 	{
@@ -14,12 +14,14 @@ namespace alk {
 		cGraphics();
 		~cGraphics();
 
-		bool InitOpenGL();																																										   
+																																								   
 		void DrawTriangle();  // <- this should take an argument in the future, maybe... still deciding how polygons should be used  
 
+	private:
+		iVideo* mpVideo;
 	};
 
-	cVideoSDL* mpVideoSDL;
+	
 
 }
 

@@ -12,6 +12,8 @@ namespace alk {
 	{
 
 		SDL_DisableScreenSaver();
+		SDL_HideCursor();
+
 
    		mpVideoSDL = alkNew(cVideoSDL, ());
 
