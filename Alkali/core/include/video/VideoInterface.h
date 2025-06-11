@@ -14,7 +14,7 @@ namespace alk {
 
 		virtual void SwapBuffer() = 0;
 	
-		
+		virtual bool SetCursorVisibility(bool abx) = 0;
 	};
 
 }

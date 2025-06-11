@@ -90,7 +90,7 @@ namespace alk {
 
 			}
 			
-			mpVideo->GetVideo()->InitOpenGL();
+			
 			
 		}
 

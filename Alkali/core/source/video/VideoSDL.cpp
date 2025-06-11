@@ -4,7 +4,7 @@
 
 
 #pragma comment(lib, "OpenGL32.lib")
-
+#pragma comment(lib, "GLu32.lib")
 
 namespace alk {
 
@@ -25,27 +25,27 @@ namespace alk {
 
 
 		mpSDLWindow = SDL_CreateWindow("Alkali", alWidth, alHeight, mlFlags);
-		
+
 		if (mpSDLWindow == NULL)
 			FatalError("Error initialising display: %s\n", SDL_GetError());
-		
+
 		mGLContext = SDL_GL_CreateContext(mpSDLWindow);
 
 		// init GLEW
 		unsigned int GLEWWorks = glewInit();
 
 		Log("Setting up GLEW: ");
-		
+
 		if (GLEWWorks == GLEW_OK)
 			Log("running\n");
 		else
 			Error("Glew Failed! Reason: %s\n", glewGetErrorString(GLEWWorks));
 
-		
+		SetCursorVisibility(true);
 
-	//	InitOpenGL();
+			InitOpenGL();
 
-		
+
 		return true;
 	}
 
@@ -53,25 +53,26 @@ namespace alk {
 	{
 
 		float vVerts[] = {
-			0.0, 0.5, 0.0,
-			-0.5, -0.5, 0.0,
-			0.5, -0.5, 0.0
+			0.0f, 0.5f, 0.0f,
+			-0.5f, -0.5f, 0.0f,
+			0.5f, -0.5f, 0.0f
 
 		};
-		
-		
+
+		glShadeModel(GL_SMOOTH);
+
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		glEnableClientState(GL_VERTEX_ARRAY);
 		//glEnableClientState(GL_COLOR_ARRAY);
 		glVertexPointer(3, GL_FLOAT, 0, vVerts);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
-		
+
 		SwapBuffer();
-		
+
 		return true;
 
-		
+
 	}
 
 
@@ -81,6 +82,9 @@ namespace alk {
 		SDL_GL_SwapWindow(mpSDLWindow);
 	}
 
-
+	bool cVideoSDL::SetCursorVisibility(bool abx)
+	{
+		return abx ? SDL_ShowCursor() : SDL_HideCursor();
+	}
 
 };

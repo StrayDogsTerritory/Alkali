@@ -22,6 +22,8 @@ namespace alk {
 
 		void SwapBuffer();
 		
+		bool SetCursorVisibility(bool abx);
+
 	private:
 		SDL_GLContext mGLContext;
 		SDL_Window* mpSDLWindow;
