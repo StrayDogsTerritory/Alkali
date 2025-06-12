@@ -41,7 +41,7 @@ namespace alk {
 		else
 			Error("Glew Failed! Reason: %s\n", glewGetErrorString(GLEWWorks));
 
-		SetCursorVisibility(true);
+		SetCursorVisibility(false);
 
 			InitOpenGL();
 
@@ -59,7 +59,6 @@ namespace alk {
 
 		};
 
-		glShadeModel(GL_SMOOTH);
 
 		glClear(GL_COLOR_BUFFER_BIT);
 
