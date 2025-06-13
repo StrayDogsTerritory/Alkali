@@ -23,6 +23,7 @@ namespace alk {
 		void SwapBuffer();
 		
 		bool SetCursorVisibility(bool abx);
+		bool SetWindowFullscreen(bool abx);
 
 	private:
 		SDL_GLContext mGLContext;

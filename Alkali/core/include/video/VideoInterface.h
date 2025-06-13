@@ -15,6 +15,8 @@ namespace alk {
 		virtual void SwapBuffer() = 0;
 	
 		virtual bool SetCursorVisibility(bool abx) = 0;
+		virtual bool SetWindowFullscreen(bool abx) = 0;
+		virtual bool SetWindowBorderless(bool abx) = 0;
 	};
 
 }
