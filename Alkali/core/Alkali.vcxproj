@@ -101,6 +101,7 @@
     <ClInclude Include="include\engine\InitVars.h" />
     <ClInclude Include="include\engine\LogWriter.h" />
     <ClInclude Include="include\graphics\Graphics.h" />
+    <ClInclude Include="include\graphics\Shader.h" />
     <ClInclude Include="include\gui\Gui.h" />
     <ClInclude Include="include\input\Input.h" />
     <ClInclude Include="include\system\Date.h" />
@@ -123,6 +124,7 @@
     <ClCompile Include="source\engine\LogWriter.cpp" />
     <ClCompile Include="source\engine\Main.cpp" />
     <ClCompile Include="source\graphics\Graphics.cpp" />
+    <ClCompile Include="source\graphics\Shader.cpp" />
     <ClCompile Include="source\gui\Gui.cpp" />
     <ClCompile Include="source\input\Input.cpp" />
     <ClCompile Include="source\system\MemoryManager.cpp" />

@@ -24,11 +24,15 @@ namespace alk {
 		
 		bool SetCursorVisibility(bool abx);
 		bool SetWindowFullscreen(bool abx);
+		bool SetWindowBorderless(bool abx);
+		bool SetWindowGrabInput(bool abx);
 
 	private:
 		SDL_GLContext mGLContext;
 		SDL_Window* mpSDLWindow;
 		cGraphics* mpGraphics;
+
+		bool mbFullscreen;
 	};
 
 	

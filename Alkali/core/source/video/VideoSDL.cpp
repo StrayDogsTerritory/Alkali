@@ -10,7 +10,7 @@ namespace alk {
 
 	cVideoSDL::cVideoSDL()
 	{
-		
+		mbFullscreen = false;
 		mpSDLWindow = 0;
 	}
 
@@ -30,6 +30,7 @@ namespace alk {
 			FatalError("Error initialising display: %s\n", SDL_GetError());
 
 		SetCursorVisibility(false);
+		SetWindowBorderless(true);
 
 		mGLContext = SDL_GL_CreateContext(mpSDLWindow);
 
@@ -74,7 +75,7 @@ namespace alk {
 
 	}
 
-
+	
 
 	void cVideoSDL::SwapBuffer()
 	{
@@ -92,5 +93,22 @@ namespace alk {
 	{
 		return abx ? SDL_SetWindowFullscreen(mpSDLWindow, true) : SDL_SetWindowFullscreen(mpSDLWindow, false);
 	}
+
+	bool cVideoSDL::SetWindowBorderless(bool abx)
+	{
+		if (!mbFullscreen)
+			 abx ? SDL_SetWindowFullscreen(mpSDLWindow, true) : SDL_SetWindowFullscreen(mpSDLWindow, false);
+		
+		return abx ? SetWindowGrabInput(true) : SetWindowGrabInput(false);
+	}
+
+	bool cVideoSDL::SetWindowGrabInput(bool abx)
+	{
+		Log("the func ran\n");
+		return abx ? SDL_SetWindowMouseGrab(mpSDLWindow, false) && SDL_SetWindowKeyboardGrab(mpSDLWindow, false)
+			: SDL_SetWindowMouseGrab(mpSDLWindow, true) && SDL_SetWindowKeyboardGrab(mpSDLWindow, true);
+	}
+
+
 
 };

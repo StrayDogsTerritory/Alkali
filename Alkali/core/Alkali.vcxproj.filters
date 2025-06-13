@@ -91,6 +91,9 @@
     <ClInclude Include="include\engine\InitVars.h">
       <Filter>Engine</Filter>
     </ClInclude>
+    <ClInclude Include="include\graphics\Shader.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">
@@ -140,6 +143,9 @@
     </ClCompile>
     <ClCompile Include="source\video\Video.cpp">
       <Filter>Video</Filter>
+    </ClCompile>
+    <ClCompile Include="source\graphics\Shader.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

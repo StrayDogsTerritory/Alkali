@@ -17,6 +17,7 @@ namespace alk {
 		virtual bool SetCursorVisibility(bool abx) = 0;
 		virtual bool SetWindowFullscreen(bool abx) = 0;
 		virtual bool SetWindowBorderless(bool abx) = 0;
+		virtual bool SetWindowGrabInput(bool abx) = 0;
 	};
 
 }
