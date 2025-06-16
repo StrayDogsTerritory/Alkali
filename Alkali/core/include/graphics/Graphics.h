@@ -7,6 +7,7 @@
 namespace alk {
 
 	class iVideo;
+	class iShader;
 
 	class cGraphics
 	{
@@ -16,6 +17,8 @@ namespace alk {
 
 																																								   
 		void DrawTriangle();  // <- this should take an argument in the future, maybe... still deciding how polygons should be used  
+		iShader* CreateShader();
+
 
 	private:
 		iVideo* mpVideo;

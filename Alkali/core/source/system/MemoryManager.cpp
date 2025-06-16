@@ -59,7 +59,7 @@ namespace alk {
 
 	void cMemoryManager::MemoryLog()
 	{
-		Log("----------Memory Manager After Action Report----------\n");
+		Log("----------Memory Manager Report----------\n");
 		Log("|\n");
 
 			if (m_mapPointers.empty())

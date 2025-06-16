@@ -1,7 +1,7 @@
 #include "video/VideoSDL.h"
 #include "engine/LogWriter.h"
 #include "graphics/Graphics.h"
-
+#include "graphics/ShaderGLSL.h"
 
 #pragma comment(lib, "OpenGL32.lib")
 #pragma comment(lib, "GLu32.lib")
@@ -45,7 +45,6 @@ namespace alk {
 			Error("Glew Failed! Reason: %s\n", glewGetErrorString(lGLEWWorks));
 
 			InitOpenGL();
-
 
 		return true;
 	}
