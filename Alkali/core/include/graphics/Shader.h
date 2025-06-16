@@ -19,7 +19,6 @@ namespace alk {
 		virtual ~iShader() {};
 		virtual bool CreateShader(const tString& asShader, eShaderType aeShaderType, iShader *pShader)=0;
 		virtual void DestroyShader(iShader* apShader)=0;
-		virtual bool CompileShader(iShader* pShader)=0;
 		virtual bool ReloadShader() = 0;
 	private:
 

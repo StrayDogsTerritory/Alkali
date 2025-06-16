@@ -9,9 +9,16 @@ namespace alk {
 	{
 	public:
 		static bool CopyFileToBuffer(const twString& asFileName, void* apBuffer, unsigned long alSize);
+		static void CopyToClipboard(const tString& asString);
+
+		static FILE* OpenFile(const twString& asFileName, const twString& asMode);
+		static FILE* DeleteFile(const twString& asFile);
 
 		static bool CreateFolder(const twString& asPath, const twString asFolderName);
 		static bool DeleteFolder(const twString& asPath, bool abDeleteSubDirs, bool abDeleteFiles);
+
+		static void CreateURL(const twString& asURL);
+
 
 		static bool FindFilesInDirectory(const twString& asPath, const twString& asFileName);
 

@@ -1,6 +1,7 @@
 #include "graphics/Shader.h"
 #include "graphics/ShaderGLSL.h"
 #include "system/MemoryManager.h"
+#include "system/Platform.h"
 
 namespace alk {
 
@@ -9,17 +10,26 @@ namespace alk {
 		msName = asShader;
 		meShaderType = aeShaderType;
 
-		glCreateShader(aeShaderType); 
+	mlShaderID = glCreateShader(aeShaderType); 
 
 	}
+ 
 
 	cGLSLShader::~cGLSLShader()
 	{
-		alkDelete(this);
+		glDeleteShader(mlShaderID);
 	}
 
-	bool cGLSLShader::CreateShader(eShaderType aeShaderType)
+	bool cGLSLShader::CreateShader(const twString& asShader, eShaderType aeShaderType, iShader* pShader)
 	{
+		//something crazy up here
+		cPlatform::OpenFile(asShader)
+
+
+		glShaderSource(mlShaderID, 1, );
+
+		glCompileShader(mlShaderID);
+
 		return true;
 	}
 
@@ -28,12 +38,12 @@ namespace alk {
 		
 	}
 
-	bool cGLSLShader::CompileShader(iShader* pShader)
+	/*bool cGLSLShader::CompileShader(iShader* pShader)
 	{
-	//	glCompileShader();
+		glCompileShader(mlShaderID);
 
 		return false;
-	}
+	}*/
 
 	[[depricated]]
 	bool cGLSLShader::ReloadShader()
@@ -41,8 +51,8 @@ namespace alk {
 		///////////////////////////
 		// not safe, don't run yet
 
-		DestroyShader(this);
-		CreateShader(meShaderType);
+		glDeleteShader(mlShaderID);
+		glCreateShader(mlShaderID);
 
 		return true;
 	}

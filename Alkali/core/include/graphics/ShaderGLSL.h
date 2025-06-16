@@ -17,10 +17,9 @@ namespace alk {
 		cGLSLShader(const tString& asShader, eShaderType aeShaderType, cGLSLShader* pShader);
 		~cGLSLShader();
 
-		bool CreateShader(eShaderType aeShaderType);
+		bool CreateShader(const twString& asShader, eShaderType aeShaderType, iShader* pShader);
 		void DestroyShader(iShader* apShader);
 
-		bool CompileShader(iShader* pShader);
 		bool ReloadShader();
 
 		
@@ -28,7 +27,7 @@ namespace alk {
 	private:
 		tString msName;
 		eShaderType meShaderType;
-		
+		unsigned int mlShaderID;
 
 	};
 

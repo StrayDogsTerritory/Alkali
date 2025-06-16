@@ -34,7 +34,6 @@ namespace alk {
 
 	cEngine::cEngine(iEngineSetup* apGameSetup)
 	{
-
 		init(apGameSetup);
 	}
 
