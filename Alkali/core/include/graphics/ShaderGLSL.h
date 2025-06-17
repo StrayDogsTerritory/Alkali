@@ -19,9 +19,8 @@ namespace alk {
 
 		bool CreateShader(const twString& asShader, eShaderType aeShaderType, iShader* pShader);
 		void DestroyShader(iShader* apShader);
-
 		bool ReloadShader();
-
+		GLenum GetShaderType(eShaderType aeShaderType);
 		
 
 	private:

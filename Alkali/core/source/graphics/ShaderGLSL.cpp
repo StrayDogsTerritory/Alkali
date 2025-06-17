@@ -3,6 +3,8 @@
 #include "system/MemoryManager.h"
 #include "system/Platform.h"
 
+#include "io.h"
+
 namespace alk {
 
 	cGLSLShader::cGLSLShader(const tString& asShader, eShaderType aeShaderType, cGLSLShader* pShader)
@@ -10,33 +12,45 @@ namespace alk {
 		msName = asShader;
 		meShaderType = aeShaderType;
 
-	mlShaderID = glCreateShader(aeShaderType); 
+	mlShaderID = glCreateShader(GetShaderType(aeShaderType)); 
 
 	}
  
 
 	cGLSLShader::~cGLSLShader()
 	{
-		glDeleteShader(mlShaderID);
+		DestroyShader(this);
 	}
 
 	bool cGLSLShader::CreateShader(const twString& asShader, eShaderType aeShaderType, iShader* pShader)
 	{
-		//something crazy up here
-		cPlatform::OpenFile(asShader)
+		
+		FILE *pFile = cPlatform::OpenFile(asShader, L"rb");
 
+		fseek(pFile, 0, SEEK_END);
+		int lFileSize = ftell(pFile);
+		rewind(pFile);
 
-		glShaderSource(mlShaderID, 1, );
+		char* pBuffer = (char*) alkMalloc(lFileSize);
+		
+		pBuffer[lFileSize] = 0; // null terminate the string
 
+		fclose(pFile);
+
+		glShaderSource(mlShaderID, 1, &pBuffer,	NULL);
 		glCompileShader(mlShaderID);
 
+		alkFree(pBuffer);
+
 		return true;
+
 	}
 
 	void cGLSLShader::DestroyShader(iShader* apShader)
 	{
-		
+		glDeleteShader(mlShaderID);
 	}
+
 
 	/*bool cGLSLShader::CompileShader(iShader* pShader)
 	{
@@ -58,4 +72,15 @@ namespace alk {
 	}
 
 
+	GLenum cGLSLShader::GetShaderType(eShaderType aeShaderType)
+	{
+		switch (aeShaderType)
+		{
+			case eVertexShader:
+				return GL_VERTEX_SHADER;
+				break;
+			case ePixelShader:
+				return GL_FRAGMENT_SHADER;
+		}
+	}
 }
