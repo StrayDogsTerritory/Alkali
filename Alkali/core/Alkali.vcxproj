@@ -100,6 +100,8 @@
     <ClInclude Include="include\engine\EngineSetupInterface.h" />
     <ClInclude Include="include\engine\InitVars.h" />
     <ClInclude Include="include\engine\LogWriter.h" />
+    <ClInclude Include="include\graphics\GPUProgram.h" />
+    <ClInclude Include="include\graphics\GPUProgramGLSL.h" />
     <ClInclude Include="include\graphics\Graphics.h" />
     <ClInclude Include="include\graphics\Shader.h" />
     <ClInclude Include="include\graphics\ShaderGLSL.h" />
@@ -126,7 +128,6 @@
     <ClCompile Include="source\engine\LogWriter.cpp" />
     <ClCompile Include="source\engine\Main.cpp" />
     <ClCompile Include="source\graphics\Graphics.cpp" />
-    <ClCompile Include="source\graphics\Shader.cpp" />
     <ClCompile Include="source\graphics\ShaderGLSL.cpp" />
     <ClCompile Include="source\gui\Gui.cpp" />
     <ClCompile Include="source\input\Input.cpp" />

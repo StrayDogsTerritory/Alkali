@@ -34,10 +34,10 @@
     <Filter Include="ResourceManagers">
       <UniqueIdentifier>{3ff1047d-52f2-4449-8407-5ed77900ded6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphics\ShaderSpecific">
+    <Filter Include="Graphics\APISpecific">
       <UniqueIdentifier>{68b96e15-cf1a-40a3-9a83-b84a070db539}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphics\ShaderSpecific\GLSL">
+    <Filter Include="Graphics\APISpecific\GLSL">
       <UniqueIdentifier>{f4e683ee-29af-41ef-af66-0e0757669c90}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -103,11 +103,17 @@
     <ClInclude Include="include\resource_managers\ShaderManager.h">
       <Filter>ResourceManagers</Filter>
     </ClInclude>
-    <ClInclude Include="include\graphics\Shader.h">
-      <Filter>Graphics\ShaderSpecific</Filter>
-    </ClInclude>
     <ClInclude Include="include\graphics\ShaderGLSL.h">
-      <Filter>Graphics\ShaderSpecific\GLSL</Filter>
+      <Filter>Graphics\APISpecific\GLSL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\GPUProgram.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Shader.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\GPUProgramGLSL.h">
+      <Filter>Graphics\APISpecific\GLSL</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -156,14 +162,11 @@
     <ClCompile Include="source\video\Video.cpp">
       <Filter>Video</Filter>
     </ClCompile>
-    <ClCompile Include="source\graphics\Shader.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="source\resource_managers\ShaderManager.cpp">
       <Filter>ResourceManagers</Filter>
     </ClCompile>
     <ClCompile Include="source\graphics\ShaderGLSL.cpp">
-      <Filter>Graphics\ShaderSpecific\GLSL</Filter>
+      <Filter>Graphics\APISpecific\GLSL</Filter>
     </ClCompile>
     <ClCompile Include="source\graphics\Graphics.cpp">
       <Filter>Graphics</Filter>

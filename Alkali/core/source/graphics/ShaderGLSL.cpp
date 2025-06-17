@@ -2,7 +2,7 @@
 #include "graphics/ShaderGLSL.h"
 #include "system/MemoryManager.h"
 #include "system/Platform.h"
-
+#include "engine/LogWriter.h"
 #include "io.h"
 
 namespace alk {
@@ -25,8 +25,11 @@ namespace alk {
 	bool cGLSLShader::CreateShader(const twString& asShader, eShaderType aeShaderType, iShader* pShader)
 	{
 		
-		FILE *pFile = cPlatform::OpenFile(asShader, L"rb");
-
+		FILE* pFile = cPlatform::OpenFile(asShader, L"rb");
+		if (pFile == NULL) {
+			Error("File %s couldn't load!\n", asShader);
+			return false;
+		}
 		fseek(pFile, 0, SEEK_END);
 		int lFileSize = ftell(pFile);
 		rewind(pFile);
@@ -39,6 +42,17 @@ namespace alk {
 
 		glShaderSource(mlShaderID, 1, &pBuffer,	NULL);
 		glCompileShader(mlShaderID);
+
+		// error checking
+		GLint lStatus;
+		glGetShaderiv(mlShaderID, GL_COMPILE_STATUS, &lStatus);
+		if (lStatus == GL_FALSE)
+		{
+			Error("GLSL shader failed to compile!\n");
+
+			return false;
+		}
+
 
 		alkFree(pBuffer);
 

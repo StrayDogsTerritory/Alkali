@@ -11,6 +11,9 @@ namespace alk {
 		static bool CopyFileToBuffer(const twString& asFileName, void* apBuffer, unsigned long alSize);
 		static void CopyToClipboard(const tString& asString);
 
+		static int GetFileSize(const twString& asFile);
+		static int GetFileSize(const FILE* &asFile);
+
 		static FILE* OpenFile(const twString& asFileName, const twString& asMode);
 		static FILE* DeleteFile(const twString& asFile);
 
