@@ -109,13 +109,13 @@
     <ClInclude Include="include\input\Input.h" />
     <ClInclude Include="include\resource_managers\ShaderManager.h" />
     <ClInclude Include="include\system\Date.h" />
+    <ClInclude Include="include\system\FlagBits.h" />
     <ClInclude Include="include\system\MemoryManager.h" />
     <ClInclude Include="include\system\MutEx.h" />
     <ClInclude Include="include\system\Platform.h" />
     <ClInclude Include="include\system\String.h" />
     <ClInclude Include="include\system\SystemTypes.h" />
     <ClInclude Include="include\system\Thread.h" />
-    <ClInclude Include="include\video\FlagBits.h" />
     <ClInclude Include="include\video\Video.h" />
     <ClInclude Include="include\video\VideoInterface.h" />
     <ClInclude Include="include\video\VideoSDL.h" />
@@ -128,6 +128,7 @@
     <ClCompile Include="source\engine\LogWriter.cpp" />
     <ClCompile Include="source\engine\Main.cpp" />
     <ClCompile Include="source\graphics\GPUProgram.cpp" />
+    <ClCompile Include="source\graphics\GPUProgramGLSL.cpp" />
     <ClCompile Include="source\graphics\Graphics.cpp" />
     <ClCompile Include="source\graphics\ShaderGLSL.cpp" />
     <ClCompile Include="source\gui\Gui.cpp" />

@@ -1,6 +1,10 @@
 #ifndef ALK_FLAGBITS_H
 #define ALK_FLAGBITS_H
 
+
+
+//////////////////////
+// flag bits 
 #define FLAGBITNONE      0x00000000
 #define FLAGBITALL       0xFFFFFFFF
 
@@ -22,6 +26,11 @@
 #define FLAGBITTHIRTEEN  0x00002000
 #define FLAGBITFOURTEEN  0x00004000
 #define FLAGBITFIFTEEN   0x00008000
+
+///////////////////////////
+// the rest of the flagging related things
+
+typedef unsigned int tFlag;
 
 
 #endif

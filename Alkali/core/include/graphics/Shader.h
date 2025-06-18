@@ -23,7 +23,7 @@ namespace alk {
 		virtual bool ReloadShader() = 0;
 		virtual GLenum GetShaderType(eShaderType aeShaderType) = 0;
 	private:
-
+		
 	};
 
 }

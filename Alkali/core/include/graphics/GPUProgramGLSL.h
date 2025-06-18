@@ -12,6 +12,14 @@ namespace alk {
 	public:
 		cGLSLGpuProgram(const tString& asName, iShader* apVertexShader, iShader* apPixelShader);
 		~cGLSLGpuProgram();
+
+		 bool CreateProgram(const twString& asFragFile, const twString& asVertexFile);
+
+		 bool Bind();
+		 bool Link();
+
+		 bool Unbind();
+
 	};
 }
 #endif

@@ -14,13 +14,16 @@
 namespace alk {
 
 
-	cEngine* CreateAlkaliEngine()
+	cEngine* CreateAlkaliEngine(tFlag alEngineSetup, eEngineAPI aeEngineApi)
 	{
 		iEngineSetup* pGameSetup = NULL;
 
-		pGameSetup = alkNew(cSDLEngine, ());
-
-		return alkNew(cEngine, (pGameSetup));
+		switch (aeEngineApi)
+		{
+		case eEngineAPI_eOpenGl:
+			 pGameSetup = alkNew(cSDLEngine, ());
+		}
+		return alkNew(cEngine, (alEngineSetup, pGameSetup));
 	}
 
 	void DestroyAlkaliEngine(cEngine* apEngine)
@@ -32,7 +35,7 @@ namespace alk {
 
 
 
-	cEngine::cEngine(iEngineSetup* apGameSetup)
+	cEngine::cEngine(tFlag alEngineSetup, iEngineSetup* apGameSetup )
 	{
 		init(apGameSetup);
 	}

@@ -94,9 +94,6 @@
     <ClInclude Include="include\video\Video.h">
       <Filter>Video</Filter>
     </ClInclude>
-    <ClInclude Include="include\video\FlagBits.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="include\engine\InitVars.h">
       <Filter>Engine</Filter>
     </ClInclude>
@@ -114,6 +111,9 @@
     </ClInclude>
     <ClInclude Include="include\graphics\GPUProgramGLSL.h">
       <Filter>Graphics\APISpecific\GLSL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\FlagBits.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,6 +170,12 @@
     </ClCompile>
     <ClCompile Include="source\graphics\Graphics.cpp">
       <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\graphics\GPUProgram.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\graphics\GPUProgramGLSL.cpp">
+      <Filter>Graphics\APISpecific\GLSL</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

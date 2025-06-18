@@ -14,6 +14,10 @@
 #include "input/Input.h"
 
 #include "graphics/Graphics.h"
+#include "graphics/GPUProgram.h"
+#include "graphics/GPUProgramGLSL.h"
+#include "graphics/Shader.h"
+#include "graphics/ShaderGLSL.h"
 
 #include "gui/Gui.h"
 

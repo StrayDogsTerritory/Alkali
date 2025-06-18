@@ -5,9 +5,12 @@
 
 namespace alk {
 
+	class iShader;
+
 	enum eGpuProgramType
 	{
-		eGpuProgramGLSL
+		eGpuProgramGLSL,
+		Last_Enum
 	};
 
 
@@ -15,18 +18,22 @@ namespace alk {
 	{
 	public:
 		iGpuProgram(const tString& asName, eGpuProgramType aeGpuProgramType);
-		virtual ~iGpuProgram();
+		iShader* GetShaderType(iShader* apShader);
 
-		virtual bool CreateProgram(const twString& asFragFile, const twString& asVertexFile);
+		virtual ~iGpuProgram() ;
 
-		virtual bool Bind();
-		virtual bool Link();
 
-		virtual bool Unlink();
-		virtual bool Delete();
+		virtual bool Bind()=0;
+		virtual bool Link()=0;
+
+		virtual bool Unbind()=0;
+
+		
+
 	private:
 		tString msName;
 		eGpuProgramType meGpuProgramType;
+		iShader* mpShader[2];
 	};
 
 };

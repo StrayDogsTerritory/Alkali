@@ -4,7 +4,7 @@ int AlkaliMain(const tString& asCommandLine)
 {
 	mpGame = NULL;
 
-	mpGame = CreateAlkaliEngine();
+	mpGame = CreateAlkaliEngine(eEngineInit_All, eEngineAPI_eOpenGl);
 
 	
 	mpGame->Run();
@@ -13,7 +13,7 @@ int AlkaliMain(const tString& asCommandLine)
 	if(mpGame)
 		DestroyAlkaliEngine(mpGame);
 
-	// Initialize the memory manager
+	// report the memory
 	cMemoryManager::MemoryLog();
 
 	return 0;

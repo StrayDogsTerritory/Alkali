@@ -22,6 +22,7 @@ namespace alk {
 		bool ReloadShader();
 		GLenum GetShaderType(eShaderType aeShaderType);
 		
+		int GetShaderID() { return mlShaderID; }
 
 	private:
 		tString msName;
