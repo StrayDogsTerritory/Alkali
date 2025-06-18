@@ -48,8 +48,8 @@ namespace alk {
 		glGetShaderiv(mlShaderID, GL_COMPILE_STATUS, &lStatus);
 		if (lStatus == GL_FALSE)
 		{
-			Error("GLSL shader failed to compile!\n");
-
+			Error("GLSL shader %s failed to compile!\n", asShader);
+			glDeleteShader(mlShaderID);
 			return false;
 		}
 

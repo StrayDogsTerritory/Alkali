@@ -127,6 +127,7 @@
     </ClCompile>
     <ClCompile Include="source\engine\LogWriter.cpp" />
     <ClCompile Include="source\engine\Main.cpp" />
+    <ClCompile Include="source\graphics\GPUProgram.cpp" />
     <ClCompile Include="source\graphics\Graphics.cpp" />
     <ClCompile Include="source\graphics\ShaderGLSL.cpp" />
     <ClCompile Include="source\gui\Gui.cpp" />

@@ -5,10 +5,16 @@
 
 namespace alk {
 
+	enum eGpuProgramType
+	{
+		eGpuProgramGLSL
+	};
+
 
 	class iGpuProgram
 	{
 	public:
+		iGpuProgram(const tString& asName, eGpuProgramType aeGpuProgramType);
 		virtual ~iGpuProgram();
 
 		virtual bool CreateProgram(const twString& asFragFile, const twString& asVertexFile);
@@ -18,6 +24,9 @@ namespace alk {
 
 		virtual bool Unlink();
 		virtual bool Delete();
+	private:
+		tString msName;
+		eGpuProgramType meGpuProgramType;
 	};
 
 };
