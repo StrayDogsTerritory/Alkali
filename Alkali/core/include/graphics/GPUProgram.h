@@ -1,6 +1,8 @@
 #ifndef ALK_GPUPROGRAM_H
 #define ALK_GPUPROGRAM_H
 
+#include "graphics/Shader.h"
+#include "graphics/ShaderGLSL.h"
 #include "system/String.h"
 
 namespace alk {
@@ -9,8 +11,8 @@ namespace alk {
 
 	enum eGpuProgramType
 	{
-		eGpuProgramGLSL,
-		Last_Enum
+		eGpuProgramType_GLSL,
+		eGpuProgramType_Last_Enum
 	};
 
 
@@ -18,7 +20,7 @@ namespace alk {
 	{
 	public:
 		iGpuProgram(const tString& asName, eGpuProgramType aeGpuProgramType);
-		iShader* GetShaderType(iShader* apShader);
+		void SetShaderType(eShaderType aeShaderType, iShader* apShader);
 
 		virtual ~iGpuProgram() ;
 
@@ -30,7 +32,7 @@ namespace alk {
 
 		
 
-	private:
+	protected:
 		tString msName;
 		eGpuProgramType meGpuProgramType;
 		iShader* mpShader[2];

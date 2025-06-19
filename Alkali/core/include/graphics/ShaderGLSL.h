@@ -22,12 +22,12 @@ namespace alk {
 		bool ReloadShader();
 		GLenum GetShaderType(eShaderType aeShaderType);
 		
-		int GetShaderID() { return mlShaderID; }
+		GLint GetShaderID() { return mlShaderID; }
 
 	private:
 		tString msName;
 		eShaderType meShaderType;
-		unsigned int mlShaderID;
+		GLint mlShaderID;
 
 	};
 

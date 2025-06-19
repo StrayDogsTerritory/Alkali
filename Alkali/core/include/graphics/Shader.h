@@ -6,10 +6,16 @@
 
 namespace alk {
 
+	/////////////////////////////////
+	// bad, because not all APIs have these types, should make this moduler
+	
 	enum eShaderType
 	{
 		eVertexShader,
-		ePixelShader
+		ePixelShader,
+		eGeometryShader,
+		eTessellationShader,
+		eComputeShader 
 
 	};
 
@@ -21,8 +27,10 @@ namespace alk {
 		virtual bool CreateShader(const tString& asShader, eShaderType aeShaderType, iShader *pShader)=0;
 		virtual void DestroyShader(iShader* apShader)  = 0;
 		virtual bool ReloadShader() = 0;
-		virtual GLenum GetShaderType(eShaderType aeShaderType) = 0;
-	private:
+		// Don't do this its GL code in the master class
+		//virtual GLenum GetShaderType(eShaderType aeShaderType) = 0;
+		
+	protected:
 		
 	};
 

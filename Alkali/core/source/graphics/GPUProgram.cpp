@@ -8,16 +8,15 @@ namespace alk {
 	iGpuProgram::iGpuProgram(const tString& asName, eGpuProgramType aeGpuProgramType)
 	{
 		msName = asName;
-			meGpuProgramType = aeGpuProgramType;
+		meGpuProgramType = aeGpuProgramType;
 
 			for (int i = 0; i < 2; ++i)
 				mpShader[i] =NULL;
 
 	}
 
-	iShader* iGpuProgram::GetShaderType(iShader* apShader)
+	void iGpuProgram::SetShaderType(eShaderType aeShaderType, iShader* apShader)
 	{
-		mpShader[eShaderType] = 
-
+		 mpShader[aeShaderType] = apShader;
 	}
 }

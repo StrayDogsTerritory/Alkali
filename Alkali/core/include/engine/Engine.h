@@ -15,7 +15,7 @@ namespace alk {
 	enum eEngineInit
 	{
 		eEngineInit_All = FLAGBITZERO,
-		eEngineInir_Screen = FLAGBITONE
+		eEngineInit_Screen = FLAGBITONE
 	};
 
 

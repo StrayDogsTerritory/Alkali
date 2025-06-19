@@ -103,7 +103,7 @@ namespace alk {
 
 	bool cVideoSDL::SetWindowGrabInput(bool abx)
 	{
-		Log("the func ran\n");
+		//Log("the func ran\n");
 		return abx ? SDL_SetWindowMouseGrab(mpSDLWindow, false) && SDL_SetWindowKeyboardGrab(mpSDLWindow, false)
 			: SDL_SetWindowMouseGrab(mpSDLWindow, true) && SDL_SetWindowKeyboardGrab(mpSDLWindow, true);
 	}
