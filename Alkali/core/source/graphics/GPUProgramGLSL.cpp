@@ -3,6 +3,7 @@
 
 #include "graphics/Shader.h"
 #include "graphics/ShaderGLSL.h"
+#include "engine/LogWriter.h"
 
 namespace alk {
 
@@ -42,6 +43,17 @@ namespace alk {
 		}
 
 		glLinkProgram(mlProgramID);
+
+		// error check
+		GLint mlStatus;
+		glGetProgramiv(mlProgramID, GL_LINK_STATUS, &mlStatus);
+		if (mlStatus == GL_FALSE)
+		{
+			Error("GLSL program %s failed to link!\n", msName);
+			glDeleteProgram(mlProgramID);
+			return false;
+		}
+
 
 		return true;
 	}

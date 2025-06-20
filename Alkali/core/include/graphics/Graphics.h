@@ -2,26 +2,28 @@
 #define ALK_GRAPHICS_H
 
 #include "GL\glew.h"
-
+#include "system/FlagBits.h"
+#include "system/String.h"
 
 namespace alk {
 
 	class iVideo;
 	class iShader;
+	class iProgram;
 
 	class cGraphics
 	{
 	public:
-		cGraphics();
+		cGraphics(tFlag alShadingLanguage);
 		~cGraphics();
-
-																																								   
-		void DrawTriangle();  // <- this should take an argument in the future, maybe... still deciding how polygons should be used  
+ 
 		iShader* CreateShader();
+		iProgram* CreateProgram();
 
 
 	private:
 		iVideo* mpVideo;
+		unsigned int mlShadingLanguage; // remove this of i never add dx support
 	};
 
 	

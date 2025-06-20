@@ -107,6 +107,7 @@
     <ClInclude Include="include\graphics\ShaderGLSL.h" />
     <ClInclude Include="include\gui\Gui.h" />
     <ClInclude Include="include\input\Input.h" />
+    <ClInclude Include="include\resource_managers\ResourceManager.h" />
     <ClInclude Include="include\resource_managers\ShaderManager.h" />
     <ClInclude Include="include\system\Date.h" />
     <ClInclude Include="include\system\FlagBits.h" />
@@ -133,6 +134,7 @@
     <ClCompile Include="source\graphics\ShaderGLSL.cpp" />
     <ClCompile Include="source\gui\Gui.cpp" />
     <ClCompile Include="source\input\Input.cpp" />
+    <ClCompile Include="source\resource_managers\ResourceManager.cpp" />
     <ClCompile Include="source\resource_managers\ShaderManager.cpp" />
     <ClCompile Include="source\system\MemoryManager.cpp" />
     <ClCompile Include="source\system\MutEx.cpp" />

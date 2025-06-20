@@ -4,7 +4,7 @@
 
 namespace alk {
 
-	cGraphics::cGraphics()
+	cGraphics::cGraphics(tFlag alShadingLanguage)
 	{ 
 	
 	}
@@ -17,10 +17,7 @@ namespace alk {
 
 
 
-void	cGraphics::DrawTriangle()
-	{
-		
-	}
+
 
 
 
