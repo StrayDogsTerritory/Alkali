@@ -17,7 +17,7 @@ namespace alk {
 		cGraphics(tFlag alShadingLanguage);
 		~cGraphics();
  
-		iShader* CreateShader();
+		iShader* CreateShader(const tString& asName, eShaderType aeShaderType);
 		iProgram* CreateProgram();
 
 

@@ -37,7 +37,7 @@ namespace alk {
 
 	cEngine::cEngine(tFlag alEngineSetup, iEngineSetup* apGameSetup )
 	{
-		init(apGameSetup);
+		init(alEngineSetup, apGameSetup);
 	}
 
 	cEngine::~cEngine()
@@ -51,7 +51,7 @@ namespace alk {
 
 	}
 
-	bool cEngine::init(iEngineSetup* apGame)
+	bool cEngine::init(tFlag alModuleFlags, iEngineSetup* apGame)
 	{
 		mpGame = apGame;
 
@@ -60,7 +60,7 @@ namespace alk {
 		
 		//create the modules
 		Log("Creating graphics module\n");
-		mpGraphics = alkNew(cGraphics, ());
+		mpGraphics = alkNew(cGraphics, ( alModuleFlags));
 
 		Log("Creating Video module\n");
 		mpVideo = mpGame->CreateVideoModule();

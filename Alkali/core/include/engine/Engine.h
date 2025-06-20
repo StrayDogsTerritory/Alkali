@@ -36,7 +36,7 @@ namespace alk {
 		cEngine(tFlag alEngineSetup, iEngineSetup* apGameSetup);
 		~cEngine();
 
-		bool init(iEngineSetup* apGame);
+		bool init(tFlag alModuleFlags,iEngineSetup* apGame);
 
 		void Run();
 

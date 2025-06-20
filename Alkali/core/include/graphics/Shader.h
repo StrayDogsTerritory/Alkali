@@ -27,11 +27,17 @@ namespace alk {
 		virtual bool CreateShader(const tString& asShader, eShaderType aeShaderType, iShader *pShader)=0;
 		virtual void DestroyShader(iShader* apShader)  = 0;
 		virtual bool ReloadShader() = 0;
+
+		GLenum GetShaderType(eShaderType aeShaderType) { return meShaderType; }
+
+		GLint GetShaderID() { return mlShaderID; }
+
 		// Don't do this its GL code in the master class
 		//virtual GLenum GetShaderType(eShaderType aeShaderType) = 0;
 		
 	protected:
-		
+		unsigned int mlShaderID;
+		eShaderType meShaderType;
 	};
 
 }
