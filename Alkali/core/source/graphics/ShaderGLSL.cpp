@@ -7,10 +7,10 @@
 
 namespace alk {
 
-	cGLSLShader::cGLSLShader(const tString& asShader, eShaderType aeShaderType, cGLSLShader* pShader)
+	cGLSLShader::cGLSLShader(const tString& asShader, eShaderType aeShaderType)
 	{
-		msName = asShader;
-		meShaderType = aeShaderType;
+		/*msName = asShader;
+		meShaderType = aeShaderType;*/
 
 	mlShaderID = glCreateShader(GetShaderType(aeShaderType)); 
 
@@ -22,7 +22,7 @@ namespace alk {
 		DestroyShader(this);
 	}
 
-	bool cGLSLShader::CreateShader(const twString& asShader, eShaderType aeShaderType, iShader* pShader)
+	bool cGLSLShader::CreateShader(const twString& asShader, eShaderType aeShaderType)
 	{
 		
 		FILE* pFile = cPlatform::OpenFile(asShader, L"rb");
@@ -40,6 +40,8 @@ namespace alk {
 
 		fclose(pFile);
 
+		alkFree(pBuffer);
+
 		glShaderSource(mlShaderID, 1, &pBuffer,	NULL);
 		glCompileShader(mlShaderID);
 
@@ -50,11 +52,12 @@ namespace alk {
 		{
 			Error("GLSL shader %s failed to compile!\n", asShader);
 			glDeleteShader(mlShaderID);
+
 			return false;
 		}
 
 
-		alkFree(pBuffer);
+		
 
 		return true;
 
@@ -92,7 +95,6 @@ namespace alk {
 		{
 			case eVertexShader:
 				return GL_VERTEX_SHADER;
-				break;
 			case ePixelShader:
 				return GL_FRAGMENT_SHADER;
 		}

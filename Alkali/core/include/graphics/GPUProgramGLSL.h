@@ -7,7 +7,7 @@
 
 namespace alk {
 
-	class cGLSLGpuProgram : iGpuProgram
+	class cGLSLGpuProgram : public iGpuProgram
 	{
 	public:
 		cGLSLGpuProgram(const tString& asName);

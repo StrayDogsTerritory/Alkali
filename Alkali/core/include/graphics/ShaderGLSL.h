@@ -14,10 +14,10 @@ namespace alk {
 	class cGLSLShader : public iShader
 	{ 
 	public:
-		cGLSLShader(const tString& asShader, eShaderType aeShaderType, cGLSLShader* pShader);
+		cGLSLShader(const tString& asShader, eShaderType aeShaderType);
 		~cGLSLShader();
 
-		bool CreateShader(const twString& asShader, eShaderType aeShaderType, iShader* pShader);
+		bool CreateShader(const twString& asShader, eShaderType aeShaderType);
 		void DestroyShader(iShader* apShader);
 		bool ReloadShader();
 		GLenum GetShaderType(eShaderType aeShaderType);

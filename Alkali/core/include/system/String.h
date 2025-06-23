@@ -16,7 +16,7 @@ namespace alk {
 		/////////////////
 		// STRING CONVERSION FUNCTIONS
 
-		twString ToWideChar(const tString& asString);
+		static twString ToWideChar(const tString& asString);
 
 		/////////////////////
 		// STRING MODIFICATION AND SEARCHING

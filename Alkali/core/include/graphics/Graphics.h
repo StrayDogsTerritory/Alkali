@@ -4,12 +4,14 @@
 #include "GL\glew.h"
 #include "system/FlagBits.h"
 #include "system/String.h"
+#include "graphics/Shader.h"
+#include "graphics/ShaderGLSL.h"
 
 namespace alk {
 
 	class iVideo;
 	class iShader;
-	class iProgram;
+	class iGpuProgram;
 
 	class cGraphics
 	{
@@ -18,8 +20,11 @@ namespace alk {
 		~cGraphics();
  
 		iShader* CreateShader(const tString& asName, eShaderType aeShaderType);
-		iProgram* CreateProgram();
+		iGpuProgram* CreateProgram( const tString &asName);
 
+		// kinda temporary, fix it later 
+		iShader* CreateShaderDifferentAndTemp(const tString& asName, eShaderType aeShaderType);
+		iGpuProgram* CreateProgramWithShaders( const tString &asName, const tString& asPixelShader, const tString& asVertexShader);
 
 	private:
 		iVideo* mpVideo;

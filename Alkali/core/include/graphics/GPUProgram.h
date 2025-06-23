@@ -22,13 +22,13 @@ namespace alk {
 		iGpuProgram(const tString& asName, eGpuProgramType aeGpuProgramType);
 		void SetShaderType(eShaderType aeShaderType, iShader* apShader);
 
-		virtual ~iGpuProgram() ;
+		virtual ~iGpuProgram(){};
 
 
-		virtual bool Bind()=0;
-		virtual bool Link()=0;
+		//virtual bool Bind() { return false; }
+		virtual bool Link() = 0;
 
-		virtual bool Unbind()=0;
+		//virtual bool Unbind() { return false; }
 
 		
 
