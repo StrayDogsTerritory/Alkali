@@ -11,6 +11,7 @@
 namespace alk {
 
 	typedef std::map<tString, iResourceManager* > tmResourceManagers;
+	typedef tmResourceManagers::iterator tmResourceManagersIterator;
 
 
 	class iResourceManager
