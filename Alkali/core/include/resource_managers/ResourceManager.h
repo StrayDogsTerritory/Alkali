@@ -3,17 +3,25 @@
 
 #include <list>
 #include <map>
+#include "system/String.h"
+
+
+
 
 namespace alk {
 
-	class cResourceManager
+	typedef std::map<tString, iResourceManager* > tmResourceManagers;
+
+
+	class iResourceManager
 	{
 	public:
-		cResourceManager();
-		~cResourceManager();
-	
-	private:
-	typedef	std::list<void*> tmlstResourceManagers; // list of all resource managers
+		iResourceManager();
+		virtual ~iResourceManager();
+
+	protected:
+		
+
 	};
 
 }

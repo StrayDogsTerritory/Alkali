@@ -29,8 +29,8 @@ namespace alk {
 		if (mpSDLWindow == NULL)
 			FatalError("Error initialising display: %s\n", SDL_GetError());
 
-		SetCursorVisibility(false);
-		SetWindowBorderless(true);
+		SetCursorVisibility(true);
+		SetWindowBorderless(false);
 
 		mGLContext = SDL_GL_CreateContext(mpSDLWindow);
 
