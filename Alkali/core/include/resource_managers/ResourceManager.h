@@ -18,7 +18,7 @@ namespace alk {
 	{
 	public:
 		iResourceManager();
-		virtual ~iResourceManager();
+		virtual ~iResourceManager() {};
 
 	protected:
 		

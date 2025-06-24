@@ -15,7 +15,7 @@ namespace alk {
 		static int GetFileSize(const FILE* &asFile);
 
 		static FILE* OpenFile(const twString& asFileName, const twString& asMode);
-		static FILE* DeleteFile(const twString& asFile);
+		static void RemoveFile(const twString& asFile);
 
 		static bool CreateFolder(const twString& asPath, const twString asFolderName);
 		static bool DeleteFolder(const twString& asPath, bool abDeleteSubDirs, bool abDeleteFiles);

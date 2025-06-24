@@ -6,6 +6,7 @@
 #include "graphics/GPUProgram.h"
 #include "graphics/GPUProgramGLSL.h"
 #include "engine/LogWriter.h"
+#include "system/String.h"
 
 
 
@@ -13,6 +14,7 @@ namespace alk {
 
 	cGraphics::cGraphics(tFlag alShadingLanguage)
 	{ 
+
 		
 	}
 
