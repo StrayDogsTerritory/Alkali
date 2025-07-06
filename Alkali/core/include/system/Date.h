@@ -26,7 +26,7 @@ namespace alk {
 		{
 		}
 
-		 tString ToString()
+		 tString PrintDate()
 		{
 			char buffer[256];
 			

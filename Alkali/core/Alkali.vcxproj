@@ -107,10 +107,12 @@
     <ClInclude Include="include\graphics\ShaderGLSL.h" />
     <ClInclude Include="include\gui\Gui.h" />
     <ClInclude Include="include\input\Input.h" />
+    <ClInclude Include="include\math\Vector.h" />
     <ClInclude Include="include\resource_managers\ResourceManager.h" />
     <ClInclude Include="include\resource_managers\ShaderManager.h" />
     <ClInclude Include="include\system\Date.h" />
     <ClInclude Include="include\system\FlagBits.h" />
+    <ClInclude Include="include\system\LogicTimer.h" />
     <ClInclude Include="include\system\MemoryManager.h" />
     <ClInclude Include="include\system\MutEx.h" />
     <ClInclude Include="include\system\Platform.h" />

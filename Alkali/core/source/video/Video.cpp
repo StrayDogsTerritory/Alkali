@@ -18,6 +18,7 @@ namespace alk {
 	{
 		
 	}
+
 	bool cVideo::Init(int alHeight, int alWidth, int alWindowMode)
 	{
 	

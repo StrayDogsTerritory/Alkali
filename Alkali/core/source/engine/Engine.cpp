@@ -14,29 +14,35 @@
 namespace alk {
 
 
-	cEngine* CreateAlkaliEngine(tFlag alEngineSetup, eEngineAPI aeEngineApi)
+	cEngine* CreateAlkaliEngine(tFlag alEngineSetup, eGraphicsAPI aeGraphicsApi)
 	{
 		iEngineSetup* pGameSetup = NULL;
 
-		switch (aeEngineApi)
+		switch (aeGraphicsApi)
 		{
 		case eEngineAPI_eOpenGl:
-			 pGameSetup = alkNew(cSDLEngine, ());
+			 pGameSetup = alkNew(cSDLEngine, (alEngineSetup));
+		case eEngineAPI_eDirectX11:
+			pGameSetup = alkNew(cSDLEngine, (alEngineSetup));
+		/*default:
+			FatalError("Unknown graphics API: %d.\\ Only DX11 and OpenGL supported! \n", aeGraphicsApi);
+			exit(1);*/
 		}
-		return alkNew(cEngine, (alEngineSetup, pGameSetup));
+
+		return alkNew(cEngine, (alEngineSetup, pGameSetup, aeGraphicsApi));
 	}
 
 	void DestroyAlkaliEngine(cEngine* apEngine)
 	{
-
 		alkDelete( apEngine );
-		
 	}
 
 
 
-	cEngine::cEngine(tFlag alEngineSetup, iEngineSetup* apGameSetup )
+	cEngine::cEngine(tFlag alEngineSetup, iEngineSetup* apGameSetup, eGraphicsAPI aeGraphicsApi)
 	{
+		meGraphicsApi = aeGraphicsApi;
+
 		init(alEngineSetup, apGameSetup);
 	}
 

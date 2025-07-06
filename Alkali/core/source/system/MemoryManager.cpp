@@ -47,7 +47,7 @@ namespace alk {
 		
 		if (bFound == false)
 		{
-			Warning("Pointer %d in %s at %d does not exist!\n", apData, apFileString, alLine);
+			Warning("Trying To Delete Pointer %d in %s at %d does not exist!\n", apData, apFileString, alLine);
 			return false;
 		}
 

@@ -20,7 +20,6 @@ namespace alk {
 	}
 
 
-
 	FILE* cPlatform::OpenFile(const twString& asFileName, const twString &asMode)
 	{
 		return _wfopen(asFileName.c_str(), asMode.c_str());
@@ -29,6 +28,19 @@ namespace alk {
 	void cPlatform::RemoveFile(const twString& asFile)
 	{
 		 _wremove(asFile.c_str());
+	}
+
+
+
+	bool cPlatform::FileExists(const twString& asFileName)
+	{
+		FILE* pFile = _wfopen(asFileName.c_str(), L"rb");
+		if (pFile == NULL) {
+			return false;
+		}
+		fclose(pFile);
+
+		return true;
 	}
 
 	

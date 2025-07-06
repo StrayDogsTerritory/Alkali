@@ -2,6 +2,7 @@
 #define ALK_ENGINESDL_H
 
 #include "engine/EngineSetupInterface.h"
+#include "system/FlagBits.h"
 
 namespace alk {
 
@@ -11,7 +12,7 @@ namespace alk {
 	class cSDLEngine : public iEngineSetup
 	{
 	public:
-		cSDLEngine();
+		cSDLEngine(tFlag alEngineSetupFlags);
 		~cSDLEngine();
 
 		cVideo* CreateVideoModule();

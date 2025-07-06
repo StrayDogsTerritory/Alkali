@@ -40,6 +40,9 @@
     <Filter Include="Graphics\APISpecific\GLSL">
       <UniqueIdentifier>{f4e683ee-29af-41ef-af66-0e0757669c90}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics\APISpecific\HLSL">
+      <UniqueIdentifier>{9817c84b-7e88-41b8-aac1-c71dcd62ecbe}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\system\String.h">
@@ -117,6 +120,12 @@
     </ClInclude>
     <ClInclude Include="include\resource_managers\ResourceManager.h">
       <Filter>ResourceManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Vector.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\LogicTimer.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
