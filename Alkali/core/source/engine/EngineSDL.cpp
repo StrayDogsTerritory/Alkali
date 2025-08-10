@@ -8,18 +8,11 @@
 namespace alk {
 
 
-	cSDLEngine::cSDLEngine(tFlag alEngineSetupFlags)
+	cSDLEngine::cSDLEngine()
 	{
-
-		if (SDL_Init(SDL_INIT_VIDEO) < 0)
-		{
-			FatalError("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-			exit(1);
-		}
 
 		SDL_DisableScreenSaver();
 
-		
 
    		mpVideoSDL = alkNew(cVideoSDL, ());
 
@@ -37,6 +30,8 @@ namespace alk {
 	cVideo* cSDLEngine::CreateVideoModule()
 	{
 		cVideo* pVideo = alkNew(cVideo, (mpVideoSDL));
+
+		
 
 		return pVideo;
 	}

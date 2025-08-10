@@ -4,8 +4,6 @@
 #include <map>
 #include <string>
 
-
-
 namespace alk {
 
 	class cAllocatedPointer
@@ -23,8 +21,6 @@ namespace alk {
 
 	typedef std::map <void*, cAllocatedPointer> tAllocatedPointerMap;
 	typedef std::map <void*, cAllocatedPointer>::iterator tAllocatedPointermapIterator;
-
-
 
 	class cMemoryManager
 	{

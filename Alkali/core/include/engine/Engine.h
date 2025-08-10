@@ -6,10 +6,9 @@
 
 namespace alk {
 
-	enum eGraphicsAPI
+	enum eEngineAPI
 	{
 		eEngineAPI_eOpenGl,
-		eEngineAPI_eDirectX11,
 		eEngineAPI_eLast_Enum
 	};
 
@@ -28,13 +27,13 @@ namespace alk {
 	class cGraphics;
 
 
-	extern cEngine* CreateAlkaliEngine(tFlag alEngineSetup, eGraphicsAPI aeGraphicsApi);
+	extern cEngine* CreateAlkaliEngine(tFlag alEngineSetup, eEngineAPI aeEngineApi);
 	extern void DestroyAlkaliEngine(cEngine* apEngine);
 
 	class cEngine
 	{
 	public:
-		cEngine(tFlag alEngineSetup, iEngineSetup* apGameSetup, eGraphicsAPI aeGraphicsApi);
+		cEngine(tFlag alEngineSetup, iEngineSetup* apGameSetup);
 		~cEngine();
 
 		bool init(tFlag alModuleFlags,iEngineSetup* apGame);
@@ -45,9 +44,6 @@ namespace alk {
 
 		bool IsGameDone();
 		bool mbGameDone;
-
-		eGraphicsAPI meGraphicsApi;
-		eGraphicsAPI GetGraphicsApi() { return meGraphicsApi; }
 
 		iEngineSetup* mpGame;
 

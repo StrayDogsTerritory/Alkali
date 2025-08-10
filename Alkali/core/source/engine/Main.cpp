@@ -9,9 +9,6 @@
 #include "video/VideoSDL.h"
 #include "system/MemoryManager.h"
 
-//#include "direct"
-
-
 extern int AlkaliMain(const alk::tString &asCommandLine);
 
 int WINAPI WinMain( HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow)

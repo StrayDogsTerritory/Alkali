@@ -11,7 +11,7 @@ namespace alk {
 	cVideoSDL::cVideoSDL()
 	{
 		mbFullscreen = false;
-		mpSDLWindow = NULL;
+		mpSDLWindow = 0;
 	}
 
 	cVideoSDL::~cVideoSDL()
@@ -21,13 +21,8 @@ namespace alk {
 
 	bool cVideoSDL::Init(int alHeight, int alWidth, int alWindowMode)
 	{
-	
-
 		
-		
-		//temp comment for easier reading
-
-		/*unsigned int mlFlags = SDL_WINDOW_OPENGL;
+		unsigned int mlFlags = SDL_WINDOW_OPENGL;
 
 
 		mpSDLWindow = SDL_CreateWindow("Alkali", alWidth, alHeight, mlFlags);
@@ -35,9 +30,7 @@ namespace alk {
 			FatalError("Error initialising display: %s\n", SDL_GetError());
 
 		SetCursorVisibility(true);
-		SetWindowBorderless(true);
-
-	
+		SetWindowBorderless(false);
 
 		mGLContext = SDL_GL_CreateContext(mpSDLWindow);
 
@@ -52,7 +45,7 @@ namespace alk {
 			Error("Glew Failed! Reason: %s\n", glewGetErrorString(lGLEWWorks));
 
 			InitOpenGL();
-		*/
+
 		return true;
 	}
 
@@ -98,7 +91,6 @@ namespace alk {
 		return abx ? SDL_ShowCursor() : SDL_HideCursor();
 	}
 
-	
 
 	bool cVideoSDL::SetWindowFullscreen(bool abx)
 	{
@@ -110,10 +102,8 @@ namespace alk {
 		if (!mbFullscreen)
 			 abx ? SDL_SetWindowFullscreen(mpSDLWindow, true) : SDL_SetWindowFullscreen(mpSDLWindow, false);
 		
-		return abx ? SetWindowGrabInput(false) : SetWindowGrabInput(true);
+		return abx ? SetWindowGrabInput(true) : SetWindowGrabInput(false);
 	}
-
-	//I should do this better
 
 	bool cVideoSDL::SetWindowGrabInput(bool abx)
 	{
