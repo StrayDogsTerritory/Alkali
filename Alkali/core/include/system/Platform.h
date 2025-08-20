@@ -20,10 +20,10 @@ namespace alk {
 		static bool CreateFolder(const twString& asPath, const twString asFolderName);
 		static bool DeleteFolder(const twString& asPath, bool abDeleteSubDirs, bool abDeleteFiles);
 
-		static void CreateURL(const twString& asURL);
+		static void ExecuteURL(const twString& asURL);
 
 
-		static bool FindFilesInDirectory(const twString& asPath, const twString& asFileName);
+		static void FindFilesInDirectory(twStringList &aLst, const twString& asPath, const twString& asFilter, bool abIncludeHidden);
 
 		static bool CreateMessageBox();
 

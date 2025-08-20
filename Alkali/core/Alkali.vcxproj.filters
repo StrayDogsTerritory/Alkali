@@ -22,9 +22,6 @@
     <Filter Include="Sound">
       <UniqueIdentifier>{0f906dbb-c38a-4100-ab5d-fe3ac13cd5d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Xml">
-      <UniqueIdentifier>{58645e84-565b-4c31-a403-b58555e3d573}</UniqueIdentifier>
-    </Filter>
     <Filter Include="System\PlatformSpecific">
       <UniqueIdentifier>{fcf8a895-8c52-4ddf-a504-2fd384c2edec}</UniqueIdentifier>
     </Filter>
@@ -39,6 +36,12 @@
     </Filter>
     <Filter Include="Graphics\APISpecific\GLSL">
       <UniqueIdentifier>{f4e683ee-29af-41ef-af66-0e0757669c90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Json">
+      <UniqueIdentifier>{58645e84-565b-4c31-a403-b58555e3d573}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\APISpecific\HLSL">
+      <UniqueIdentifier>{5e303b9c-ccab-4e17-8f1e-4fdc74133675}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -117,6 +120,15 @@
     </ClInclude>
     <ClInclude Include="include\resource_managers\ResourceManager.h">
       <Filter>ResourceManagers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Math.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Vector.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Matrix.h">
+      <Filter>Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

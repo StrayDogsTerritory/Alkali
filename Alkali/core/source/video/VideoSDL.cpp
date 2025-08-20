@@ -3,6 +3,8 @@
 #include "graphics/Graphics.h"
 #include "graphics/ShaderGLSL.h"
 
+#include "system/Platform.h"
+
 #pragma comment(lib, "OpenGL32.lib")
 #pragma comment(lib, "GLu32.lib")
 
@@ -30,7 +32,7 @@ namespace alk {
 			FatalError("Error initialising display: %s\n", SDL_GetError());
 
 		SetCursorVisibility(true);
-		SetWindowBorderless(false);
+		//SetWindowBorderless(true);
 
 		mGLContext = SDL_GL_CreateContext(mpSDLWindow);
 

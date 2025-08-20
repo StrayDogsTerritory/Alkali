@@ -27,8 +27,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
-    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>PGOptimize</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -107,6 +107,9 @@
     <ClInclude Include="include\graphics\ShaderGLSL.h" />
     <ClInclude Include="include\gui\Gui.h" />
     <ClInclude Include="include\input\Input.h" />
+    <ClInclude Include="include\math\Math.h" />
+    <ClInclude Include="include\math\Matrix.h" />
+    <ClInclude Include="include\math\Vector.h" />
     <ClInclude Include="include\resource_managers\ResourceManager.h" />
     <ClInclude Include="include\resource_managers\ShaderManager.h" />
     <ClInclude Include="include\system\Date.h" />

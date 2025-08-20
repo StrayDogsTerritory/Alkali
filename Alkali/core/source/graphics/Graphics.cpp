@@ -7,15 +7,17 @@
 #include "graphics/GPUProgramGLSL.h"
 #include "engine/LogWriter.h"
 #include "system/String.h"
+#include "system/Platform.h"
 
-
+#include "math/Math.h"
 
 namespace alk {
 
 	cGraphics::cGraphics(tFlag alShadingLanguage)
 	{ 
+		int lFlags = -5;
+		int lFlagsAbs = cMath::labs(lFlags);
 
-		
 	}
 
 	cGraphics::~cGraphics()
