@@ -172,7 +172,7 @@ namespace alk {
 
 		int cString::FindLastOfCharW(const twString& asString, const twString& acChar)
 		{
-			int pos = 1;
+			int pos = -1;
 			for (size_t i = 0; i < asString.size(); i++)
 			{
 				if (asString.substr(i, acChar.size()) == acChar) {
@@ -182,6 +182,20 @@ namespace alk {
 			return pos;
 		}
 
+		tString cString::GetLastChar(const tString& asString)
+		{
+			if (asString == "") return "";
+			else
+			return asString.substr(asString.length()-1);
+		}
+
+		twString cString::GetLastCharW(const twString& asString)
+		{
+			if (asString == L"") return L"";
+			if (asString.length() == 0) return L"";
+			
+			return asString.substr(asString.length() - 1);
+		}
 
 
 		tString cString::FileExtension(const tString& asFileName)
@@ -202,21 +216,41 @@ namespace alk {
 			int lPos1 = FindLastOfChar(asFileName, "/");
 			int lPos2 = FindLastOfChar(asFileName, "\\");
 			int lPos = lPos1 > lPos2 ? lPos1 : lPos2;
-			if (lPos < 0) return asFileName;
+
+			if (lPos < 0) 
+				return asFileName;
 			else
-			return asFileName.substr(lPos+1);
+				return asFileName.substr(lPos+1);
 		}
 
 		twString cString::FileNameW(const twString& asFileName)
 		{
-			int lPos1 = FindLastOfCharW(asFileName, L"/");
-			int lPos2 = FindLastOfCharW(asFileName, L"\\");
-			int lPos = lPos1 > lPos2 ? lPos1 : lPos2;
-			if (lPos < 0) return asFileName;
+			int pos1 = FindLastOfCharW(asFileName, L"\\");
+			int pos2 = FindLastOfCharW(asFileName, L"/");
+			int pos = pos1 > pos2 ? pos1 : pos2;
+
+			if (pos < 0)
+				return asFileName;
 			else
-				return asFileName.substr(lPos + 1);
+				return asFileName.substr(pos + 1);
 		}
 
+		tString cString::SetFilePath(const tString& asFileName, const tString& asNewPath)
+		{
+			tString sSepp = "";
+			if (GetLastChar(asNewPath) != "/" && GetLastChar(asNewPath) != "\\")
+				sSepp = "/";
+			return asNewPath + sSepp + FileName(asFileName);
+		}
+
+		twString cString::SetFilePathW(const twString& asFileName, const twString& asNewPath)
+		{
+			twString sSepp = L"";
+			if (GetLastCharW(asNewPath) != L"/" && GetLastCharW(asNewPath) != L"\\")
+				sSepp = L"/";
+
+			return asNewPath + sSepp + FileNameW(asFileName);
+		}
 
 
 

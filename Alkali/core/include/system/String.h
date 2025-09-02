@@ -13,8 +13,16 @@ namespace alk {
 	typedef std::list<tString> tStringList;
 
 	typedef std::vector<tString> tStringVector;
+	typedef std::vector<tString>::iterator tStringVectorIt;
 	typedef std::vector<twString> twStringVector;
+	typedef std::vector<twString>::iterator twStringVectorIt;
+
+	typedef std::list<tString> tStringList;
+	typedef std::list<tString>::iterator tStringListIt;
 	typedef std::list<twString> twStringList;
+	typedef std::list<twString>::iterator twStringListIt;
+
+	
 
 	class cString
 	{
@@ -46,6 +54,8 @@ namespace alk {
 		static int FindLastOfChar(const tString& asString, const tString& acChar);
 		static int FindLastOfCharW(const twString& asString, const twString& acChar);
 		
+		static tString GetLastChar(const tString& asString);
+		static twString GetLastCharW(const twString& asString);
 		///////////////////
 		// FILE AND DIR FUNCTIONS
 
@@ -54,6 +64,15 @@ namespace alk {
 		
 		static tString FileName(const tString& asFileName);
 		static twString FileNameW(const twString& asFileName);
+
+		static tString GetFilePath(const tString& asFileName);
+		static twString GetFilePathW(const twString& asFileName);
+
+		static tString SetFilePath(const tString& asFileName, const tString& asNewPath);
+		static twString SetFilePathW(const twString& asFileName, const twString& asPath);
+
+		static tString AddSlashAtEnd(const tString& asString);
+		static twString AddSlashAtEndW(const twString& asString);
 	};
 
 }

@@ -8,6 +8,7 @@
 
 #include "graphics/Graphics.h"
 
+#include "math/Math.h"
 // temp 
 #include "SDL3/SDL.h"
 
@@ -80,7 +81,6 @@ namespace alk {
 
 		while (!IsGameDone())
 		{
-
 			//this is all temporary, do this in an actual input module
 			while(SDL_PollEvent(&mSDLEvent))
 			{

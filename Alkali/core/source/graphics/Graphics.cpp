@@ -8,16 +8,21 @@
 #include "engine/LogWriter.h"
 #include "system/String.h"
 #include "system/Platform.h"
+#include "system/SystemTypes.h"
 
-#include "math/Math.h"
+#include "resources/FileSearcher.h"
+
+#include "json/JsonDocument.h"
+
+#include "SDL3/SDL.h"
 
 namespace alk {
 
 	cGraphics::cGraphics(tFlag alShadingLanguage)
-	{ 
-		int lFlags = -5;
-		int lFlagsAbs = cMath::labs(lFlags);
-
+	{
+		cJsonDocument* pDoc = alkNew(cJsonDocument, ());
+		pDoc->Parse(L"test\\panam.ent.json");
+		alkDelete(pDoc);
 	}
 
 	cGraphics::~cGraphics()

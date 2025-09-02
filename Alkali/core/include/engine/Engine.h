@@ -25,7 +25,7 @@ namespace alk {
 	class iEngineSetup;
 	class cVideo;
 	class cGraphics;
-
+	class cResources;
 
 	extern cEngine* CreateAlkaliEngine(tFlag alEngineSetup, eEngineAPI aeEngineApi);
 	extern void DestroyAlkaliEngine(cEngine* apEngine);
@@ -50,6 +50,7 @@ namespace alk {
 
 		cVideo* mpVideo;
 		cGraphics* mpGraphics;
+		cResources* mpResources;
 	};
 
 

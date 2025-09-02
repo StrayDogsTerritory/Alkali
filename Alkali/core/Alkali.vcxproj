@@ -20,7 +20,7 @@
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
-    <UseDebugLibraries>false</UseDebugLibraries>
+    <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
@@ -58,7 +58,7 @@
       <SDLCheck>
       </SDLCheck>
       <ConformanceMode>Default</ConformanceMode>
-      <AdditionalIncludeDirectories>..\..\Alkali\dependencies\include;./include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\dependencies\include;.\include</AdditionalIncludeDirectories>
       <Optimization>Disabled</Optimization>
       <IntrinsicFunctions>false</IntrinsicFunctions>
       <FunctionLevelLinking>
@@ -66,6 +66,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;</PreprocessorDefinitions>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -100,6 +101,7 @@
     <ClInclude Include="include\engine\EngineSetupInterface.h" />
     <ClInclude Include="include\engine\InitVars.h" />
     <ClInclude Include="include\engine\LogWriter.h" />
+    <ClInclude Include="include\graphics\Colour.h" />
     <ClInclude Include="include\graphics\GPUProgram.h" />
     <ClInclude Include="include\graphics\GPUProgramGLSL.h" />
     <ClInclude Include="include\graphics\Graphics.h" />
@@ -107,11 +109,17 @@
     <ClInclude Include="include\graphics\ShaderGLSL.h" />
     <ClInclude Include="include\gui\Gui.h" />
     <ClInclude Include="include\input\Input.h" />
+    <ClInclude Include="include\json\json.hpp" />
+    <ClInclude Include="include\json\JsonCPPWrapper.h" />
+    <ClInclude Include="include\json\JsonDocument.h" />
+    <ClInclude Include="include\json\picojson.h" />
     <ClInclude Include="include\math\Math.h" />
     <ClInclude Include="include\math\Matrix.h" />
-    <ClInclude Include="include\math\Vector.h" />
-    <ClInclude Include="include\resource_managers\ResourceManager.h" />
-    <ClInclude Include="include\resource_managers\ShaderManager.h" />
+    <ClInclude Include="include\math\Vector2.h" />
+    <ClInclude Include="include\math\Vector3.h" />
+    <ClInclude Include="include\resources\FileSearcher.h" />
+    <ClInclude Include="include\resources\ResourceManager.h" />
+    <ClInclude Include="include\resources\ShaderManager.h" />
     <ClInclude Include="include\system\Date.h" />
     <ClInclude Include="include\system\FlagBits.h" />
     <ClInclude Include="include\system\MemoryManager.h" />
@@ -123,6 +131,7 @@
     <ClInclude Include="include\video\Video.h" />
     <ClInclude Include="include\video\VideoInterface.h" />
     <ClInclude Include="include\video\VideoSDL.h" />
+    <ClInclude Include="source\math\Plane.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\Engine.cpp" />
@@ -131,18 +140,23 @@
     </ClCompile>
     <ClCompile Include="source\engine\LogWriter.cpp" />
     <ClCompile Include="source\engine\Main.cpp" />
+    <ClCompile Include="source\graphics\Colour.cpp" />
     <ClCompile Include="source\graphics\GPUProgram.cpp" />
     <ClCompile Include="source\graphics\GPUProgramGLSL.cpp" />
     <ClCompile Include="source\graphics\Graphics.cpp" />
     <ClCompile Include="source\graphics\ShaderGLSL.cpp" />
     <ClCompile Include="source\gui\Gui.cpp" />
     <ClCompile Include="source\input\Input.cpp" />
-    <ClCompile Include="source\resource_managers\ResourceManager.cpp" />
-    <ClCompile Include="source\resource_managers\ShaderManager.cpp" />
+    <ClCompile Include="source\json\JsonDocument.cpp" />
+    <ClCompile Include="source\math\Math.cpp" />
+    <ClCompile Include="source\math\Matrix.cpp" />
+    <ClCompile Include="source\resources\FileSearcher.cpp" />
+    <ClCompile Include="source\resources\ResourceManager.cpp" />
+    <ClCompile Include="source\resources\ShaderManager.cpp" />
     <ClCompile Include="source\system\MemoryManager.cpp" />
     <ClCompile Include="source\system\MutEx.cpp" />
     <ClCompile Include="source\system\Platform.cpp" />
-    <ClCompile Include="source\system\platform_specific\PlatfromWindows.cpp" />
+    <ClCompile Include="source\system\platform_specific\PlatformWindows.cpp" />
     <ClCompile Include="source\system\String.cpp" />
     <ClCompile Include="source\system\Thread.cpp" />
     <ClCompile Include="source\video\Video.cpp" />

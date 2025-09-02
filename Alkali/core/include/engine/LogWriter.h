@@ -7,11 +7,9 @@
 #include "system\SystemTypes.h"
 #include "stdio.h"
 
-namespace alk {
-
+#include "system/Platform.h"
 #define NORETURN
-
-
+namespace alk {
 	//----------------------------
 
 	class cLogWriter

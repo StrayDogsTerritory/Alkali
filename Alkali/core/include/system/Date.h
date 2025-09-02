@@ -1,7 +1,6 @@
 #ifndef ALK_DATE_H
 #define ALK_DATE_H
 
-#include "system/String.h"
 
 namespace alk {
 
@@ -26,13 +25,11 @@ namespace alk {
 		{
 		}
 
-		 tString ToString()
+		tString ToString() const
 		{
-			char buffer[256];
-			
-			sprintf(buffer, "%d/%d/%d %d:%02d:%02d", Hours, Minutes, Seconds, Day, Month, Year);
-
-			return buffer;
+			char sBuff[256];
+			sprintf(sBuff, "%d/%d/%d %d:%02d:%02d", Day, Month, Year, Hours, Minutes, Seconds);
+			return sBuff;
 		}
 	};
 

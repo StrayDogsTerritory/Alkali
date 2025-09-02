@@ -4,6 +4,8 @@
 
 #include "engine/LogWriter.h"
 
+#include "system/String.h"
+
 #include "SDL3/SDL.h"
 
 namespace alk {
@@ -163,6 +165,8 @@ namespace alk {
 			tString sMessage = "[FATAL ERROR!]: ";
 			sMessage += Text;
 			LogWriter.Write(sMessage);
+
+			cPlatform::CreateMessageBox(eBoxTypeError, L"FATAL ERROR", L"'%ls'", cString::ToWideChar(sMessage).c_str());
 
 			SDL_Quit();
 

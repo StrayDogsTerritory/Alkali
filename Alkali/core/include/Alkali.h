@@ -6,6 +6,8 @@
 #include "system/MemoryManager.h"
 #include "system/Platform.h"
 #include "system/Mutex.h"
+#include "system/Date.h"
+#include "system/FlagBits.h"
 
 #include "video/VideoSDL.h"
 #include "video/VideoInterface.h"
@@ -18,6 +20,12 @@
 #include "graphics/GPUProgramGLSL.h"
 #include "graphics/Shader.h"
 #include "graphics/ShaderGLSL.h"
+
+#include "math/Math.h"
+#include "math/Vector2.h"
+#include "math/Vector3.h"
+#include "math/Matrix.h"
+
 
 #include "gui/Gui.h"
 
