@@ -192,7 +192,7 @@ namespace alk {
 		}
 	};
 
-	typedef cVector3<int> tVector3i;
+	typedef cVector3<int> tVector3l;
 	typedef cVector3<float> tVector3f;
 }
 

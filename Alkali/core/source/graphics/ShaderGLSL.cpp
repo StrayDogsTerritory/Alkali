@@ -9,8 +9,8 @@ namespace alk {
 
 	cGLSLShader::cGLSLShader(const tString& asShader, eShaderType aeShaderType)
 	{
-		/*msName = asShader;
-		meShaderType = aeShaderType;*/
+		msName = asShader;
+		meShaderType = aeShaderType;
 
 	mlShaderID = glCreateShader(GetShaderType(aeShaderType)); 
 
@@ -97,6 +97,8 @@ namespace alk {
 				return GL_VERTEX_SHADER;
 			case ePixelShader:
 				return GL_FRAGMENT_SHADER;
+			case eComputeShader:
+				return GL_COMPUTE_SHADER;
 		}
 	}
 }

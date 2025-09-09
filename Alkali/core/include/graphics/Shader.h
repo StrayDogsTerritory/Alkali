@@ -11,8 +11,10 @@ namespace alk {
 	
 	enum eShaderType
 	{
-		eVertexShader,
-		ePixelShader,
+		eVertexShader, 
+		ePixelShader, // <- also known in OGL as a fragment shader. Keeping it vague incase I add d3D support.
+		////////////
+		// Don't think these are used in OGL at all...
 		eGeometryShader,
 		eTessellationShader,
 		eComputeShader 
@@ -30,7 +32,7 @@ namespace alk {
 
 		virtual	GLenum GetShaderType(eShaderType aeShaderType) = 0;
 
-		GLint GetShaderID() { return mlShaderID; }
+		int GetShaderID() { return mlShaderID; }
 
 		// Don't do this its GL code in the master class
 		//virtual GLenum GetShaderType(eShaderType aeShaderType) = 0;

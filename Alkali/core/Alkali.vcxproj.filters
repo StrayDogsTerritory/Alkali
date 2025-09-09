@@ -46,6 +46,12 @@
     <Filter Include="Json\JSON">
       <UniqueIdentifier>{fd497462-39b0-4cfd-851e-c1e6c0c5b0c2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Xml">
+      <UniqueIdentifier>{7554a36f-dba4-4adc-b432-12412fee2117}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Xml\TinyXml2">
+      <UniqueIdentifier>{6537cda0-9bfa-4ced-80e2-7ec1f1ab3147}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\system\String.h">
@@ -157,6 +163,15 @@
     <ClInclude Include="include\json\picojson.h">
       <Filter>Json</Filter>
     </ClInclude>
+    <ClInclude Include="include\xml\tinyxml2\tinyxml2.h">
+      <Filter>Xml\TinyXml2</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xml\XmlDocument.h">
+      <Filter>Xml</Filter>
+    </ClInclude>
+    <ClInclude Include="include\xml\XmlDocumentTinyXml.h">
+      <Filter>Xml</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">
@@ -236,6 +251,12 @@
     </ClCompile>
     <ClCompile Include="source\json\JsonDocument.cpp">
       <Filter>Json</Filter>
+    </ClCompile>
+    <ClCompile Include="source\xml\tinyxml2\tinyxml2.cpp">
+      <Filter>Xml\TinyXml2</Filter>
+    </ClCompile>
+    <ClCompile Include="source\xml\XmlDocument.cpp">
+      <Filter>Xml</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

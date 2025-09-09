@@ -20,7 +20,7 @@ namespace alk {
 		m_mapPointers.insert(tAllocatedPointerMap::value_type(asAllocatedPointer.mpData,asAllocatedPointer));
 		mlTotalMemoryUsage += asAllocatedPointer.mlMemorySize;
 
-		//Log("Creating a Pointer 0x%x at: %s, line: %d\n", asAllocatedPointer.mpData, asAllocatedPointer.msFile.c_str(),asAllocatedPointer.mlLine);
+		//sLog("Creating a Pointer 0x%x at: %s, line: %d\n", asAllocatedPointer.mpData, asAllocatedPointer.msFile.c_str(),asAllocatedPointer.mlLine);
 
 		return asAllocatedPointer.mpData;
 	}
@@ -59,19 +59,19 @@ namespace alk {
 
 	void cMemoryManager::MemoryLog()
 	{
-		Log("----------Memory Manager Report----------\n");
-		Log("|\n");
+		sLog("----------Memory Manager Report----------\n");
+		sLog("|\n");
 
 			if (m_mapPointers.empty())
 			{
-				Log("| No memory leaks detected. Memory Left: %d\n", mlTotalMemoryUsage);
+				sLog("| No memory leaks detected. Memory Left: %d\n", mlTotalMemoryUsage);
 			}
 			else
 			{
-				Log("| Memory leaks detected:\n");
-				Log("|");
+				sLog("| Memory leaks detected:\n");
+				sLog("|");
 
-				Log("| address\t file");
+				sLog("| address\t file");
 
 				int lMax = 0;
 				tAllocatedPointermapIterator it = m_mapPointers.begin();
@@ -87,21 +87,23 @@ namespace alk {
 
 				for (int i = 0; i < lMax - 4; ++i) Log(" ");
 
-				Log("line\t\t memory usage\t   \n");
+				sLog("line\t\t memory usage\t   \n");
 
-				Log("|-----------------------------------------------------\n");
+				sLog("|-----------------------------------------------------\n");
 
 				it = m_mapPointers.begin();
 				for (; it != m_mapPointers.end(); ++it)
 				{
 					cAllocatedPointer& ap = it->second;
-					Log("| 0x%p\t %s ", ap.mpData, ap.msFile.c_str());
-					for (int i = 0; i < lMax - (int)ap.msFile.length(); ++i) Log(" ");
-					Log("%s", ap.msFile.c_str());
-					Log("%d\t\t%d\t\n", ap.mlLine, ap.mlMemorySize);
+					sLog("| 0x%p\t %s ", ap.mpData, ap.msFile.c_str());
+					for (int i = 0; i < lMax - (int)ap.msFile.length(); ++i) sLog(" ");
+					sLog("%s", ap.msFile.c_str());
+					sLog("%d\t\t%d\t\n", ap.mlLine, ap.mlMemorySize);
 				}
 			}
-			Log("|\n");
-			Log("-----------------------------------------------------\n");
+			sLog("|\n");
+			sLog("-----------------------------------------------------\n");
 	}
+
+
 }

@@ -20,7 +20,7 @@ namespace alk {
 
 
 	typedef std::map <void*, cAllocatedPointer> tAllocatedPointerMap;
-	typedef std::map <void*, cAllocatedPointer>::iterator tAllocatedPointermapIterator;
+	typedef tAllocatedPointerMap::iterator tAllocatedPointermapIterator;
 
 	class cMemoryManager
 	{
@@ -56,8 +56,6 @@ namespace alk {
 		}
 
 	};
-
-	
 
 #define alkNew(constructor, params) \
 	( constructor* ) cMemoryManager::AddPointer(alk::cAllocatedPointer( new constructor params, __FILE__, __LINE__, sizeof(constructor)))

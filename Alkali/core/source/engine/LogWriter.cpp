@@ -100,11 +100,28 @@ namespace alk {
 		va_end(ap);
 
 		tString sMessage = "";
-		
+		cDate Date = cPlatform::GetLocalTime();
+		tString sTime = "["+ Date.ToStringTime() + "] ";
+		sMessage += sTime;
 			sMessage += Text;
 			LogWriter.Write(sMessage);
 
 		}
+
+	void sLog(const char* asMessage, ...)
+	{
+		char Text[4096];
+		va_list ap;
+		if (asMessage == NULL)
+			return;
+		va_start(ap, asMessage);
+		vsprintf(Text, asMessage, ap);
+		va_end(ap);
+		tString sMessage = "";
+
+		sMessage += Text;
+		LogWriter.Write(sMessage);
+	}
 
 		void Error(const char* asMessage, ...)
 		{

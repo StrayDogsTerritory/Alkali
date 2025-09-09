@@ -31,6 +31,20 @@ namespace alk {
 			sprintf(sBuff, "%d/%d/%d %d:%02d:%02d", Day, Month, Year, Hours, Minutes, Seconds);
 			return sBuff;
 		}
+
+		tString ToStringTime() const
+		{
+			char sBuff[256];
+			sprintf(sBuff, "%d:%02d:%02d", Hours, Minutes, Seconds);
+			return sBuff;
+		}
+
+		tString ToStringDate() const
+		{
+			char sBuff[256];
+			sprintf(sBuff, "%d/%d/%d", Day, Month, Year);
+			return sBuff;
+		}
 	};
 
 }

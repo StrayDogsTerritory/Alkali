@@ -21,6 +21,7 @@ namespace alk {
 
 		static FILE* OpenFile(const twString& asFileName, const twString& asMode);
 		static void RemoveFile(const twString& asFile);
+		static bool FileExists(const twString& asFile);
 		static twString GetFuleFilePath(const twString& asFile);
 
 		static bool CreateFolder(const twString& asPath, const twString asFolderName);

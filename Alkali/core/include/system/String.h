@@ -33,6 +33,11 @@ namespace alk {
 		static twString ToWideChar(const tString& asString);
 		static tString To8BitChar(const twString& asString);
 
+		static tString toString(const char* asString, const tString& asFallback);
+		static int ToInt(const char* asString, int alFallback);
+		static float ToFloat(const char* asString, float afFallback);
+		static bool ToBool(const char* asString, bool abFallback);
+
 		/////////////////////
 		// STRING MODIFICATION AND SEARCHING
 

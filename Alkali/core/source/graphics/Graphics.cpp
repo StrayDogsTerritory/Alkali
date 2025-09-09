@@ -20,9 +20,13 @@ namespace alk {
 
 	cGraphics::cGraphics(tFlag alShadingLanguage)
 	{
-		cJsonDocument* pDoc = alkNew(cJsonDocument, ());
-		pDoc->Parse(L"test\\panam.ent.json");
-		alkDelete(pDoc);
+		cFileSearcher* pFileSearcher = alkNew(cFileSearcher, ());
+		pFileSearcher->AddDir(L"test", "*.*", true);
+		twString sFile = pFileSearcher->GetPath("test");
+		bool bRet = cPlatform::FileExists(sFile);
+		Log("%s\n", bRet ? "true" : "false");
+		Log("%ls\n", sFile.c_str());
+		alkDelete(pFileSearcher);
 	}
 
 	cGraphics::~cGraphics()

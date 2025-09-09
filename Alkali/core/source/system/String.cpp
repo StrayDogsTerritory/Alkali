@@ -31,6 +31,31 @@ namespace alk {
 			return sTemp;
 		}
 
+		tString cString::toString(const char* asString, const tString& asFallback)
+		{
+			if (asString == NULL) return asFallback;
+				return asString;
+		}
+
+		int cString::ToInt(const char* asString, int alFallback)
+		{
+			if (asString == NULL) return alFallback;
+			return atoi(asString);
+		}
+
+		float cString::ToFloat(const char* asString, float afFallback)
+		{
+			if (asString == NULL) return afFallback;
+			return atof(asString);
+		}
+
+		bool cString::ToBool(const char* asString, bool abFallback)
+		{
+			if (asString == NULL) return abFallback;
+			tString sTemp = ToLowerCase(asString);
+			return sTemp == "true" ? true : false;
+		}
+
 		tString cString::ToLowerCase(const tString& asString)
 		{
 			tString sTemp;

@@ -13,7 +13,7 @@ namespace alk
 	public:
 		cFileSearcherEntry(const twString& asName);
 		
-		twString msName;
+		twString msPath;
 	};
 
 	typedef std::multimap<tString, cFileSearcherEntry> mFileSearcherMap;
@@ -27,7 +27,7 @@ namespace alk
 
 		void AddDir(const twString& asFilePath, const tString& asFilter, const bool& abAddSubDirs);
 		void ClearDirs();
-		twString GetPath(const tString& asFileName);
+		const twString GetPath(const tString& asFilePath);
 		
 	private:
 		mFileSearcherMap mEntries;

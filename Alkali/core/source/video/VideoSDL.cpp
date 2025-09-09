@@ -42,7 +42,7 @@ namespace alk {
 		Log("Setting up GLEW: ");
 
 		if (lGLEWWorks == GLEW_OK)
-			Log("running\n");
+			sLog("running\n");
 		else
 			Error("Glew Failed! Reason: %s\n", glewGetErrorString(lGLEWWorks));
 

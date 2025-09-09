@@ -71,6 +71,15 @@ namespace alk {
 		return (avA.x * avB.x + avA.y * avB.y + avA.z * avB.z);
 	}
 
+	tVector3f cMath::Vector3Cross(const tVector3f& avA, const tVector3f& avB)
+	{
+		tVector3f avTemp;
+		avTemp.x = (avA.y * avB.z - avA.z * avB.y);
+		avTemp.y = (avA.z * avB.x - avA.x * avB.z);
+		avTemp.z = (avA.x * avB.y - avA.y * avB.x);
+		return avTemp;
+	}
+
 	///////////////////
 	// matrix
 	tMatrixf cMath::MatrixMul(const tMatrixf& aA, const tMatrixf& aB)

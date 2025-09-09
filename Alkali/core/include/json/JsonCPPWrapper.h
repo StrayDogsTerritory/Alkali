@@ -14,10 +14,12 @@
 
 #include "json/json.hpp"
 #include "json/picojson.h"
+//#include "json/simdjson.h"
 namespace alk {
 
 	typedef nlohmann::json cJson;
 	typedef picojson::value cJsonValue;
+//	typedef simdjson::implementation::
 	
 }
 

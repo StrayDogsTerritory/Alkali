@@ -54,7 +54,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <WarningLevel>EnableAllWarnings</WarningLevel>
+      <WarningLevel>Level3</WarningLevel>
       <SDLCheck>
       </SDLCheck>
       <ConformanceMode>Default</ConformanceMode>
@@ -65,7 +65,7 @@
       </FunctionLevelLinking>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_ALK_TEMP_NEW_MEMORY_MANAGER_TEST;_DEBUG;WIN32;_DEBUG;_WINDOWS;_USRDLL;</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -131,6 +131,9 @@
     <ClInclude Include="include\video\Video.h" />
     <ClInclude Include="include\video\VideoInterface.h" />
     <ClInclude Include="include\video\VideoSDL.h" />
+    <ClInclude Include="include\xml\tinyxml2\tinyxml2.h" />
+    <ClInclude Include="include\xml\XmlDocument.h" />
+    <ClInclude Include="include\xml\XmlDocumentTinyXml.h" />
     <ClInclude Include="source\math\Plane.h" />
   </ItemGroup>
   <ItemGroup>
@@ -162,6 +165,8 @@
     <ClCompile Include="source\video\Video.cpp" />
     <ClCompile Include="source\video\VideoInterface.cpp" />
     <ClCompile Include="source\video\VideoSDL.cpp" />
+    <ClCompile Include="source\xml\tinyxml2\tinyxml2.cpp" />
+    <ClCompile Include="source\xml\XmlDocument.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

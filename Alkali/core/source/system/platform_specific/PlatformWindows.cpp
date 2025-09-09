@@ -38,6 +38,15 @@ namespace alk {
 		 _wremove(asFile.c_str());
 	}
 
+	bool cPlatform::FileExists(const twString& asFile)
+	{
+		FILE* pFile = OpenFile(asFile, L"rb");
+		if (pFile == NULL){
+			return false;
+		}
+		return true;
+	}
+
 	twString cPlatform::GetFuleFilePath(const twString& asFile)
 	{
 		wchar_t sBuff[2048];
