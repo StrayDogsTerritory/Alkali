@@ -7,98 +7,78 @@
 
 namespace alk {
 
-	cGLSLShader::cGLSLShader(const tString& asShader, eShaderType aeShaderType)
+	cGLSLShader::cGLSLShader(const tString& asName, eShaderType aShaderType) : iShader(asName, L"", aShaderType)
 	{
-		msName = asShader;
-		meShaderType = aeShaderType;
-
-	mlShaderID = glCreateShader(GetShaderType(aeShaderType)); 
-
+		mlShaderID = glCreateShader(ConvertToGL(aShaderType));
 	}
- 
 
 	cGLSLShader::~cGLSLShader()
 	{
-		DestroyShader(this);
+		glDeleteShader(mlShaderID);
 	}
 
-	bool cGLSLShader::CreateShader(const twString& asShader, eShaderType aeShaderType)
+	bool cGLSLShader::CreateFromFile(const twString& asFile)
 	{
-		
-		FILE* pFile = cPlatform::OpenFile(asShader, L"rb");
-		if (pFile == NULL) {
-			Error("File %s couldn't load!\n", asShader);
-			return false;
-		}
+		FILE* pFile = cPlatform::OpenFile(asFile, L"rb");
 		fseek(pFile, 0, SEEK_END);
-		int lFileSize = ftell(pFile);
+		size_t lSize = ftell(pFile);
 		rewind(pFile);
 
-		char* pBuffer = (char*) alkMalloc(lFileSize);
-		
-		pBuffer[lFileSize] = 0; // null terminate the string
-
+		char* pBuffer = (char*)alkMalloc(sizeof(char)* lSize+1); 
+		fread(pBuffer, sizeof(GLchar), lSize, pFile);
+		pBuffer[lSize] = 0;
 		fclose(pFile);
 
+		bool bRet = CreateFromString(pBuffer);
 		alkFree(pBuffer);
+		return bRet;
+	}
 
-		glShaderSource(mlShaderID, 1, &pBuffer,	NULL);
+	bool cGLSLShader::CreateFromString(const char* apString)
+	{
+		glShaderSource(mlShaderID, 1, &apString, NULL);
+
 		glCompileShader(mlShaderID);
 
-		// error checking
-		GLint lStatus;
-		glGetShaderiv(mlShaderID, GL_COMPILE_STATUS, &lStatus);
-		if (lStatus == GL_FALSE)
+		GLint lStat;
+		glGetShaderiv(mlShaderID, GL_COMPILE_STATUS, &lStat);
+		if (lStat == GL_FALSE)
 		{
-			Error("GLSL shader %s failed to compile!\n", asShader);
-			glDeleteShader(mlShaderID);
+			Error("Failed to compile Shader '%ls'!\n", GetPath().c_str());
+			LogShaderError();
 
 			return false;
 		}
 
 
+		return true;
+	}
+
+	void cGLSLShader::LogShaderError()
+	{
+		char* apBuffer;
+		GLint BuffSize;
+		GLsizei LogLength;
+
+		glGetShaderiv(mlShaderID, GL_INFO_LOG_LENGTH, &BuffSize);
 		
-
-		return true;
-
-	}
-
-	void cGLSLShader::DestroyShader(iShader* apShader)
-	{
-		glDeleteShader(mlShaderID);
-	}
-
-
-	/*bool cGLSLShader::CompileShader(iShader* pShader)
-	{
-		glCompileShader(mlShaderID);
-
-		return false;
-	}*/
-
-	[[depricated]]
-	bool cGLSLShader::ReloadShader()
-	{
-		///////////////////////////
-		// not safe, don't run yet
-
-		glDeleteShader(mlShaderID);
-		glCreateShader(mlShaderID);
-
-		return true;
+		apBuffer = (char*)alkMalloc(BuffSize);
+		glGetShaderInfoLog(mlShaderID, BuffSize, &LogLength, apBuffer);
+		Log("===========================\n");
+		sLog("%s", apBuffer);
+		sLog("==========================\n");
+		alkFree(apBuffer);
 	}
 
 
-	GLenum cGLSLShader::GetShaderType(eShaderType aeShaderType)
+	GLenum cGLSLShader::ConvertToGL(eShaderType aeShaderType)
 	{
 		switch (aeShaderType)
 		{
-			case eVertexShader:
-				return GL_VERTEX_SHADER;
-			case ePixelShader:
-				return GL_FRAGMENT_SHADER;
-			case eComputeShader:
-				return GL_COMPUTE_SHADER;
+		case eVertexShader: return GL_VERTEX_SHADER;
+		case ePixelShader: return GL_FRAGMENT_SHADER;
 		}
+		
+		return NULL;
 	}
 }

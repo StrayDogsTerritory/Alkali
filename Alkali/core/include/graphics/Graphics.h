@@ -7,28 +7,36 @@
 #include "graphics/Shader.h"
 #include "graphics/ShaderGLSL.h"
 
+#include <list>
+
 namespace alk {
 
-	class iVideo;
+	class iGraphics;
 	class iShader;
 	class iGpuProgram;
+	class cResources;
+
+	typedef std::list<iGpuProgram*> tlProgramList;
+	typedef tlProgramList::iterator tlProgramListIt;
 
 	class cGraphics
 	{
 	public:
-		cGraphics(tFlag alShadingLanguage);
+		cGraphics(iGraphics* apGraphics);
 		~cGraphics();
  
-		iShader* CreateShader(const tString& asName, eShaderType aeShaderType);
-		iGpuProgram* CreateProgram( const tString &asName);
+		bool Init(cResources* apResources, int alHeight, int alWidth, int alWindowMode);
 
-		// kinda temporary, fix it later 
-		iShader* CreateShaderDifferentAndTemp(const tString& asName, eShaderType aeShaderType);
-		iGpuProgram* CreateProgramWithShaders( const tString &asName, const tString& asPixelShader, const tString& asVertexShader);
+		iGraphics* GetLowGraphics() { return mpGraphics; }
+
+		iGpuProgram* CreateProgram(const tString& asName);
+
+		iGpuProgram* CreateShaderProgram(const tString& asName, const tString& asPixShader, const tString& asVertShader);
 
 	private:
-		iVideo* mpVideo;
-		unsigned int mlShadingLanguage; // remove this of i never add dx support
+		tlProgramList lProgramList;
+		iGraphics* mpGraphics;
+		cResources* mpResources;
 	};
 
 	

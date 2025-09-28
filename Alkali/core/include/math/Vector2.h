@@ -13,8 +13,20 @@ namespace alk {
 			struct {
 				T x, y;
 			};
-			T a[2];
+			T v[2];
 		};
+
+		cVector2() : x(0), y(0)
+		{ }
+		
+		cVector2(T aVal) : x(aVal), y(aVal)
+		{ }
+
+		cVector2(T aValx, aValy) : x(aValx), y(aValy)
+		{ }
+
+		cVector2(cVector2<T> avVal) : x(avVal.x), y(avVal.y)
+		{ }
 
 		inline cVector2<T>& operator=(const cVector2<T>& avVec) {
 			x = avVec.x; y = avVec.y; 

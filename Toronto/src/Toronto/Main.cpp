@@ -6,7 +6,7 @@ int AlkaliMain(const tString& asCommandLine)
 
 	mpGame = CreateAlkaliEngine(eEngineInit_All, eEngineAPI_eOpenGl);
 
-	
+	Log("Beginning Game Loop\n");
 	mpGame->Run();
 
 

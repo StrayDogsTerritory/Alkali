@@ -7,26 +7,22 @@
 
 namespace alk {
 
-
-	cGLSLGpuProgram::cGLSLGpuProgram(const tString& asName) : iGpuProgram(asName, eGpuProgramType_GLSL)
+	cGLSLGpuProgram::cGLSLGpuProgram(const tString& asName)
+		: iGpuProgram(asName, eGpuProgramType_GLSL)
 	{
 		mlProgramID = glCreateProgram();
 	}
 
 	cGLSLGpuProgram::~cGLSLGpuProgram()
 	{
-
-
 		for (int i = 0; i < 2; ++i)
 		{
-			cGLSLShader* pGLSLShader = static_cast<cGLSLShader*> (mpShader[i]);
-
-			if (pGLSLShader)
+			cGLSLShader* pShader = static_cast<cGLSLShader*>(mpShader[i]);
+			if (pShader)
 			{
-				glDetachShader(mlProgramID, pGLSLShader->GetShaderID());
+				glDetachShader(mlProgramID, pShader->GetHandle());
 			}
 		}
-
 		glDeleteProgram(mlProgramID);
 	}
 
@@ -34,28 +30,32 @@ namespace alk {
 	{
 		for (int i = 0; i < 2; ++i)
 		{
-			cGLSLShader* pGLSLShader = static_cast<cGLSLShader*> (mpShader[i]);
-
-			if (pGLSLShader)
+			cGLSLShader* pShader = static_cast<cGLSLShader*>(mpShader[i]);
+			if (pShader)
 			{
-				glAttachShader(mlProgramID, pGLSLShader->GetShaderID());
+				glAttachShader(mlProgramID, pShader->GetHandle());
 			}
 		}
 
 		glLinkProgram(mlProgramID);
 
-		// error check
-		GLint mlStatus;
-		glGetProgramiv(mlProgramID, GL_LINK_STATUS, &mlStatus);
-		if (mlStatus == GL_FALSE)
+		GLint lStatus;
+		glGetProgramiv(mlProgramID, GL_LINK_STATUS, &lStatus);
+		if (lStatus == GL_FALSE)
 		{
-			Error("GLSL program %s failed to link!\n", msName);
-			glDeleteProgram(mlProgramID);
-			return false;
+			Error("Program '%s' Could not be linked!\n", msName.c_str());
 		}
-
 
 		return true;
 	}
 
+	void cGLSLGpuProgram::Bind()
+	{
+		glUseProgram(mlProgramID);
+	}
+
+	void cGLSLGpuProgram::UnBind()
+	{
+		glUseProgram(0);
+	}
 }

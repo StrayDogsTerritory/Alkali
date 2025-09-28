@@ -5,5 +5,13 @@ template<class T>
 class cPlane
 {
 public:
+	union {
+		struct {
+
+			T a, b, c, d;
+		};
+
+		v[4];
+	};
 };
 #endif

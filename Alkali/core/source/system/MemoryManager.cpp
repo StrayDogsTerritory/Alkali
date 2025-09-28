@@ -85,7 +85,7 @@ namespace alk {
 
 				lMax += 5;
 
-				for (int i = 0; i < lMax - 4; ++i) Log(" ");
+				for (int i = 0; i < lMax - 4; ++i) sLog(" ");
 
 				sLog("line\t\t memory usage\t   \n");
 

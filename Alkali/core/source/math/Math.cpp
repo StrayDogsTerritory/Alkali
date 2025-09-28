@@ -44,7 +44,7 @@ namespace alk {
 	void cMath::SeededRand(size_t alSeed)
 	{
 		if (alSeed == 0)
-			srand((unsigned int)(cPlatform::GetSysUpTime() % (cPlatform::GetAppTime() + 1)));
+			srand((unsigned int)(cPlatform::GetSysUpTime() / (cPlatform::GetAppTime() + 1)));
 		else
 		srand((unsigned int)alSeed);
 	}
@@ -77,6 +77,18 @@ namespace alk {
 		avTemp.x = (avA.y * avB.z - avA.z * avB.y);
 		avTemp.y = (avA.z * avB.x - avA.x * avB.z);
 		avTemp.z = (avA.x * avB.y - avA.y * avB.x);
+		return avTemp;
+	}
+
+	tVector3f cMath::Vector3Project(const tVector3f& avA, const tVector3f& avB)
+	{
+		tVector3f avTemp = (avB * (Vector3Dot(avA, avB) / Vector3Dot(avB, avB)));
+		return avTemp;
+	}
+
+	tVector3f cMath::Vector3Reject(const tVector3f& avA, const tVector3f& avB)
+	{
+		tVector3f avTemp = (avA - avB * (Vector3Dot(avA, avB) / Vector3Dot(avB, avB)));
 		return avTemp;
 	}
 

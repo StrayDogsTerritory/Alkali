@@ -1,0 +1,33 @@
+#ifndef ALK_GRAPHICSINTERFACE_H
+#define ALK_GRAPHICSINTERFACE_H
+
+#include "SDL3/SDL_video.h"
+
+#include "system/String.h"
+#include "graphics/Shader.h"
+
+namespace alk {
+
+	class iShader;
+	class iGpuProgram;
+
+	class iGraphics
+	{
+	public:
+		virtual ~iGraphics() {};
+		virtual bool Init(int alHeight, int alWidth, int alWindowMode) = 0;
+		virtual bool InitOpenGL() = 0;
+
+		virtual iShader* CreateShader(const tString& asName, eShaderType aType)=0;
+		virtual iGpuProgram* CreateProgram(const tString& asName)=0;
+
+		virtual void SwapBuffer() = 0;
+	
+		virtual bool SetCursorVisibility(bool abx) = 0;
+		virtual bool SetWindowFullscreen(bool abx) = 0;
+		virtual bool SetWindowBorderless(bool abx) = 0;
+		virtual bool SetWindowGrabInput(bool abx) = 0;
+	};
+
+}
+#endif

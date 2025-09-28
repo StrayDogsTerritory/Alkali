@@ -15,6 +15,18 @@
 
 namespace alk {
 
+	bool cPlatform::CopyFileToBuffer(const twString& asFileName, void* apBuffer, unsigned long alSize)
+	{
+		FILE* pFile = OpenFile(asFileName, L"rb");
+		if (pFile == NULL) return false;
+		fread(apBuffer, sizeof(alSize), alSize, pFile);
+
+		fclose(pFile);
+		return true;
+	}
+
+
+
 	int GetFileSize(const twString& asFile)
 	{
 		FILE* pFile = cPlatform::OpenFile(asFile, L"rb");
@@ -24,6 +36,7 @@ namespace alk {
 		rewind(pFile);
 
 		return (int)lFileSize;
+
 	}
 
 
@@ -305,7 +318,7 @@ namespace alk {
 		default: return L"";
 		}
 
-		TCHAR sPath[2048];
+		WCHAR sPath[2048];
 		if (SUCCEEDED(SHGetFolderPath(NULL, lType | CSIDL_FLAG_CREATE, NULL, 0, sPath)))
 		{
 			sOutput = twString(sPath);
@@ -328,6 +341,8 @@ namespace alk {
 	{
 		return GetTickCount64();
 	}
+
+
 
 	void cPlatform::CreateMessageBoxPlatform(eMessageBoxType aeMessageBoxType, const wchar_t* asCaption, const wchar_t* fmt, va_list aVaList)
 	{

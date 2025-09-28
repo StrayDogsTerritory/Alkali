@@ -21,11 +21,11 @@ namespace alk {
 
 
 	class cEngine;
-	class cVideoSDL;
+	class cGrpahicsSDL;
 	class iEngineSetup;
-	class cVideo;
 	class cGraphics;
 	class cResources;
+	class cLogicTimer;
 
 	extern cEngine* CreateAlkaliEngine(tFlag alEngineSetup, eEngineAPI aeEngineApi);
 	extern void DestroyAlkaliEngine(cEngine* apEngine);
@@ -48,9 +48,9 @@ namespace alk {
 		iEngineSetup* mpGame;
 
 
-		cVideo* mpVideo;
 		cGraphics* mpGraphics;
 		cResources* mpResources;
+		cLogicTimer* mpLogicTimer;
 	};
 
 

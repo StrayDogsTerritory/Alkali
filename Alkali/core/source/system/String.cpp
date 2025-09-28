@@ -1,6 +1,10 @@
 #include "system/String.h"
 #include <string>
 
+// maybe these should be temporary until I'm done testing the hash function;
+#include "system/Platform.h"
+#include "engine/LogWriter.h"
+
 namespace alk {
 
 		twString cString::ToWideChar(const tString& asString)
@@ -54,6 +58,37 @@ namespace alk {
 			if (asString == NULL) return abFallback;
 			tString sTemp = ToLowerCase(asString);
 			return sTemp == "true" ? true : false;
+		}
+
+		unsigned int cString::Hash(const tString& asString)
+		{
+			unsigned long long lInitTime = cPlatform::GetAppTime();
+			unsigned int lHash;
+
+			// using the SHA-1 hash values
+			lHash = 0x67452301;
+
+			
+			size_t lLength = asString.length();
+			const char* sData = asString.c_str();
+			unsigned int lMagicNumber[5];
+			lMagicNumber[0] = 0x67452301;
+			lMagicNumber[1] = 0xefcfab89;
+			lMagicNumber[2] = 0x98badcfe;
+			lMagicNumber[3] = 0x10325476;
+			lMagicNumber[4] = 0xc3d2e1f0;
+
+			for (int i = 0; i<lLength; i++)
+			{
+				lHash = lHash ^ sData[i];
+				lHash *= lMagicNumber[i];
+			}
+
+			int lTime = cPlatform::GetAppTime() - lInitTime;
+
+			//Log("hasing %s took %d secs\n", asString.c_str(), lTime);
+
+			return lHash;
 		}
 
 		tString cString::ToLowerCase(const tString& asString)
@@ -185,7 +220,7 @@ namespace alk {
 
 		int cString::FindLastOfChar(const tString& asString, const tString& acChar)
 		{
-			int pos = 1;
+			int pos = -1;
 			for (size_t i = 0; i < asString.size(); i++)
 			{
 				if (asString.substr(i, acChar.size()) == acChar) {
@@ -238,11 +273,12 @@ namespace alk {
 
 		tString cString::FileName(const tString& asFileName)
 		{
+			if (FindLastOfChar(asFileName, ".") < 0) { return asFileName; }
 			int lPos1 = FindLastOfChar(asFileName, "/");
 			int lPos2 = FindLastOfChar(asFileName, "\\");
 			int lPos = lPos1 > lPos2 ? lPos1 : lPos2;
 
-			if (lPos < 0) 
+			if (lPos <= 0) 
 				return asFileName;
 			else
 				return asFileName.substr(lPos+1);
@@ -254,7 +290,7 @@ namespace alk {
 			int pos2 = FindLastOfCharW(asFileName, L"/");
 			int pos = pos1 > pos2 ? pos1 : pos2;
 
-			if (pos < 0)
+			if (pos <= 0)
 				return asFileName;
 			else
 				return asFileName.substr(pos + 1);

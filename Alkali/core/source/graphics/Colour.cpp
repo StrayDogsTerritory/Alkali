@@ -7,7 +7,7 @@ namespace alk
 		r = 0.0f; 
 		g = 0.0f; 
 		b = 0.0f; 
-		a = 1.0f;
+		a = 1.0f; // make sure that there's no transparency in the image
 	}
 
 	cColour::cColour(float ar, float ag, float ab, float aa) 

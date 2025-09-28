@@ -47,7 +47,8 @@ namespace alk {
 		////////////////////////////
 		static float Vector3Dot(const tVector3f& avA, const tVector3f& avB);
 		static tVector3f Vector3Cross(const tVector3f& avA, const tVector3f& avB);
-
+		static tVector3f Vector3Project(const tVector3f& avA, const tVector3f& avB);
+		static tVector3f Vector3Reject(const tVector3f& avA, const tVector3f& avB);
 		/////////////////////////////
 		// matrix functions
 		////////////////////////////

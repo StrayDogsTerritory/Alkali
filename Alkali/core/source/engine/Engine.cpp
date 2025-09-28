@@ -2,15 +2,16 @@
 #include "engine/Engine.h"
 #include "engine/EngineSDL.h"
 #include "engine/EngineSetupInterface.h"
-#include "video/VideoSDL.h"
-#include "video/Video.h"
-#include "engine/LogWriter.h"
-
+#include "graphics/GraphicsSDL.h"
 #include "graphics/Graphics.h"
+#include "engine/LogWriter.h"
 
 #include "math/Math.h"
 // temp 
 #include "SDL3/SDL.h"
+
+#include "resources/Resources.h"
+#include "system/LogicTimer.h"
 
 namespace alk {
 
@@ -22,16 +23,15 @@ namespace alk {
 		switch (aeEngineApi)
 		{
 		case eEngineAPI_eOpenGl:
-			 pGameSetup = alkNew(cSDLEngine, ());
+			 pGameSetup = alkNew(cSDLEngine, (alEngineSetup));
 		}
 		return alkNew(cEngine, (alEngineSetup, pGameSetup));
 	}
 
 	void DestroyAlkaliEngine(cEngine* apEngine)
 	{
-
+		Log("Destroying Engine\n");
 		alkDelete( apEngine );
-		
 	}
 
 
@@ -43,8 +43,10 @@ namespace alk {
 
 	cEngine::~cEngine()
 	{
-		alkDelete( mpVideo );
-		alkDelete( mpGraphics );
+		Log("cEngine Destructor\n");
+		alkDelete(mpGraphics);
+		alkDelete(mpResources);
+		
 
 
 		alkDelete( mpGame );
@@ -60,17 +62,18 @@ namespace alk {
 		mbGameDone = false;
 		
 		//create the modules
-		Log("Creating graphics module\n");
-		mpGraphics = alkNew(cGraphics, ( alModuleFlags));
 
-		Log("Creating Video module\n");
-		mpVideo = mpGame->CreateVideoModule();
-		
+		Log("Creating Graphics module\n");
+		mpGraphics = mpGame->CreateGraphicsModule();
+
+		Log("Creating Resource module\n");
+		mpResources = alkNew(cResources, ());
 
 
 		//init the modules
 
-		mpVideo->Init( 680, 720 , 0);
+		mpGraphics->Init(mpResources, 680, 720 , 0);
+		mpResources->Init(mpGraphics);
 
 		return true;
 	}
@@ -81,18 +84,21 @@ namespace alk {
 
 		while (!IsGameDone())
 		{
+			//Log("Loop Running\n");
 			//this is all temporary, do this in an actual input module
 			while(SDL_PollEvent(&mSDLEvent))
 			{
+			//	Log("Polling Events\n");
 				if (mSDLEvent.type == SDL_EVENT_QUIT)
 				{
+					Log("Quitting\n");
 					mbGameDone = true;
 				}
 			
 
 			}
-			
-			
+
+		//	mpGraphics->GetLowGraphics()->SwapBuffer();
 			
 		}
 

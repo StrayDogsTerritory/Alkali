@@ -12,6 +12,7 @@ namespace alk {
 	enum eGpuProgramType
 	{
 		eGpuProgramType_GLSL,
+		eGpuProgramType_HLSL,
 		eGpuProgramType_Last_Enum
 	};
 
@@ -19,22 +20,22 @@ namespace alk {
 	class iGpuProgram
 	{
 	public:
-		iGpuProgram(const tString& asName, eGpuProgramType aeGpuProgramType);
-		void SetShaderType(eShaderType aeShaderType, iShader* apShader);
+		iGpuProgram(const tString& asName, eGpuProgramType aProgramType);
+		virtual ~iGpuProgram();
 
-		virtual ~iGpuProgram(){};
+		tString GetName() { return msName; }
 
+		 void SetShader(iShader* apShader, eShaderType aShaderType);
+		 iShader* GetShader(eShaderType aType) { return mpShader[aType]; }
 
-		//virtual bool Bind() { return false; }
-		virtual bool Link() = 0;
-
-		//virtual bool Unbind() { return false; }
-
-		
+		 virtual bool Link()=0;
+		 
+		 virtual void Bind()=0;
+		 virtual void UnBind()=0;
 
 	protected:
 		tString msName;
-		eGpuProgramType meGpuProgramType;
+		eGpuProgramType mProgramType;
 		iShader* mpShader[2];
 	};
 

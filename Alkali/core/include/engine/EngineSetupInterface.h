@@ -3,17 +3,16 @@
 
 namespace alk {
 
-	class cVideoSDL;
-	class cVideo;
+	class cGraphicsSDL;
+	class cGraphics;
 
 	class iEngineSetup
 	{
 	public:
-		iEngineSetup() {};
 		virtual ~iEngineSetup(){}
 
 
-		virtual cVideo* CreateVideoModule()=0;
+		virtual cGraphics* CreateGraphicsModule()=0;
 	};
 
 }

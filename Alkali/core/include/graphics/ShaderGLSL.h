@@ -7,6 +7,7 @@
 #include "system/String.h"
 #include <map>
 
+#include <stdio.h>
 namespace alk {
 
 	
@@ -14,21 +15,23 @@ namespace alk {
 	class cGLSLShader : public iShader
 	{ 
 	public:
-		cGLSLShader(const tString& asShader, eShaderType aeShaderType);
+		cGLSLShader(const tString& asName, eShaderType aShaderType);
 		~cGLSLShader();
 
-		bool CreateShader(const twString& asShader, eShaderType aeShaderType);
-		void DestroyShader(iShader* apShader);
-		bool ReloadShader();
-		GLenum GetShaderType(eShaderType aeShaderType);
-		
-		GLint GetShaderID() { return mlShaderID; }
+		bool CreateFromFile(const twString& asFile);
+		bool CreateFromString(const char* apString);
 
-	private:
-		tString msName;
-		eShaderType meShaderType;
-		GLint mlShaderID;
+		void LogShaderError();
 
+		bool Reload() { return false; }
+		void Unload() {}
+		void Destroy() {}
+
+		GLuint GetHandle() const { return mlShaderID; }
+
+	protected:
+		GLenum ConvertToGL( eShaderType aShaderType);
+		GLuint mlShaderID;
 	};
 
 	

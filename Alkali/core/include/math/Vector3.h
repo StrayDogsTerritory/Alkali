@@ -16,6 +16,26 @@ namespace alk {
 			T v[3];
 		};
 
+		cVector3() : x(0), y(0), z(0)
+		{
+		}
+
+		cVector3(T aVal) : x(aVal), y(aVal), z(aVal)
+		{
+		}
+
+		cVector3(T aValx, aValy, aValz) : x(aValx), y(aValy), z(aValz)
+		{
+		}
+
+		cVector3(cVector2<T> avVal) : x(avVal.x), y(avVal.y), z(0)
+		{
+		}
+
+		cVector3(cVector3<T> avVal) : x(avVal.x), y(avVal.y), z(avVal.z)
+		{
+		}
+
 		inline cVector3<T>& operator=(const cVector3<T>& avVec) {
 
 			x = avVec.x; y = avVec.y; z = avVec.z;

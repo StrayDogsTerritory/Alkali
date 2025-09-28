@@ -13,14 +13,13 @@ namespace alk {
 		cGLSLGpuProgram(const tString& asName);
 		~cGLSLGpuProgram();
 
+		bool Link();
 
-		 bool Bind();
-		 bool Link();
+		void Bind();
+		void UnBind();
 
-		 bool Unbind();
-	private:
+	protected:
 		GLint mlProgramID;
-		tString asName;
 	};
 }
 #endif

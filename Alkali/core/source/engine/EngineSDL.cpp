@@ -1,16 +1,16 @@
 #include "engine/EngineSDL.h"
 #include "system/MemoryManager.h"
-#include "video/VideoSDL.h"
+#include "graphics/GraphicsSDL.h"
 #include "engine/LogWriter.h"
-#include "video/Video.h"
+#include "graphics/Graphics.h"
 
 #include "SDL3/SDL.h"
-
+#include "system/FlagBits.h"
 
 namespace alk {
 
 
-	cSDLEngine::cSDLEngine()
+	cSDLEngine::cSDLEngine(tFlag alSetupFlags)
 	{
 		if (SDL_Init(SDL_INIT_VIDEO) < 0)
 		{
@@ -20,26 +20,23 @@ namespace alk {
 		SDL_DisableScreenSaver();
 
 
-   		mpVideoSDL = alkNew(cVideoSDL, ());
+   		mpGraphicsSDL = alkNew(cGraphicsSDL, ());
 
 		
 	}
 
 	cSDLEngine::~cSDLEngine()
 	{
-		alkDelete(mpVideoSDL);
-	
-
-		
+		alkDelete(mpGraphicsSDL);	
 	}
 
-	cVideo* cSDLEngine::CreateVideoModule()
+	cGraphics* cSDLEngine::CreateGraphicsModule()
 	{
-		cVideo* pVideo = alkNew(cVideo, (mpVideoSDL));
+		cGraphics* pGraphics = alkNew(cGraphics, (mpGraphicsSDL));
 
 		
 
-		return pVideo;
+		return pGraphics;
 	}
 
 }

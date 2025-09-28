@@ -1,0 +1,44 @@
+#ifndef ALK_GRAPHICSSDL_H
+#define ALK_GRAPHICSSDL_H
+
+#include "Graphics/GraphicsInterface.h"
+#include "SDL3/SDL.h"
+
+#include "GL/glew.h"
+#include "GL/wglew.h" // is this necessicary?
+
+namespace alk {
+
+	class cGraphics;
+	class iShader;
+	class iGpuProgram;
+
+	class cGraphicsSDL : public iGraphics
+	{
+	public:
+		cGraphicsSDL();
+		~cGraphicsSDL();
+		bool Init(int alHeight, int alWidth, int alWindowMode);
+		bool InitOpenGL();
+
+		iShader* CreateShader(const tString& asName, eShaderType aType);
+		iGpuProgram* CreateProgram(const tString& asName);
+
+		void SwapBuffer();
+		
+		bool SetCursorVisibility(bool abx);
+		bool SetWindowFullscreen(bool abx);
+		bool SetWindowBorderless(bool abx);
+		bool SetWindowGrabInput(bool abx);
+
+	private:
+		SDL_GLContext mGLContext;
+		SDL_Window* mpSDLWindow;
+		cGraphics* mpGraphics;
+
+		bool mbFullscreen;
+	};
+
+	
+}
+#endif

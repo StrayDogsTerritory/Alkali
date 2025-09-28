@@ -38,6 +38,9 @@ namespace alk {
 		static float ToFloat(const char* asString, float afFallback);
 		static bool ToBool(const char* asString, bool abFallback);
 
+		static unsigned int Hash(const tString& asString);
+
+
 		/////////////////////
 		// STRING MODIFICATION AND SEARCHING
 

@@ -2,23 +2,24 @@
 #define ALK_ENGINESDL_H
 
 #include "engine/EngineSetupInterface.h"
+#include "system/FlagBits.h"
 
 namespace alk {
 
-	class iVideo;
-	class cVideo;
+	class iGraphics;
+	class cGraphics;
 
 	class cSDLEngine : public iEngineSetup
 	{
 	public:
-		cSDLEngine();
+		cSDLEngine(tFlag alSetupFlags);
 		~cSDLEngine();
 
-		cVideo* CreateVideoModule();
+		cGraphics* CreateGraphicsModule();
 
 	private:
 
-		iVideo* mpVideoSDL;
+		iGraphics* mpGraphicsSDL;
 
 	};
 

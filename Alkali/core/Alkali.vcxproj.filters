@@ -25,9 +25,6 @@
     <Filter Include="System\PlatformSpecific">
       <UniqueIdentifier>{fcf8a895-8c52-4ddf-a504-2fd384c2edec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Video">
-      <UniqueIdentifier>{8f95796f-edea-480b-9cee-34a9b6724afd}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Graphics\APISpecific">
       <UniqueIdentifier>{68b96e15-cf1a-40a3-9a83-b84a070db539}</UniqueIdentifier>
     </Filter>
@@ -51,6 +48,9 @@
     </Filter>
     <Filter Include="Xml\TinyXml2">
       <UniqueIdentifier>{6537cda0-9bfa-4ced-80e2-7ec1f1ab3147}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Managers">
+      <UniqueIdentifier>{a6640036-d75a-4a94-b1f9-9bba834b29b0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -94,23 +94,11 @@
     <ClInclude Include="include\graphics\Graphics.h">
       <Filter>Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="include\video\VideoInterface.h">
-      <Filter>Video</Filter>
-    </ClInclude>
-    <ClInclude Include="include\video\VideoSDL.h">
-      <Filter>Video</Filter>
-    </ClInclude>
     <ClInclude Include="include\engine\EngineSetupInterface.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="include\video\Video.h">
-      <Filter>Video</Filter>
-    </ClInclude>
     <ClInclude Include="include\engine\InitVars.h">
       <Filter>Engine</Filter>
-    </ClInclude>
-    <ClInclude Include="include\graphics\ShaderGLSL.h">
-      <Filter>Graphics\APISpecific\GLSL</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\GPUProgram.h">
       <Filter>Graphics</Filter>
@@ -142,12 +130,6 @@
     <ClInclude Include="include\math\Vector2.h">
       <Filter>Math</Filter>
     </ClInclude>
-    <ClInclude Include="include\resources\ShaderManager.h">
-      <Filter>Resources</Filter>
-    </ClInclude>
-    <ClInclude Include="include\resources\ResourceManager.h">
-      <Filter>Resources</Filter>
-    </ClInclude>
     <ClInclude Include="include\resources\FileSearcher.h">
       <Filter>Resources</Filter>
     </ClInclude>
@@ -171,6 +153,54 @@
     </ClInclude>
     <ClInclude Include="include\xml\XmlDocumentTinyXml.h">
       <Filter>Xml</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\Resources.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ResourceBase.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\SHA1.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\ShaderGLSL.h">
+      <Filter>Graphics\APISpecific\GLSL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\Script.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\System.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ShaderParser.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ShaderCacher.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\GraphicsInterface.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\GraphicsSDL.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ResourceManager.h">
+      <Filter>Resources\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ShaderManager.h">
+      <Filter>Resources\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\Updateable.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\LogicTimer.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="source\system\SystemInterface.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\SystemSDL.h">
+      <Filter>System</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -207,15 +237,6 @@
     <ClCompile Include="source\engine\EngineSDL.cpp">
       <Filter>Engine</Filter>
     </ClCompile>
-    <ClCompile Include="source\video\VideoInterface.cpp">
-      <Filter>Video</Filter>
-    </ClCompile>
-    <ClCompile Include="source\video\VideoSDL.cpp">
-      <Filter>Video</Filter>
-    </ClCompile>
-    <ClCompile Include="source\video\Video.cpp">
-      <Filter>Video</Filter>
-    </ClCompile>
     <ClCompile Include="source\graphics\ShaderGLSL.cpp">
       <Filter>Graphics\APISpecific\GLSL</Filter>
     </ClCompile>
@@ -240,12 +261,6 @@
     <ClCompile Include="source\system\platform_specific\PlatformWindows.cpp">
       <Filter>System\PlatformSpecific</Filter>
     </ClCompile>
-    <ClCompile Include="source\resources\ResourceManager.cpp">
-      <Filter>Resources</Filter>
-    </ClCompile>
-    <ClCompile Include="source\resources\ShaderManager.cpp">
-      <Filter>Resources</Filter>
-    </ClCompile>
     <ClCompile Include="source\resources\FileSearcher.cpp">
       <Filter>Resources</Filter>
     </ClCompile>
@@ -257,6 +272,33 @@
     </ClCompile>
     <ClCompile Include="source\xml\XmlDocument.cpp">
       <Filter>Xml</Filter>
+    </ClCompile>
+    <ClCompile Include="source\resources\Resources.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\graphics\GraphicsInterface.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\graphics\GraphicsSDL.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\resources\ResourceBase.cpp">
+      <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\resources\ResourceManager.cpp">
+      <Filter>Resources\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="source\resources\ShaderManager.cpp">
+      <Filter>Resources\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\LogicTimer.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\System.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\SystemSDL.cpp">
+      <Filter>System</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -9,13 +9,12 @@
 #include "system/Date.h"
 #include "system/FlagBits.h"
 
-#include "video/VideoSDL.h"
-#include "video/VideoInterface.h"
-#include "video/Video.h"
+
 
 #include "input/Input.h"
 
 #include "graphics/Graphics.h"
+
 #include "graphics/GPUProgram.h"
 #include "graphics/GPUProgramGLSL.h"
 #include "graphics/Shader.h"

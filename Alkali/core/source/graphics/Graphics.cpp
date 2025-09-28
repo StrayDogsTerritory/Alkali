@@ -1,5 +1,4 @@
 #include "graphics/Graphics.h"
-#include "video/VideoSDL.h"
 #include "system/MemoryManager.h"
 #include "graphics/Shader.h"
 #include "graphics/ShaderGLSL.h"
@@ -7,68 +6,64 @@
 #include "graphics/GPUProgramGLSL.h"
 #include "engine/LogWriter.h"
 #include "system/String.h"
-#include "system/Platform.h"
-#include "system/SystemTypes.h"
 
-#include "resources/FileSearcher.h"
+#include "graphics/GraphicsInterface.h"
 
-#include "json/JsonDocument.h"
-
-#include "SDL3/SDL.h"
+#include "resources/Resources.h"
+#include "resources/ResourceManager.h"
+#include "resources/ShaderManager.h"
+#include "resources/Filesearcher.h"
 
 namespace alk {
 
-	cGraphics::cGraphics(tFlag alShadingLanguage)
-	{
-		cFileSearcher* pFileSearcher = alkNew(cFileSearcher, ());
-		pFileSearcher->AddDir(L"test", "*.*", true);
-		twString sFile = pFileSearcher->GetPath("test");
-		bool bRet = cPlatform::FileExists(sFile);
-		Log("%s\n", bRet ? "true" : "false");
-		Log("%ls\n", sFile.c_str());
-		alkDelete(pFileSearcher);
+	cGraphics::cGraphics(iGraphics* apGraphics)
+	{	
+		mpGraphics = apGraphics;
 	}
 
 	cGraphics::~cGraphics()
 	{
-	
+		Log("Beginning cGraphics Destructor\n");
+
+		DeleteAll(lProgramList);
+
+		Log("Ending cGraphics Destructor\n");
 	}
 
-	iShader* cGraphics::CreateShader(const tString& asName, eShaderType aeShaderType)
+	bool cGraphics::Init(cResources* apResources, int alHeight, int alWidth, int alWindowMode)
 	{
-		
-		return alkNew(cGLSLShader, (asName, aeShaderType));
+		mpResources = apResources;
+		mpGraphics->Init(alHeight, alWidth, alWindowMode);
+
+		//CreateShaderProgram("testProgram", "testShader_Frag.glsl", "testShader_Vert.glsl");
+		mpResources->AddDirectory(L"test/shaders", true);
+		return true;
 	}
 
 	iGpuProgram* cGraphics::CreateProgram(const tString& asName)
 	{
-		return alkNew(cGLSLGpuProgram, (asName));
-	}
-
-	iShader* cGraphics::CreateShaderDifferentAndTemp(const tString& asName, eShaderType aeShaderType)
-	{
-		iShader* pShader = NULL;
-
-		pShader = CreateShader(asName, aeShaderType);
-
-
-		pShader->CreateShader(cString::ToWideChar(asName).c_str(), aeShaderType);
-
-		return pShader;
-	}
-
-	iGpuProgram* cGraphics::CreateProgramWithShaders(const tString& asName, const tString& asPixelShader, const tString& asVertexShader)
-	{
-		iGpuProgram* pProgram = NULL;
-
-		iShader* pVertexShader = CreateShaderDifferentAndTemp(asVertexShader, eVertexShader);
-	
-		iShader* pPixelShader = CreateShaderDifferentAndTemp(asPixelShader, ePixelShader);
+		iGpuProgram* pProgram = mpGraphics->CreateProgram(asName);
 		
-		pProgram = CreateProgram(asName);
-		pProgram->SetShaderType(eVertexShader, pVertexShader);
-		pProgram->SetShaderType(ePixelShader, pPixelShader);
+		lProgramList.push_back(pProgram);
+
+		return pProgram;
+	}
+
+	iGpuProgram* cGraphics::CreateShaderProgram(const tString& asName, const tString& asPixShader, const tString& asVertShader)
+	{
+		iShader* pVertShader = mpResources->GetShaderManager()->CreateShader(asVertShader, eVertexShader);
+		if (pVertShader == NULL) { Error("Failed to load vertex shader!\n"); return NULL; }
+		Log("%d'\n", pVertShader);
+		iShader* pPixShader = mpResources->GetShaderManager()->CreateShader(asPixShader, ePixelShader);
+		if (pPixShader == NULL) { Error("Failed to load Fragment shader\n"); mpResources->GetShaderManager()->Delete(pVertShader); return NULL; }
+
+		iGpuProgram* pProgram = CreateProgram(asName);
+		pProgram->SetShader(pVertShader, eVertexShader);
+		pProgram->SetShader(pPixShader, ePixelShader);
 		pProgram->Link();
+		pProgram->Bind();
+
+		Log("Program '%s' successfully created!\n", asName.c_str());
 
 		return pProgram;
 	}
