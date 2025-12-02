@@ -28,20 +28,8 @@
     <Filter Include="Graphics\APISpecific">
       <UniqueIdentifier>{68b96e15-cf1a-40a3-9a83-b84a070db539}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphics\APISpecific\GLSL">
-      <UniqueIdentifier>{f4e683ee-29af-41ef-af66-0e0757669c90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Json">
-      <UniqueIdentifier>{58645e84-565b-4c31-a403-b58555e3d573}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\APISpecific\HLSL">
-      <UniqueIdentifier>{5e303b9c-ccab-4e17-8f1e-4fdc74133675}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resources">
       <UniqueIdentifier>{3ff1047d-52f2-4449-8407-5ed77900ded6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Json\JSON">
-      <UniqueIdentifier>{fd497462-39b0-4cfd-851e-c1e6c0c5b0c2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Xml">
       <UniqueIdentifier>{7554a36f-dba4-4adc-b432-12412fee2117}</UniqueIdentifier>
@@ -51,6 +39,36 @@
     </Filter>
     <Filter Include="Resources\Managers">
       <UniqueIdentifier>{a6640036-d75a-4a94-b1f9-9bba834b29b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\APISpecific\GL">
+      <UniqueIdentifier>{8cb7e0ce-9621-4752-ab1a-7ae54025d4d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\APISpecific\DX">
+      <UniqueIdentifier>{1542c8c0-8168-4b47-ab25-03c1855b6cad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\APISpecific\GL\GLSL">
+      <UniqueIdentifier>{f4e683ee-29af-41ef-af66-0e0757669c90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\APISpecific\DX\HLSL">
+      <UniqueIdentifier>{5e303b9c-ccab-4e17-8f1e-4fdc74133675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Loaders">
+      <UniqueIdentifier>{c9de6669-e5f5-422f-b0fb-6335bd5db303}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Json">
+      <UniqueIdentifier>{58645e84-565b-4c31-a403-b58555e3d573}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Json\PicoJson">
+      <UniqueIdentifier>{fd497462-39b0-4cfd-851e-c1e6c0c5b0c2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game">
+      <UniqueIdentifier>{74ef9217-0526-456c-8609-4d9ecf4bc9a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\Network">
+      <UniqueIdentifier>{ca6a14ca-0eb4-4380-9aaa-3e4309a5d0aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Game\World">
+      <UniqueIdentifier>{d2621aa5-bc40-4cbf-8e6e-ba91e5c4d277}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -107,7 +125,7 @@
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\GPUProgramGLSL.h">
-      <Filter>Graphics\APISpecific\GLSL</Filter>
+      <Filter>Graphics\APISpecific\GL\GLSL</Filter>
     </ClInclude>
     <ClInclude Include="include\system\FlagBits.h">
       <Filter>System</Filter>
@@ -136,15 +154,6 @@
     <ClInclude Include="include\json\JsonDocument.h">
       <Filter>Json</Filter>
     </ClInclude>
-    <ClInclude Include="include\json\JsonCPPWrapper.h">
-      <Filter>Json</Filter>
-    </ClInclude>
-    <ClInclude Include="include\json\json.hpp">
-      <Filter>Json\JSON</Filter>
-    </ClInclude>
-    <ClInclude Include="include\json\picojson.h">
-      <Filter>Json</Filter>
-    </ClInclude>
     <ClInclude Include="include\xml\tinyxml2\tinyxml2.h">
       <Filter>Xml\TinyXml2</Filter>
     </ClInclude>
@@ -164,7 +173,7 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\ShaderGLSL.h">
-      <Filter>Graphics\APISpecific\GLSL</Filter>
+      <Filter>Graphics\APISpecific\GL\GLSL</Filter>
     </ClInclude>
     <ClInclude Include="include\system\Script.h">
       <Filter>System</Filter>
@@ -202,6 +211,51 @@
     <ClInclude Include="include\system\SystemSDL.h">
       <Filter>System</Filter>
     </ClInclude>
+    <ClInclude Include="include\graphics\VertexBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\VertexBufferGL.h">
+      <Filter>Graphics\APISpecific\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\Updater.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\engine\ThreadSystem.h">
+      <Filter>Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\json\simdjson\picojson.h">
+      <Filter>Json\PicoJson</Filter>
+    </ClInclude>
+    <ClInclude Include="include\game\WorldNode.h">
+      <Filter>Game\World</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\Keyboard.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\Mouse.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\Gamepad.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\InputDevice.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\InputInterface.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\InputSDL.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\KeyboardSDL.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\MouseSDL.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\GamepadSDL.h">
+      <Filter>Input</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">
@@ -238,7 +292,7 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="source\graphics\ShaderGLSL.cpp">
-      <Filter>Graphics\APISpecific\GLSL</Filter>
+      <Filter>Graphics\APISpecific\GL\GLSL</Filter>
     </ClCompile>
     <ClCompile Include="source\graphics\Graphics.cpp">
       <Filter>Graphics</Filter>
@@ -247,7 +301,7 @@
       <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="source\graphics\GPUProgramGLSL.cpp">
-      <Filter>Graphics\APISpecific\GLSL</Filter>
+      <Filter>Graphics\APISpecific\GL\GLSL</Filter>
     </ClCompile>
     <ClCompile Include="source\math\Matrix.cpp">
       <Filter>Math</Filter>
@@ -299,6 +353,27 @@
     </ClCompile>
     <ClCompile Include="source\system\SystemSDL.cpp">
       <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="source\system\SHA1.cpp">
+      <Filter>System</Filter>
+    </ClCompile>
+    <ClCompile Include="source\engine\Updater.cpp">
+      <Filter>Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="source\graphics\VertexBuffer.cpp">
+      <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\graphics\VertexBufferGL.cpp">
+      <Filter>Graphics\APISpecific\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="source\input\InputSDL.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\input\Keyboard.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="include\input\KeyboardSDL.cpp">
+      <Filter>Input</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

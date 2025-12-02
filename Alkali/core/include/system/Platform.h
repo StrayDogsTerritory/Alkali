@@ -47,14 +47,11 @@ namespace alk {
 		static void Sleep(int alMS);
 
 		static void CreateMessageBox(eMessageBoxType aeMessageBoxType, const wchar_t* asCaption, const wchar_t* fmt, ...);
-		
 
 		static void CreateThread();
 		
 	private:
 		static void CreateMessageBoxPlatform(eMessageBoxType aeMessageBoxType, const wchar_t* asCaption, const wchar_t* fmt, va_list aVaList);
 	};
-
-
 }
 #endif

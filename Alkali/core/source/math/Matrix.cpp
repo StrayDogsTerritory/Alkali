@@ -1,8 +1,8 @@
 #include "math/Matrix.h"
 
 namespace alk {
-	
-	template<>
+
+//	template<>
 	const tMatrixf tMatrixf::identity(
 		1, 0, 0, 0,
 		0, 1, 0, 0,

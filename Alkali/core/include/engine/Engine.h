@@ -2,7 +2,9 @@
 #define ALK_ENGINE_H
 
 #include "system/FlagBits.h"
+#include "engine/Updateable.h"
 
+#include "system/LogicTimer.h"
 
 namespace alk {
 
@@ -26,6 +28,9 @@ namespace alk {
 	class cGraphics;
 	class cResources;
 	class cLogicTimer;
+	class cSystem;
+	class cUpdater;
+	class cInput;
 
 	extern cEngine* CreateAlkaliEngine(tFlag alEngineSetup, eEngineAPI aeEngineApi);
 	extern void DestroyAlkaliEngine(cEngine* apEngine);
@@ -47,10 +52,13 @@ namespace alk {
 
 		iEngineSetup* mpGame;
 
-
+		cSystem* mpSystem;
 		cGraphics* mpGraphics;
 		cResources* mpResources;
+		cInput* mpInput;
+
 		cLogicTimer* mpLogicTimer;
+		cUpdater* mpUpdater;
 	};
 
 

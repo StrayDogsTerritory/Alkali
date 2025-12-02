@@ -6,32 +6,27 @@ namespace alk {
 	class cLogicTimer
 	{
 	public:
-		cLogicTimer(int alUpdatesPerSecond);
-		~cLogicTimer();
+		cLogicTimer(unsigned int alUpdatesPerSecond);
+		~cLogicTimer() {}
 
-		bool CanUpdate();
+		bool WantUpdate();
+
+		unsigned int GetupdatesPerSecond();
+		void SetUpdatesPerSecond(unsigned int alUpdatesPerSecond);
 
 		void Reset();
-
-		void SetUpdatesPerSecond(int alUpdateRate);
-		int GetUpdatesPerSecond();
-
-		double GetTime() { return mfTime; }
-		double GetTimeAdd() { return mfTimeAdd; }
-
-		float GetStepSize();
-
 		void Update();
 
 		void EndLoop();
 
-	private:
-		 int mlUpdateRate;
-		 int mlMaxUpdates;
-		 int mlUpdateCount;
+		double GetUpdatesPerSec() const { return mfUpdatesPerSec; }
 
-		double mfTime;
-		double mfTimeAdd;
+	private:
+		double mfUpdatesPerSec;
+		double mfCurrentTime;
+
+		int mlMaxUpdates;
+		int mlUpdateCount;
 	};
 
 }

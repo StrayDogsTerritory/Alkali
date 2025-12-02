@@ -98,7 +98,7 @@ namespace alk {
 		return cString::ToFloat(pString, abFallback);
 	}
 
-	static char cTempBuff[1024];
+	static char sTempBuff[1024];
 	void iXmlElement::SetAttribute(const tString asName, const char* asValue)
 	{
 		tXmlAttributeMapIt it = mAttributes.find(asName);
@@ -115,26 +115,26 @@ namespace alk {
 
 	void iXmlElement::SetAttributeString(const tString& asName, const tString& asValue)
 	{
-		sprintf(cTempBuff, "%s", asValue);
-		SetAttribute(asName,cTempBuff);
+		sprintf(sTempBuff, "%s", asValue.c_str());
+		SetAttribute(asName,sTempBuff);
 	}
 
 	void iXmlElement::SetAttributeInt(const tString& asName, const int alValue)
 	{
-		sprintf(cTempBuff, "%d", alValue);
-		SetAttribute(asName, cTempBuff);
+		sprintf(sTempBuff, "%d", alValue);
+		SetAttribute(asName, sTempBuff);
 	}
 
 	void iXmlElement::SetAttributeFloat(const tString& asName, const float afValue)
 	{
-		sprintf(cTempBuff, "%g", afValue);
-		SetAttribute(asName, cTempBuff);
+		sprintf(sTempBuff, "%g", afValue);
+		SetAttribute(asName, sTempBuff);
 
 	}
 
 	void iXmlElement::SetAttributeBool(const tString& asName, const bool abValue)
 	{
-		SetAttribute(asName, abValue ? "true": "false");
+		SetAttribute(asName, abValue ? "true" : "false");
 	}
 
 }

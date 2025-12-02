@@ -1,14 +1,20 @@
 #ifndef ALK_FLAGBITS_H
 #define ALK_FLAGBITS_H
 
+// AHHHHHHHHHHHHHHHHHHHHHH this file sucks now
+#include <vector>
 
+
+/*
+* @TODO: rename this to something else, since this had a bunch of non-flagging related types in here now... 
+* I don't really care, it's my project, but someone's gonna have to deal with my bullshit in the future.
+* Sorry whoever that is. In my defence, I really don't know what I'm doing <3
+*/
 
 //////////////////////
 // flag bits 
 #define FLAGBITNONE      0x00000000
 #define FLAGBITALL       0xFFFFFFFF
-
-
 
 #define FLAGBITZERO      0x00000001
 #define FLAGBITONE       0x00000002
@@ -32,5 +38,10 @@
 
 typedef unsigned int tFlag;
 
+
+// and non flagging, read the header 
+
+typedef std::vector<int> tIntVec;
+typedef std::vector<float> tFloatVec;
 
 #endif

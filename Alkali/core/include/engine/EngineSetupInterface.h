@@ -5,7 +5,8 @@ namespace alk {
 
 	class cGraphicsSDL;
 	class cGraphics;
-
+	class cSystem;
+	class cInput;
 	class iEngineSetup
 	{
 	public:
@@ -13,6 +14,8 @@ namespace alk {
 
 
 		virtual cGraphics* CreateGraphicsModule()=0;
+		virtual cSystem* CreateSystemModule()=0;
+		virtual cInput* CreateInputModule()=0;
 	};
 
 }

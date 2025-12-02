@@ -1,18 +1,16 @@
 #ifndef ALK_JSONDOCUMENT_H
 #define JSONDOCUMENT_H
 
-#include "json/JsonCPPWrapper.h"
-
 #include "system/String.h"
 
 
 namespace alk {
 
-	class cJsonDocument
+	class iJsonDocument
 	{
 	public:
-		cJsonDocument();
-		~cJsonDocument();
+		iJsonDocument();
+		~iJsonDocument();
 
 		void Parse(const twString &asPath);
 

@@ -2,7 +2,7 @@
 #define ALK_SHADER_H
 
 #include "system/String.h"
-#include <GL/glew.h> 
+ 
 
 #include "resources/ResourceBase.h"
 namespace alk {

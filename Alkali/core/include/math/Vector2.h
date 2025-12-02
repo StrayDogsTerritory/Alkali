@@ -2,7 +2,8 @@
 #define ALK_VECTOR2_H
 
 #include <Math.h>
-
+//#include <stdio.h>
+#include "system/String.h"
 namespace alk {
 
 	template<class T>
@@ -15,18 +16,6 @@ namespace alk {
 			};
 			T v[2];
 		};
-
-		cVector2() : x(0), y(0)
-		{ }
-		
-		cVector2(T aVal) : x(aVal), y(aVal)
-		{ }
-
-		cVector2(T aValx, aValy) : x(aValx), y(aValy)
-		{ }
-
-		cVector2(cVector2<T> avVal) : x(avVal.x), y(avVal.y)
-		{ }
 
 		inline cVector2<T>& operator=(const cVector2<T>& avVec) {
 			x = avVec.x; y = avVec.y; 
@@ -173,6 +162,13 @@ namespace alk {
 			y *= InvLength;
 
 			return Length;
+		}
+
+		tString ToString()
+		{
+			char Buf[256];
+			sprintf(Buf, "[%d, %d,]", x, y);
+			return Buf;
 		}
 	};
 

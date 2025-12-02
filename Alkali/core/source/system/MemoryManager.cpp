@@ -59,19 +59,19 @@ namespace alk {
 
 	void cMemoryManager::MemoryLog()
 	{
-		sLog("----------Memory Manager Report----------\n");
-		sLog("|\n");
+		Log("----------Memory Manager Report----------\n");
+		Log("|\n");
 
 			if (m_mapPointers.empty())
 			{
-				sLog("| No memory leaks detected. Memory Left: %d\n", mlTotalMemoryUsage);
+				Log("| No memory leaks detected. Memory Left: %d\n", mlTotalMemoryUsage);
 			}
 			else
 			{
-				sLog("| Memory leaks detected:\n");
-				sLog("|");
+				Log("| Memory leaks detected:\n");
+				Log("|");
 
-				sLog("| address\t file");
+				Log("| address\t file");
 
 				int lMax = 0;
 				tAllocatedPointermapIterator it = m_mapPointers.begin();
@@ -85,24 +85,24 @@ namespace alk {
 
 				lMax += 5;
 
-				for (int i = 0; i < lMax - 4; ++i) sLog(" ");
+				for (int i = 0; i < lMax - 4; ++i) Log(" ");
 
-				sLog("line\t\t memory usage\t   \n");
+				Log("line\t\t memory usage\t   \n");
 
-				sLog("|-----------------------------------------------------\n");
+				Log("|-----------------------------------------------------\n");
 
 				it = m_mapPointers.begin();
 				for (; it != m_mapPointers.end(); ++it)
 				{
 					cAllocatedPointer& ap = it->second;
-					sLog("| 0x%p\t %s ", ap.mpData, ap.msFile.c_str());
-					for (int i = 0; i < lMax - (int)ap.msFile.length(); ++i) sLog(" ");
-					sLog("%s", ap.msFile.c_str());
-					sLog("%d\t\t%d\t\n", ap.mlLine, ap.mlMemorySize);
+					Log("| 0x%p\t %s ", ap.mpData, ap.msFile.c_str());
+					for (int i = 0; i < lMax - (int)ap.msFile.length(); ++i) Log(" ");
+					Log("%s", ap.msFile.c_str());
+					Log("%d\t\t%d\t\n", ap.mlLine, ap.mlMemorySize);
 				}
 			}
-			sLog("|\n");
-			sLog("-----------------------------------------------------\n");
+			Log("|\n");
+			Log("-----------------------------------------------------\n");
 	}
 
 

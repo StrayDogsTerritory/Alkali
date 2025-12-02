@@ -14,4 +14,6 @@ public:
 		v[4];
 	};
 };
+
+typedef cPlane<float> tPlanef;
 #endif

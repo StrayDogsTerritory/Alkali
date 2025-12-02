@@ -4,6 +4,7 @@
 
 #include <stdlib.h>
 #include <time.h>
+#include <math.h>
 
 namespace alk {
 
@@ -63,6 +64,18 @@ namespace alk {
 		return alX;
 	}
 
+	float cMath::ToDeg(float afAngle)
+	{
+		return afAngle * (180.0f / kPIf);
+	}
+
+	float cMath::ToRad(float afAngle)
+	{
+		return afAngle * (kPIf / 180.0f);
+	}
+
+
+
 	///////////////////
 	// vector
 
@@ -119,4 +132,94 @@ namespace alk {
 		return mResult;
 	}
 
+	tVector3f cMath::MatrixMul(const tVector3f& avX, const tMatrixf& aB)
+	{
+		return tVector3f();
+	}
+
+	tMatrixf cMath::MatrixMul(float afX, const tMatrixf& aB)
+	{
+		tMatrixf amResult;
+
+		amResult.m[0][0] = aB.m[0][0] * afX;
+		amResult.m[0][1] = aB.m[0][1] * afX;
+		amResult.m[0][2] = aB.m[0][2] * afX;
+		amResult.m[0][3] = aB.m[0][3] * afX;
+		
+		amResult.m[1][0] = aB.m[1][0] * afX;
+		amResult.m[1][1] = aB.m[1][1] * afX;
+		amResult.m[1][2] = aB.m[1][2] * afX;
+		amResult.m[1][3] = aB.m[1][3] * afX;
+		
+		amResult.m[2][0] = aB.m[2][0] * afX;
+		amResult.m[2][1] = aB.m[2][1] * afX;
+		amResult.m[2][2] = aB.m[2][2] * afX;
+		amResult.m[2][3] = aB.m[2][3] * afX;
+		
+		amResult.m[3][0] = aB.m[3][0] * afX;
+		amResult.m[3][1] = aB.m[3][1] * afX;
+		amResult.m[3][2] = aB.m[3][2] * afX;
+		amResult.m[3][3] = aB.m[3][3] * afX;
+	
+
+		return amResult;
+	}
+		
+	float cMath::MatrixMinor(const tMatrixf& aA, int r1, int r2, int r3, int c1, int c2, int c3)
+	{
+		return 
+			aA.m[r1][c1] * (aA.m[r2][c2] * aA.m[r3][c3] - aA.m[r3][c2] * aA.m[r2][c3]) -
+			aA.m[r1][c2] * (aA.m[r2][c1] * aA.m[r3][c3] - aA.m[r2][c3] * aA.m[r3][c1]) +
+			aA.m[r1][c3] * (aA.m[r2][c1] * aA.m[r3][c2] - aA.m[r2][c2] * aA.m[r3][c1]);
+	}
+
+	float cMath::MatrixDeterminant(const tMatrixf& aA)
+	{
+		return
+			aA.m[0][0] * MatrixMinor(aA, 1, 2, 3, 1, 2, 3) -
+			aA.m[0][1] * MatrixMinor(aA, 1, 2, 3, 0, 2, 3) +
+			aA.m[0][2] * MatrixMinor(aA, 1, 2, 3, 0, 1, 3) -
+			aA.m[0][3] * MatrixMinor(aA, 1, 2, 3, 0, 1, 2);
+
+
+	}
+
+	tMatrixf cMath::MatrixAdjoint(const tMatrixf& aA)
+	{
+		return tMatrixf(
+		MatrixMinor(aA,1,2,3,1,2,3), -MatrixMinor(aA,0,2,3,1,2,3), MatrixMinor(aA,0,1,3,1,2,3), -MatrixMinor(aA,0,1,2,1,2,3),
+		-MatrixMinor(aA,1,2,3,0,2,3), MatrixMinor(aA,0,2,3,0,2,3), -MatrixMinor(aA,0,1,3,0,2,3), MatrixMinor(aA,0,1,2,0,2,3),
+		MatrixMinor(aA,1,2,3,0,1,3), -MatrixMinor(aA,0,2,3,0,1,3), MatrixMinor(aA,0,1,3,0,1,3), -MatrixMinor(aA,0,1,2,0,1,3),
+		-MatrixMinor(aA,1,2,3,0,1,2), MatrixMinor(aA,0,2,3,0,1,2), -MatrixMinor(aA,0,1,3,0,1,2), MatrixMinor(aA,0,1,2,0,1,2)
+		);
+	}
+
+	tMatrixf cMath::MatrixInverse(const tMatrixf& aA)
+	{
+		return MatrixMul((1/MatrixDeterminant(aA)),MatrixAdjoint(aA) );
+	}
+
+	tMatrixf cMath::RotateX(float afAngle)
+	{
+		return tMatrixf(1, 0, 0, 0,
+			0, cos(afAngle), -sin(afAngle), 0,
+			0, sin(afAngle), cos(afAngle), 0,
+			0, 0, 0, 1);
+	}
+	
+	tMatrixf cMath::RotateY(float afAngle)
+	{
+		return tMatrixf(cos(afAngle), 0, sin(afAngle), 0,
+			0, 1, 0, 0,
+			-sin(afAngle), 0, cos(afAngle), 0,
+			0, 0, 0, 1);
+	}
+
+	tMatrixf cMath::RotateZ(float afAngle)
+	{
+		return tMatrixf(cos(afAngle), 0, -sin(afAngle), 0,
+			sin(afAngle), cos(afAngle), 0, 0,
+			0, 0, 1, 0,
+			0, 0, 0, 1);
+	}
 }

@@ -3,34 +3,24 @@
 #include "system/Platform.h"
 
 namespace alk {
-
-	cLogicTimer::cLogicTimer(int alUpdatesPerSec)
+	cLogicTimer::cLogicTimer(unsigned int alUpdatesPerSecond)
 	{
+		mlMaxUpdates = alUpdatesPerSecond/10;
 		mlUpdateCount = 0;
-		mlMaxUpdates = alUpdatesPerSec / alUpdatesPerSec;
 
-		SetUpdatesPerSecond(alUpdatesPerSec);
-
-		Reset();
+		// reset the timer
+		SetUpdatesPerSecond(alUpdatesPerSecond);
 	}
 
-	cLogicTimer::~cLogicTimer()
+	bool cLogicTimer::WantUpdate()
 	{
-
-	}
-
-	void cLogicTimer::Reset()
-	{
-		mfTime =  (double)cPlatform::GetAppTime();
-	}
-
-	bool cLogicTimer::CanUpdate()
-	{
-		if (mlUpdateCount > mlMaxUpdates) {
+		++mlUpdateCount;
+		if (mlUpdateCount > mlMaxUpdates)
+		{
 			return false;
 		}
 
-		if (mfTime < (double)cPlatform::GetAppTime())
+		if (mfCurrentTime < (double)cPlatform::GetAppTime())
 		{
 			Update();
 			return true;
@@ -39,9 +29,19 @@ namespace alk {
 		return false;
 	}
 
+	void cLogicTimer::Reset()
+	{
+		mfCurrentTime = (double)cPlatform::GetAppTime();
+	}
+
+	unsigned int cLogicTimer::GetupdatesPerSecond()
+	{
+		return (unsigned int)(1000.0f / mfUpdatesPerSec);
+	}
+
 	void cLogicTimer::Update()
 	{
-		mfTime += mfTimeAdd;
+		mfCurrentTime += mfUpdatesPerSec;
 	}
 
 	void cLogicTimer::EndLoop()
@@ -50,22 +50,13 @@ namespace alk {
 		{
 			Reset();
 		}
+
 		mlUpdateCount = 0;
 	}
 
-	int cLogicTimer::GetUpdatesPerSecond()
+	void cLogicTimer::SetUpdatesPerSecond(unsigned int alUpdatesPerSecond)
 	{
-		return ((int)(1000.0f / mfTimeAdd));
-	}
-
-	void cLogicTimer::SetUpdatesPerSecond(int alUpdatePerSeconds)
-	{
-		mfTimeAdd = (double)(1000.0f / (float)(alUpdatePerSeconds));
+		mfUpdatesPerSec = 1000.0f / ((double)alUpdatesPerSecond);
 		Reset();
-	}
-
-	float cLogicTimer::GetStepSize()
-	{
-		return ((float)mfTimeAdd / 1000.0f);
 	}
 }

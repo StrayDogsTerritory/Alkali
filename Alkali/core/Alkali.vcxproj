@@ -66,7 +66,7 @@
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <PreprocessorDefinitions>_ALK_TEMP_NEW_MEMORY_MANAGER_TEST;_DEBUG;WIN32;_DEBUG;_WINDOWS;_USRDLL;</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp17</LanguageStandard>
+      <LanguageStandard>stdcpp14</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -101,7 +101,10 @@
     <ClInclude Include="include\engine\EngineSetupInterface.h" />
     <ClInclude Include="include\engine\InitVars.h" />
     <ClInclude Include="include\engine\LogWriter.h" />
+    <ClInclude Include="include\engine\ThreadSystem.h" />
     <ClInclude Include="include\engine\Updateable.h" />
+    <ClInclude Include="include\engine\Updater.h" />
+    <ClInclude Include="include\game\WorldNode.h" />
     <ClInclude Include="include\graphics\Colour.h" />
     <ClInclude Include="include\graphics\GPUProgram.h" />
     <ClInclude Include="include\graphics\GPUProgramGLSL.h" />
@@ -110,12 +113,21 @@
     <ClInclude Include="include\graphics\GraphicsSDL.h" />
     <ClInclude Include="include\graphics\Shader.h" />
     <ClInclude Include="include\graphics\ShaderGLSL.h" />
+    <ClInclude Include="include\graphics\VertexBuffer.h" />
+    <ClInclude Include="include\graphics\VertexBufferGL.h" />
     <ClInclude Include="include\gui\Gui.h" />
+    <ClInclude Include="include\input\Gamepad.h" />
+    <ClInclude Include="include\input\GamepadSDL.h" />
     <ClInclude Include="include\input\Input.h" />
-    <ClInclude Include="include\json\json.hpp" />
-    <ClInclude Include="include\json\JsonCPPWrapper.h" />
+    <ClInclude Include="include\input\InputDevice.h" />
+    <ClInclude Include="include\input\InputInterface.h" />
+    <ClInclude Include="include\input\InputSDL.h" />
+    <ClInclude Include="include\input\Keyboard.h" />
+    <ClInclude Include="include\input\KeyboardSDL.h" />
+    <ClInclude Include="include\input\Mouse.h" />
+    <ClInclude Include="include\input\MouseSDL.h" />
     <ClInclude Include="include\json\JsonDocument.h" />
-    <ClInclude Include="include\json\picojson.h" />
+    <ClInclude Include="include\json\simdjson\picojson.h" />
     <ClInclude Include="include\math\Math.h" />
     <ClInclude Include="include\math\Matrix.h" />
     <ClInclude Include="include\math\Vector2.h" />
@@ -147,12 +159,14 @@
     <ClInclude Include="source\system\SystemInterface.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="include\input\KeyboardSDL.cpp" />
     <ClCompile Include="source\engine\Engine.cpp" />
     <ClCompile Include="source\engine\EngineSDL.cpp">
       <DeploymentContent>true</DeploymentContent>
     </ClCompile>
     <ClCompile Include="source\engine\LogWriter.cpp" />
     <ClCompile Include="source\engine\Main.cpp" />
+    <ClCompile Include="source\engine\Updater.cpp" />
     <ClCompile Include="source\graphics\Colour.cpp" />
     <ClCompile Include="source\graphics\GPUProgram.cpp" />
     <ClCompile Include="source\graphics\GPUProgramGLSL.cpp" />
@@ -160,8 +174,12 @@
     <ClCompile Include="source\graphics\GraphicsInterface.cpp" />
     <ClCompile Include="source\graphics\GraphicsSDL.cpp" />
     <ClCompile Include="source\graphics\ShaderGLSL.cpp" />
+    <ClCompile Include="source\graphics\VertexBuffer.cpp" />
+    <ClCompile Include="source\graphics\VertexBufferGL.cpp" />
     <ClCompile Include="source\gui\Gui.cpp" />
     <ClCompile Include="source\input\Input.cpp" />
+    <ClCompile Include="source\input\InputSDL.cpp" />
+    <ClCompile Include="source\input\Keyboard.cpp" />
     <ClCompile Include="source\json\JsonDocument.cpp" />
     <ClCompile Include="source\math\Math.cpp" />
     <ClCompile Include="source\math\Matrix.cpp" />
@@ -175,6 +193,7 @@
     <ClCompile Include="source\system\MutEx.cpp" />
     <ClCompile Include="source\system\Platform.cpp" />
     <ClCompile Include="source\system\platform_specific\PlatformWindows.cpp" />
+    <ClCompile Include="source\system\SHA1.cpp" />
     <ClCompile Include="source\system\String.cpp" />
     <ClCompile Include="source\system\System.cpp" />
     <ClCompile Include="source\system\SystemSDL.cpp" />

@@ -154,12 +154,10 @@ namespace alk {
 		wchar_t buf[1024];
 		wchar_t sEnd = sWinPath[sWinPath.size() - 1];
 
-		if (sEnd == L'\\'|| sEnd == L'/')
+		if (sEnd == L'\\' || sEnd == L'/')
 			swprintf(buf, 1024, L"%s%s", sWinPath.c_str(), asFilter.c_str());
 		else
 			swprintf(buf, 1024, L"%s\\%s", sWinPath.c_str(), asFilter.c_str());
-
-
 
 		intptr_t lHandle;
 		struct _wfinddata_t FileInfo;
@@ -341,8 +339,6 @@ namespace alk {
 	{
 		return GetTickCount64();
 	}
-
-
 
 	void cPlatform::CreateMessageBoxPlatform(eMessageBoxType aeMessageBoxType, const wchar_t* asCaption, const wchar_t* fmt, va_list aVaList)
 	{

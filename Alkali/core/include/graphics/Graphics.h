@@ -7,6 +7,8 @@
 #include "graphics/Shader.h"
 #include "graphics/ShaderGLSL.h"
 
+#include "math/Vector3.h"
+
 #include <list>
 
 namespace alk {
@@ -15,6 +17,7 @@ namespace alk {
 	class iShader;
 	class iGpuProgram;
 	class cResources;
+	class iVertexBuffer;
 
 	typedef std::list<iGpuProgram*> tlProgramList;
 	typedef tlProgramList::iterator tlProgramListIt;
@@ -32,6 +35,10 @@ namespace alk {
 		iGpuProgram* CreateProgram(const tString& asName);
 
 		iGpuProgram* CreateShaderProgram(const tString& asName, const tString& asPixShader, const tString& asVertShader);
+
+		iVertexBuffer* CreateTempVtxBuffer(tVector3f avSize);
+
+		int GetBoxIdx(int i, int x, int y, int z);
 
 	private:
 		tlProgramList lProgramList;

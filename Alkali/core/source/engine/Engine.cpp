@@ -11,7 +11,13 @@
 #include "SDL3/SDL.h"
 
 #include "resources/Resources.h"
+
 #include "system/LogicTimer.h"
+#include "system/System.h"
+
+#include "engine/Updater.h"
+#include "engine/Updateable.h"
+#include "input/Input.h"
 
 namespace alk {
 
@@ -46,8 +52,12 @@ namespace alk {
 		Log("cEngine Destructor\n");
 		alkDelete(mpGraphics);
 		alkDelete(mpResources);
-		
+		alkDelete(mpSystem);
+		alkDelete(mpInput);
 
+		// exit the updaters
+		alkDelete(mpLogicTimer);
+		alkDelete(mpUpdater);
 
 		alkDelete( mpGame );
 
@@ -58,10 +68,11 @@ namespace alk {
 	{
 		mpGame = apGame;
 
-
 		mbGameDone = false;
 		
 		//create the modules
+		Log("Creating System module\n");
+		mpSystem = mpGame->CreateSystemModule();
 
 		Log("Creating Graphics module\n");
 		mpGraphics = mpGame->CreateGraphicsModule();
@@ -69,37 +80,49 @@ namespace alk {
 		Log("Creating Resource module\n");
 		mpResources = alkNew(cResources, ());
 
+		Log("Creating Input module\n");
+		mpInput = mpGame->CreateInputModule();
 
 		//init the modules
-
 		mpGraphics->Init(mpResources, 680, 720 , 0);
 		mpResources->Init(mpGraphics);
+
+
+		// create some secondary modules
+		mpLogicTimer = alkNew(cLogicTimer, (60));
+		mpUpdater = alkNew(cUpdater, ());
+
+		// add engine updates
+		mpUpdater->AddEngineModule(mpSystem);
+		mpUpdater->AddEngineModule(mpInput);
 
 		return true;
 	}
 
 	void cEngine::Run()
 	{
-		SDL_Event mSDLEvent;
-
+		mpGraphics->GetLowGraphics()->SwapBuffer();
+		Log("Started cEngine::Run\n");
+		SDL_Event lEvent;
 		while (!IsGameDone())
 		{
-			//Log("Loop Running\n");
-			//this is all temporary, do this in an actual input module
-			while(SDL_PollEvent(&mSDLEvent))
+		//	Log("Running !IsGameDoneLoop\n");
+			while (mpLogicTimer->WantUpdate()) //&& !IsGameDone())
 			{
-			//	Log("Polling Events\n");
-				if (mSDLEvent.type == SDL_EVENT_QUIT)
+				Log("Running Update Loop\n");
+				mpUpdater->RunEngineUpdate(eUpdatableMessageType_OnPreUpdate,0);
+				mpUpdater->RunEngineUpdate(eUpdatableMessageType_OnUpdate,0);
+				mpUpdater->RunEngineUpdate(eUpdatableMessageType_OnPostUpdate,0);
+
+				if (mpInput->GetIsQuit())
 				{
-					Log("Quitting\n");
 					mbGameDone = true;
 				}
-			
-
 			}
+			mpLogicTimer->EndLoop();
 
-		//	mpGraphics->GetLowGraphics()->SwapBuffer();
-			
+
+//			mpGraphics->GetLowGraphics()->SwapBuffer();
 		}
 
 

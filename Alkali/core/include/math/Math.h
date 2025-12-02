@@ -38,6 +38,12 @@ namespace alk {
 		inline static int abs(int alVal) { return abs(alVal); }
 		inline static float abs(float afVal) { return fabs(afVal); }
 
+		static int Wrap(int alX, int alMin, int alMax);
+		static float Wrap(float alX, float alMin, float alMax);
+
+		static float ToDeg(float afAngle);
+		static float ToRad(float afAngle);
+
 		/////////////////////////////
 		// vector2 functions
 		////////////////////////////
@@ -54,6 +60,19 @@ namespace alk {
 		////////////////////////////
 
 		static tMatrixf MatrixMul(const tMatrixf& aA, const tMatrixf& aB);
+		static tVector3f MatrixMul(const tVector3f& avX, const tMatrixf& aB);
+		static tMatrixf MatrixMul(float afX, const tMatrixf& aB);
+
+		static tMatrixf MatrixInverse(const tMatrixf& aA);
+		static tMatrixf MatrixAdjoint(const tMatrixf& aA);
+
+		static float MatrixDeterminant(const tMatrixf& aA);
+		static float MatrixMinor(const tMatrixf& aA, int r1, int r2, int r3, int c1, int c2, int c3);
+
+		static tMatrixf RotateX(float afAngle);
+		static tMatrixf RotateY(float afAngle);
+		static tMatrixf RotateZ(float afAngle);
+
 	};
 }
 #endif

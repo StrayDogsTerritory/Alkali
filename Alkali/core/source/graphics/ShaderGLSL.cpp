@@ -56,18 +56,18 @@ namespace alk {
 
 	void cGLSLShader::LogShaderError()
 	{
-		char* apBuffer;
+		char* pBuffer;
 		GLint BuffSize;
 		GLsizei LogLength;
 
 		glGetShaderiv(mlShaderID, GL_INFO_LOG_LENGTH, &BuffSize);
 		
-		apBuffer = (char*)alkMalloc(BuffSize);
-		glGetShaderInfoLog(mlShaderID, BuffSize, &LogLength, apBuffer);
+		pBuffer = (char*)alkMalloc(BuffSize);
+		glGetShaderInfoLog(mlShaderID, BuffSize, &LogLength, pBuffer);
 		Log("===========================\n");
-		sLog("%s", apBuffer);
-		sLog("==========================\n");
-		alkFree(apBuffer);
+		Log("%s", pBuffer);
+		Log("==========================\n");
+		alkFree(pBuffer);
 	}
 
 

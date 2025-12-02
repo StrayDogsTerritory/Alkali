@@ -84,10 +84,13 @@ namespace alk {
 				lHash *= lMagicNumber[i];
 			}
 
-			int lTime = cPlatform::GetAppTime() - lInitTime;
+			int lTime = (int)cPlatform::GetAppTime() - lInitTime;
 
-			//Log("hasing %s took %d secs\n", asString.c_str(), lTime);
-
+			Log("hashing %s took %d secs\n", asString.c_str(), lTime);
+			for (int i = 0; i < 2; i++)
+			{
+				lHash >> 0x0;
+			}
 			return lHash;
 		}
 

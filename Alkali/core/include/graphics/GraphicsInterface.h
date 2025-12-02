@@ -10,6 +10,8 @@ namespace alk {
 
 	class iShader;
 	class iGpuProgram;
+	class cColour;
+	class iVertexBuffer;
 
 	class iGraphics
 	{
@@ -20,13 +22,16 @@ namespace alk {
 
 		virtual iShader* CreateShader(const tString& asName, eShaderType aType)=0;
 		virtual iGpuProgram* CreateProgram(const tString& asName)=0;
-
-		virtual void SwapBuffer() = 0;
+		virtual iVertexBuffer* CreateVertexBuffer()=0;
+		virtual void SwapBuffer()=0;
 	
 		virtual bool SetCursorVisibility(bool abx) = 0;
 		virtual bool SetWindowFullscreen(bool abx) = 0;
 		virtual bool SetWindowBorderless(bool abx) = 0;
 		virtual bool SetWindowGrabInput(bool abx) = 0;
+		virtual void SetClearColour(const cColour& aColR) = 0;
+		virtual void FlushRender()=0;
+		virtual void SetVSync(bool abx)=0; // fill this later
 	};
 
 }

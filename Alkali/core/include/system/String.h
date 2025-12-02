@@ -7,6 +7,9 @@
 
 namespace alk {
 
+	// putting char arrays here even though it's only really being used for byte length related things.
+	typedef std::vector<char> tByteVec;
+	typedef std::vector<char*> t8ByteVec;
 
 	typedef std::string tString;
 	typedef std::wstring twString;

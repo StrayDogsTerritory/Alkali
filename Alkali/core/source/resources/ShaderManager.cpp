@@ -44,8 +44,11 @@ namespace alk {
 			Log("added as resource\n");
 		}
 
-		if (pShader) { pShader->AddUser(); Log("added manager as a user\n"); }
-		else Error("Couldn't load Shader '%s'\n", asName.c_str());
+		if (pShader) 
+		{ 
+			pShader->AddUser();
+		}
+		else Error("Couldn't load Shader '%s'!\n", asName.c_str());
 
 		Log("returned\n");
 		return pShader;

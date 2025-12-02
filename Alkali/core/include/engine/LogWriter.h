@@ -9,6 +9,7 @@
 
 #include "system/Platform.h"
 #define NORETURN
+
 namespace alk {
 	//----------------------------
 
@@ -27,7 +28,6 @@ namespace alk {
 
 		void ReopenFile();
 
-
 		FILE* mpFile;
 		twString msFileName;
 
@@ -37,7 +37,6 @@ namespace alk {
 	extern void SetLogFile(const twString& asFile);
 
 	extern void Log(const char* asMessage, ...);
-	extern void sLog(const char* asMessage, ...);
 
 	extern void Error(const char* asMessage, ...);
 

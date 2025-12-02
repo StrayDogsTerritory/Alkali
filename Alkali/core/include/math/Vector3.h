@@ -2,7 +2,7 @@
 #define ALK_VECTOR3_H
 
 #include "math/Vector2.h"
-
+#include "system/String.h"
 namespace alk {
 
 	template<class T>
@@ -15,26 +15,6 @@ namespace alk {
 			};
 			T v[3];
 		};
-
-		cVector3() : x(0), y(0), z(0)
-		{
-		}
-
-		cVector3(T aVal) : x(aVal), y(aVal), z(aVal)
-		{
-		}
-
-		cVector3(T aValx, aValy, aValz) : x(aValx), y(aValy), z(aValz)
-		{
-		}
-
-		cVector3(cVector2<T> avVal) : x(avVal.x), y(avVal.y), z(0)
-		{
-		}
-
-		cVector3(cVector3<T> avVal) : x(avVal.x), y(avVal.y), z(avVal.z)
-		{
-		}
 
 		inline cVector3<T>& operator=(const cVector3<T>& avVec) {
 
@@ -67,7 +47,7 @@ namespace alk {
 			else return true;
 		}
 
-		inline cVector3<T>& operator+(const cVector3<T>& avVec) const {
+		inline cVector3<T> operator+(const cVector3<T>& avVec) const {
 			cVector3<T> vVec;
 			vVec.x = x + avVec.x;
 			vVec.y = y + avVec.y;
@@ -75,7 +55,7 @@ namespace alk {
 			return vVec;
 		}
 
-		inline cVector3<T>& operator-(const cVector3<T>& avVec) const {
+		inline cVector3<T> operator-(const cVector3<T>& avVec) const {
 			cVector3<T> vVec;
 			vVec.x = x - avVec.x;
 			vVec.y = y - avVec.y;
@@ -83,7 +63,7 @@ namespace alk {
 			return vVec;
 		}
 
-		inline cVector3<T>& operator*(const cVector3<T> avVec) const {
+		inline cVector3<T> operator*(const cVector3<T> &avVec) const {
 			cVector3<T> vVec;
 			vVec.x = x * avVec.x;
 			vVec.y = y * avVec.y;
@@ -91,7 +71,7 @@ namespace alk {
 			return vVec;
 		}
 
-		inline cVector3<T>& operator/(const cVector3<T> avVec) const {
+		inline cVector3<T> operator/(const cVector3<T> &avVec) const {
 			cVector3<T> vVec;
 			vVec.x = x / avVec.x;
 			vVec.y = y / avVec.y;
@@ -99,7 +79,7 @@ namespace alk {
 			return vVec;
 		}
 
-		inline cVector3<T>& operator+(const T atX) const {
+		inline cVector3<T> operator+(const T &atX) const {
 			cVector3<T> vVec;
 			vVec.x = x + atX;
 			vVec.y = y + atX;
@@ -107,7 +87,7 @@ namespace alk {
 			return vVec;
 		}
 
-		inline cVector3<T>& operator-(const T atX) const {
+		inline cVector3<T> operator-(const T &atX) const {
 			cVector3<T> vVec;
 			vVec.x = x - atX;
 			vVec.y = y - atX;
@@ -115,7 +95,7 @@ namespace alk {
 			return vVec;
 		}
 
-		inline cVector3<T>& operator*(const T atX) const {
+		inline cVector3<T> operator*(const T &atX) const {
 			cVector3<T> vVec;
 			vVec.x = x * atX;
 			vVec.y = y * atX;
@@ -123,7 +103,7 @@ namespace alk {
 			return vVec;
 		}
 
-		inline cVector3<T>& operator/(const T atX) const {
+		inline cVector3<T> operator/(const T &atX) const {
 			cVector3<T> vVec;
 			vVec.x = x / atX;
 			vVec.y = y / atX;
@@ -209,6 +189,13 @@ namespace alk {
 			y *= InvLength;
 			z *= InvLength;
 			return Length;
+		}
+
+		tString ToString()
+		{
+			char Buf[256];
+			sprintf(Buf, "[%g, %g, %g]", x, y,z);
+			return Buf;
 		}
 	};
 

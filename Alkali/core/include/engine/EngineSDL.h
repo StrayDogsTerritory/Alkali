@@ -8,6 +8,10 @@ namespace alk {
 
 	class iGraphics;
 	class cGraphics;
+	class cSystem;
+	class iSystem;
+	class cInput;
+	class iInput;
 
 	class cSDLEngine : public iEngineSetup
 	{
@@ -16,10 +20,13 @@ namespace alk {
 		~cSDLEngine();
 
 		cGraphics* CreateGraphicsModule();
-
+		cSystem* CreateSystemModule();
+		cInput* CreateInputModule();
 	private:
 
 		iGraphics* mpGraphicsSDL;
+		iSystem* mpSystemSDL;
+		iInput* mpInputSDL;
 
 	};
 

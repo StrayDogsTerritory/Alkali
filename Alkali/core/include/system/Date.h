@@ -1,6 +1,7 @@
 #ifndef ALK_DATE_H
 #define ALK_DATE_H
 
+#pragma warning(disable: 4996) // disable deprecation warning for _wfopen and vsprintf
 
 namespace alk {
 

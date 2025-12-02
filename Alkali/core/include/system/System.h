@@ -1,22 +1,32 @@
 #ifndef ALK_SYSTEM_H
 #define ALK_SYSTEM_H
 
+#include "system/String.h"
+#include "engine/Updateable.h"
+
+#include "json/JsonDocument.h"
+
 namespace alk {
 	
-	class iSystemInterface;
+	class iSystem;
 	class cLogicTimer;
 
-	class cSystem
+	class cSystem : public iUpdateable
 	{
 	public:
-		cSystem(iSystemInterface* apSystemInterface);
+		cSystem(iSystem* apSystemInterface);
 		~cSystem();
 
-		iSystemInterface* GetSystemInt() { return apSystemInterface; }
+		void OnUpdate(float afStep);
+
+		iSystem* GetSystemInt() { return mpSystemInterface; }
 		cLogicTimer* CreateLogicTimer(unsigned int alUpdateRate);
 
 	private:
-		iSystemInterface* apSystemInterface;
+		iSystem* mpSystemInterface;
+		static int GetChecksumTest();
+
+		int mlUpdateTest;
 	};
 
 }
