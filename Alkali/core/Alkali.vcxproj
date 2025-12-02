@@ -159,7 +159,6 @@
     <ClInclude Include="source\system\SystemInterface.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="include\input\KeyboardSDL.cpp" />
     <ClCompile Include="source\engine\Engine.cpp" />
     <ClCompile Include="source\engine\EngineSDL.cpp">
       <DeploymentContent>true</DeploymentContent>
@@ -180,6 +179,7 @@
     <ClCompile Include="source\input\Input.cpp" />
     <ClCompile Include="source\input\InputSDL.cpp" />
     <ClCompile Include="source\input\Keyboard.cpp" />
+    <ClCompile Include="source\input\KeyboardSDL.cpp" />
     <ClCompile Include="source\json\JsonDocument.cpp" />
     <ClCompile Include="source\math\Math.cpp" />
     <ClCompile Include="source\math\Matrix.cpp" />

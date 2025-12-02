@@ -372,7 +372,7 @@
     <ClCompile Include="source\input\Keyboard.cpp">
       <Filter>Input</Filter>
     </ClCompile>
-    <ClCompile Include="include\input\KeyboardSDL.cpp">
+    <ClCompile Include="source\input\KeyboardSDL.cpp">
       <Filter>Input</Filter>
     </ClCompile>
   </ItemGroup>
