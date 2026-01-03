@@ -54,6 +54,11 @@ namespace alk {
 		mlUpdateCount = 0;
 	}
 
+	float cLogicTimer::GetUpdateStep()
+	{
+		return (float)mfUpdatesPerSec / 1000.0f;
+	}
+
 	void cLogicTimer::SetUpdatesPerSecond(unsigned int alUpdatesPerSecond)
 	{
 		mfUpdatesPerSec = 1000.0f / ((double)alUpdatesPerSecond);

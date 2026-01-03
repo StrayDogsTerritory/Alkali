@@ -2,6 +2,8 @@
 #define ALK_GRAPHICSSDL_H
 
 #include "Graphics/GraphicsInterface.h"
+#include "system/FlagBits.h"
+
 #include "SDL3/SDL.h"
 
 #include "GL/glew.h"
@@ -30,6 +32,7 @@ namespace alk {
 
 		void SwapBuffer(); // don't call it SwapBuffers cuz windows gets all weird about it.
 		void FlushRender();
+		void ClearFrameBuffer(tFlag aClearFlag);
 
 		bool SetCursorVisibility(bool abx);
 		bool SetWindowFullscreen(bool abx);
@@ -38,7 +41,7 @@ namespace alk {
 		void SetVSync(bool abx);
 
 		void SetClearColour(const cColour& aCol);
-
+		void SetRelativeMouse(bool abX);
 	private:
 		SDL_GLContext mGLContext;
 		SDL_Window* mpSDLWindow;

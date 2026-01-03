@@ -6,8 +6,10 @@ namespace alk {
 	class iInputDevice
 	{
 	public:
-		iInputDevice();
+		iInputDevice() {}
 
+
+		virtual void Update()=0;
 	protected:
 	};
 

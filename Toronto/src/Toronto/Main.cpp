@@ -1,18 +1,21 @@
-#include "TorMain.h"
+#include "BaseGame.h"
+
+
+
+cTorGameBase* gpBase = NULL;
 
 int AlkaliMain(const tString& asCommandLine)
 {
-	mpGame = NULL;
 
-	mpGame = CreateAlkaliEngine(eEngineInit_All, eEngineAPI_eOpenGl);
+	gpBase = alkNew(cTorGameBase, ());
 
-	Log("Beginning Game Loop\n");
-	mpGame->Run();
+	if (gpBase->Init(asCommandLine))
+	{
+		gpBase->Run();
+		gpBase->Exit();
+	}
 
-
-	if(mpGame)
-		DestroyAlkaliEngine(mpGame);
-
+	alkDelete(gpBase);
 	// report the memory
 	cMemoryManager::MemoryLog();
 

@@ -22,6 +22,8 @@ namespace alk {
 		iSystem* GetSystemInt() { return mpSystemInterface; }
 		cLogicTimer* CreateLogicTimer(unsigned int alUpdateRate);
 
+		void TestString();
+
 	private:
 		iSystem* mpSystemInterface;
 		static int GetChecksumTest();

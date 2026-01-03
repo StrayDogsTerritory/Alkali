@@ -7,6 +7,7 @@
 #include "engine/LogWriter.h"
 #include "system/String.h"
 
+#include "graphics/Colour.h"
 #include "graphics/GraphicsInterface.h"
 #include "graphics/VertexBufferGL.h"
 #include "graphics/VertexBuffer.h"
@@ -21,8 +22,9 @@
 
 namespace alk {
 
-	cGraphics::cGraphics(iGraphics* apGraphics)
+	cGraphics::cGraphics(iGraphics* apGraphics) : iUpdateable("Graphics")
 	{	
+		mpResources = NULL;
 		mpGraphics = apGraphics;
 
 	}
@@ -32,6 +34,7 @@ namespace alk {
 		Log("Beginning cGraphics Destructor\n");
 
 		DeleteAll(lProgramList);
+		DeleteAll(lVtxBuffList);
 
 		Log("Ending cGraphics Destructor\n");
 	}
@@ -44,16 +47,26 @@ namespace alk {
 		
 		mpResources->AddDirectory(L"test/shaders", true);
 
-		iVertexBuffer* pVtxBuffer = CreateTempVtxBuffer(tVector3f(1,1,1));
+		//iVertexBuffer* pVtxBuffer = CreateTempVtxBuffer(tVector3f(1,1,1));
 		//pVtxBuffer->Compile();
-		pVtxBuffer->Bind();
-		pVtxBuffer->Draw();
+		
 		//mpGraphics->SwapBuffer();
 		
 		//CreateShaderProgram("testProgram", "test_frag.glsl", "test_vert.glsl");
 
-		alkDelete(pVtxBuffer);
+		
 		return true;
+	}
+
+	void cGraphics::OnUpdate(float afStep)
+	{
+		Log("VtxBuff size: '%d'\n", lVtxBuffList.size());
+		for (tVtxBuffListIt it = lVtxBuffList.begin(); it != lVtxBuffList.end(); ++it)
+		{
+			iVertexBuffer* pBuff = (*it);
+			pBuff->Bind();
+			pBuff->Draw();
+		}
 	}
 
 	iGpuProgram* cGraphics::CreateProgram(const tString& asName)
@@ -103,18 +116,12 @@ namespace alk {
 		}*/
 
 
-
-		tVector3f vSize(1);
-
-		tVector3f vTest(5.0f);
-		Log("%s\n", vTest.ToString().c_str());
-
 		iVertexBuffer* pBox = mpGraphics->CreateVertexBuffer();
 		pBox->CreateElementArray(eElementArrayType_Position, eArrayFormat_Float, 4);
 		pBox->CreateElementArray(eElementArrayType_Normals, eArrayFormat_Float, 3);
 		pBox->CreateElementArray(eElementArrayType_Colour, eArrayFormat_Float, 4);
 
-		vSize = vSize * 0.5;
+		avSize = avSize * 0.5;
 
 
 		int lVtxIdx = 0;
@@ -163,8 +170,8 @@ namespace alk {
 						int idx = GetBoxIdx(i, x, y, z);
 						//tVector3f vTex = GetBoxTex(i, x, y, z, vAdd);
 
-						pBox->AddVertexColour(eElementArrayType_Colour, cColour(1, 1, 1, 1));
-						pBox->AddVertex(eElementArrayType_Position, (vDir + vAdd[idx]) * vSize);
+						pBox->AddVertexColour(eElementArrayType_Colour, cMath::Rand(cColour(0,0,0,0),cColour(1,1,1,1)));
+						pBox->AddVertex(eElementArrayType_Position, (vDir + vAdd[idx]) * avSize);
 						pBox->AddVertex(eElementArrayType_Normals, vDir);
 
 						vSide = vDir + vAdd[idx];
@@ -185,6 +192,8 @@ namespace alk {
 
 		pBox->Compile();
 
+		lVtxBuffList.push_back(pBox);
+
 		return pBox;
 	}
 
@@ -197,5 +206,11 @@ namespace alk {
 		if (x + y + z > 0) idx = 3 - i;
 
 		return idx;
+	}
+
+	void cGraphics::SetClearColourTest(cColour aCol)
+	{
+		mpGraphics->SetClearColour(aCol);
+		//mpGraphics->ClearFrameBuffer(0);
 	}
 }

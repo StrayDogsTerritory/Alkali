@@ -45,10 +45,27 @@ namespace alk {
 
 		void Run();
 
+
+		// Modules
+		cSystem* GetSystem() { return mpSystem; }
+		cResources* GetResources() { return mpResources; }
+		cGraphics* GetGraphics() { return mpGraphics; }
+		cInput* GetInput() { return mpInput; }
+
+
+		// misc
+		cUpdater* GetUpdater() { return mpUpdater; }
+
+		static void SetDevicePlugged() { mbDevicePlugged = true; }
+		static void SetDeviceUnplugged() { mbDeviceRemoved = true; }
+
 	private:
 
 		bool IsGameDone();
 		bool mbGameDone;
+
+		static bool mbDevicePlugged;
+		static bool mbDeviceRemoved;
 
 		iEngineSetup* mpGame;
 

@@ -3,14 +3,22 @@
 #include "input/Gamepad.h"
 #include "input/Keyboard.h"
 #include "input/Mouse.h"
+#include "input/KeyboardSDL.h"
+#include "input/MouseSDL.h"
+#include "input/GamepadSDL.h"
 
 #include "engine/LogWriter.h"
+#include "engine/Engine.h"
+
+#include "graphics/GraphicsInterface.h"
 
 namespace alk {
 
-	cInputSDL::cInputSDL()
+	cInputSDL::cInputSDL(iGraphics* apGraphics)
 	{
-		if (SDL_InitSubSystem(SDL_INIT_GAMEPAD))
+		mpGraphics = apGraphics;
+
+		if (!SDL_InitSubSystem(SDL_INIT_GAMEPAD))
 		{
 			Error("SDL failed to init input! Reason: '%s'\n", SDL_GetError());
 		}
@@ -19,7 +27,6 @@ namespace alk {
 
 	cInputSDL::~cInputSDL()
 	{
-
 	}
 
 	void cInputSDL::Update(float afStep)
@@ -27,35 +34,63 @@ namespace alk {
 		SDL_Event lEvent;
 		while (SDL_PollEvent(&lEvent))
 		{
+			Log("Event: %u\n", lEvent.type);
+
 			if (lEvent.type == SDL_EVENT_QUIT)
 			{
 				mbQuitting = true;
 			}
 			if (lEvent.type == SDL_EVENT_WINDOW_RESIZED)
 			{
-				Log("Window Resized to '%u' '%u'", lEvent.window.data1, lEvent.window.data2);
 			}
+
+			if (lEvent.type == SDL_EVENT_GAMEPAD_ADDED)
+			{
+				cEngine::SetDevicePlugged();
+				mlGamepadJoyID = lEvent.gdevice.which;
+			}
+			if (lEvent.type == SDL_EVENT_GAMEPAD_REMOVED)
+			{
+				cEngine::SetDeviceUnplugged();
+			}
+
 			else
-				Log("SDL event! '%u'\n", lEvent.type);
 				mLstSDLEvents.push_back(lEvent);
 		}
 	}
 
 	iKeyboard* cInputSDL::CreateKeyboard()
 	{
-		return NULL;
+		return alkNew(cKeyboardSDL, (this));
 	}
 
 	iMouse* cInputSDL::CreateMouse()
 	{
-		return NULL;
+		return alkNew(cMouseSDL, (this));
 	}
 
-	iGamepad* cInputSDL::CreateGamepad()
+	iGamepad* cInputSDL::CreateGamepad(int alID, int alIndex)
 	{
-		return NULL;
+		return alkNew(cGamepadSDL, (this, alID, alIndex));
 	}
 
+	void cInputSDL::SetRelativeMouse(bool abX)
+	{
+		mpGraphics->SetRelativeMouse(abX);
+	}
+
+	int cInputSDL::GetNumberOfGamepads()
+	{
+		int lX = 0;
+		SDL_GetGamepads(&lX);
+		
+		return lX;
+	}
+
+	int cInputSDL::GetGamepadID()
+	{
+		return mlGamepadJoyID;
+	}
 
 	bool cInputSDL::GetIsQuit()
 	{

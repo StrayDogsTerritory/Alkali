@@ -40,7 +40,8 @@ namespace alk {
 		alkDelete( apEngine );
 	}
 
-
+	bool cEngine::mbDevicePlugged = false;
+	bool cEngine::mbDeviceRemoved = false;
 
 	cEngine::cEngine(tFlag alEngineSetup, iEngineSetup* apGameSetup )
 	{
@@ -70,6 +71,8 @@ namespace alk {
 
 		mbGameDone = false;
 		
+		// @TODO: REPLACE EVERY HARDCODED VALUE WITH INIT VARS CLASS!!!!!!!!!!!!!!!!!!
+
 		//create the modules
 		Log("Creating System module\n");
 		mpSystem = mpGame->CreateSystemModule();
@@ -84,7 +87,7 @@ namespace alk {
 		mpInput = mpGame->CreateInputModule();
 
 		//init the modules
-		mpGraphics->Init(mpResources, 680, 720 , 0);
+		mpGraphics->Init(mpResources, 720, 980 , 0);
 		mpResources->Init(mpGraphics);
 
 
@@ -95,6 +98,9 @@ namespace alk {
 		// add engine updates
 		mpUpdater->AddEngineModule(mpSystem);
 		mpUpdater->AddEngineModule(mpInput);
+		mpUpdater->AddEngineModule(mpGraphics);
+
+		Log("Test Size: cGrahics: '%d'\n", sizeof(cGraphics));
 
 		return true;
 	}
@@ -103,16 +109,25 @@ namespace alk {
 	{
 		mpGraphics->GetLowGraphics()->SwapBuffer();
 		Log("Started cEngine::Run\n");
-		SDL_Event lEvent;
 		while (!IsGameDone())
 		{
 		//	Log("Running !IsGameDoneLoop\n");
 			while (mpLogicTimer->WantUpdate()) //&& !IsGameDone())
 			{
-				Log("Running Update Loop\n");
-				mpUpdater->RunEngineUpdate(eUpdatableMessageType_OnPreUpdate,0);
-				mpUpdater->RunEngineUpdate(eUpdatableMessageType_OnUpdate,0);
-				mpUpdater->RunEngineUpdate(eUpdatableMessageType_OnPostUpdate,0);
+				mpUpdater->RunEngineUpdate(eUpdateableMessageType_OnPreUpdate,mpLogicTimer->GetUpdateStep());
+				mpUpdater->RunEngineUpdate(eUpdateableMessageType_OnUpdate, mpLogicTimer->GetUpdateStep());
+				mpUpdater->RunEngineUpdate(eUpdateableMessageType_OnPostUpdate, mpLogicTimer->GetUpdateStep());
+
+				if (mbDevicePlugged)
+				{
+					mbDevicePlugged = false;
+					mpUpdater->RunEngineUpdate(eUpdateableMessageType_DeviceAdded,0);
+				}
+				if (mbDeviceRemoved)
+				{
+					mbDeviceRemoved = false;
+					mpUpdater->RunEngineUpdate(eUpdateableMessageType_DeviceRemoved, 0);
+				}
 
 				if (mpInput->GetIsQuit())
 				{
@@ -122,7 +137,7 @@ namespace alk {
 			mpLogicTimer->EndLoop();
 
 
-//			mpGraphics->GetLowGraphics()->SwapBuffer();
+			mpGraphics->GetLowGraphics()->SwapBuffer();
 		}
 
 

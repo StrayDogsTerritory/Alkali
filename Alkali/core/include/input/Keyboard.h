@@ -2,6 +2,9 @@
 #define ALK_KEYBOARD_H
 
 #include "system/String.h"
+
+#include "input/InputDevice.h"
+
 #include <vector>
 
 namespace alk {
@@ -96,17 +99,24 @@ namespace alk {
 		eModifier_SHFT
 	};
 
-	class iKeyboard
+	class iKeyboard : public iInputDevice
 	{
 	public:
 		iKeyboard();
 		virtual ~iKeyboard();
 
-		virtual void Update(float afStep);
+		virtual bool KeyDown(eKey aKey)=0;
+
+		// is Keyboard active?
+		virtual bool KeyboardActive()=0;
 
 	protected:
+
+		unsigned int mlLastActive;
+
 		tString EnumToString(const eKey& aKey);
 		eKey StringToEnum(const tString& asString);
+		
 		std::vector<bool> mvKeyPressed;
 	};
 

@@ -12,14 +12,19 @@ namespace alk {
 	{
 	public:
 		cKeyboardSDL(cInputSDL* apInput);
+		~cKeyboardSDL() {}
 
 		void Update();
 
-		eKey SDLCodeToKey(int alKey);
+		bool KeyDown(eKey aKey);
+
+		bool KeyboardActive();
 
 	private:
-		cInputSDL* mpInputSDL;
+		eKey SDLCodeToKey(int alKey);
 		void ResetKeysPressed();
+
+		cInputSDL* mpInputSDL;
 	};
 
 }

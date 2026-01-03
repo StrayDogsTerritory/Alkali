@@ -6,11 +6,11 @@
 #include "math/Matrix.h"
 
 namespace alk {
-	class iWorldNode
+	class iNode
 	{
 	public:
-		iWorldNode();
-		virtual ~iWorldNode();
+		iNode();
+		virtual ~iNode();
 
 	protected:
 		tMatrixf mMtxTransform;

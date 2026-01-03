@@ -20,7 +20,7 @@ namespace alk {
 
 	cGraphicsSDL::cGraphicsSDL()
 	{
-		mbFullscreen = true;
+		mbFullscreen = false;
 		mpSDLWindow = NULL;
 	}
 
@@ -84,12 +84,13 @@ namespace alk {
 
 		glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 		
 		glMatrixMode(GL_MODELVIEW);
 		glLoadIdentity();
 		glMatrixMode(GL_PROJECTION);
 		glLoadIdentity();
+
 
 		/*glEnableClientState(GL_VERTEX_ARRAY);
 		glEnableClientState(GL_COLOR_ARRAY);
@@ -131,9 +132,13 @@ namespace alk {
 		glFlush();
 	}
 
+	void cGraphicsSDL::ClearFrameBuffer(tFlag aClearFlag)
+	{
+		glClear(GL_COLOR_BUFFER_BIT);
+	}
+
 	bool cGraphicsSDL::SetCursorVisibility(bool abx)
 	{
-		
 		return abx ? SDL_ShowCursor() : SDL_HideCursor();
 	}
 
@@ -165,8 +170,12 @@ namespace alk {
 
 	void cGraphicsSDL::SetClearColour(const cColour& aCol)
 	{
-		
 		glClearColor(aCol.r, aCol.g, aCol.b, aCol.a);
+	}
+
+	void cGraphicsSDL::SetRelativeMouse(bool abX)
+	{
+		SDL_SetWindowRelativeMouseMode(mpSDLWindow, abX);
 	}
 
 

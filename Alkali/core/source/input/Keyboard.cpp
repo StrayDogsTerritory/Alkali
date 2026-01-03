@@ -11,7 +11,6 @@ namespace alk {
 
 	iKeyboard::~iKeyboard()
 	{
-
 	}
 
 	tString iKeyboard::EnumToString(const eKey& aKey)

@@ -22,12 +22,6 @@
     <Filter Include="Sound">
       <UniqueIdentifier>{0f906dbb-c38a-4100-ab5d-fe3ac13cd5d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="System\PlatformSpecific">
-      <UniqueIdentifier>{fcf8a895-8c52-4ddf-a504-2fd384c2edec}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\APISpecific">
-      <UniqueIdentifier>{68b96e15-cf1a-40a3-9a83-b84a070db539}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resources">
       <UniqueIdentifier>{3ff1047d-52f2-4449-8407-5ed77900ded6}</UniqueIdentifier>
     </Filter>
@@ -40,18 +34,6 @@
     <Filter Include="Resources\Managers">
       <UniqueIdentifier>{a6640036-d75a-4a94-b1f9-9bba834b29b0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Graphics\APISpecific\GL">
-      <UniqueIdentifier>{8cb7e0ce-9621-4752-ab1a-7ae54025d4d4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\APISpecific\DX">
-      <UniqueIdentifier>{1542c8c0-8168-4b47-ab25-03c1855b6cad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\APISpecific\GL\GLSL">
-      <UniqueIdentifier>{f4e683ee-29af-41ef-af66-0e0757669c90}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Graphics\APISpecific\DX\HLSL">
-      <UniqueIdentifier>{5e303b9c-ccab-4e17-8f1e-4fdc74133675}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Resources\Loaders">
       <UniqueIdentifier>{c9de6669-e5f5-422f-b0fb-6335bd5db303}</UniqueIdentifier>
     </Filter>
@@ -61,14 +43,29 @@
     <Filter Include="Json\PicoJson">
       <UniqueIdentifier>{fd497462-39b0-4cfd-851e-c1e6c0c5b0c2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Game">
+    <Filter Include="Input\Input Event">
+      <UniqueIdentifier>{4d1882dd-2760-443f-83e5-25c5876e9829}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\API Specific">
+      <UniqueIdentifier>{68b96e15-cf1a-40a3-9a83-b84a070db539}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\API Specific\GL">
+      <UniqueIdentifier>{8cb7e0ce-9621-4752-ab1a-7ae54025d4d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\API Specific\GL\GLSL">
+      <UniqueIdentifier>{f4e683ee-29af-41ef-af66-0e0757669c90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\API Specific\DX">
+      <UniqueIdentifier>{1542c8c0-8168-4b47-ab25-03c1855b6cad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\API Specific\DX\HLSL">
+      <UniqueIdentifier>{5e303b9c-ccab-4e17-8f1e-4fdc74133675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="System\Platform Specific">
+      <UniqueIdentifier>{fcf8a895-8c52-4ddf-a504-2fd384c2edec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
       <UniqueIdentifier>{74ef9217-0526-456c-8609-4d9ecf4bc9a2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\Network">
-      <UniqueIdentifier>{ca6a14ca-0eb4-4380-9aaa-3e4309a5d0aa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Game\World">
-      <UniqueIdentifier>{d2621aa5-bc40-4cbf-8e6e-ba91e5c4d277}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -125,7 +122,7 @@
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\GPUProgramGLSL.h">
-      <Filter>Graphics\APISpecific\GL\GLSL</Filter>
+      <Filter>Graphics\API Specific\GL\GLSL</Filter>
     </ClInclude>
     <ClInclude Include="include\system\FlagBits.h">
       <Filter>System</Filter>
@@ -137,9 +134,6 @@
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="include\math\Vector3.h">
-      <Filter>Math</Filter>
-    </ClInclude>
-    <ClInclude Include="source\math\Plane.h">
       <Filter>Math</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\Colour.h">
@@ -173,7 +167,7 @@
       <Filter>System</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\ShaderGLSL.h">
-      <Filter>Graphics\APISpecific\GL\GLSL</Filter>
+      <Filter>Graphics\API Specific\GL\GLSL</Filter>
     </ClInclude>
     <ClInclude Include="include\system\Script.h">
       <Filter>System</Filter>
@@ -215,7 +209,7 @@
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\VertexBufferGL.h">
-      <Filter>Graphics\APISpecific\GL</Filter>
+      <Filter>Graphics\API Specific\GL</Filter>
     </ClInclude>
     <ClInclude Include="include\engine\Updater.h">
       <Filter>Engine</Filter>
@@ -225,9 +219,6 @@
     </ClInclude>
     <ClInclude Include="include\json\simdjson\picojson.h">
       <Filter>Json\PicoJson</Filter>
-    </ClInclude>
-    <ClInclude Include="include\game\WorldNode.h">
-      <Filter>Game\World</Filter>
     </ClInclude>
     <ClInclude Include="include\input\Keyboard.h">
       <Filter>Input</Filter>
@@ -255,6 +246,48 @@
     </ClInclude>
     <ClInclude Include="include\input\GamepadSDL.h">
       <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\Action.h">
+      <Filter>Input</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\Timer.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\InputEvent.h">
+      <Filter>Input\Input Event</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\InputEventKeyboard.h">
+      <Filter>Input\Input Event</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Plane.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Scene\Camera.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Scene\Node.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\InputEventMouseButton.h">
+      <Filter>Input\Input Event</Filter>
+    </ClInclude>
+    <ClInclude Include="include\input\InputEventGamepadButton.h">
+      <Filter>Input\Input Event</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Texture.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\FrameBuffer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Mesh.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Renderer.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\MeshNode.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -292,7 +325,7 @@
       <Filter>Engine</Filter>
     </ClCompile>
     <ClCompile Include="source\graphics\ShaderGLSL.cpp">
-      <Filter>Graphics\APISpecific\GL\GLSL</Filter>
+      <Filter>Graphics\API Specific\GL\GLSL</Filter>
     </ClCompile>
     <ClCompile Include="source\graphics\Graphics.cpp">
       <Filter>Graphics</Filter>
@@ -301,7 +334,7 @@
       <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="source\graphics\GPUProgramGLSL.cpp">
-      <Filter>Graphics\APISpecific\GL\GLSL</Filter>
+      <Filter>Graphics\API Specific\GL\GLSL</Filter>
     </ClCompile>
     <ClCompile Include="source\math\Matrix.cpp">
       <Filter>Math</Filter>
@@ -313,7 +346,7 @@
       <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="source\system\platform_specific\PlatformWindows.cpp">
-      <Filter>System\PlatformSpecific</Filter>
+      <Filter>System\Platform Specific</Filter>
     </ClCompile>
     <ClCompile Include="source\resources\FileSearcher.cpp">
       <Filter>Resources</Filter>
@@ -364,7 +397,7 @@
       <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="source\graphics\VertexBufferGL.cpp">
-      <Filter>Graphics\APISpecific\GL</Filter>
+      <Filter>Graphics\API Specific\GL</Filter>
     </ClCompile>
     <ClCompile Include="source\input\InputSDL.cpp">
       <Filter>Input</Filter>
@@ -374,6 +407,24 @@
     </ClCompile>
     <ClCompile Include="source\input\KeyboardSDL.cpp">
       <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\input\Action.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\input\MouseSDL.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\input\InputEventKeyboard.cpp">
+      <Filter>Input\Input Event</Filter>
+    </ClCompile>
+    <ClCompile Include="source\input\InputEventMouseButton.cpp">
+      <Filter>Input\Input Event</Filter>
+    </ClCompile>
+    <ClCompile Include="source\input\GamepadSDL.cpp">
+      <Filter>Input</Filter>
+    </ClCompile>
+    <ClCompile Include="source\input\InputEventGamepadButton.cpp">
+      <Filter>Input\Input Event</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

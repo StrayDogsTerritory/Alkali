@@ -1,7 +1,7 @@
 #ifndef ALK_LOGWRITER_H
 #define ALK_LOGWRITER_H
 
-#pragma warning(disable: 4996) // disable deprecation warning for _wfopen and vsprintf
+#pragma warning(disable: 4996) // disable warning for _wfopen and vsprintf
 
 #include "system\String.h"
 #include "system\SystemTypes.h"

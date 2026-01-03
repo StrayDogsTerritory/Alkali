@@ -5,6 +5,4 @@
 
 using namespace alk;
 
-cEngine* mpGame;
-
 #endif

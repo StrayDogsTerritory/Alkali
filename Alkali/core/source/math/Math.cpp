@@ -2,6 +2,8 @@
 
 #include "system/Platform.h"
 
+#include "engine/LogWriter.h"
+
 #include <stdlib.h>
 #include <time.h>
 #include <math.h>
@@ -16,7 +18,7 @@ namespace alk {
 
 	float cMath::Rand(float afMin, float afMax)
 	{
-		SeededRand(0);
+		//SeededRand(0);
 		float fRand = ((float)rand()) / (float)RAND_MAX;
 		return afMin + fRand*(afMax - afMin);
 	}
@@ -64,14 +66,26 @@ namespace alk {
 		return alX;
 	}
 
+	int cMath::Lerp(int alA, int alB, int alT)
+	{
+		return alB + alA * (1 - alT) * alT;
+	}
+
+	float cMath::Lerp(float afA, float afB, float afT)
+	{
+		return afB + afA * (1- afT) * afT;
+	}
+
+
+
 	float cMath::ToDeg(float afAngle)
 	{
-		return afAngle * (180.0f / kPIf);
+		return afAngle * (180.0f / kPI);
 	}
 
 	float cMath::ToRad(float afAngle)
 	{
-		return afAngle * (kPIf / 180.0f);
+		return afAngle * (kPI / 180.0f);
 	}
 
 

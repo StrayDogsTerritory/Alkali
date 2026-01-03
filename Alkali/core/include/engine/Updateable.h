@@ -7,17 +7,21 @@ namespace alk {
 
 	enum eUpdatableMessageType
 	{
-		eUpdatableMessageType_OnStart,
-		eUpdatableMessageType_OnExit,
-		eUpdatableMessageType_OnQuit,
-		eUpdatableMessageType_OnPostBufferSwap,
-		eUpdatableMessageType_OnRender,
-		eUpdatableMessageType_OnPostRender,
-		eUpdatableMessageType_OnPreUpdate,
-		eUpdatableMessageType_OnUpdate,
-		eUpdatableMessageType_OnPostUpdate,
-		eUpdatableMessageType_OnPause,
-		eUpdatableMessageType_Reset,
+		eUpdateableMessageType_OnStart,
+		eUpdateableMessageType_OnExit,
+		eUpdateableMessageType_OnQuit,
+		eUpdateableMessageType_OnPostBufferSwap,
+		eUpdateableMessageType_OnRender,
+		eUpdateableMessageType_OnPostRender,
+		eUpdateableMessageType_OnPreUpdate,
+		eUpdateableMessageType_OnUpdate,
+		eUpdateableMessageType_OnPostUpdate,
+		eUpdateableMessageType_OnPause,
+		eUpdateableMessageType_Reset,
+		eUpdateableMessageType_DeviceAdded,
+		eUpdateableMessageType_DeviceRemoved,
+		eUpdateableMessageType_AppGainedFocus,
+		eUpdateableMessageType_AppLostFocus,
 
 		eUpdatableMessageType_LastEnum
 
@@ -42,28 +46,42 @@ namespace alk {
 
 		virtual void Reset() {}
 
+		virtual void DeviceAdded() {}
+		virtual void DeviceRemoved() {}
+
+		virtual void AppGainedFocus() {}
+		virtual void AppLostFocus() {}
+
 		void CallMessage(eUpdatableMessageType aType, float afStep)
 		{
 			switch (aType)
 			{
-			case eUpdatableMessageType_OnStart: 
+			case eUpdateableMessageType_OnStart: 
 				OnStart(); break;
-			case eUpdatableMessageType_OnExit:
+			case eUpdateableMessageType_OnExit:
 				OnExit(); break;
-			case eUpdatableMessageType_OnQuit:
+			case eUpdateableMessageType_OnQuit:
 				OnQuit(); break;
-			case eUpdatableMessageType_OnPostBufferSwap:
+			case eUpdateableMessageType_OnPostBufferSwap:
 				OnPostBufferSwap(); break;
-			case eUpdatableMessageType_OnPreUpdate:
+			case eUpdateableMessageType_OnPreUpdate:
 				OnPreUpdate(afStep); break;
-			case eUpdatableMessageType_OnUpdate:
+			case eUpdateableMessageType_OnUpdate:
 				OnUpdate(afStep); break;
-			case eUpdatableMessageType_OnPostUpdate:
+			case eUpdateableMessageType_OnPostUpdate:
 				OnPostUpdate(afStep); break;
-			case eUpdatableMessageType_OnPause:
+			case eUpdateableMessageType_OnPause:
 				OnPause(afStep); break;
-			case eUpdatableMessageType_Reset:
+			case eUpdateableMessageType_Reset:
 				Reset(); break;
+			case eUpdateableMessageType_DeviceAdded:
+				DeviceAdded(); break;
+			case eUpdateableMessageType_DeviceRemoved:
+				DeviceRemoved(); break;
+			case eUpdateableMessageType_AppGainedFocus:
+				DeviceAdded(); break;
+			case eUpdateableMessageType_AppLostFocus:
+				DeviceAdded(); break;
 			}
 		}
 

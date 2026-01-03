@@ -39,9 +39,12 @@ namespace alk {
 		iJsonDocument Doc;
 		Doc.Parse(L"");
 
+		float fTest = cMath::Lerp(4.0f, 5.0f, 1.0f);
+		Log("Sys Lerp: '%g'", fTest);
+
 		//////////////////////
 		// @TODO: Don't hardcode this
-	/*	Log("Engine Specifics:\n");
+		Log("Engine Specifics:\n");
 		Log("Version Number: %s.%s.%s \n", "0", "0", "0");
 		Log("Build ID: %s \n", "20250930094205");
 		Log("Checksum: %u... ", GetChecksumTest());
@@ -50,7 +53,7 @@ namespace alk {
 			Log("modified\n");
 		}
 		else
-			Log("unmodified\n");*/
+			Log("unmodified\n");
 	
 
 	}
@@ -61,11 +64,6 @@ namespace alk {
 
 	void cSystem::OnUpdate(float afStep)
 	{
-		Log("System Update is Running!\n");
-		cDate Date = cPlatform::GetLocalTime();
-
-		mlUpdateTest++;
-		Log("System has updated: %d Times. Time: %s\n", mlUpdateTest, Date.ToStringTime().c_str());
 		
 	}
 
@@ -86,10 +84,12 @@ namespace alk {
 
 		char* pBuffer = (char*)alkMalloc(sizeof(char) * lSize + 1);
 		fread(pBuffer, sizeof(char), lSize, pFile);
-		pBuffer[lSize] = '\0';
+		pBuffer[lSize] = 0;
 		fclose(pFile);
 
 		tString sTemp = tString(pBuffer);
+
+		Log("Checksum: '%s'\n", sTemp.c_str());
 
 		int lHash = cString::Hash(sTemp);
 		Log("Hash: '%u'\n", lHash);
@@ -100,6 +100,11 @@ namespace alk {
 	cLogicTimer* cSystem::CreateLogicTimer(unsigned int alUpdatesPerSec)
 	{
 		return alkNew(cLogicTimer, (alUpdatesPerSec));
+	}
+
+	void cSystem::TestString()
+	{
+		Error("I SHITTED MYSELF!!!!!\n");
 	}
 
 }

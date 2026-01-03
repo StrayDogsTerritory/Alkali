@@ -28,7 +28,7 @@ namespace alk {
 
    		mpGraphicsSDL = alkNew(cGraphicsSDL, ());
 		mpSystemSDL = alkNew(cSystemSDL, ());
-		mpInputSDL = alkNew(cInputSDL, ());
+		mpInputSDL = alkNew(cInputSDL, (mpGraphicsSDL));
 	}
 
 	cSDLEngine::~cSDLEngine()

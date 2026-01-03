@@ -21,6 +21,8 @@ namespace alk {
 
 		double GetUpdatesPerSec() const { return mfUpdatesPerSec; }
 
+		float GetUpdateStep();
+
 	private:
 		double mfUpdatesPerSec;
 		double mfCurrentTime;

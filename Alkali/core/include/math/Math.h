@@ -13,7 +13,7 @@
 namespace alk {
 	
 	// math constants 
-	#define kPIf (3.141592654f)
+	#define kPI (3.141592654f)
 	#define k2PIf (1.570796327f)
 	#define kPI2f (6.283185307f)
 
@@ -39,7 +39,10 @@ namespace alk {
 		inline static float abs(float afVal) { return fabs(afVal); }
 
 		static int Wrap(int alX, int alMin, int alMax);
-		static float Wrap(float alX, float alMin, float alMax);
+		static float Wrap(float afX, float afMin, float afMax);
+
+		static int Lerp(int alA, int alB, int alT);
+		static float Lerp(float afA, float afB, float afT);
 
 		static float ToDeg(float afAngle);
 		static float ToRad(float afAngle);

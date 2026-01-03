@@ -15,21 +15,32 @@ namespace alk {
 	typedef std::list<SDL_Event> tEventList;
 	typedef tEventList::iterator tEventListit;
 
+	class iGraphics;
+
 	class cInputSDL : public iInput
 	{
 	public:
-		cInputSDL();
+		cInputSDL(iGraphics* apGraphics);
 		~cInputSDL();
 
 		void Update(float afTimeStep);
 		bool GetIsQuit();
+		void SetRelativeMouse(bool abX);
+
+		int GetNumberOfGamepads();
+
+		int GetGamepadID();
 
 		iKeyboard* CreateKeyboard();
 		iMouse* CreateMouse();
-		iGamepad* CreateGamepad();
+		iGamepad* CreateGamepad(int alID, int alIndex);
 
 		tEventList mLstSDLEvents;
 	private:
+		// test
+		unsigned int mlGamepadJoyID;
+
+		iGraphics* mpGraphics;
 		bool mbQuitting;
 	};
 

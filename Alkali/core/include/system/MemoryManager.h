@@ -61,7 +61,7 @@ namespace alk {
 	( constructor* ) cMemoryManager::AddPointer(alk::cAllocatedPointer( new constructor params, __FILE__, __LINE__, sizeof(constructor)))
 
 #define alkNewArray(constructor, amount) \
-	( classType* ) cMemoryManager::AddPointer(alk::cAllocatedPointer( new constructor[amount], __FILE__, __LINE__, amount * sizeof(constructor) )))
+	( constructor* ) cMemoryManager::AddPointer(alk::cAllocatedPointer( new constructor[amount], __FILE__, __LINE__, amount * sizeof(constructor) )))
 
 #define alkMalloc(amount) \
 	 cMemoryManager::AddPointer(alk::cAllocatedPointer( malloc(amount), __FILE__, __LINE__, amount))

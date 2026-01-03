@@ -21,13 +21,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>PGOptimize</WholeProgramOptimization>
     <CharacterSet>NotSet</CharacterSet>
   </PropertyGroup>
@@ -104,22 +104,31 @@
     <ClInclude Include="include\engine\ThreadSystem.h" />
     <ClInclude Include="include\engine\Updateable.h" />
     <ClInclude Include="include\engine\Updater.h" />
-    <ClInclude Include="include\game\WorldNode.h" />
     <ClInclude Include="include\graphics\Colour.h" />
+    <ClInclude Include="include\graphics\FrameBuffer.h" />
     <ClInclude Include="include\graphics\GPUProgram.h" />
     <ClInclude Include="include\graphics\GPUProgramGLSL.h" />
     <ClInclude Include="include\graphics\Graphics.h" />
     <ClInclude Include="include\graphics\GraphicsInterface.h" />
     <ClInclude Include="include\graphics\GraphicsSDL.h" />
+    <ClInclude Include="include\graphics\Mesh.h" />
+    <ClInclude Include="include\graphics\MeshNode.h" />
+    <ClInclude Include="include\graphics\Renderer.h" />
     <ClInclude Include="include\graphics\Shader.h" />
     <ClInclude Include="include\graphics\ShaderGLSL.h" />
+    <ClInclude Include="include\graphics\Texture.h" />
     <ClInclude Include="include\graphics\VertexBuffer.h" />
     <ClInclude Include="include\graphics\VertexBufferGL.h" />
     <ClInclude Include="include\gui\Gui.h" />
+    <ClInclude Include="include\input\Action.h" />
     <ClInclude Include="include\input\Gamepad.h" />
     <ClInclude Include="include\input\GamepadSDL.h" />
     <ClInclude Include="include\input\Input.h" />
     <ClInclude Include="include\input\InputDevice.h" />
+    <ClInclude Include="include\input\InputEvent.h" />
+    <ClInclude Include="include\input\InputEventGamepadButton.h" />
+    <ClInclude Include="include\input\InputEventKeyboard.h" />
+    <ClInclude Include="include\input\InputEventMouseButton.h" />
     <ClInclude Include="include\input\InputInterface.h" />
     <ClInclude Include="include\input\InputSDL.h" />
     <ClInclude Include="include\input\Keyboard.h" />
@@ -130,6 +139,7 @@
     <ClInclude Include="include\json\simdjson\picojson.h" />
     <ClInclude Include="include\math\Math.h" />
     <ClInclude Include="include\math\Matrix.h" />
+    <ClInclude Include="include\math\Plane.h" />
     <ClInclude Include="include\math\Vector2.h" />
     <ClInclude Include="include\math\Vector3.h" />
     <ClInclude Include="include\resources\FileSearcher.h" />
@@ -139,6 +149,8 @@
     <ClInclude Include="include\resources\ShaderCacher.h" />
     <ClInclude Include="include\resources\ShaderManager.h" />
     <ClInclude Include="include\resources\ShaderParser.h" />
+    <ClInclude Include="include\Scene\Camera.h" />
+    <ClInclude Include="include\Scene\Node.h" />
     <ClInclude Include="include\system\Date.h" />
     <ClInclude Include="include\system\FlagBits.h" />
     <ClInclude Include="include\system\LogicTimer.h" />
@@ -152,10 +164,10 @@
     <ClInclude Include="include\system\SystemSDL.h" />
     <ClInclude Include="include\system\SystemTypes.h" />
     <ClInclude Include="include\system\Thread.h" />
+    <ClInclude Include="include\system\Timer.h" />
     <ClInclude Include="include\xml\tinyxml2\tinyxml2.h" />
     <ClInclude Include="include\xml\XmlDocument.h" />
     <ClInclude Include="include\xml\XmlDocumentTinyXml.h" />
-    <ClInclude Include="source\math\Plane.h" />
     <ClInclude Include="source\system\SystemInterface.h" />
   </ItemGroup>
   <ItemGroup>
@@ -176,10 +188,16 @@
     <ClCompile Include="source\graphics\VertexBuffer.cpp" />
     <ClCompile Include="source\graphics\VertexBufferGL.cpp" />
     <ClCompile Include="source\gui\Gui.cpp" />
+    <ClCompile Include="source\input\Action.cpp" />
+    <ClCompile Include="source\input\GamepadSDL.cpp" />
     <ClCompile Include="source\input\Input.cpp" />
+    <ClCompile Include="source\input\InputEventGamepadButton.cpp" />
+    <ClCompile Include="source\input\InputEventKeyboard.cpp" />
+    <ClCompile Include="source\input\InputEventMouseButton.cpp" />
     <ClCompile Include="source\input\InputSDL.cpp" />
     <ClCompile Include="source\input\Keyboard.cpp" />
     <ClCompile Include="source\input\KeyboardSDL.cpp" />
+    <ClCompile Include="source\input\MouseSDL.cpp" />
     <ClCompile Include="source\json\JsonDocument.cpp" />
     <ClCompile Include="source\math\Math.cpp" />
     <ClCompile Include="source\math\Matrix.cpp" />
