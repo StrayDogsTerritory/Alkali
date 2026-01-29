@@ -1,7 +1,9 @@
 #ifndef ALK_GRAPHICSSDL_H
 #define ALK_GRAPHICSSDL_H
 
-#include "Graphics/GraphicsInterface.h"
+#include "graphics/GraphicsInterface.h"
+#include "graphics/VertexBuffer.h"
+
 #include "system/FlagBits.h"
 
 #include "SDL3/SDL.h"
@@ -24,11 +26,12 @@ namespace alk {
 		bool Init(int alHeight, int alWidth, int alWindowMode);
 		bool InitOpenGL();
 
-		void LogAdapterInfo();
+		void LogGPUInfo();
+		int GetCardMaxes();
 
 		iShader* CreateShader(const tString& asName, eShaderType aType);
 		iGpuProgram* CreateProgram(const tString& asName);
-		iVertexBuffer* CreateVertexBuffer();
+		iVertexBuffer* CreateVertexBuffer(eVertexBufferDrawType aDrawType, eVertexBufferPrimitiveAssemblyType aPrimAssemblyType);
 
 		void SwapBuffer(); // don't call it SwapBuffers cuz windows gets all weird about it.
 		void FlushRender();

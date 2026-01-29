@@ -13,7 +13,9 @@ namespace alk {
 	{
 		eDrawtype_Static,
 		eDrawtype_Dynamic,
-		eDrawtype_Stream
+		eDrawtype_Stream,
+
+		eDrawtype_LastEnum
 	};
 
 	enum eVertexBufferPrimitiveAssemblyType
@@ -27,6 +29,7 @@ namespace alk {
 		ePrimitiveAssemblyType_Tri,
 		ePrimitiveAssemblyType_TriFan,
 		ePrimitiveAssemblyType_TriStrip,
+
 		ePrimitiveAssemblyType_LastEnum
 	};
 
@@ -34,7 +37,9 @@ namespace alk {
 	{
 		eArrayFormat_Float,
 		eArrayFormat_Byte,
-		eArrayFormat_Int
+		eArrayFormat_Int,
+		
+		eArrayFormat_LastEnum
 	};
 
 	enum eVertexElementArrayType
@@ -46,6 +51,7 @@ namespace alk {
 
 		// I don't know if this is needed...
 		eElementArrayType_TriTangent,
+
 		eElementArrayType_LastEnum
 	};
 
@@ -80,11 +86,11 @@ namespace alk {
 	class iVertexBuffer
 	{
 	public:
-		iVertexBuffer() {}
+		iVertexBuffer(eVertexBufferDrawType aDrawType, eVertexBufferPrimitiveAssemblyType aPrimAssemblyType) {}
 		virtual ~iVertexBuffer() {}
 
-		virtual void Compile(eVertexBufferDrawType aDrawType) =0;
-		virtual void Draw(eVertexBufferPrimitiveAssemblyType aType)=0;
+		virtual void Compile(eVertexBufferDrawType aDrawType = eDrawtype_LastEnum) =0;
+		virtual void Draw(eVertexBufferPrimitiveAssemblyType aType = ePrimitiveAssemblyType_LastEnum)=0;
 		virtual void Bind()=0;
 		virtual void UnBind()=0;
 	

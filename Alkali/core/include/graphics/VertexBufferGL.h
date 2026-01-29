@@ -16,11 +16,11 @@ namespace alk {
 	class cVertexBufferGL : public iVertexBuffer
 	{
 	public:
-		cVertexBufferGL();
+		cVertexBufferGL(eVertexBufferDrawType aDrawType, eVertexBufferPrimitiveAssemblyType aPrimAssemblyType);
 		~cVertexBufferGL();
 
-		void Compile(eVertexBufferDrawType aDrawType = eDrawtype_Static);
-		void Draw(eVertexBufferPrimitiveAssemblyType aType);
+		void Compile(eVertexBufferDrawType aDrawType = eDrawtype_LastEnum);
+		void Draw(eVertexBufferPrimitiveAssemblyType aType = ePrimitiveAssemblyType_LastEnum);
 
 		 void Bind();
 		 void UnBind();
@@ -42,8 +42,8 @@ namespace alk {
 
 		}
 
-		GLenum mDrawType;
-		GLenum mPrimAssemblyType;
+		eVertexBufferDrawType mDrawType;
+		eVertexBufferPrimitiveAssemblyType mPrimAssemblyType;
 
 		GLuint mlBufferID;
 		GLuint mlBufferArrayID;
