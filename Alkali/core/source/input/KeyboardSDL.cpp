@@ -8,7 +8,6 @@ namespace alk {
 	{
 		mpInputSDL = apInputSDL;
 		mvKeyPressed.resize(eKey_LastEnum); //fix crashes related from buffer overflowing
-		Log("DEBUG: Key Array Size: %d\n", mvKeyPressed.size());
 
 		ResetKeysPressed();
 	}
@@ -21,7 +20,6 @@ namespace alk {
 			SDL_Event* pEvent = &(*it);
 			if (pEvent->type == SDL_EVENT_KEY_DOWN || pEvent->type == SDL_EVENT_KEY_UP)
 			{
-				Log("'%u'", pEvent->key.key);
 				eKey Key = SDLCodeToKey(pEvent->key.key);
 				mvKeyPressed[Key] = pEvent->key.down ? true : false;
 			}
@@ -83,7 +81,7 @@ namespace alk {
 		case SDLK_Z: return eKey_Z;
 		case SDLK_SPACE: return eKey_Space;
 
-		case SDLK_ESCAPE: eKey_Esc;
+		case SDLK_ESCAPE: return eKey_Esc;
 		case SDLK_CAPSLOCK: return eKey_Caps_Lock;
 		case SDLK_TAB: return eKey_Tab;
 		case SDLK_BACKSPACE: return eKey_Backspace;
@@ -98,7 +96,7 @@ namespace alk {
 		case SDLK_LGUI: return eKey_GUI;
 		case SDLK_RGUI: return eKey_GUI;
 		case SDLK_PLUS: return eKey_Plus;
-		case SDLK_EQUALS: eKey_Equals;
+		case SDLK_EQUALS: return eKey_Equals;
 		case SDLK_UNDERSCORE: return eKey_Underscore;
 		case SDLK_MINUS: return eKey_Dash;
 		case SDLK_TILDE: return eKey_Tilde;

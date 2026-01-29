@@ -35,41 +35,42 @@ namespace alk {
 
 	cGraphics::~cGraphics()
 	{
-		Log("Beginning cGraphics Destructor\n");
+		Log("---------------------------------------------\n");
+		Log("Quitting graphics module\n");
 
+		Log("deleting module created programs\n");
 		DeleteAll(lProgramList);
+		Log("deleting module created vertex buffers\n");
 		DeleteAll(lVtxBuffList);
 
-		Log("Ending cGraphics Destructor\n");
+		Log("---------------------------------------------\n\n");
 	}
 
 	bool cGraphics::Init(cResources* apResources, int alHeight, int alWidth, int alWindowMode)
 	{
+		Log("Initializing graphics module\n");
+
 		mpResources = apResources;
 		mpGraphics->Init(alHeight, alWidth, alWindowMode);
 
 		
 		mpResources->AddDirectory(L"test/shaders", true);
 
-		//iVertexBuffer* pVtxBuffer = CreateTempVtxBuffer(tVector3f(1,1,1));
-		//pVtxBuffer->Compile();
-		
-		//mpGraphics->SwapBuffer();
-		
-		//CreateShaderProgram("testProgram", "test_frag.glsl", "test_vert.glsl");
+		Log("---------------------------------------------\n");
+
 		return true;
 	}
 
 	void cGraphics::OnUpdate(float afStep)
 	{
-		Log("VtxBuff size: '%d'\n", lVtxBuffList.size());
+	//	Log("VtxBuff size: '%d'\n", lVtxBuffList.size());
 
 		
 		if (mbCreatedProgram == false)
 		{
 			mbCreatedProgram = true;
-			Log("Created Program. Should only be seen once!\n");
-			Log("Program list size: '%d'", lProgramList.size());
+			//Log("Created Program. Should only be seen once!\n");
+			//Log("Program list size: '%d'", lProgramList.size());
 			mpTestProgram = CreateShaderProgram("TestProgram", "test_frag.glsl", "test_vert.glsl");
 		}
 
@@ -102,7 +103,6 @@ namespace alk {
 	{
 		iShader* pVertShader = mpResources->GetShaderManager()->CreateShader(asVertShader, eVertexShader);
 		if (pVertShader == NULL) { Error("Failed to load vertex shader!\n"); return NULL; }
-		Log("%d'\n", pVertShader);
 		iShader* pPixShader = mpResources->GetShaderManager()->CreateShader(asPixShader, ePixelShader);
 		if (pPixShader == NULL) { Error("Failed to load Fragment shader\n"); mpResources->GetShaderManager()->Delete(pVertShader); return NULL; }
 
@@ -112,7 +112,7 @@ namespace alk {
 		pProgram->Link();
 		pProgram->Bind();
 
-		Log("Program '%s' successfully created!\n", asName.c_str());
+	//	Log("Program '%s' successfully created!\n", asName.c_str());
 
 		return pProgram;
 	}

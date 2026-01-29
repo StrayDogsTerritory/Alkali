@@ -38,7 +38,6 @@ namespace alk {
 
 	void DestroyAlkaliEngine(cEngine* apEngine)
 	{
-		Log("Destroying Engine\n");
 		alkDelete( apEngine );
 	}
 
@@ -52,7 +51,6 @@ namespace alk {
 
 	cEngine::~cEngine()
 	{
-		Log("cEngine Destructor\n");
 		alkDelete(mpGraphics);
 		alkDelete(mpResources);
 		alkDelete(mpSystem);
@@ -74,7 +72,8 @@ namespace alk {
 		mbGameDone = false;
 		
 		// @TODO: REPLACE EVERY HARDCODED VALUE WITH INIT VARS CLASS!!!!!!!!!!!!!!!!!!
-
+		Log("Creating Engine modules\n");
+		Log("---------------------------------------------\n");
 		//create the modules
 		Log("Creating System module\n");
 		mpSystem = mpGame->CreateSystemModule();
@@ -88,8 +87,13 @@ namespace alk {
 		Log("Creating Input module\n");
 		mpInput = mpGame->CreateInputModule();
 		mpInput->SetInputFrozen(true);
+		Log("---------------------------------------------\n\n");
 		//init the modules
+		Log("Initialize Engine Modules\n");
+		Log("---------------------------------------------\n");
+		mpSystem->Init();
 		mpGraphics->Init(mpResources, 1080, 1920 , 0);
+		mpInput->Init();
 		mpResources->Init(mpGraphics);
 
 
@@ -108,6 +112,8 @@ namespace alk {
 	void cEngine::Run()
 	{
 		
+		Log("===================================\n\n");
+
 		mpInput->SetInputFrozen(false);
 		
 		while (!IsGameDone())
@@ -150,8 +156,6 @@ namespace alk {
 
 			mpGraphics->GetLowGraphics()->FlushRender();
 		}
-
-
 	}
 
 	bool cEngine::IsGameDone()

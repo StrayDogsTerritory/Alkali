@@ -17,29 +17,36 @@ namespace alk {
 	cSystem::cSystem(iSystem* apSystemInterface) 
 		: iUpdateable("System")
 	{
-		float fAng = cMath::ToRad(360.0f);
-		Log("'%g'\n", fAng);
-		
-		cQuaternion mqTest(kPI2, tVector3f(1, 0, 0));
-		Log("'%s'\n", mqTest.ToString().c_str());
+		mpSystemInterface = apSystemInterface;
+	}
+
+	cSystem::~cSystem()
+	{
+		Log("---------------------------------------------\n");
+		Log("Quitting system module\n");
+		Log("---------------------------------------------\n\n");
+	}
+
+	bool cSystem::Init()
+	{
+		Log("Initializing system module\n");
 		//////////////////////
 		// @TODO: Don't hardcode this
-		Log("Engine Specifics:\n");
-		Log("Version Number: %s.%s.%s \n", "0", "0", "0");
-		Log("Build ID: %s \n", "20250930094205");
-		Log("Checksum: %u... ", GetChecksumTest());
+		Log("---Engine Specifics---\n");
+		Log(" Version Number: %s.%s.%s \n", "0", "0", "0");
+		Log(" Build ID: %s \n", "20250930094205");
+		GetChecksumTest();
+		Log("Status: ...");
 		if (false)
 		{
 			Log("modified!\n");
 		}
 		else
-			Log("unmodified\n");
-	
+			Log("unmodified!\n");
 
-	}
 
-	cSystem::~cSystem()
-	{
+		Log("---------------------------------------------\n");
+		return true;
 	}
 
 	void cSystem::OnUpdate(float afStep)
@@ -53,8 +60,9 @@ namespace alk {
 
 		if (pFile == NULL)
 		{
+			Error("Couldn't Find Alkali.exe! Current workin directory is '%s'\n", cString::To8BitChar(cPlatform::GetCurrentWorkingDirectory()).c_str());
 			//	fclose(pFile);
-			FatalError("Couldn't find Toronto.exe!\n");
+			//FatalError("Couldn't find Toronto.exe!\n");
 			//exit(1);
 			return NULL;
 		}
@@ -69,10 +77,10 @@ namespace alk {
 
 		tString sTemp = tString(pBuffer);
 
-		Log("Checksum: '%s'\n", sTemp.c_str());
+		Log(" Checksum: '%s'\n", sTemp.c_str());
 
 		int lHash = cString::Hash(sTemp);
-		Log("Hash: '%u'\n", lHash);
+		Log(" Hash: '%u'\n", lHash);
 		alkFree(pBuffer);
 		return lHash;
 	}

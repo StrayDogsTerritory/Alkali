@@ -18,20 +18,30 @@ namespace alk {
 
 	cResources::~cResources()
 	{
-		Log("Destroying Managers\n");
+		Log("---------------------------------------------\n");
+		Log("Quitting resource module\n");
+		Log("Exiting resource managers\n");
+		
 		alkDelete(mpShaderManager);
-		Log("Destroyed All Managers\n");
+		Log(" Shader manager\n");
 
+		Log("Exiting filesearcher\n");
 		alkDelete(mpFileSearcher);
 
+		Log("---------------------------------------------\n\n");
 	}
 
 	bool cResources::Init(cGraphics* apGraphics)
 	{
+		Log("Initializing resource module\n");
 		mpGraphics = apGraphics;
+
+		Log("Creating resource managers\n");
+		Log(" Shader Manager\n");
 		mpShaderManager = alkNew(cShaderManager, (mpGraphics, this));
 		lManagerList.push_back(mpShaderManager);
 
+		Log("---------------------------------------------\n");
 		return true;
 	}
 

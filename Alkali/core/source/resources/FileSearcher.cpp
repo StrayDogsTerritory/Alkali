@@ -43,13 +43,13 @@ namespace alk {
 			mFileSearcherMapIt Pathit = mEntries.find(sNameLow);
 			if (Pathit != mEntries.end() && Pathit->second.msPath == sFilePath)
 			{
-				Warning("file: %s already in container!\n", Pathit->second.msPath);
+				//Warning("file: %s already in container!\n", Pathit->second.msPath);
 				continue;
 			}
 			// add to map
 			mEntries.insert(mFileSearcherMap::value_type(sNameLow, cFileSearcherEntry(sFilePath) ));
-			size_t lDebugCount = mEntries.size();
-			Log("Container size: %d\n Added file: '%s' at '%ls'\n", lDebugCount, sNameLow.c_str(), sFilePath.c_str());
+			//size_t lDebugCount = mEntries.size();
+			//Log("Container size: %d\n Added file: '%s' at '%ls'\n", lDebugCount, sNameLow.c_str(), sFilePath.c_str());
 		}
 
 		if (abAddSubDirs)

@@ -17,6 +17,8 @@ namespace alk {
 		cSystem(iSystem* apSystemInterface);
 		~cSystem();
 
+		bool Init();
+
 		void OnUpdate(float afStep);
 
 		iSystem* GetSystemInt() { return mpSystemInterface; }
@@ -27,8 +29,6 @@ namespace alk {
 	private:
 		iSystem* mpSystemInterface;
 		static int GetChecksumTest();
-
-		int mlUpdateTest;
 	};
 
 }

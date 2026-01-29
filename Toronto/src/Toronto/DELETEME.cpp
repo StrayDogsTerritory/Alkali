@@ -23,7 +23,7 @@ void cActionTest::OnUpdate(float afStep)
 	if (gpBase->GetEngine()->GetInput()->BecameTriggered("Test Action"))
 	{
 		cDate Time = cPlatform::GetLocalTime();
-		Log("Button Pushed at '%s %d'\n", Time.ToString().c_str(), cPlatform::GetAppTime());
+		//Log("Button Pushed at '%s %d'\n", Time.ToString().c_str(), cPlatform::GetAppTime());
 		
 		//gpBase->GetEngine()->GetSystem()->TestString();
 		gpBase->GetEngine()->GetGraphics()->CreateTempVtxBuffer(tVector3f(1) * i);

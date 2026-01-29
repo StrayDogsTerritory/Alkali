@@ -24,7 +24,7 @@ namespace alk {
 			
 			msName = SDL_GetGamepadName(mpHandle);
 			
-			mvGamepadButtonArray.resize(eGamepadButton_LastEnum + 0); //fix crashes related from buffer overflowing
+			mvGamepadButtonArray.resize(eGamepadButton_LastEnum); //fix crashes related from buffer overflowing
 			mvGamepadButtonArray.assign(mvGamepadButtonArray.size(), false);
 			
 		}

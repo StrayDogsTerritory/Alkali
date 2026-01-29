@@ -36,6 +36,8 @@ namespace alk {
 		cInput(iInput* apInputInterface);
 		~cInput();
 
+		bool Init();
+
 		void OnUpdate(float afStep);
 
 		bool GetIsQuit();

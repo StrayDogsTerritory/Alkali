@@ -14,22 +14,45 @@ namespace alk {
 
 		SetRelativeMouse(false);
 
-		mpKeyboard = mpInput->CreateKeyboard();
-		mLstDevice.push_back(mpKeyboard);
-		mpMouse = mpInput->CreateMouse();
-		mLstDevice.push_back(mpMouse);
+		
 
 		// @TODO: what to do about controllers?
 	}
 
 	cInput::~cInput()
 	{
-		if(mpKeyboard)alkDelete(mpKeyboard);
-		if(mpMouse)alkDelete(mpMouse);
+		Log("---------------------------------------------\n");
+		Log("Quitting input module\n");
 
-		DeleteAllMap(mMapActionName);
-//		DeleteAllMap(mMapActionID);
+		Log(" Quitting input devices\n");
+		if (mpKeyboard)alkDelete(mpKeyboard); Log("  Keyboard\n");
+		if (mpMouse)alkDelete(mpMouse); Log("  Mouse\n");
+
+		Log("  Quitting Gamepads\n");
 		DeleteAll(mLstGamepad);
+
+		Log("Deleting actions\n");
+		DeleteAllMap(mMapActionName);
+
+		Log("---------------------------------------------\n\n");
+	}
+
+	bool cInput::Init()
+	{
+		Log("Initializing input module\n");
+
+		Log("Creating input devices\n");
+		mpKeyboard = mpInput->CreateKeyboard();
+		mLstDevice.push_back(mpKeyboard);
+		mpMouse = mpInput->CreateMouse();
+		mLstDevice.push_back(mpMouse);
+
+		Log("Creating gamepads\n");
+		// reset the controlls once at start  @TODO: maybe don't though
+		ResetGamepads();
+
+		Log("---------------------------------------------\n");
+		return true;
 	}
 
 	void cInput::OnUpdate(float afStep)
@@ -130,11 +153,11 @@ namespace alk {
 			if (pGamepad->GetName() == "")
 			{
 				alkDelete(pGamepad);
-				Error("Gamepad index '%d' Could not be created!\n", i);
+				Error("Gamepad at index '%d' Could not be created!\n", i);
 			}
 
 			// test
-			Log("Gamepad Name: '%s'\n", pGamepad->GetName().c_str());
+			//Log("Gamepad Name: '%s'\n", pGamepad->GetName().c_str());
 
 			mLstGamepad.push_back(pGamepad);
 			mLstDevice.push_back(pGamepad);

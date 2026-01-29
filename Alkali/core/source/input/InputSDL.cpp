@@ -34,8 +34,6 @@ namespace alk {
 		SDL_Event lEvent;
 		while (SDL_PollEvent(&lEvent))
 		{
-			Log("Event: %u\n", lEvent.type);
-
 			if (lEvent.type == SDL_EVENT_QUIT)
 			{
 				mbQuitting = true;

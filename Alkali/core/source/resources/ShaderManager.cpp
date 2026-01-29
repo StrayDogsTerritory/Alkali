@@ -20,7 +20,6 @@ namespace alk {
 	cShaderManager::~cShaderManager()
 	{
 		DestroyAll();
-		Log("Destroyed ShaderManager");
 	}
 
 
@@ -41,7 +40,6 @@ namespace alk {
 			}
 
 			AddResource(pShader);
-			Log("added as resource\n");
 		}
 
 		if (pShader) 
@@ -50,7 +48,6 @@ namespace alk {
 		}
 		else Error("Couldn't load Shader '%s'!\n", asName.c_str());
 
-		Log("returned\n");
 		return pShader;
 	}
 
