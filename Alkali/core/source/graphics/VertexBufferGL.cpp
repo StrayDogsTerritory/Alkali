@@ -52,15 +52,15 @@ namespace alk {
 	{
 		switch (aDrawType)
 		{
-		case eDrawtype_Static: GL_STATIC_DRAW;
-		case eDrawtype_Dynamic: GL_DYNAMIC_DRAW;
-		case eDrawtype_Stream: GL_STREAM_DRAW;
+		case eDrawtype_Static: return GL_STATIC_DRAW;
+		case eDrawtype_Dynamic: return GL_DYNAMIC_DRAW;
+		case eDrawtype_Stream: return GL_STREAM_DRAW;
 		}
 
 		return 0;
 	}
 
-	cVertexBufferGL::cVertexBufferGL()
+	cVertexBufferGL::cVertexBufferGL(eVertexBufferDrawType aDrawType, eVertexBufferPrimitiveAssemblyType aPrimAssemblyType) : iVertexBuffer(aDrawType,aPrimAssemblyType)
 	{
 		for (int i = 0; i < eElementArrayType_LastEnum; i++)
 		{
@@ -68,11 +68,10 @@ namespace alk {
 		}
 		mlBufferID = 0;
 		mlBufferArrayID = 0;
-	//	glGenVertexArrays(1, (GLuint*)&mlBufferArrayID);
-		// bind the VAO globally, so I don't have to deal with it
-		//glBindVertexArray(mlBufferArrayID);
-		// test to see if it stops crashing
-	//	mvIndexArray.reserve(50);
+
+		mDrawType = aDrawType;
+		mPrimAssemblyType = aPrimAssemblyType;
+	
 	}
 
 	cVertexBufferGL::~cVertexBufferGL()
@@ -94,7 +93,9 @@ namespace alk {
 
 	void cVertexBufferGL::Compile(eVertexBufferDrawType aDrawType)
 	{
-		eVertexBufferDrawType DrawType = aDrawType;
+		GLenum DrawType = GL_STATIC_DRAW;
+		if (mDrawType == eDrawtype_Dynamic) DrawType = GL_DYNAMIC_DRAW;
+		else if (mDrawType == eDrawtype_Stream) DrawType = GL_STREAM_DRAW;
 
 		for (int i = 0; i < mvElementArray.size(); ++i)
 		{
@@ -105,16 +106,16 @@ namespace alk {
 			glGenBuffers(1, (GLuint*)&pArr->mlID);
 			glBindBuffer(GL_ARRAY_BUFFER, pArr->mlID);
 			// @TODO: Dont hard code this
-			glBufferData(GL_ARRAY_BUFFER, pArr->Size() * pArr->GetArrayStepSize(), pArr->GetDataArray(), GetGLDrawTypeFromEnum(DrawType));
+			glBufferData(GL_ARRAY_BUFFER, pArr->Size() * pArr->GetArrayStepSize(), pArr->GetDataArray(), DrawType);
 			//glEnableVertexAttribArray(i);
 			//glVertexAttribPointer(i, pArr->mlElementNum, Format, GL_FALSE, 0, (void*)NULL);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}
-		glBindVertexArray(mlBufferArrayID);
+
 		glGenBuffers(1, (GLuint*)&mlBufferID);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mlBufferID);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, (int)mvIndexArray.size() * sizeof(unsigned int), &mvIndexArray[0], GetGLDrawTypeFromEnum(aDrawType));
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, (int)mvIndexArray.size() * sizeof(unsigned int), &mvIndexArray[0], DrawType);
 		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 		glGenVertexArrays(1, (GLuint*)&mlBufferArrayID);
 	
@@ -123,11 +124,14 @@ namespace alk {
 
 	void cVertexBufferGL::Draw(eVertexBufferPrimitiveAssemblyType aType)
 	{
+		eVertexBufferPrimitiveAssemblyType PrimAsm = aType == ePrimitiveAssemblyType_LastEnum ? mPrimAssemblyType : aType;
+		GLenum PrimMode = GetGLPrimitiveAssemblyTypeFromEnum(PrimAsm);
+
 		glBindVertexArray(mlBufferArrayID);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mlBufferID);
 
-		glDrawElements(GL_TRIANGLES, mvIndexArray.size(), GL_UNSIGNED_INT, (void*)NULL);
+		glDrawElements(PrimMode, mvIndexArray.size(), GL_UNSIGNED_INT, (void*)NULL);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 

@@ -136,7 +136,7 @@ namespace alk {
 		}*/
 
 
-		iVertexBuffer* pBox = mpGraphics->CreateVertexBuffer();
+		iVertexBuffer* pBox = mpGraphics->CreateVertexBuffer(eDrawtype_Static,ePrimitiveAssemblyType_Tri);
 		pBox->CreateElementArray(eElementArrayType_Position, eArrayFormat_Float, 4);
 		pBox->CreateElementArray(eElementArrayType_Normals, eArrayFormat_Float, 3);
 		pBox->CreateElementArray(eElementArrayType_Colour, eArrayFormat_Float, 4);

@@ -17,9 +17,11 @@ namespace alk {
 		~cNode();
 
 		void CreateChild(cNode* apChildNode);
-		void RemoveChild()
+		void RemoveChild(cNode* apChildNode);
 
-	protected:
+		void DestroyAllChildren();
+
+	private:
 
 		std::multimap<tString, cNode*> mChildMap;
 

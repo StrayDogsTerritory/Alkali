@@ -38,6 +38,9 @@ namespace alk {
 		SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
 		SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
 
+		int NumDrivers = SDL_GetNumVideoDrivers();
+		
+
 		unsigned int mlFlags = SDL_WINDOW_OPENGL; // | SDL_WINDOW_FULLSCREEN;
 
 
@@ -49,6 +52,16 @@ namespace alk {
 		//SetWindowFullscreen(true);
 		//SetWindowBorderless(true);
 		mGLContext = SDL_GL_CreateContext(mpSDLWindow);
+		// log window details
+		Log("Created Window: %s, dims: %dx%d,bpp: %d flags: %d\n",SDL_GetWindowTitle(mpSDLWindow),alWidth,alHeight,0,(int)SDL_GetWindowFlags(mpSDLWindow));
+
+
+		//get available video drivers
+		Log("Number of available video drivers: %d\n", NumDrivers);
+		for (size_t i = 0; i < NumDrivers; ++i)
+		{
+			Log("(%d): %s\n", i, SDL_GetVideoDriver(i));
+		}
 
 		// init GLEW
 		unsigned int lGLEWWorks = glewInit();
@@ -89,11 +102,24 @@ namespace alk {
 		
 		glViewport(0, 0, 1920, 1080);
 
-	
+		LogGPUInfo();
 
 		return true;
+	}
 
+	void cGraphicsSDL::LogGPUInfo()
+	{
+		Log("---GPU Specifics---\n");
+		Log(" Renderer: %s\n",glGetString(GL_RENDERER)); //Renderer
+		Log(" Vendor: %s\n",glGetString(GL_VENDOR)); //Vendor
+		Log(" GL Version: %s\n",glGetString(GL_VERSION)); //Driver version
+		Log(" GLSL Version: %s\n",glGetString(GL_SHADING_LANGUAGE_VERSION)); //GLSL version
+		Log("GPU maximums\n");
+	}
 
+	int cGraphicsSDL::GetCardMaxes()
+	{
+		return 0;
 	}
 
 	iShader* cGraphicsSDL::CreateShader(const tString& asName, eShaderType aType)
@@ -106,9 +132,9 @@ namespace alk {
 		return alkNew(cGLSLGpuProgram, (asName));
 	}
 
-	iVertexBuffer* cGraphicsSDL::CreateVertexBuffer()
+	iVertexBuffer* cGraphicsSDL::CreateVertexBuffer(eVertexBufferDrawType aDrawType, eVertexBufferPrimitiveAssemblyType aPrimAssemblyType)
 	{
-		return alkNew(cVertexBufferGL, ());
+		return alkNew(cVertexBufferGL, (aDrawType, aPrimAssemblyType));
 	}
 
 
