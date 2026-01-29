@@ -25,12 +25,13 @@ void cActionTest::OnUpdate(float afStep)
 		cDate Time = cPlatform::GetLocalTime();
 		Log("Button Pushed at '%s %d'\n", Time.ToString().c_str(), cPlatform::GetAppTime());
 		
-		gpBase->GetEngine()->GetSystem()->TestString();
+		//gpBase->GetEngine()->GetSystem()->TestString();
 		gpBase->GetEngine()->GetGraphics()->CreateTempVtxBuffer(tVector3f(1) * i);
-		gpBase->GetEngine()->GetGraphics()->SetClearColourTest(cMath::Rand(cColour(0,1), cColour(1,1)));
+		//gpBase->GetEngine()->GetGraphics()->GetLowGraphics()->SwapBuffer();
+		//gpBase->GetEngine()->GetGraphics()->SetClearColourTest(cMath::Rand(cColour(0,1), cColour(1,1)));
 		i++;
 		//cPlatform::ExecuteURL(L"https://pbs.twimg.com/media/E1IiCJPXoAI0DYP?format=jpg&name=large"); 
-		gpBase->GetEngine()->GetInput()->GetGamepad(0)->RumbleController(0xFFFF, 0xFFFF, 1500);
+		//gpBase->GetEngine()->GetInput()->GetGamepad(0)->RumbleController(0xFFFF, 0xFFFF, 1500);
 	}
 
 	if (gpBase->GetEngine()->GetInput()->BecameTriggered("TestMouseButton"))
@@ -45,6 +46,6 @@ void cActionTest::OnUpdate(float afStep)
 
 	if (gpBase->GetEngine()->GetInput()->IsTriggered("TestGamepadButton2"))
 	{
-		gpBase->GetEngine()->GetInput()->GetGamepad(0)->RumbleController(0xFFFF, 0xFFFF, 1500);
+		//gpBase->GetEngine()->GetInput()->GetGamepad(0)->RumbleController(0xFFFF, 0xFFFF, 1500);
 	}
 }

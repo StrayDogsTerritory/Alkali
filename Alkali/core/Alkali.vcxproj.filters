@@ -199,9 +199,6 @@
     <ClInclude Include="include\system\LogicTimer.h">
       <Filter>System</Filter>
     </ClInclude>
-    <ClInclude Include="source\system\SystemInterface.h">
-      <Filter>System</Filter>
-    </ClInclude>
     <ClInclude Include="include\system\SystemSDL.h">
       <Filter>System</Filter>
     </ClInclude>
@@ -287,6 +284,24 @@
       <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="include\graphics\MeshNode.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\MeshManager.h">
+      <Filter>Resources\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\TextureManager.h">
+      <Filter>Resources\Managers</Filter>
+    </ClInclude>
+    <ClInclude Include="include\graphics\Bitmap.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="include\system\SystemInterface.h">
+      <Filter>System</Filter>
+    </ClInclude>
+    <ClInclude Include="include\math\Quaternion.h">
+      <Filter>Math</Filter>
+    </ClInclude>
+    <ClInclude Include="include\Scene\World.h">
       <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
@@ -425,6 +440,12 @@
     </ClCompile>
     <ClCompile Include="source\input\InputEventGamepadButton.cpp">
       <Filter>Input\Input Event</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\Quaternion.cpp">
+      <Filter>Math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\graphics\Bitmap.cpp">
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

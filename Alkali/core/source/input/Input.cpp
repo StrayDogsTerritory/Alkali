@@ -29,21 +29,24 @@ namespace alk {
 
 		DeleteAllMap(mMapActionName);
 //		DeleteAllMap(mMapActionID);
+		DeleteAll(mLstGamepad);
 	}
 
 	void cInput::OnUpdate(float afStep)
 	{
 		mpInput->Update(afStep);
 
-		for (tInputDeviceIt it = mLstDevice.begin(); it != mLstDevice.end(); ++it)
-		{
-			(*it)->Update();
-		}
+		
+			for (tInputDeviceIt it = mLstDevice.begin(); it != mLstDevice.end(); ++it)
+			{
+				(*it)->Update();
+			}
 
-		for (tActionNameMapIterator it = mMapActionName.begin(); it != mMapActionName.end(); ++it)
-		{
-			it->second->Update(afStep);
-		}
+			for (tActionNameMapIterator it = mMapActionName.begin(); it != mMapActionName.end(); ++it)
+			{
+				it->second->Update(afStep);
+			}
+		
 	}
 
 	cAction* cInput::CreateAction(const tString& asName, int alID)
@@ -129,6 +132,9 @@ namespace alk {
 				alkDelete(pGamepad);
 				Error("Gamepad index '%d' Could not be created!\n", i);
 			}
+
+			// test
+			Log("Gamepad Name: '%s'\n", pGamepad->GetName().c_str());
 
 			mLstGamepad.push_back(pGamepad);
 			mLstDevice.push_back(pGamepad);

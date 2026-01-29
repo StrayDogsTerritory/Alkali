@@ -40,6 +40,8 @@ namespace alk {
 
 		bool GetIsQuit();
 
+		bool GetInputFrozen() { return mbInputFrozen; }
+		void SetInputFrozen(bool abX) { mbInputFrozen = abX; }
 		void SetRelativeMouse(bool abX);
 
 		cAction* CreateAction(const tString& asName, int alID = -1);
@@ -66,7 +68,7 @@ namespace alk {
 		iGamepad* GetGamepad(int alIndex);
 
 	private:
-
+		bool mbInputFrozen;
 		// test some bullshit SDL 3 throws at me
 		bool mbFirstTime;
 

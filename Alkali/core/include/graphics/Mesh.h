@@ -18,6 +18,8 @@ namespace alk {
 		iVertexBuffer* GetVertexBuffer() { return mpVertexBuffer; }
 		void SetVertexBuffer(iVertexBuffer* apVertexBuffer) { mpVertexBuffer = apVertexBuffer; }
 
+		void CreateFromFile();
+
 	private:
 		twString msFilePath;
 		tString msName;

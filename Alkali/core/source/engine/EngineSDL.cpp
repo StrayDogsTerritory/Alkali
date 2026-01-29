@@ -33,7 +33,7 @@ namespace alk {
 
 	cSDLEngine::~cSDLEngine()
 	{
-		alkDelete(mpGraphicsSDL);	
+		alkDelete(mpGraphicsSDL);
 		alkDelete(mpSystemSDL);
 		alkDelete(mpInputSDL);
 	}

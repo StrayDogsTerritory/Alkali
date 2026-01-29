@@ -86,20 +86,10 @@ namespace alk {
 
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT);
 		
-		glMatrixMode(GL_MODELVIEW);
-		glLoadIdentity();
-		glMatrixMode(GL_PROJECTION);
-		glLoadIdentity();
-
-
-		/*glEnableClientState(GL_VERTEX_ARRAY);
-		glEnableClientState(GL_COLOR_ARRAY);
-		glEnableClientState(GL_TEXTURE_COORD_ARRAY);
-		glDisableClientState(GL_NORMAL_ARRAY);
 		
-		glDisableClientState(GL_INDEX_ARRAY);
-		glDisableClientState(GL_EDGE_FLAG_ARRAY);*/
+		glViewport(0, 0, 1920, 1080);
 
+	
 
 		return true;
 

@@ -8,9 +8,13 @@ namespace alk {
 	class iTexture : public iResourceBase
 	{
 	public:
+		iTexture();
+		~iTexture();
 
+		bool CreateCubemap();
+		bool CreateTexture();
 
-	private:
+	protected:
 	};
 
 }

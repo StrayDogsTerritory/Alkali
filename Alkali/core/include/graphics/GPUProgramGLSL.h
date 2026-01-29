@@ -18,7 +18,8 @@ namespace alk {
 		void Bind();
 		void UnBind();
 
-	protected:
+	private:
+		static int mlCurrentProgram;
 		GLint mlProgramID;
 	};
 }

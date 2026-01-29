@@ -236,4 +236,18 @@ namespace alk {
 			0, 0, 1, 0,
 			0, 0, 0, 1);
 	}
+	tMatrixf cMath::Rotate(eEulerRotationOrder aOrder, tVector3f avRot)
+	{
+		tMatrixf mtxTransform = tMatrixf::identity;
+
+		switch (aOrder)
+		{
+		case eRotationOrder_XYZ:
+			mtxTransform = MatrixMul(RotateX(avRot.x), mtxTransform);
+			mtxTransform = MatrixMul(RotateY(avRot.y), mtxTransform);
+			mtxTransform = MatrixMul(RotateZ(avRot.z), mtxTransform);
+
+			return mtxTransform;
+		}
+	}
 }

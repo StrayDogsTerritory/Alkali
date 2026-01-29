@@ -43,7 +43,9 @@ namespace alk {
 
 		if (mpFile)
 		{
-			fprintf(mpFile, "%s", asMessage.c_str());
+			cDate Date = cPlatform::GetLocalTime();
+			tString sDate = Date.ToStringTime();
+			fprintf(mpFile,"%s",asMessage.c_str());
 			fflush(mpFile);
 		}
 	}

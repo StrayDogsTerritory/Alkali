@@ -20,6 +20,8 @@
 #include "math/Vector2.h"
 #include "math/Vector3.h"
 
+#include <IL/il.h>
+
 namespace alk {
 
 	cGraphics::cGraphics(iGraphics* apGraphics) : iUpdateable("Graphics")
@@ -27,6 +29,8 @@ namespace alk {
 		mpResources = NULL;
 		mpGraphics = apGraphics;
 
+		mbCreatedProgram = false;
+		mpTestProgram = NULL;
 	}
 
 	cGraphics::~cGraphics()
@@ -53,19 +57,35 @@ namespace alk {
 		//mpGraphics->SwapBuffer();
 		
 		//CreateShaderProgram("testProgram", "test_frag.glsl", "test_vert.glsl");
-
-		
 		return true;
 	}
 
 	void cGraphics::OnUpdate(float afStep)
 	{
 		Log("VtxBuff size: '%d'\n", lVtxBuffList.size());
+
+		
+		if (mbCreatedProgram == false)
+		{
+			mbCreatedProgram = true;
+			Log("Created Program. Should only be seen once!\n");
+			Log("Program list size: '%d'", lProgramList.size());
+			mpTestProgram = CreateShaderProgram("TestProgram", "test_frag.glsl", "test_vert.glsl");
+		}
+
+		//CreateTempVtxBuffer(1);
+
 		for (tVtxBuffListIt it = lVtxBuffList.begin(); it != lVtxBuffList.end(); ++it)
 		{
 			iVertexBuffer* pBuff = (*it);
+			
+			mpTestProgram->Bind();
+
 			pBuff->Bind();
 			pBuff->Draw();
+			pBuff->UnBind();
+
+			//mpTestProgram->UnBind();
 		}
 	}
 
@@ -192,6 +212,7 @@ namespace alk {
 
 		pBox->Compile();
 
+		DeleteAll(lVtxBuffList);
 		lVtxBuffList.push_back(pBox);
 
 		return pBox;

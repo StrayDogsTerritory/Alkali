@@ -8,7 +8,7 @@ namespace alk {
 	cMouseSDL::cMouseSDL(cInputSDL* apInputSDL)
 	{
 		mpInputSDL = apInputSDL;
-		mvMouseButtonArray.resize(eMouseButton_LastEnum);
+		mvMouseButtonArray.resize(eMouseButton_LastEnum + 1); //fix crashes related from buffer overflowing
 		mbActive = false;
 
 		//clear the array to start

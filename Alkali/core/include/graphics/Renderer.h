@@ -9,6 +9,8 @@ namespace alk {
 		iRenderer();
 		~iRenderer();
 
+		void Render();
+
 		void Update(float afStep);
 	};
 

@@ -28,9 +28,12 @@ enum eGamepadButton
 	eGamepadButton_Left_Stick, // L3
 	eGamepadButton_Right_Stick, // R3
 
+	eGamepadButton_Touchpad, // touchpad on PS controllers
+
 	// special buttons... hard to name for nintendo controllers
 	eGamepadButton_Options,
-	eGamepadButton_Special_2, // nintendo - button or PS middle thing, not a thing for XBox controllers... arrgh why couldn't they standardize this shit!!!!
+	eGamepadButton_Social,
+	eGamepadButton_Special_3, // nintendo - button or PS middle thing, not a thing for XBox controllers... arrgh why couldn't they standardize this shit!!!!
 
 	// hat or what ever its called
 	eGamepadButton_Hat_Up,

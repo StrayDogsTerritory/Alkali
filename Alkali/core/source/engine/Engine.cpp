@@ -14,6 +14,8 @@
 
 #include "system/LogicTimer.h"
 #include "system/System.h"
+#include "system/SystemInterface.h"
+#include "system/SystemTypes.h"
 
 #include "engine/Updater.h"
 #include "engine/Updateable.h"
@@ -85,9 +87,9 @@ namespace alk {
 
 		Log("Creating Input module\n");
 		mpInput = mpGame->CreateInputModule();
-
+		mpInput->SetInputFrozen(true);
 		//init the modules
-		mpGraphics->Init(mpResources, 720, 980 , 0);
+		mpGraphics->Init(mpResources, 1080, 1920 , 0);
 		mpResources->Init(mpGraphics);
 
 
@@ -99,24 +101,30 @@ namespace alk {
 		mpUpdater->AddEngineModule(mpSystem);
 		mpUpdater->AddEngineModule(mpInput);
 		mpUpdater->AddEngineModule(mpGraphics);
-
-		Log("Test Size: cGrahics: '%d'\n", sizeof(cGraphics));
-
+		
 		return true;
 	}
 
 	void cEngine::Run()
 	{
-		mpGraphics->GetLowGraphics()->SwapBuffer();
-		Log("Started cEngine::Run\n");
+		
+		mpInput->SetInputFrozen(false);
+		
 		while (!IsGameDone())
 		{
 		//	Log("Running !IsGameDoneLoop\n");
 			while (mpLogicTimer->WantUpdate()) //&& !IsGameDone())
 			{
+				
 				mpUpdater->RunEngineUpdate(eUpdateableMessageType_OnPreUpdate,mpLogicTimer->GetUpdateStep());
+		
+
+		
 				mpUpdater->RunEngineUpdate(eUpdateableMessageType_OnUpdate, mpLogicTimer->GetUpdateStep());
+			
+		
 				mpUpdater->RunEngineUpdate(eUpdateableMessageType_OnPostUpdate, mpLogicTimer->GetUpdateStep());
+			
 
 				if (mbDevicePlugged)
 				{
@@ -138,6 +146,9 @@ namespace alk {
 
 
 			mpGraphics->GetLowGraphics()->SwapBuffer();
+
+
+			mpGraphics->GetLowGraphics()->FlushRender();
 		}
 
 

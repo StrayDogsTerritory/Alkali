@@ -4,22 +4,31 @@
 #include "math/Vector2.h"
 #include "math/Vector3.h"
 #include "math/Matrix.h"
+#include "math/Quaternion.h"
+
+#include <map>
 
 namespace alk {
-	class iNode
+
+	class cNode
 	{
 	public:
-		iNode();
-		virtual ~iNode();
+		cNode(cNode* apParent);
+		~cNode();
+
+		void CreateChild(cNode* apChildNode);
+		void RemoveChild()
 
 	protected:
+
+		std::multimap<tString, cNode*> mChildMap;
+
 		tMatrixf mMtxTransform;
 
 		tVector3f mvLocalPos;
 		tVector3f mvWorldPos;
 
-		tVector3f mvRot; //@TODO: make this a Quat when I implement it
-
+		cQuaternion mqRot;
 		tVector3f mvScale;
 	};
 }

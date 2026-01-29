@@ -58,16 +58,16 @@ namespace alk {
 	};
 
 #define alkNew(constructor, params) \
-	( constructor* ) cMemoryManager::AddPointer(alk::cAllocatedPointer( new constructor params, __FILE__, __LINE__, sizeof(constructor)))
+	( constructor* ) alk::cMemoryManager::AddPointer(alk::cAllocatedPointer( new constructor params, __FILE__, __LINE__, sizeof(constructor)))
 
-#define alkNewArray(constructor, amount) \
-	( constructor* ) cMemoryManager::AddPointer(alk::cAllocatedPointer( new constructor[amount], __FILE__, __LINE__, amount * sizeof(constructor) )))
+#define alkNewArray(Type, amount) \
+	( Type* ) alk::cMemoryManager::AddPointer(alk::cAllocatedPointer( new Type [amount], __FILE__, __LINE__, amount * sizeof(Type)))
 
 #define alkMalloc(amount) \
-	 cMemoryManager::AddPointer(alk::cAllocatedPointer( malloc(amount), __FILE__, __LINE__, amount))
+	 alk::cMemoryManager::AddPointer(alk::cAllocatedPointer( malloc(amount), __FILE__, __LINE__, amount))
 
 #define alkRealloc(oldPointer, amount) \
-	 cMemoryManager::UpdatePointer(oldPointer, alk::cAllocatedPointer( realloc(oldPointer, size), __FILE__, __LINE__, amount))
+	 alk::cMemoryManager::UpdatePointer(oldPointer, alk::cAllocatedPointer( realloc(oldPointer, amount), __FILE__, __LINE__, amount))
 
 #define alkDelete(data){ \
 			alk::cMemoryManager::DeletePointer(alk::cMemoryManager::DeleteAndReturn(data),__FILE__,__LINE__); \

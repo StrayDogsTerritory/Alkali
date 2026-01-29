@@ -30,9 +30,9 @@ namespace alk {
 		return 0;
 	}
 
-	static unsigned int GetGLDrawTypeFromEnum(eVertexBufferPrimitiveAssemblyType aDrawType)
+	static unsigned int GetGLPrimitiveAssemblyTypeFromEnum(eVertexBufferPrimitiveAssemblyType aPrimAssemblyType)
 	{
-		switch (aDrawType)
+		switch (aPrimAssemblyType)
 		{
 		case ePrimitiveAssemblyType_Tri: return GL_TRIANGLES;
 		case ePrimitiveAssemblyType_TriFan: return GL_TRIANGLE_FAN;
@@ -48,6 +48,18 @@ namespace alk {
 		return 0;
 	}
 
+	unsigned int GetGLDrawTypeFromEnum(eVertexBufferDrawType aDrawType)
+	{
+		switch (aDrawType)
+		{
+		case eDrawtype_Static: GL_STATIC_DRAW;
+		case eDrawtype_Dynamic: GL_DYNAMIC_DRAW;
+		case eDrawtype_Stream: GL_STREAM_DRAW;
+		}
+
+		return 0;
+	}
+
 	cVertexBufferGL::cVertexBufferGL()
 	{
 		for (int i = 0; i < eElementArrayType_LastEnum; i++)
@@ -55,13 +67,18 @@ namespace alk {
 			mvElementArrayIndex[i] = -1;
 		}
 		mlBufferID = 0;
-
+		mlBufferArrayID = 0;
+	//	glGenVertexArrays(1, (GLuint*)&mlBufferArrayID);
+		// bind the VAO globally, so I don't have to deal with it
+		//glBindVertexArray(mlBufferArrayID);
 		// test to see if it stops crashing
 	//	mvIndexArray.reserve(50);
 	}
 
 	cVertexBufferGL::~cVertexBufferGL()
 	{
+		//glBindVertexArray(0);
+
 		for (int i = 0; i < mvElementArray.size(); i++)
 		{
 			cVertexElementArray* pArr = mvElementArray[i];
@@ -69,40 +86,52 @@ namespace alk {
 		}
 
 		glDeleteBuffers(1, (GLuint*)&mlBufferID);
-
 		DeleteAll(mvElementArray);
+		glDeleteVertexArrays(1, (GLuint*)&mlBufferArrayID);
+		
 	}
 
 
-	void cVertexBufferGL::Compile()
+	void cVertexBufferGL::Compile(eVertexBufferDrawType aDrawType)
 	{
+		eVertexBufferDrawType DrawType = aDrawType;
 
-		for (int i = 0; i < mvElementArray.size(); i++)
+		for (int i = 0; i < mvElementArray.size(); ++i)
 		{
 			cVertexElementArray* pArr = mvElementArray[i];
+
+			GLenum Format = GetGLFormatFromEnum(pArr->mFormat);
 
 			glGenBuffers(1, (GLuint*)&pArr->mlID);
 			glBindBuffer(GL_ARRAY_BUFFER, pArr->mlID);
 			// @TODO: Dont hard code this
-			glBufferData(GL_ARRAY_BUFFER, pArr->Size() * sizeof(float), pArr->GetDataArray(), GL_STATIC_DRAW);
-
+			glBufferData(GL_ARRAY_BUFFER, pArr->Size() * pArr->GetArrayStepSize(), pArr->GetDataArray(), GetGLDrawTypeFromEnum(DrawType));
+			//glEnableVertexAttribArray(i);
+			//glVertexAttribPointer(i, pArr->mlElementNum, Format, GL_FALSE, 0, (void*)NULL);
 			glBindBuffer(GL_ARRAY_BUFFER, 0);
 		}
-
+		glBindVertexArray(mlBufferArrayID);
 		glGenBuffers(1, (GLuint*)&mlBufferID);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mlBufferID);
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, (int)mvIndexArray.size() * sizeof(unsigned int), &mvIndexArray[0], GL_STATIC_DRAW);
 
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mlBufferID);
+		glBufferData(GL_ELEMENT_ARRAY_BUFFER, (int)mvIndexArray.size() * sizeof(unsigned int), &mvIndexArray[0], GetGLDrawTypeFromEnum(aDrawType));
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+		glGenVertexArrays(1, (GLuint*)&mlBufferArrayID);
+	
+		glBindVertexArray(0);
 	}
 
-	void cVertexBufferGL::Draw()
+	void cVertexBufferGL::Draw(eVertexBufferPrimitiveAssemblyType aType)
 	{
+		glBindVertexArray(mlBufferArrayID);
+
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mlBufferID);
 
-		glDrawElements(GL_TRIANGLES, mvIndexArray.size(), GL_UNSIGNED_INT, (char*)NULL);
+		glDrawElements(GL_TRIANGLES, mvIndexArray.size(), GL_UNSIGNED_INT, (void*)NULL);
 
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
+
+		glBindVertexArray(0);
 	}
 
 	void cVertexBufferGL::Transform()
@@ -157,51 +186,67 @@ namespace alk {
 		mvIndexArray.push_back(alX);
 	}
 
+	//@TODO: Don't harcode this
 	void cVertexBufferGL::Bind()
 	{ 
-		for (int i = 0; i < mvElementArray.size(); ++i)
-		{
-			cVertexElementArray* pElem = mvElementArray[i];
-			if (pElem->mType == eElementArrayType_Position) continue;
+		glBindVertexArray(mlBufferArrayID);
 
-			GLenum mFormat = GetGLFormatFromEnum(pElem->mFormat);
-
-			glEnableClientState(GetGLTypeFromEnum(pElem->mType));
-
-			glBindBuffer(GL_ARRAY_BUFFER, pElem->mlID);
-
-			switch (pElem->mType)
-			{
-			case eElementArrayType_Normals:
-				glNormalPointer(mFormat, 0, (char*)NULL);
-				break;
-
-			case eElementArrayType_Colour:
-				glColorPointer(pElem->mlElementNum, mFormat, 0, (char*)NULL);
-				break;
-
-			}
-		}
 
 		for (int i = 0; i < mvElementArray.size(); ++i)
 		{
+
 			cVertexElementArray* pElem = mvElementArray[i];
-			if (pElem->mType != eElementArrayType_Position) continue;
-
-			GLenum mFormat = GetGLFormatFromEnum(pElem->mFormat);
-
-			glEnableClientState(GetGLTypeFromEnum(pElem->mType));
-
-			glBindBuffer(GL_ARRAY_BUFFER, pElem->mlID);
-			glVertexPointer(pElem->mlElementNum, mFormat, 0, (char*)NULL);
 			
+			// check if we need to use glVertexAttribIPointer
+			// ;@TODO: could optimize this in the future since the type will always be GL_FLOAT
+			GLenum eFormat = GetGLFormatFromEnum(pElem->mFormat);
+
+			glEnableVertexAttribArray(i);
+
+			glBindBuffer(GL_ARRAY_BUFFER, pElem->mlID);
+			glVertexAttribPointer(i, pElem->mlElementNum, eFormat, GL_FALSE, 0, (void*)NULL);
 		}
-		glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+		//for (int i = 0; i < mvElementArray.size(); ++i)
+		//{
+
+		//	cVertexElementArray* pElem = mvElementArray[i];
+
+		//	// check if we need to use glVertexAttribIPointer
+		//	if (pElem->mFormat != eArrayFormat_Int && pElem->mFormat != eArrayFormat_Byte) continue;
+
+		//	GLenum eFormat = GetGLFormatFromEnum(pElem->mFormat);
+		//	
+		//	glEnableVertexAttribArray(i);
+
+		//	glBindBuffer(GL_ARRAY_BUFFER, pElem->mlID);
+		//	glVertexAttribIPointer(i, pElem->mlElementNum, eFormat, 0, (void*)NULL);
+		//}
+
+		glBindBuffer(GL_ARRAY_BUFFER,0);
+		glBindVertexArray(0);
+
 	}
 
 	void cVertexBufferGL::UnBind()
 	{
+		glBindVertexArray(mlBufferArrayID);
 
+		for (int i = 0; i < mvElementArray.size(); ++i)
+		{
+
+			cVertexElementArray* pElem = mvElementArray[i];
+
+			GLenum eFormat = GetGLFormatFromEnum(pElem->mFormat);
+
+//			glEnableVertexAttribArray(i);
+
+			glBindBuffer(GL_ARRAY_BUFFER, pElem->mlID);
+			glDisableVertexAttribArray(i);
+		}
+
+		glBindBuffer(GL_ARRAY_BUFFER, 0);
+		glBindVertexArray(0);
 	}
 	
 }

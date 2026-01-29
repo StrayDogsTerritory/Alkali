@@ -10,38 +10,18 @@
 
 #include "math/Math.h"
 #include "math/Matrix.h"
+#include "math/Quaternion.h"
 
 namespace alk {
 
 	cSystem::cSystem(iSystem* apSystemInterface) 
 		: iUpdateable("System")
 	{
-		mpSystemInterface = apSystemInterface;
-		mlUpdateTest = 0;
-
-		size_t lSizeInt = sizeof(int);
-		size_t lSizeLong = sizeof(long);
-		size_t lSizeShort = sizeof(short);
-
-		size_t lSizeFloat = sizeof(float);
-		size_t lSizeDouble = sizeof(double);
+		float fAng = cMath::ToRad(360.0f);
+		Log("'%g'\n", fAng);
 		
-		size_t lSizeChar = sizeof(char);
-		size_t lSizeCharPtr = sizeof(char*);
-
-		Log("Int: %d, Long: %d, Short: %d, Float: %d, Double: %d, Char: %d, Char*: %d\n", lSizeInt, lSizeLong, lSizeShort, lSizeFloat, lSizeDouble, lSizeChar, lSizeCharPtr);
-
-		float fAngle = 45.0f;
-		float fAngleRad = 0.785398f;
-		Log("Angle Rad %g\n", cMath::ToRad(fAngle));
-		Log("Angle Deg %g\n", cMath::ToDeg(fAngleRad));
-
-		iJsonDocument Doc;
-		Doc.Parse(L"");
-
-		float fTest = cMath::Lerp(4.0f, 5.0f, 1.0f);
-		Log("Sys Lerp: '%g'", fTest);
-
+		cQuaternion mqTest(kPI2, tVector3f(1, 0, 0));
+		Log("'%s'\n", mqTest.ToString().c_str());
 		//////////////////////
 		// @TODO: Don't hardcode this
 		Log("Engine Specifics:\n");
@@ -50,7 +30,7 @@ namespace alk {
 		Log("Checksum: %u... ", GetChecksumTest());
 		if (false)
 		{
-			Log("modified\n");
+			Log("modified!\n");
 		}
 		else
 			Log("unmodified\n");

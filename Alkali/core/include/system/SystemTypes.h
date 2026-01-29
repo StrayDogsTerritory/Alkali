@@ -2,7 +2,6 @@
 #define ALK_SYSTEMTYPES_H
 
 #include "system/MemoryManager.h"
-
 //----------------------------
 namespace alk {
 
@@ -32,6 +31,10 @@ namespace alk {
 
 	///////////////////
 	// defines
+
+	// debug timing
+
+
 
 	template <class Container, class T>
 	void FindAndErase(Container& aContainer, const T* aVal)

@@ -11,6 +11,7 @@ namespace alk {
 		cSystemSDL();
 		~cSystemSDL();
 
+		iScript* CreateScript();
 	};
 }
 #endif

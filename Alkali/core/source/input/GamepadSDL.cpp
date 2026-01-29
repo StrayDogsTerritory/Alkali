@@ -24,7 +24,7 @@ namespace alk {
 			
 			msName = SDL_GetGamepadName(mpHandle);
 			
-			mvGamepadButtonArray.resize(eGamepadButton_LastEnum);
+			mvGamepadButtonArray.resize(eGamepadButton_LastEnum + 0); //fix crashes related from buffer overflowing
 			mvGamepadButtonArray.assign(mvGamepadButtonArray.size(), false);
 			
 		}
@@ -100,6 +100,22 @@ namespace alk {
 		case SDL_GAMEPAD_BUTTON_WEST: return eGamepadButton_2;
 		case SDL_GAMEPAD_BUTTON_NORTH: return eGamepadButton_3;
 
+		case SDL_GAMEPAD_BUTTON_DPAD_UP: return eGamepadButton_Hat_Up;
+		case SDL_GAMEPAD_BUTTON_DPAD_DOWN: return eGamepadButton_Hat_Down;
+		case SDL_GAMEPAD_BUTTON_DPAD_LEFT: return eGamepadButton_Hat_Left;
+		case SDL_GAMEPAD_BUTTON_DPAD_RIGHT: return eGamepadButton_Hat_Right;
+
+		case SDL_GAMEPAD_BUTTON_LEFT_STICK: return eGamepadButton_Left_Stick;
+		case SDL_GAMEPAD_BUTTON_RIGHT_STICK: return eGamepadButton_Right_Stick;
+
+		case SDL_GAMEPAD_BUTTON_LEFT_SHOULDER: return eGamepadButton_Left_Trigger;
+		case SDL_GAMEPAD_BUTTON_RIGHT_SHOULDER: return eGamepadButton_Right_Trigger;
+		
+		case SDL_GAMEPAD_BUTTON_TOUCHPAD: return eGamepadButton_Touchpad;
+
+		case SDL_GAMEPAD_BUTTON_GUIDE: return eGamepadButton_Special_3;
+		case SDL_GAMEPAD_BUTTON_START: return eGamepadButton_Options;
+		case SDL_GAMEPAD_BUTTON_BACK: return eGamepadButton_Social;
 		default: return eGamepadButton_LastEnum;
 		}
 	}

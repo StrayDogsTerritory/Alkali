@@ -83,8 +83,8 @@ namespace alk {
 		iVertexBuffer() {}
 		virtual ~iVertexBuffer() {}
 
-		virtual void Compile() =0;
-		virtual void Draw()=0;
+		virtual void Compile(eVertexBufferDrawType aDrawType) =0;
+		virtual void Draw(eVertexBufferPrimitiveAssemblyType aType)=0;
 		virtual void Bind()=0;
 		virtual void UnBind()=0;
 	

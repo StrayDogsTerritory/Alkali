@@ -53,6 +53,9 @@ namespace alk {
 		void SetClearColourTest(cColour aCol);
 
 	private:
+		bool mbCreatedProgram;
+		iGpuProgram* mpTestProgram;
+
 		tlVtxBuffList lVtxBuffList;
 		tlProgramList lProgramList;
 		iGraphics* mpGraphics;

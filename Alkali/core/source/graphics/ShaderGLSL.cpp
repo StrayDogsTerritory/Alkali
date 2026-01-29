@@ -36,6 +36,8 @@ namespace alk {
 
 	bool cGLSLShader::CreateFromString(const char* apString)
 	{
+		//Log("Shader Source: '%s'", apString);
+
 		glShaderSource(mlShaderID, 1, &apString, NULL);
 
 		glCompileShader(mlShaderID);

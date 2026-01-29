@@ -7,6 +7,8 @@
 
 namespace alk {
 
+	int cGLSLGpuProgram::mlCurrentProgram = 0;
+
 	cGLSLGpuProgram::cGLSLGpuProgram(const tString& asName)
 		: iGpuProgram(asName, eGpuProgramType_GLSL)
 	{
@@ -44,6 +46,7 @@ namespace alk {
 		if (lStatus == GL_FALSE)
 		{
 			Error("Program '%s' Could not be linked!\n", msName.c_str());
+			return false;
 		}
 		
 		return true;
@@ -51,7 +54,11 @@ namespace alk {
 
 	void cGLSLGpuProgram::Bind()
 	{
+		if (mlCurrentProgram == mlProgramID) return;
+
+		mlCurrentProgram = mlProgramID;
 		glUseProgram(mlProgramID);
+
 	}
 
 	void cGLSLGpuProgram::UnBind()

@@ -14,11 +14,26 @@ namespace alk {
 	
 	// math constants 
 	#define kPI (3.141592654f)
-	#define k2PIf (1.570796327f)
-	#define kPI2f (6.283185307f)
+	#define k2PI (1.570796327f)
+	#define kPI2 (6.283185307f)
 
-	#define kEpsilonf (0.00001f) 
-	#define ksqrt2f (1.414213562f)
+	#define kEpsilon (0.00001f) 
+	#define kSqrt2 (1.414213562f)
+	
+	#define kEuler (2.718281828)
+
+	enum eEulerRotationOrder
+	{
+		eRotationOrder_XYZ,
+		eRotationOrder_XZY,
+		eRotationOrder_YXZ,
+		eRotationOrder_YZX,
+		eRotationOrder_ZYX,
+		eRotationOrder_ZXY,
+
+		eRotationOrder_LastEnum,
+		
+	};
 
 	class cMath
 	{
@@ -75,6 +90,8 @@ namespace alk {
 		static tMatrixf RotateX(float afAngle);
 		static tMatrixf RotateY(float afAngle);
 		static tMatrixf RotateZ(float afAngle);
+
+		static tMatrixf Rotate(eEulerRotationOrder aOrder, tVector3f avRot);
 
 	};
 }

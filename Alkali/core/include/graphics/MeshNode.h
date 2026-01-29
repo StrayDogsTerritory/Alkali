@@ -7,15 +7,7 @@
 
 namespace alk {
 
-	class cMeshNode : public iNode
-	{
-	public:
-		cMeshNode();
-		~cMeshNode();
-
-	private:
-		cMesh* mpMesh;
-	};
+	
 }
 
 #endif

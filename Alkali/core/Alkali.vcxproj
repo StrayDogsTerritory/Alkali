@@ -104,6 +104,7 @@
     <ClInclude Include="include\engine\ThreadSystem.h" />
     <ClInclude Include="include\engine\Updateable.h" />
     <ClInclude Include="include\engine\Updater.h" />
+    <ClInclude Include="include\graphics\Bitmap.h" />
     <ClInclude Include="include\graphics\Colour.h" />
     <ClInclude Include="include\graphics\FrameBuffer.h" />
     <ClInclude Include="include\graphics\GPUProgram.h" />
@@ -140,17 +141,21 @@
     <ClInclude Include="include\math\Math.h" />
     <ClInclude Include="include\math\Matrix.h" />
     <ClInclude Include="include\math\Plane.h" />
+    <ClInclude Include="include\math\Quaternion.h" />
     <ClInclude Include="include\math\Vector2.h" />
     <ClInclude Include="include\math\Vector3.h" />
     <ClInclude Include="include\resources\FileSearcher.h" />
+    <ClInclude Include="include\resources\MeshManager.h" />
     <ClInclude Include="include\resources\ResourceBase.h" />
     <ClInclude Include="include\resources\ResourceManager.h" />
     <ClInclude Include="include\resources\Resources.h" />
     <ClInclude Include="include\resources\ShaderCacher.h" />
     <ClInclude Include="include\resources\ShaderManager.h" />
     <ClInclude Include="include\resources\ShaderParser.h" />
+    <ClInclude Include="include\resources\TextureManager.h" />
     <ClInclude Include="include\Scene\Camera.h" />
     <ClInclude Include="include\Scene\Node.h" />
+    <ClInclude Include="include\Scene\World.h" />
     <ClInclude Include="include\system\Date.h" />
     <ClInclude Include="include\system\FlagBits.h" />
     <ClInclude Include="include\system\LogicTimer.h" />
@@ -161,6 +166,7 @@
     <ClInclude Include="include\system\SHA1.h" />
     <ClInclude Include="include\system\String.h" />
     <ClInclude Include="include\system\System.h" />
+    <ClInclude Include="include\system\SystemInterface.h" />
     <ClInclude Include="include\system\SystemSDL.h" />
     <ClInclude Include="include\system\SystemTypes.h" />
     <ClInclude Include="include\system\Thread.h" />
@@ -168,7 +174,6 @@
     <ClInclude Include="include\xml\tinyxml2\tinyxml2.h" />
     <ClInclude Include="include\xml\XmlDocument.h" />
     <ClInclude Include="include\xml\XmlDocumentTinyXml.h" />
-    <ClInclude Include="source\system\SystemInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\Engine.cpp" />
@@ -178,6 +183,7 @@
     <ClCompile Include="source\engine\LogWriter.cpp" />
     <ClCompile Include="source\engine\Main.cpp" />
     <ClCompile Include="source\engine\Updater.cpp" />
+    <ClCompile Include="source\graphics\Bitmap.cpp" />
     <ClCompile Include="source\graphics\Colour.cpp" />
     <ClCompile Include="source\graphics\GPUProgram.cpp" />
     <ClCompile Include="source\graphics\GPUProgramGLSL.cpp" />
@@ -201,6 +207,7 @@
     <ClCompile Include="source\json\JsonDocument.cpp" />
     <ClCompile Include="source\math\Math.cpp" />
     <ClCompile Include="source\math\Matrix.cpp" />
+    <ClCompile Include="source\math\Quaternion.cpp" />
     <ClCompile Include="source\resources\FileSearcher.cpp" />
     <ClCompile Include="source\resources\ResourceBase.cpp" />
     <ClCompile Include="source\resources\ResourceManager.cpp" />

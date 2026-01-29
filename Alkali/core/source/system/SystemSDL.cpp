@@ -14,4 +14,8 @@ namespace alk {
 
 	}
 
+	iScript* cSystemSDL::CreateScript()
+	{
+		return NULL;
+	}
 }

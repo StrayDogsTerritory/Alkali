@@ -55,6 +55,7 @@ namespace alk {
 
 		m_mapPointers.erase(it);
 		return true;
+
 	}
 
 	void cMemoryManager::MemoryLog()

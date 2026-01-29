@@ -10,6 +10,9 @@ namespace alk {
 	public:
 		iFrameBuffer();
 		~iFrameBuffer();
+
+		bool AttachTexture();
+
 	private:
 	};
 

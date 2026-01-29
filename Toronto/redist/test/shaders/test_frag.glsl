@@ -1,11 +1,9 @@
-#version 120 
+#version 410 
 
-#extension GL_ARB_texture_rectangle : enable
-#extension GL_ARB_draw_buffers : enable
-
-varying out vec4 vFinalColour;
+layout(location=0) in vec4 vColour;
+layout(location=0) out vec4 vFragColour;
 
 void main()
 {
-     vFinalColour = vec4(1.0, 1.0, 1.0, 1.0);
+     vFragColour = vec4(vColour);
 }

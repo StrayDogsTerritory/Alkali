@@ -263,13 +263,16 @@ namespace alk {
 
 		tString cString::FileExtension(const tString& asFileName)
 		{
-			return "";
+			tString sName = FileName(asFileName);
+			size_t lPos = FindLastOfChar(asFileName, ".");
+			if (lPos < 0) return "";
+			return asFileName.substr(lPos + 1);
 		}
 
 		twString cString::FileExtensionW(const twString& asFileName)
 		{
 			twString sName = FileNameW(asFileName);
-			int lPos = FindLastOfCharW(asFileName, L".");
+			size_t lPos = FindLastOfCharW(asFileName, L".");
 			if (lPos < 0) return L"";
 			return asFileName.substr(lPos + 1);
 		}
@@ -277,9 +280,9 @@ namespace alk {
 		tString cString::FileName(const tString& asFileName)
 		{
 			if (FindLastOfChar(asFileName, ".") < 0) { return asFileName; }
-			int lPos1 = FindLastOfChar(asFileName, "/");
-			int lPos2 = FindLastOfChar(asFileName, "\\");
-			int lPos = lPos1 > lPos2 ? lPos1 : lPos2;
+			size_t lPos1 = FindLastOfChar(asFileName, "/");
+			size_t lPos2 = FindLastOfChar(asFileName, "\\");
+			size_t lPos = lPos1 > lPos2 ? lPos1 : lPos2;
 
 			if (lPos <= 0) 
 				return asFileName;
@@ -289,9 +292,9 @@ namespace alk {
 
 		twString cString::FileNameW(const twString& asFileName)
 		{
-			int pos1 = FindLastOfCharW(asFileName, L"\\");
-			int pos2 = FindLastOfCharW(asFileName, L"/");
-			int pos = pos1 > pos2 ? pos1 : pos2;
+			size_t pos1 = FindLastOfCharW(asFileName, L"\\");
+			size_t pos2 = FindLastOfCharW(asFileName, L"/");
+			size_t pos = pos1 > pos2 ? pos1 : pos2;
 
 			if (pos <= 0)
 				return asFileName;

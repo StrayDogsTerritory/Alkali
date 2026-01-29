@@ -10,7 +10,8 @@ namespace alk {
 
 	static unsigned int GetGLTypeFromEnum(eVertexElementArrayFormat aType);
 	static unsigned int GetGLFormatFromEnum(eVertexElementArrayFormat aFormat);
-	static unsigned int GetGLDrawTypeFromEnum(eVertexBufferPrimitiveAssemblyType aDrawType);
+	static unsigned int GetGLPrimitiveAssemblyTypeFromEnum(eVertexBufferPrimitiveAssemblyType aPrimAssemblyType);
+	static unsigned int GetGLDrawTypeFromEnum(eVertexBufferDrawType aDrawType);
 
 	class cVertexBufferGL : public iVertexBuffer
 	{
@@ -18,8 +19,8 @@ namespace alk {
 		cVertexBufferGL();
 		~cVertexBufferGL();
 
-		void Compile();
-		void Draw();
+		void Compile(eVertexBufferDrawType aDrawType = eDrawtype_Static);
+		void Draw(eVertexBufferPrimitiveAssemblyType aType);
 
 		 void Bind();
 		 void UnBind();
@@ -41,7 +42,11 @@ namespace alk {
 
 		}
 
+		GLenum mDrawType;
+		GLenum mPrimAssemblyType;
+
 		GLuint mlBufferID;
+		GLuint mlBufferArrayID;
 
 		 std::vector<cVertexElementArray*> mvElementArray;
 		 std::vector<unsigned int> mvIndexArray;
