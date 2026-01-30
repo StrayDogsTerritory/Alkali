@@ -48,8 +48,7 @@ namespace alk {
 
 	bool cGraphics::Init(cResources* apResources, int alHeight, int alWidth, int alWindowMode)
 	{
-		Log("Initializing graphics module\n");
-
+		Log("---------------------------------------------\n");
 		mpResources = apResources;
 		mpGraphics->Init(alHeight, alWidth, alWindowMode);
 

@@ -38,7 +38,7 @@ namespace alk {
 		virtual ~iGraphics() {};
 		virtual bool Init(int alHeight, int alWidth, int alWindowMode) = 0;
 
-		virtual int GetCardMaxes()=0;
+		virtual int GetCardMaxes(eGpuMaximum aGpuMaxes)=0;
 
 		virtual iShader* CreateShader(const tString& asName, eShaderType aType)=0;
 		virtual iGpuProgram* CreateProgram(const tString& asName)=0;

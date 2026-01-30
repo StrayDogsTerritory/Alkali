@@ -289,6 +289,29 @@ namespace alk {
 
 
 
+	size_t cPlatform::GetAvailableRam()
+	{
+
+		MEMORYSTATUSEX MemInfo;
+		MemInfo.dwLength = sizeof(MEMORYSTATUSEX);
+
+		if (GlobalMemoryStatusEx(&MemInfo))
+		{
+			return size_t(MemInfo.ullAvailPhys);
+		}
+	}
+
+	size_t cPlatform::GetTotalRam()
+	{
+		MEMORYSTATUSEX MemInfo;
+		MemInfo.dwLength = sizeof(MEMORYSTATUSEX);
+
+		if (GlobalMemoryStatusEx(&MemInfo))
+		{
+			return size_t(MemInfo.ullTotalPhys);
+		}
+	}
+
 	unsigned long cPlatform::GetNumberOfDrives()
 	{
 		return _getdrives();

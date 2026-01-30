@@ -37,8 +37,6 @@ namespace alk {
 		SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 8);
 		SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 8);
 		SDL_GL_SetAttribute(SDL_GL_ALPHA_SIZE, 8);
-
-		int NumDrivers = SDL_GetNumVideoDrivers();
 		
 
 		unsigned int mlFlags = SDL_WINDOW_OPENGL; // | SDL_WINDOW_FULLSCREEN;
@@ -57,6 +55,7 @@ namespace alk {
 
 
 		//get available video drivers
+		int NumDrivers = SDL_GetNumVideoDrivers();
 		Log("Number of available video drivers: %d\n", NumDrivers);
 		for (size_t i = 0; i < NumDrivers; ++i)
 		{
@@ -114,12 +113,17 @@ namespace alk {
 		Log(" Vendor: %s\n",glGetString(GL_VENDOR)); //Vendor
 		Log(" GL Version: %s\n",glGetString(GL_VERSION)); //Driver version
 		Log(" GLSL Version: %s\n",glGetString(GL_SHADING_LANGUAGE_VERSION)); //GLSL version
-		Log("GPU maximums\n");
 	}
 
-	int cGraphicsSDL::GetCardMaxes()
+	int cGraphicsSDL::GetCardMaxes(eGpuMaximum aGpuMaxes)
 	{
-		return 0;
+		switch (aGpuMaxes)
+		{
+		case eGpuMaximum_NumViewports: 
+			int max = 0;
+			glGetIntegerv(GL_MAX_VIEWPORTS, (GLint*)&max);
+			return max;
+		}
 	}
 
 	iShader* cGraphicsSDL::CreateShader(const tString& asName, eShaderType aType)
