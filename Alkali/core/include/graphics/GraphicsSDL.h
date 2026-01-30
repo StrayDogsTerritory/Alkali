@@ -27,7 +27,7 @@ namespace alk {
 		bool InitOpenGL();
 
 		void LogGPUInfo();
-		int GetCardMaxes();
+		int GetCardMaxes(eGpuMaximum aGpuMaxes);
 
 		iShader* CreateShader(const tString& asName, eShaderType aType);
 		iGpuProgram* CreateProgram(const tString& asName);

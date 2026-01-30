@@ -275,6 +275,29 @@ namespace alk {
 		return DateFromGMT(sTime);
 	}
 
+	tString cPlatform::GetProcessorModel()
+	{
+		HKEY Key;
+		LONG lResult;
+
+		lResult = RegOpenKeyEx(HKEY_LOCAL_MACHINE, L"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0\\", 0, KEY_READ, &Key);
+
+		DWORD type = REG_SZ;
+		wchar_t buf[512];
+
+		return tString();
+	}
+
+	int cPlatform::GetProcessorCores()
+	{
+		return 0;
+	}
+
+	int cPlatform::GetProcessorLogicalProcessors()
+	{
+		return 0;
+	}
+
 	cDate cPlatform::GetFileCreationDate(const twString& asFile)
 	{
 		struct tm* Time;
@@ -288,6 +311,29 @@ namespace alk {
 	}
 
 
+
+	size_t cPlatform::GetAvailableRam()
+	{
+
+		MEMORYSTATUSEX MemInfo;
+		MemInfo.dwLength = sizeof(MEMORYSTATUSEX);
+
+		if (GlobalMemoryStatusEx(&MemInfo))
+		{
+			return size_t(MemInfo.ullAvailPhys);
+		}
+	}
+
+	size_t cPlatform::GetTotalRam()
+	{
+		MEMORYSTATUSEX MemInfo;
+		MemInfo.dwLength = sizeof(MEMORYSTATUSEX);
+
+		if (GlobalMemoryStatusEx(&MemInfo))
+		{
+			return size_t(MemInfo.ullTotalPhys);
+		}
+	}
 
 	unsigned long cPlatform::GetNumberOfDrives()
 	{

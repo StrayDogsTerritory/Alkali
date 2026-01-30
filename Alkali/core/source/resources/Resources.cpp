@@ -13,15 +13,17 @@ namespace alk {
 
 	cResources::cResources()
 	{
-		mpFileSearcher = alkNew(cFileSearcher, ());
+		mpGraphics = NULL;
+		mpShaderManager = NULL;
+
+		mpFileSearcher = NULL;//alkNew(cFileSearcher, ());
 	}
 
 	cResources::~cResources()
 	{
+		Log("Quitting Resource module\n");
 		Log("---------------------------------------------\n");
-		Log("Quitting resource module\n");
 		Log("Exiting resource managers\n");
-		
 		alkDelete(mpShaderManager);
 		Log(" Shader manager\n");
 
@@ -33,13 +35,19 @@ namespace alk {
 
 	bool cResources::Init(cGraphics* apGraphics)
 	{
-		Log("Initializing resource module\n");
+		Log("---------------------------------------------\n");
 		mpGraphics = apGraphics;
+
+		Log("Creating file searcher\n");
+		mpFileSearcher = alkNew(cFileSearcher, ());
 
 		Log("Creating resource managers\n");
 		Log(" Shader Manager\n");
 		mpShaderManager = alkNew(cShaderManager, (mpGraphics, this));
 		lManagerList.push_back(mpShaderManager);
+
+		Log("Adding resource directories\n");
+		//AddDirectory(L"./", true);
 
 		Log("---------------------------------------------\n");
 		return true;

@@ -91,11 +91,18 @@ namespace alk {
 		//init the modules
 		Log("Initialize Engine Modules\n");
 		Log("---------------------------------------------\n");
+
+		Log("Initializing System module\n");
 		mpSystem->Init();
-		mpGraphics->Init(mpResources, 1080, 1920 , 0);
-		mpInput->Init();
+
+		Log("Initializing Resource module\n");
 		mpResources->Init(mpGraphics);
 
+		Log("Initializing Graphics module\n");
+		mpGraphics->Init(mpResources, 1080, 1920 , 0);
+		
+		Log("Initializing Input module\n");
+		mpInput->Init();
 
 		// create some secondary modules
 		mpLogicTimer = alkNew(cLogicTimer, (60));

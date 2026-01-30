@@ -22,14 +22,25 @@ namespace alk {
 
 	cSystem::~cSystem()
 	{
+		Log("Quitting System module\n");
 		Log("---------------------------------------------\n");
-		Log("Quitting system module\n");
 		Log("---------------------------------------------\n\n");
 	}
 
 	bool cSystem::Init()
 	{
-		Log("Initializing system module\n");
+		Log("---------------------------------------------\n");
+		// @TODO: maybe don't do this? Decide later!
+		Log("---Logical Hardware Specifics---\n");
+		Log("-Processor Specifics-\n");
+		Log("Processor Model: %s\n", "");
+		Log("Processor Architecture: %s\n", "");
+		Log("Processor Physical Cores: %d\n", -1);
+		Log("Processor Logical processors: %d\n", -1);
+		Log("-RAM Specifics-\n");
+		Log("Total Physical RAM: %u Bytes\n", cPlatform::GetTotalRam());
+		Log("Available Physical RAM: %u Bytes\n",cPlatform::GetAvailableRam());
+
 		//////////////////////
 		// @TODO: Don't hardcode this
 		Log("---Engine Specifics---\n");
@@ -37,9 +48,10 @@ namespace alk {
 		Log(" Build ID: %s \n", "20250930094205");
 		GetChecksumTest();
 		Log("Status: ...");
-		if (false)
+		if (true)
 		{
 			Log("modified!\n");
+			Warning("Application checksum is modified! If this hasn't been modified there is an error in the game files!\n");
 		}
 		else
 			Log("unmodified!\n");

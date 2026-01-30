@@ -37,6 +37,12 @@ namespace alk {
 		static cDate GetFileModificationDate(const twString& asFile);
 		static cDate GetLocalTime();
 
+		static tString GetProcessorModel();
+		static int GetProcessorCores();
+		static int GetProcessorLogicalProcessors();
+
+		static size_t GetAvailableRam();
+		static size_t GetTotalRam();
 		static unsigned long GetNumberOfDrives();
 		static twString GetCurrentWorkingDirectory();
 		static twString GetSpecialFolder(eSystemSpecialPath aeSystemSpecialPath);

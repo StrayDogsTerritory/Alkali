@@ -46,8 +46,6 @@ namespace alk {
 
 	void cGamepadSDL::Update()
 	{
-		Log("Updating Controller!\n");
-
 		std::list<SDL_Event>::iterator it = mpInputSDL->mLstSDLEvents.begin();
 		for (; it != mpInputSDL->mLstSDLEvents.end(); ++it)
 		{

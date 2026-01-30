@@ -14,21 +14,25 @@ namespace alk {
 
 		SetRelativeMouse(false);
 
-		
+		// init devices
+		mpKeyboard = NULL;
+		mpMouse = NULL;
+		// special for gamepads
+	//	mLstGamepad.assign(mLstGamepad.size(), NULL);
 
 		// @TODO: what to do about controllers?
 	}
 
 	cInput::~cInput()
 	{
+		Log("Quitting Input module\n");
 		Log("---------------------------------------------\n");
-		Log("Quitting input module\n");
 
-		Log(" Quitting input devices\n");
-		if (mpKeyboard)alkDelete(mpKeyboard); Log("  Keyboard\n");
-		if (mpMouse)alkDelete(mpMouse); Log("  Mouse\n");
+		Log("Quitting input devices\n");
+		if (mpKeyboard)alkDelete(mpKeyboard); Log(" Keyboard\n");
+		if (mpMouse)alkDelete(mpMouse); Log(" Mouse\n");
 
-		Log("  Quitting Gamepads\n");
+		Log("Quitting Gamepads\n");
 		DeleteAll(mLstGamepad);
 
 		Log("Deleting actions\n");
@@ -39,17 +43,15 @@ namespace alk {
 
 	bool cInput::Init()
 	{
-		Log("Initializing input module\n");
-
-		Log("Creating input devices\n");
+		Log("---------------------------------------------\n");
 		mpKeyboard = mpInput->CreateKeyboard();
 		mLstDevice.push_back(mpKeyboard);
 		mpMouse = mpInput->CreateMouse();
 		mLstDevice.push_back(mpMouse);
 
-		Log("Creating gamepads\n");
-		// reset the controlls once at start  @TODO: maybe don't though
-		ResetGamepads();
+		//technically cheating but whatever
+		if (mLstDevice.size() > 0)
+			Log("Creating gamepads\n");
 
 		Log("---------------------------------------------\n");
 		return true;
