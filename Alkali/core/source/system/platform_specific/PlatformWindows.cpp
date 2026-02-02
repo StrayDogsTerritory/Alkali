@@ -275,22 +275,47 @@ namespace alk {
 		return DateFromGMT(sTime);
 	}
 
-	tString cPlatform::GetProcessorModel()
+	twString cPlatform::GetProcessorModel()
 	{
 		HKEY Key;
-		LONG lResult;
+		
+		if (RegOpenKeyEx(HKEY_LOCAL_MACHINE, L"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0\\", 0, KEY_READ, &Key) != ERROR_SUCCESS)
+			return L"";
+		
+		wchar_t buf[256];
+		DWORD bufSize = sizeof(buf);
 
-		lResult = RegOpenKeyEx(HKEY_LOCAL_MACHINE, L"HARDWARE\\DESCRIPTION\\System\\CentralProcessor\\0\\", 0, KEY_READ, &Key);
+		if (RegQueryValueEx(Key, L"ProcessorNameString", NULL, NULL, (LPBYTE)buf, &bufSize) != ERROR_SUCCESS)
+			return L"";
 
-		DWORD type = REG_SZ;
-		wchar_t buf[512];
+		RegCloseKey(Key);
+		return twString(buf);
 
-		return tString();
+	}
+
+	twString cPlatform::GetProcessorArchitecture()
+	{
+		SYSTEM_INFO si;
+		GetNativeSystemInfo(&si);
+
+		switch (si.wProcessorArchitecture)
+		{
+		case PROCESSOR_ARCHITECTURE_AMD64: return L"x86_64";
+		case PROCESSOR_ARCHITECTURE_INTEL: return L"x86";
+		case PROCESSOR_ARCHITECTURE_ARM: return L"ARM";
+		case PROCESSOR_ARCHITECTURE_ARM64: return L"ARM64";
+		case PROCESSOR_ARCHITECTURE_UNKNOWN: return L"INVALID";
+
+		default: return L"";
+		}
 	}
 
 	int cPlatform::GetProcessorCores()
 	{
-		return 0;
+		SYSTEM_INFO si;
+		GetNativeSystemInfo(&si);
+		
+		return si.dwActiveProcessorMask;
 	}
 
 	int cPlatform::GetProcessorLogicalProcessors()
@@ -326,13 +351,9 @@ namespace alk {
 
 	size_t cPlatform::GetTotalRam()
 	{
-		MEMORYSTATUSEX MemInfo;
-		MemInfo.dwLength = sizeof(MEMORYSTATUSEX);
-
-		if (GlobalMemoryStatusEx(&MemInfo))
-		{
-			return size_t(MemInfo.ullTotalPhys);
-		}
+		size_t buf;
+		GetPhysicallyInstalledSystemMemory(&buf);
+		return buf;
 	}
 
 	unsigned long cPlatform::GetNumberOfDrives()
@@ -342,7 +363,11 @@ namespace alk {
 
 	twString cPlatform::GetCurrentWorkingDirectory()
 	{
-		twString sDir = twString(_wgetcwd(NULL, 0));
+
+		wchar_t Buf[512];
+		_wgetcwd(Buf, 512);
+
+		twString sDir = Buf;
 		return sDir;
 	}
 

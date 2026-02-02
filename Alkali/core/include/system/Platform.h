@@ -37,7 +37,8 @@ namespace alk {
 		static cDate GetFileModificationDate(const twString& asFile);
 		static cDate GetLocalTime();
 
-		static tString GetProcessorModel();
+		static twString GetProcessorModel();
+		static twString GetProcessorArchitecture();
 		static int GetProcessorCores();
 		static int GetProcessorLogicalProcessors();
 

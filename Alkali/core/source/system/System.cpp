@@ -4,14 +4,6 @@
 
 #include "engine/LogWriter.h"
 
-// remove this.
-#include "system/Platform.h"
-#include "system/Date.h"
-
-#include "math/Math.h"
-#include "math/Matrix.h"
-#include "math/Quaternion.h"
-
 namespace alk {
 
 	cSystem::cSystem(iSystem* apSystemInterface) 
@@ -30,17 +22,6 @@ namespace alk {
 	bool cSystem::Init()
 	{
 		Log("---------------------------------------------\n");
-		// @TODO: maybe don't do this? Decide later!
-		Log("---Logical Hardware Specifics---\n");
-		Log("-Processor Specifics-\n");
-		Log("Processor Model: %s\n", "");
-		Log("Processor Architecture: %s\n", "");
-		Log("Processor Physical Cores: %d\n", -1);
-		Log("Processor Logical processors: %d\n", -1);
-		Log("-RAM Specifics-\n");
-		Log("Total Physical RAM: %u Bytes\n", cPlatform::GetTotalRam());
-		Log("Available Physical RAM: %u Bytes\n",cPlatform::GetAvailableRam());
-
 		//////////////////////
 		// @TODO: Don't hardcode this
 		Log("---Engine Specifics---\n");
@@ -72,7 +53,7 @@ namespace alk {
 
 		if (pFile == NULL)
 		{
-			Error("Couldn't Find Alkali.exe! Current workin directory is '%s'\n", cString::To8BitChar(cPlatform::GetCurrentWorkingDirectory()).c_str());
+			Error("Couldn't Find Alkali.exe! Current working directory is '%s'\n", cString::To8BitChar(cPlatform::GetCurrentWorkingDirectory()).c_str());
 			//	fclose(pFile);
 			//FatalError("Couldn't find Toronto.exe!\n");
 			//exit(1);
