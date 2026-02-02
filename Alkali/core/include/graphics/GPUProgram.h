@@ -33,6 +33,12 @@ namespace alk {
 		 virtual void Bind()=0;
 		 virtual void UnBind()=0;
 
+		 virtual void SetInt()=0;
+		 virtual void SetFloat() = 0;
+		 virtual void SetVector2f() = 0;
+		 virtual void SetVector3f() = 0;
+		virtual void SetMatrixf() = 0;
+
 	protected:
 		tString msName;
 		eGpuProgramType mProgramType;

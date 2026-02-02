@@ -55,9 +55,9 @@ namespace alk {
 	{
 		switch (mFormat)
 		{
-		case eArrayFormat_Float: mpFloatVec->resize((float)alSize);
-		case eArrayFormat_Byte: mpFloatVec->resize((unsigned char)alSize);
-		case eArrayFormat_Int: mpFloatVec->resize((int)alSize);
+		case eArrayFormat_Float: mpFloatVec->resize((float)alSize); return;
+		case eArrayFormat_Byte: mpFloatVec->resize((unsigned char)alSize); return;
+		case eArrayFormat_Int: mpFloatVec->resize((int)alSize); return;
 		}
 	}
 

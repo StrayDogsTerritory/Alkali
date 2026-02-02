@@ -48,9 +48,7 @@ namespace alk {
 		eElementArrayType_Normals,
 		eElementArrayType_Colour,
 		eElementArrayType_Tangent,
-
-		// I don't know if this is needed...
-		eElementArrayType_TriTangent,
+		eElementArrayType_Texture,
 
 		eElementArrayType_LastEnum
 	};

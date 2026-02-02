@@ -195,6 +195,7 @@ namespace alk {
 	{ 
 		glBindVertexArray(mlBufferArrayID);
 
+		// @TODO: maybe change this cuz it seems super unsafe?
 
 		for (int i = 0; i < mvElementArray.size(); ++i)
 		{
@@ -202,7 +203,7 @@ namespace alk {
 			cVertexElementArray* pElem = mvElementArray[i];
 			
 			// check if we need to use glVertexAttribIPointer
-			// ;@TODO: could optimize this in the future since the type will always be GL_FLOAT
+			// @TODO: could optimize this in the future since the type will always be GL_FLOAT
 			GLenum eFormat = GetGLFormatFromEnum(pElem->mFormat);
 
 			glEnableVertexAttribArray(i);
@@ -210,6 +211,11 @@ namespace alk {
 			glBindBuffer(GL_ARRAY_BUFFER, pElem->mlID);
 			glVertexAttribPointer(i, pElem->mlElementNum, eFormat, GL_FALSE, 0, (void*)NULL);
 		}
+
+		///////////////////////////////
+		// disabling it cuz I don't think there's anything to be gained from it yet
+
+
 
 		//for (int i = 0; i < mvElementArray.size(); ++i)
 		//{

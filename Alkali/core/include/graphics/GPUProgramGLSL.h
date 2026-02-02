@@ -18,6 +18,12 @@ namespace alk {
 		void Bind();
 		void UnBind();
 
+		 void SetInt();
+		 void SetFloat();
+		 void SetVector2f();
+		 void SetVector3f();
+		 void SetMatrixf();
+
 	private:
 		static int mlCurrentProgram;
 		GLint mlProgramID;

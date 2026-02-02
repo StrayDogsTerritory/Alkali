@@ -85,7 +85,7 @@ namespace alk {
 			pBuff->Draw();
 			pBuff->UnBind();
 
-			mpTestProgram->UnBind();
+			//mpTestProgram->UnBind();
 		}
 	}
 
@@ -116,6 +116,33 @@ namespace alk {
 		return pProgram;
 	}
 
+	static tVector3f GetBoxTex(int i, int x, int y, int z, tVector3f* vAdd)
+	{
+		tVector3f vTex;
+
+		if (std::abs(x)) {
+			vTex.x = vAdd[i].z;
+			vTex.y = vAdd[i].y;
+		}
+		else if (std::abs(y)) {
+			vTex.x = vAdd[i].x;
+			vTex.y = vAdd[i].z;
+		}
+		else if (std::abs(z)) {
+			vTex.x = vAdd[i].x;
+			vTex.y = vAdd[i].y;
+		}
+
+		//Inverse for negative directions
+		if (x + y + z < 0)
+		{
+			vTex.x = -vTex.x;
+			vTex.y = -vTex.y;
+		}
+
+		return vTex;
+	}
+
 	iVertexBuffer* cGraphics::CreateTempVtxBuffer(tVector3f avSize)
 	{
 		/*tVector3f vVerts[3] = { tVector3f(-0.5,-0.5,-0.5), tVector3f(0.5,-0.5,-0.5), tVector3f(0.5,-0.5,0.5)};
@@ -139,6 +166,7 @@ namespace alk {
 		pBox->CreateElementArray(eElementArrayType_Position, eArrayFormat_Float, 4);
 		pBox->CreateElementArray(eElementArrayType_Normals, eArrayFormat_Float, 3);
 		pBox->CreateElementArray(eElementArrayType_Colour, eArrayFormat_Float, 4);
+		pBox->CreateElementArray(eElementArrayType_Texture, eArrayFormat_Float, 3);
 
 		avSize = avSize * 0.5;
 
@@ -187,15 +215,17 @@ namespace alk {
 					for (int i = 0; i < 4; i++)
 					{
 						int idx = GetBoxIdx(i, x, y, z);
-						//tVector3f vTex = GetBoxTex(i, x, y, z, vAdd);
+						tVector3f vTex = GetBoxTex(i, x, y, z, vAdd);
 
 						pBox->AddVertexColour(eElementArrayType_Colour, cMath::Rand(cColour(0,0,0,0),cColour(1,1,1,1)));
 						pBox->AddVertex(eElementArrayType_Position, (vDir + vAdd[idx]) * avSize);
 						pBox->AddVertex(eElementArrayType_Normals, vDir);
 
+						tVector3f vCoord = tVector3f((vTex.x + 1) * 0.5f, (vTex.y + 1) * 0.5f, 0);
+						pBox->AddVertex(eElementArrayType_Texture, vCoord);
+
 						vSide = vDir + vAdd[idx];
-						//Log("%d: Tex: (%.1f : %.1f : %.1f) ", i,vTex.x,  vTex.y,vTex.z);
-						//Log("%d: (%.1f : %.1f : %.1f) ", i,vSide.x,  vSide.y,vSide.z);
+						
 					}
 
 					for (int i = 0; i < 3; i++)
@@ -217,7 +247,7 @@ namespace alk {
 		return pBox;
 	}
 
-		
+	
 	
 
 	int cGraphics::GetBoxIdx(int i, int x, int y, int z)

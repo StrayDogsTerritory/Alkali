@@ -65,4 +65,10 @@ namespace alk {
 	{
 		glUseProgram(0);
 	}
+
+
+	void cGLSLGpuProgram::SetInt()
+	{
+		glUniform1i();
+	}
 }
