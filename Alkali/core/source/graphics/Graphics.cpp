@@ -85,7 +85,7 @@ namespace alk {
 			pBuff->Draw();
 			pBuff->UnBind();
 
-			//mpTestProgram->UnBind();
+			mpTestProgram->UnBind();
 		}
 	}
 

@@ -36,7 +36,6 @@ void cActionTest::OnUpdate(float afStep)
 
 	if (gpBase->GetEngine()->GetInput()->BecameTriggered("TestMouseButton"))
 	{
-		//cPlatform::CreateMessageBox(eBoxTypeMessage, L"Chris Moltisanti Dies!!!", L"It's so sad man!!!");
 	}
 
 	if (gpBase->GetEngine()->GetInput()->BecameTriggered("TestGamepadButton"))

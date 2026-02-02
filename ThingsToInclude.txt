@@ -2,6 +2,8 @@
 	----------ALKALI ENGINE----------
 	Things the engine needs to have
 
+this is outdated. Not the plan anymore!!!
+
 *Engine functionality
     *update loop
     *module initialization

@@ -119,7 +119,7 @@ namespace alk {
 	void cEngine::Run()
 	{
 		
-		Log("===================================\n\n");
+		Log("-----------------------------------\n\n");
 
 		mpInput->SetInputFrozen(false);
 		
