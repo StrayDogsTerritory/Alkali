@@ -118,6 +118,7 @@
     <ClInclude Include="include\graphics\Shader.h" />
     <ClInclude Include="include\graphics\ShaderGLSL.h" />
     <ClInclude Include="include\graphics\Texture.h" />
+    <ClInclude Include="include\graphics\TextureGL.h" />
     <ClInclude Include="include\graphics\VertexBuffer.h" />
     <ClInclude Include="include\graphics\VertexBufferGL.h" />
     <ClInclude Include="include\gui\Gui.h" />
@@ -191,6 +192,7 @@
     <ClCompile Include="source\graphics\GraphicsInterface.cpp" />
     <ClCompile Include="source\graphics\GraphicsSDL.cpp" />
     <ClCompile Include="source\graphics\ShaderGLSL.cpp" />
+    <ClCompile Include="source\graphics\TextureGL.cpp" />
     <ClCompile Include="source\graphics\VertexBuffer.cpp" />
     <ClCompile Include="source\graphics\VertexBufferGL.cpp" />
     <ClCompile Include="source\gui\Gui.cpp" />

@@ -6,6 +6,7 @@
 #include "math/Vector2.h"
 #include "math/Vector3.h"
 
+#include <stdlib.h>
 #include <vector>
 
 namespace alk {
@@ -29,20 +30,23 @@ namespace alk {
 		cBitmap();
 		~cBitmap();
 
-		bool CreateBitmap();
+		cBitmapData* GetData(int alImage, int alMipmapLevel);
 
-		tVector3l GetSize() { return mvBitmapDimensions; }
+		tVector3f GetSize() { return mvBitmapDimensions; }
 
-		int GetLength() { return mvBitmapDimensions.x; }
-		int GetHeight() { return mvBitmapDimensions.y; }
-		int GetDepth() { return mvBitmapDimensions.z; }
+		int GetLength() const { return mvBitmapDimensions.x; }
+		int GetHeight() const { return mvBitmapDimensions.y; }
+		int GetDepth() const { return mvBitmapDimensions.z; }
 
+		bool CreateBitmap(tVector3f avDimensions,  size_t alSize, void* apData, bool abMipmaps, int alNumberMipMaps = 0);
 
 	private:
 		std::vector<cBitmapData*> mvImages;
 
-		tVector3l mvBitmapDimensions;
+		tVector3f mvBitmapDimensions;
 		int mlNumImages;
+		int mlMipMapLevels;
+		size_t mlMemorySize;
 	};
 
 }

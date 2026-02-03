@@ -5,10 +5,14 @@
 #include "graphics/ShaderGLSL.h"
 #include "system/String.h"
 
+#include "math/Matrix.h"
+#include "math/Vector2.h"
+#include "math/Vector3.h"
+
 namespace alk {
 
 	class iShader;
-
+	
 	enum eGpuProgramType
 	{
 		eGpuProgramType_GLSL,
@@ -33,11 +37,11 @@ namespace alk {
 		 virtual void Bind()=0;
 		 virtual void UnBind()=0;
 
-		 virtual void SetInt()=0;
-		 virtual void SetFloat() = 0;
-		 virtual void SetVector2f() = 0;
-		 virtual void SetVector3f() = 0;
-		virtual void SetMatrixf() = 0;
+		virtual void SetInt(int alIdx, const int& alX)=0;
+		virtual void SetFloat(int alIdx, const float& afX)=0;
+		virtual void SetVector2f(int alIdx, const  tVector2f& avX)=0;
+		virtual void SetVector3f(int alIdx, const tVector3f& avX)=0;
+		virtual void SetMatrixf(int alIdx, const tMatrixf& amX)=0;
 
 	protected:
 		tString msName;

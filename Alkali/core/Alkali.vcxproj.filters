@@ -304,6 +304,9 @@
     <ClInclude Include="include\Scene\World.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="include\graphics\TextureGL.h">
+      <Filter>Graphics\API Specific\GL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">
@@ -446,6 +449,9 @@
     </ClCompile>
     <ClCompile Include="source\graphics\Bitmap.cpp">
       <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\graphics\TextureGL.cpp">
+      <Filter>Graphics\API Specific\GL</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
