@@ -1,11 +1,22 @@
 #ifndef ALK_GPUPROGRAMGLSL_H
 #define ALK_GPUPROGRAMGLSL_H
+
 #include "GL/glew.h"
 #include "graphics/GPUProgram.h"
 #include "graphics/ShaderGLSL.h"
 #include "system/String.h"
 
 namespace alk {
+
+	class cGLSLParams
+	{
+	public:
+		cGLSLParams(tString asName, GLint alIdx) : msName(asName), mlIdx(alIdx) {}
+
+		tString msName;
+		GLint mlIdx;
+	};
+
 
 	class cGLSLGpuProgram : public iGpuProgram
 	{
@@ -25,6 +36,8 @@ namespace alk {
 		 void SetMatrixf();
 
 	private:
+		std::vector<cGLSLParams> mvGLSLParams;
+
 		static int mlCurrentProgram;
 		GLint mlProgramID;
 	};

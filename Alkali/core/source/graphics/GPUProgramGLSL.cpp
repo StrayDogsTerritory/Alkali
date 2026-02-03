@@ -49,6 +49,10 @@ namespace alk {
 			return false;
 		}
 		
+		// test
+		GLint lTest = glGetUniformLocation(mlProgramID, "Test");
+		Debug("'%d'\n", lTest);
+
 		return true;
 	}
 
@@ -69,6 +73,18 @@ namespace alk {
 
 	void cGLSLGpuProgram::SetInt()
 	{
-		glUniform1i();
+		//glUniform1i();
+	}
+	void cGLSLGpuProgram::SetFloat()
+	{
+	}
+	void cGLSLGpuProgram::SetVector2f()
+	{
+	}
+	void cGLSLGpuProgram::SetVector3f()
+	{
+	}
+	void cGLSLGpuProgram::SetMatrixf()
+	{
 	}
 }

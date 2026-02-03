@@ -97,17 +97,17 @@ namespace alk {
 
 		return pProgram;
 	}
-
+	 
 	iGpuProgram* cGraphics::CreateShaderProgram(const tString& asName, const tString& asPixShader, const tString& asVertShader)
 	{
-		iShader* pVertShader = mpResources->GetShaderManager()->CreateShader(asVertShader, eVertexShader);
+		iShader* pVertShader = mpResources->GetShaderManager()->CreateShader(asVertShader, eShaderType_eVertexShader);
 		if (pVertShader == NULL) { Error("Failed to load vertex shader!\n"); return NULL; }
-		iShader* pPixShader = mpResources->GetShaderManager()->CreateShader(asPixShader, ePixelShader);
+		iShader* pPixShader = mpResources->GetShaderManager()->CreateShader(asPixShader, eShaderType_ePixelShader);
 		if (pPixShader == NULL) { Error("Failed to load Fragment shader\n"); mpResources->GetShaderManager()->Delete(pVertShader); return NULL; }
 
 		iGpuProgram* pProgram = CreateProgram(asName);
-		pProgram->SetShader(pVertShader, eVertexShader);
-		pProgram->SetShader(pPixShader, ePixelShader);
+		pProgram->SetShader(pVertShader, eShaderType_eVertexShader);
+		pProgram->SetShader(pPixShader, eShaderType_ePixelShader);
 		pProgram->Link();
 		pProgram->Bind();
 

@@ -77,8 +77,8 @@ namespace alk {
 	{
 		switch (aeShaderType)
 		{
-		case eVertexShader: return GL_VERTEX_SHADER;
-		case ePixelShader: return GL_FRAGMENT_SHADER;
+		case eShaderType_eVertexShader: return GL_VERTEX_SHADER;
+		case eShaderType_ePixelShader: return GL_FRAGMENT_SHADER;
 		}
 		
 		return NULL;

@@ -29,7 +29,7 @@ namespace alk {
 
 		GLuint GetHandle() const { return mlShaderID; }
 
-	protected:
+	private:
 		GLenum ConvertToGL( eShaderType aShaderType);
 		GLuint mlShaderID;
 	};
