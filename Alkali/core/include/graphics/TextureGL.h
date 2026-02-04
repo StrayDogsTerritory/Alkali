@@ -3,6 +3,8 @@
 
 #include "graphics/Texture.h"
 
+#include <vector>
+
 namespace alk
 {
 	class cTextureGL : public iTexture
@@ -11,9 +13,16 @@ namespace alk
 		cTextureGL();
 		~cTextureGL();
 
+		void GenerateTextureIDs(int alNumToGen);
+
 		bool CreateTexture();
+		bool CreateCubeMap();
+		bool CreateAnimation();
 	};
 
+private:
+	size_t mlMemorySize;
+	std::vector<GLint> mvIDs;
 }
 
 #endif
