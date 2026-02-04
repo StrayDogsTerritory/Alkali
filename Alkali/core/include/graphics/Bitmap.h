@@ -45,7 +45,7 @@ namespace alk {
 
 		tVector3f mvBitmapDimensions;
 		int mlNumImages;
-		int mlMipMapLevels;
+		int mlNumMipmaps;
 		size_t mlMemorySize;
 	};
 

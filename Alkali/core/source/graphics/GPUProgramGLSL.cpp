@@ -79,32 +79,32 @@ namespace alk {
 
 
 
-	void cGLSLGpuProgram::SetFloat(int alIdx,  float alX)
+	void cGLSLGpuProgram::SetFloat(int alIdx,  float afX)
 	{
 		// @TODO: make this better
-		glUniform1f(alIdx, alX);
+		glUniform1f(alIdx, afX);
 	}
 
 
 
-	void cGLSLGpuProgram::SetVector2f(int alIdx, tVector2f alX)
+	void cGLSLGpuProgram::SetVector2f(int alIdx, tVector2f avX)
 	{
 		// @TODO: make this better
-		glUniform2f(alIdx, alX.x, alX.y);
+		glUniform2f(alIdx, avX.x, avX.y);
 	}
 
 
-	void cGLSLGpuProgram::SetVector3f(int alIdx,  tVector3f alX)
+	void cGLSLGpuProgram::SetVector3f(int alIdx,  tVector3f avX)
 	{
 		// @TODO: make this better
-		glUniform3f(alIdx,alX.x,alX.y,alX.z);
+		glUniform3f(alIdx,avX.x,avX.y,avX.z);
 	}
 
 
-	void cGLSLGpuProgram::SetMatrixf(int alIdx,  tMatrixf alX)
+	void cGLSLGpuProgram::SetMatrixf(int alIdx,  tMatrixf amX)
 	{
 		// @TODO: make this better
-		glUniformMatrix4fv(alIdx, 16, GL_FALSE, &alX.v[0]);
+		glUniformMatrix4fv(alIdx, 16, GL_FALSE, &amX.v[0]);
 	}
 
 }

@@ -36,7 +36,7 @@ namespace alk {
 		mvImages.resize(1);
 		mvBitmapDimensions = 0;
 		mlNumImages = 1;
-		mlMipMapLevels = 0;
+		mlNumMipmaps = 1;
 		mlMemorySize = 0;
 	}
 
@@ -46,12 +46,12 @@ namespace alk {
 	}
 
 
-	cBitmapData* cBitmap::GetData( int alImage, int alMipmapLevel)
+	cBitmapData* cBitmap::GetData(int alImage, int alMipmapLevel)
 	{
 		if (alImage < 0) return NULL;
-		if (mlMipMapLevels < alMipmapLevel) return NULL;
+		if (mlNumMipmaps <= alMipmapLevel) return NULL;
 
-		return mvImages[alImage + alMipmapLevel];
+		return mvImages[alImage * mlNumMipmaps + alMipmapLevel];
 	}
 
 
@@ -60,16 +60,15 @@ namespace alk {
 	{
 		mvBitmapDimensions = avDimensions;
 		
-		cBitmapData* pBitmapData = alkNew(cBitmapData, ());
-		pBitmapData->SetData(alSize, apData);
-		mvImages.push_back(pBitmapData);
+		// normalize the bitmaps dimensions
+		if (mvBitmapDimensions.x <= 0) mvBitmapDimensions.x = 1;
+		if (mvBitmapDimensions.y <= 0) mvBitmapDimensions.y = 1;
+		if (mvBitmapDimensions.z <= 0) mvBitmapDimensions.z = 1;
 
-		// support mipmaps later
-		if (abMipmaps || alNumberMipMaps > 0)
-		{
-			Error("Mipmapping is not supported! Do not use!\n");
-			return false;
-		}
+		size_t lSize = mvBitmapDimensions.x * mvBitmapDimensions.y * mvBitmapDimensions.z; // * GetBytesPerPixel(aFormat); set this up later
+ 
+		cBitmapData* pData = GetData(alImage, alNumberMipMaps);
+		pData->SetData(lSize, apData);
 
 		return true;
 	}
