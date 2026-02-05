@@ -11,18 +11,19 @@ namespace alk {
 	class cShaderManager;
 	class iResourceBase;
 	class iResourceManager;
+	class iResourceLoader;
 	class cFileSearcher;
 	class cGraphics;
-
-	///////////////////////
-	//depricated
-	typedef std::map<tString, iResourceManager*> tManagerMap;
-	typedef tManagerMap::iterator tManagerMapIterator;
 
 
 	typedef std::list<iResourceManager*> tManagerList;
 	typedef tManagerList::iterator tManagerListIt;
 
+	typedef std::list<iResourceLoader*> tLoaderList;
+	typedef tLoaderList::iterator tLoaderIterator;
+
+	typedef std::list<tString> tSupportedExtensionList;
+	typedef tSupportedExtensionList::iterator tSupportedExtensionIt;
 
 	class cResources
 	{
@@ -37,12 +38,15 @@ namespace alk {
 		cShaderManager* GetShaderManager();
 
 		void AddDirectory(const twString& asDir, bool abAddSubDirs, const tString& asFilter = "*.*");
+	
+		void AddSupportedExtension(const tString& asExtension);
+		iResourceLoader* GetLoaderForFile();
 
 	private:
 		cFileSearcher* mpFileSearcher;
-		tManagerMap mManagermap;
 		tManagerList lManagerList;
-
+		tLoaderList lLoaderList;
+		tSupportedExtensionList lSupportedExtensionList;
 		cGraphics* mpGraphics;
 
 		cShaderManager* mpShaderManager;

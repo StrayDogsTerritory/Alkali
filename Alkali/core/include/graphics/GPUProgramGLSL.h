@@ -33,11 +33,11 @@ namespace alk {
 		void Bind();
 		void UnBind();
 
-		 void SetInt(int alIdx, const int& alX);
-		 void SetFloat(int alIdx, const float& afX);
-		 void SetVector2f(int alIdx, const  tVector2f& avX);
-		 void SetVector3f(int alIdx, const tVector3f& avX);
-		 void SetMatrixf(int alIdx, const tMatrixf& amX);
+		 void SetInt(int alIdx,  int alX);
+		 void SetFloat(int alIdx,  float afX);
+		 void SetVector2f(int alIdx,   tVector2f avX);
+		 void SetVector3f(int alIdx, tVector3f avX);
+		 void SetMatrixf(int alIdx, tMatrixf amX);
 
 	private:
 		std::vector<cGLSLParams> mvGLSLParams;

@@ -148,6 +148,7 @@
     <ClInclude Include="include\resources\FileSearcher.h" />
     <ClInclude Include="include\resources\MeshManager.h" />
     <ClInclude Include="include\resources\ResourceBase.h" />
+    <ClInclude Include="include\resources\ResourceLoader.h" />
     <ClInclude Include="include\resources\ResourceManager.h" />
     <ClInclude Include="include\resources\Resources.h" />
     <ClInclude Include="include\resources\ShaderCacher.h" />

@@ -13,7 +13,10 @@ namespace alk {
 
 	cTextureGL::~cTextureGL()
 	{
-		glDeleteTextures(mvIDs.size(), (GLuint*)&mvIDs[0]);
+		for (int i = 0; i < mvIDs.size(); ++i)
+		{
+			glDeleteTextures(mvIDs.size(), (GLuint*)&mvIDs[i]);
+		}
 	}
 
 	void cTextureGL::GenerateTextureIDs(int alNumToGen)
@@ -23,12 +26,38 @@ namespace alk {
 		glGenTextures(alNumToGen, (GLuint*)&mvIDs[alNumToGen-lNewTextures]);
 	}
 
-	bool cTextureGL::CreateTexture()
+	bool cTextureGL::CreateTextureFromBitmap(tVector3l avDimensions, cBitmap* apBitmap)
 	{
-		cBitmap* pBitmap;
-		pBitmap->Get
+		mvDimensions = apBitmap->GetDimensions();
+		GenerateTextureIDs(1);
+		glBindTexture(GL_TEXTURE_2D, mvIDs[0]);
 
-		return false;
+		SetupGLFromBitmap(apBitmap);
+
+		cBitmapData* pData = apBitmap->GetData(0, 0);
+		if (pData)
+		{
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, apBitmap->GetLength(), apBitmap->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, (void*)pData);
+			CreateMipMaps();
+		}
+
+		return true;
+	}
+
+	bool cTextureGL::CreateMipMaps()
+	{
+		glGenerateMipmap(GL_TEXTURE_2D);
+		return true;
+	}
+
+	void cTextureGL::SetupGLFromBitmap(cBitmap* apBitmap)
+	{
+		// @TODO: DO NOT HARD CODE ANY OF THIS!!!
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	}
 
 }

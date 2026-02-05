@@ -47,7 +47,7 @@ namespace alk {
 
 		cBitmapData* GetData(int alImage, int alMipmapLevel);
 
-		tVector3l GetSize() { return mvBitmapDimensions; }
+		tVector3l GetDimensions() { return mvBitmapDimensions; }
 
 		int GetLength() const { return mvBitmapDimensions.x; }
 		int GetHeight() const { return mvBitmapDimensions.y; }

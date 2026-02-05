@@ -4,6 +4,7 @@
 #include "resources/ResourceManager.h"
 #include "resources/ShaderManager.h"
 #include "resources/FileSearcher.h"
+#include "resources/ResourceLoader.h"
 
 #include "system/SystemTypes.h"
 
@@ -62,6 +63,22 @@ namespace alk {
 	void cResources::AddDirectory(const twString& asDir, bool abAddSubDirs, const tString& asFilter)
 	{
 		mpFileSearcher->AddDir(asDir, asFilter, abAddSubDirs);
+	}
+
+	void cResources::AddSupportedExtension(const tString& asExtension)
+	{
+		lSupportedExtensionList.push_back(asExtension);
+	}
+
+	iResourceLoader* cResources::GetLoaderForFile()
+	{
+		tLoaderIterator it = lLoaderList.begin();
+		for (; it != lLoaderList.end(); ++it)
+		{
+			// do NOTHING
+		}
+
+		return NULL;
 	}
 
 

@@ -307,6 +307,9 @@
     <ClInclude Include="include\graphics\TextureGL.h">
       <Filter>Graphics\API Specific\GL</Filter>
     </ClInclude>
+    <ClInclude Include="include\resources\ResourceLoader.h">
+      <Filter>Resources\Loaders</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">

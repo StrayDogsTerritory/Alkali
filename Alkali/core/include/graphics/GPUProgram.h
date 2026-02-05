@@ -37,11 +37,11 @@ namespace alk {
 		 virtual void Bind()=0;
 		 virtual void UnBind()=0;
 
-		virtual void SetInt(int alIdx, const int& alX)=0;
-		virtual void SetFloat(int alIdx, const float& afX)=0;
-		virtual void SetVector2f(int alIdx, const  tVector2f& avX)=0;
-		virtual void SetVector3f(int alIdx, const tVector3f& avX)=0;
-		virtual void SetMatrixf(int alIdx, const tMatrixf& amX)=0;
+		virtual void SetInt(int alIdx,  int alX)=0;
+		virtual void SetFloat(int alIdx,  float afX)=0;
+		virtual void SetVector2f(int alIdx,   tVector2f avX)=0;
+		virtual void SetVector3f(int alIdx,  tVector3f avX)=0;
+		virtual void SetMatrixf(int alIdx,  tMatrixf amX)=0;
 
 	protected:
 		tString msName;

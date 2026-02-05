@@ -53,7 +53,7 @@ namespace alk {
 
 	cBitmap::~cBitmap()
 	{
-		DeleteAll(mvImages);
+		//DeleteAll(mvImages);
 	}
 
 
@@ -62,7 +62,7 @@ namespace alk {
 		if (alImage < 0) return NULL;
 		if (mlNumMipmaps <= alMipmapLevel) return NULL;
 
-		return &mvImages[alImage * mlNumMipmaps + alMipmapLevel];
+		return &mvImages[(size_t)(alImage * mlNumMipmaps + alMipmapLevel)];
 	}
 
 
@@ -83,11 +83,10 @@ namespace alk {
 		if (mvBitmapDimensions.y <= 0) mvBitmapDimensions.y = 1;
 		if (mvBitmapDimensions.z <= 0) mvBitmapDimensions.z = 1;
 
-		size_t lSize = mvBitmapDimensions.x * mvBitmapDimensions.y * mvBitmapDimensions.z  * GetBytesPerPixel(aBitmapFormat); 
+		size_t lSize = (size_t)(mvBitmapDimensions.x * mvBitmapDimensions.y * mvBitmapDimensions.z  * GetBytesPerPixel(aBitmapFormat)); 
  
 		cBitmapData* pData = GetData(alImage, alMipMap);
-		pData->mlSize = lSize;
-		pData->mpData = apData;
+		pData->SetData(lSize, apData);
 
 		return true;
 	}

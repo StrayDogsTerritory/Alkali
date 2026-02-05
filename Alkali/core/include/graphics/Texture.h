@@ -5,6 +5,22 @@
 
 namespace alk {
 
+	enum eTextureWrappingMode
+	{
+		eTextureWrappingMode_Repeat,
+		eTextureWrappingMode_Mirrored,
+		eTextureWrappingMode_ClampToEdge,
+		eTextureWrappingMode_ClampToBorder,
+
+		eTextureWrappingMode_LastEnum,
+	};
+
+	enum eTextureFilter
+	{
+		eTextureFilter_Bilinear,
+		eTextureFilter_Trilinear,
+	};
+
 	class iTexture : public iResourceBase
 	{
 	public:

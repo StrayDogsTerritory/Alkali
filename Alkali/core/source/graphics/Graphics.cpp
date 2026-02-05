@@ -60,7 +60,7 @@ namespace alk {
 		int pTest[15] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14 };
 
 		cBitmap TestBitmap;
-		TestBitmap.CreateBitmap(tVector3f(4096.0f, 4096.0f, 0.0f),15,&pTest,false);
+		//TestBitmap.CreateBitmap(tVector3f(4096.0f, 4096.0f, 0.0f),15,&pTest,false);
 
 		Log("---------------------------------------------\n");
 
