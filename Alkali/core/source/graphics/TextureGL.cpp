@@ -18,14 +18,15 @@ namespace alk {
 
 	void cTextureGL::GenerateTextureIDs(int alNumToGen)
 	{
-		int lNewTextures = mvIDs.size() - alNumToGen;
-
-		glGenTextures(alNumToGen, (GLuint*)&mvIDs[lNewTextures]);
+		int lNewTextures = alNumToGen - mvIDs.size();
+		mvIDs.resize(alNumToGen);
+		glGenTextures(alNumToGen, (GLuint*)&mvIDs[alNumToGen-lNewTextures]);
 	}
 
 	bool cTextureGL::CreateTexture()
 	{
-		cBitmap* pBitmap = apBitmap;
+		cBitmap* pBitmap;
+		pBitmap->Get
 
 		return false;
 	}
