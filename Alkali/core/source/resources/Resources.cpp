@@ -65,21 +65,5 @@ namespace alk {
 		mpFileSearcher->AddDir(asDir, asFilter, abAddSubDirs);
 	}
 
-	void cResources::AddSupportedExtension(const tString& asExtension)
-	{
-		lSupportedExtensionList.push_back(asExtension);
-	}
-
-	iResourceLoader* cResources::GetLoaderForFile()
-	{
-		tLoaderIterator it = lLoaderList.begin();
-		for (; it != lLoaderList.end(); ++it)
-		{
-			// do NOTHING
-		}
-
-		return NULL;
-	}
-
 
 }

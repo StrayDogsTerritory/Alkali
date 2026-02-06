@@ -148,12 +148,17 @@
     <ClInclude Include="include\resources\FileSearcher.h" />
     <ClInclude Include="include\resources\MeshManager.h" />
     <ClInclude Include="include\resources\ResourceBase.h" />
+    <ClInclude Include="include\resources\ResourceInterface.h" />
     <ClInclude Include="include\resources\ResourceLoader.h" />
     <ClInclude Include="include\resources\ResourceManager.h" />
     <ClInclude Include="include\resources\Resources.h" />
+    <ClInclude Include="include\resources\ResourcesSDL.h" />
     <ClInclude Include="include\resources\ShaderCacher.h" />
     <ClInclude Include="include\resources\ShaderManager.h" />
     <ClInclude Include="include\resources\ShaderParser.h" />
+    <ClInclude Include="include\resources\SubLoader.h" />
+    <ClInclude Include="include\resources\SubLoader_Bitmap.h" />
+    <ClInclude Include="include\resources\SubLoader_BitmapDevIL.h" />
     <ClInclude Include="include\resources\TextureManager.h" />
     <ClInclude Include="include\Scene\Camera.h" />
     <ClInclude Include="include\Scene\Node.h" />
@@ -216,6 +221,8 @@
     <ClCompile Include="source\resources\ResourceManager.cpp" />
     <ClCompile Include="source\resources\Resources.cpp" />
     <ClCompile Include="source\resources\ShaderManager.cpp" />
+    <ClCompile Include="source\resources\SubLoader.cpp" />
+    <ClCompile Include="source\resources\SubLoader_BitmapDevIL.cpp" />
     <ClCompile Include="source\system\LogicTimer.cpp" />
     <ClCompile Include="source\system\MemoryManager.cpp" />
     <ClCompile Include="source\system\MutEx.cpp" />

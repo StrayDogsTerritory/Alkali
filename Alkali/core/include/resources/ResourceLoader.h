@@ -8,6 +8,7 @@
 namespace alk
 {
 	class cResources;
+	class iSubLoader;
 
 	class iResourceLoader
 	{
@@ -15,9 +16,13 @@ namespace alk
 		iResourceLoader(cResources* apResources);
 		virtual ~iResourceLoader();
 
-		void AddSupportedExtension();
+		void AddSubLoader(iSubLoader* apSubLoader);
+
+		void AddSupportedExtension(const twString& asExtension);
+		iSubLoader* GetLoaderForFile(const twString& asFile);
 
 	private:
+		std::vector<iSubLoader*> mvSubLoaders;
 		std::vector<tString> mvSupportedExtensions;
 	};
 

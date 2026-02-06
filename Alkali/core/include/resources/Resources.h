@@ -22,9 +22,6 @@ namespace alk {
 	typedef std::list<iResourceLoader*> tLoaderList;
 	typedef tLoaderList::iterator tLoaderIterator;
 
-	typedef std::list<tString> tSupportedExtensionList;
-	typedef tSupportedExtensionList::iterator tSupportedExtensionIt;
-
 	class cResources
 	{
 	public:
@@ -38,15 +35,11 @@ namespace alk {
 		cShaderManager* GetShaderManager();
 
 		void AddDirectory(const twString& asDir, bool abAddSubDirs, const tString& asFilter = "*.*");
-	
-		void AddSupportedExtension(const tString& asExtension);
-		iResourceLoader* GetLoaderForFile();
 
 	private:
 		cFileSearcher* mpFileSearcher;
 		tManagerList lManagerList;
 		tLoaderList lLoaderList;
-		tSupportedExtensionList lSupportedExtensionList;
 		cGraphics* mpGraphics;
 
 		cShaderManager* mpShaderManager;

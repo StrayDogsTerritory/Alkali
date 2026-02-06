@@ -67,6 +67,12 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{74ef9217-0526-456c-8609-4d9ecf4bc9a2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resources\Loaders\API Specific">
+      <UniqueIdentifier>{8428cbc0-8273-418d-97d9-cc6b9fbbb208}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources\Loaders\DevIL">
+      <UniqueIdentifier>{60c3cd5f-c1b4-4b3f-ae6a-d5c1562141b6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\system\String.h">
@@ -310,6 +316,21 @@
     <ClInclude Include="include\resources\ResourceLoader.h">
       <Filter>Resources\Loaders</Filter>
     </ClInclude>
+    <ClInclude Include="include\resources\ResourceInterface.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ResourcesSDL.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\SubLoader.h">
+      <Filter>Resources\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\SubLoader_Bitmap.h">
+      <Filter>Resources\Loaders</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\SubLoader_BitmapDevIL.h">
+      <Filter>Resources\Loaders\DevIL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">
@@ -455,6 +476,12 @@
     </ClCompile>
     <ClCompile Include="source\graphics\TextureGL.cpp">
       <Filter>Graphics\API Specific\GL</Filter>
+    </ClCompile>
+    <ClCompile Include="source\resources\SubLoader.cpp">
+      <Filter>Resources\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="source\resources\SubLoader_BitmapDevIL.cpp">
+      <Filter>Resources\Loaders\DevIL</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
