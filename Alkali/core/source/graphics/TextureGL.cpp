@@ -15,7 +15,7 @@ namespace alk {
 	{
 		for (int i = 0; i < mvIDs.size(); ++i)
 		{
-			glDeleteTextures(mvIDs.size(), (GLuint*)&mvIDs[i]);
+			glDeleteTextures(1, (GLuint*)&mvIDs[i]);
 		}
 	}
 

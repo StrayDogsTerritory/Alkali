@@ -25,7 +25,7 @@ namespace alk {
 	{
 	public:
 		iTexture();
-		~iTexture();
+		virtual ~iTexture() {}
 
 		bool CreateCubemap();
 		bool CreateTexture();
