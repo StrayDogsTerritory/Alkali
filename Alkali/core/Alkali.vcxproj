@@ -145,6 +145,8 @@
     <ClInclude Include="include\math\Quaternion.h" />
     <ClInclude Include="include\math\Vector2.h" />
     <ClInclude Include="include\math\Vector3.h" />
+    <ClInclude Include="include\resources\BitmapLoader.h" />
+    <ClInclude Include="include\resources\DevILBitmapLoaderHelper.h" />
     <ClInclude Include="include\resources\FileSearcher.h" />
     <ClInclude Include="include\resources\MeshManager.h" />
     <ClInclude Include="include\resources\ResourceBase.h" />
@@ -216,12 +218,16 @@
     <ClCompile Include="source\math\Math.cpp" />
     <ClCompile Include="source\math\Matrix.cpp" />
     <ClCompile Include="source\math\Quaternion.cpp" />
+    <ClCompile Include="source\resources\BitmapLoader.cpp" />
+    <ClCompile Include="source\resources\DevILBitmapLoaderHelper.cpp" />
     <ClCompile Include="source\resources\FileSearcher.cpp" />
     <ClCompile Include="source\resources\ResourceBase.cpp" />
+    <ClCompile Include="source\resources\ResourceLoader.cpp" />
     <ClCompile Include="source\resources\ResourceManager.cpp" />
     <ClCompile Include="source\resources\Resources.cpp" />
     <ClCompile Include="source\resources\ShaderManager.cpp" />
     <ClCompile Include="source\resources\SubLoader.cpp" />
+    <ClCompile Include="source\resources\SubLoader_Bitmap.cpp" />
     <ClCompile Include="source\resources\SubLoader_BitmapDevIL.cpp" />
     <ClCompile Include="source\system\LogicTimer.cpp" />
     <ClCompile Include="source\system\MemoryManager.cpp" />

@@ -2,10 +2,10 @@
 
 namespace alk {
 
-	bool iSubLoader::IsSupported(const twString& asExtension)
+	bool iSubLoader::IsSupported(const tString& asExtension)
 	{
 		tExtensionIt it = mLstExtensions.begin();
-		tString sLowExt = cString::To8BitChar(cString::ToLowerCaseW(asExtension));
+		tString sLowExt = cString::ToLowerCase(asExtension);
 
 		for (; it != mLstExtensions.end(); ++it)
 		{
@@ -18,8 +18,8 @@ namespace alk {
 		return false;
 	}
 
-	void iSubLoader::AddExtension(const twString& asExtension)
+	void iSubLoader::AddExtension(const tString& asExtension)
 	{
-		mLstExtensions.push_back(cString::To8BitChar(asExtension));
+		mLstExtensions.push_back(asExtension);
 	}
 }

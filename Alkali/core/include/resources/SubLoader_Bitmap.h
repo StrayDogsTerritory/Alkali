@@ -13,7 +13,7 @@ namespace alk {
 		iSubloader_Bitmap() {}
 		virtual ~iSubloader_Bitmap() {}
 
-		virtual void SaveBitmap(const twString& asFile)=0;
+		virtual void SaveBitmap(cBitmap* apBitmap, const twString& asFile)=0;
 		virtual cBitmap* LoadBitmap(const twString& asFile)=0;
 	};
 }

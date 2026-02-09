@@ -13,6 +13,7 @@ namespace alk {
 		virtual ~iResourceInterface() {}
 
 		virtual void SetupBitmapLoader(iResourceLoader* apResourceLoader)=0;
+		virtual bool Init() = 0;
 	};
 
 }

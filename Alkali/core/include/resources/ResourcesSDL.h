@@ -10,6 +10,8 @@ namespace alk {
 		cResourcesSDL();
 		~cResourcesSDL();
 
+		bool Init();
+
 		void SetupBitmapLoader(iResourceLoader* apResourceLoader);
 	};
 

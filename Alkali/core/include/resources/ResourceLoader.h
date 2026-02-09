@@ -3,6 +3,7 @@
 
 #include "system/String.h"
 
+#include <list>
 #include <vector>
 
 namespace alk
@@ -18,12 +19,16 @@ namespace alk
 
 		void AddSubLoader(iSubLoader* apSubLoader);
 
-		void AddSupportedExtension(const twString& asExtension);
-		iSubLoader* GetLoaderForFile(const twString& asFile);
+		virtual void SetupSubLoader(iSubLoader* apSubLoader)=0;
 
-	private:
+		//void AddSupportedExtension(const twString& asExtension);
+		iSubLoader* GetSubLoaderForFile(const twString& asFile);
+
+	protected:
+		cResources* mpResources;
+
 		std::vector<iSubLoader*> mvSubLoaders;
-		std::vector<tString> mvSupportedExtensions;
+		std::list<tString> mLstSupportedExtensions;
 	};
 
 }

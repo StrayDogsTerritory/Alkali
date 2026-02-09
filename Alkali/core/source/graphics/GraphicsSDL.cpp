@@ -43,6 +43,7 @@ namespace alk {
 
 
 		mpSDLWindow = SDL_CreateWindow("Alkali", alWidth, alHeight, mlFlags);
+
 		if (mpSDLWindow == NULL)
 			FatalError("Error initialising display: %s\n", SDL_GetError());
 

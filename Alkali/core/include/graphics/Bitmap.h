@@ -53,6 +53,10 @@ namespace alk {
 		int GetHeight() const { return mvBitmapDimensions.y; }
 		int GetDepth() const { return mvBitmapDimensions.z; }
 
+		void SetSize(tVector3l avSize) { mvBitmapDimensions = avSize; }
+		void SetFormat(eBitmapFormat aFormat) { mBitmapFormat = aFormat; }
+		void SetBytesPerPixel(int albbp) { mlBytesPerPixel = albbp; }
+
 		void SetUpData(int alImage, int alMipMap);
 
 		bool CreateBitmap(tVector3l avDimensions, eBitmapFormat aBitmapFormat, int alImage, int alMipMap, void* apData);
@@ -64,6 +68,7 @@ namespace alk {
 		int mlNumImages;
 		int mlNumMipmaps;
 		eBitmapFormat mBitmapFormat;
+		int mlBytesPerPixel;
 
 	};
 

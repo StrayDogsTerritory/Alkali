@@ -5,14 +5,17 @@
 
 namespace alk {
 
-	class cSubLoader_BitmapDevIL
+	class cSubLoader_BitmapDevIL : public iSubloader_Bitmap
 	{
+		
 	public:
+	//	friend class cDevILBitmapLoaderHandler;
+
 		cSubLoader_BitmapDevIL();
 		~cSubLoader_BitmapDevIL();
 
-		void SaveBitmap(const twString& asFile);
-		cBitmap* LoadBitmap(const twString& asFile);
+		 void SaveBitmap(cBitmap* apBitmap,const twString& asFile);
+		 cBitmap* LoadBitmap(const twString& asFile);
 	};
 }
 

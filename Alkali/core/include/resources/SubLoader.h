@@ -17,11 +17,12 @@ namespace alk {
 		iSubLoader() {}
 		virtual ~iSubLoader() {}
 
-		bool IsSupported(const twString& asExtension);
-		void AddExtension(const twString& asExtension);
+		bool IsSupported(const tString& asExtension);
+		void AddExtension(const tString& asExtension);
 
-	private:
 		tLstExtensions mLstExtensions;
+	protected:
+		
 	};
 
 }
