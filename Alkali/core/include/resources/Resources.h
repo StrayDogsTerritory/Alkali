@@ -8,13 +8,14 @@
 
 namespace alk {
 
+	class cBitmapLoader;
 	class cShaderManager;
 	class iResourceBase;
 	class iResourceManager;
 	class iResourceLoader;
 	class cFileSearcher;
 	class cGraphics;
-
+	class iResources;
 
 	typedef std::list<iResourceManager*> tManagerList;
 	typedef tManagerList::iterator tManagerListIt;
@@ -25,24 +26,34 @@ namespace alk {
 	class cResources
 	{
 	public:
-		cResources();
+		cResources(iResources* apResources);
 		~cResources();
 
 		bool Init(cGraphics* apGraphics);
 		
+		iResources* GetResources() { return mpResources; }
+
 		cFileSearcher* GetFileSearcher() { return mpFileSearcher; }
 
 		cShaderManager* GetShaderManager();
+
+		cBitmapLoader* GetBitmapLoader() { return mpBitmapLoader; }
 
 		void AddDirectory(const twString& asDir, bool abAddSubDirs, const tString& asFilter = "*.*");
 
 	private:
 		cFileSearcher* mpFileSearcher;
+		cGraphics* mpGraphics;
+		iResources* mpResources;
+
 		tManagerList lManagerList;
 		tLoaderList lLoaderList;
-		cGraphics* mpGraphics;
+		
+		
 
 		cShaderManager* mpShaderManager;
+
+		cBitmapLoader* mpBitmapLoader;
 	};
 
 }

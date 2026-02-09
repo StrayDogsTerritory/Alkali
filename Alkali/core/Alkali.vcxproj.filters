@@ -70,7 +70,7 @@
     <Filter Include="Resources\Loaders\API Specific">
       <UniqueIdentifier>{8428cbc0-8273-418d-97d9-cc6b9fbbb208}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resources\Loaders\DevIL">
+    <Filter Include="Resources\Loaders\API Specific\DevIL">
       <UniqueIdentifier>{60c3cd5f-c1b4-4b3f-ae6a-d5c1562141b6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -313,14 +313,14 @@
     <ClInclude Include="include\graphics\TextureGL.h">
       <Filter>Graphics\API Specific\GL</Filter>
     </ClInclude>
-    <ClInclude Include="include\resources\ResourceLoader.h">
-      <Filter>Resources\Loaders</Filter>
-    </ClInclude>
     <ClInclude Include="include\resources\ResourceInterface.h">
       <Filter>Resources</Filter>
     </ClInclude>
     <ClInclude Include="include\resources\ResourcesSDL.h">
       <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\ResourceLoader.h">
+      <Filter>Resources\Loaders</Filter>
     </ClInclude>
     <ClInclude Include="include\resources\SubLoader.h">
       <Filter>Resources\Loaders</Filter>
@@ -329,7 +329,13 @@
       <Filter>Resources\Loaders</Filter>
     </ClInclude>
     <ClInclude Include="include\resources\SubLoader_BitmapDevIL.h">
-      <Filter>Resources\Loaders\DevIL</Filter>
+      <Filter>Resources\Loaders\API Specific\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\DevILBitmapLoaderHelper.h">
+      <Filter>Resources\Loaders\API Specific\DevIL</Filter>
+    </ClInclude>
+    <ClInclude Include="include\resources\BitmapLoader.h">
+      <Filter>Resources\Loaders</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -481,7 +487,22 @@
       <Filter>Resources\Loaders</Filter>
     </ClCompile>
     <ClCompile Include="source\resources\SubLoader_BitmapDevIL.cpp">
-      <Filter>Resources\Loaders\DevIL</Filter>
+      <Filter>Resources\Loaders\API Specific\DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="source\resources\DevILBitmapLoaderHelper.cpp">
+      <Filter>Resources\Loaders\API Specific\DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="source\resources\SubLoader_Bitmap.cpp">
+      <Filter>Resources\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="source\resources\ResourceLoader.cpp">
+      <Filter>Resources\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="source\resources\BitmapLoader.cpp">
+      <Filter>Resources\Loaders</Filter>
+    </ClCompile>
+    <ClCompile Include="source\resources\ResourcesSDL.cpp">
+      <Filter>Resources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -7,10 +7,11 @@ namespace alk {
 
 	class iResourceLoader;
 
-	class iResourceInterface
+	class iResources
 	{
-		iResourceInterface() {}
-		virtual ~iResourceInterface() {}
+	public:
+		iResources() {}
+		virtual ~iResources() {}
 
 		virtual void SetupBitmapLoader(iResourceLoader* apResourceLoader)=0;
 		virtual bool Init() = 0;

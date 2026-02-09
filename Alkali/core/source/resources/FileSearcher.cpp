@@ -37,7 +37,7 @@ namespace alk {
 		{
 			twString& sFileName = *it;
 			tString sNameLow = cString::ToLowerCase(cString::To8BitChar(sFileName));
-			twString sFilePath = cString::ReplaceW(cPlatform::GetFuleFilePath(cString::SetFilePathW(sFileName, sPath)), L"\\", L"/");
+			twString sFilePath = cString::ReplaceW(cPlatform::GetFullFilePath(cString::SetFilePathW(sFileName, sPath)), L"\\", L"/");
 
 			// are you already in the map?
 			mFileSearcherMapIt Pathit = mEntries.find(sNameLow);

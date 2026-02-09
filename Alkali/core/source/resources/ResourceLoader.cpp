@@ -54,7 +54,7 @@ namespace alk {
 				}
 			}
 		}
-		Error("Couldn't find suitable sub loader for file extension '%s'\n", sExt.c_str());
+		Error("Couldn't find suitable sub-loader for file extension '%s'\n", sExt.c_str());
 		return NULL;
 	}
 }

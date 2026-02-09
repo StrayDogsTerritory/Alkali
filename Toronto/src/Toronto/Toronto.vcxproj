@@ -118,7 +118,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>Alkali_Debug.lib;SDL3.lib;glew32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>Alkali_Debug.lib;SDL3.lib;glew32.lib;DevIL.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>..\..\..\Alkali/Lib;..\..\..\Alkali\dependencies\lib\x64win;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <ProgramDatabaseFile>..\..\redist/Toronto.pdb</ProgramDatabaseFile>
       <EntryPointSymbol>

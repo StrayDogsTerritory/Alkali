@@ -19,6 +19,12 @@ namespace alk {
 
 	}
 
+	void cSubLoader_BitmapDevIL::SaveBitmap(cBitmap* apBitmap, const twString& asFile)
+	{
+		// make this work later
+	//	return;
+	}
+
 	cBitmap* cSubLoader_BitmapDevIL::LoadBitmap(const twString& asFile)
 	{
 		ILuint lImageID = 0;

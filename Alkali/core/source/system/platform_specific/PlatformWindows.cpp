@@ -60,7 +60,7 @@ namespace alk {
 		return true;
 	}
 
-	twString cPlatform::GetFuleFilePath(const twString& asFile)
+	twString cPlatform::GetFullFilePath(const twString& asFile)
 	{
 		wchar_t sBuff[2048];
 		int blah = GetFullPathNameW(asFile.c_str(), 2048, sBuff, NULL);

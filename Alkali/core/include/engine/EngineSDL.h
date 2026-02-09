@@ -12,6 +12,7 @@ namespace alk {
 	class iSystem;
 	class cInput;
 	class iInput;
+	class iResources;
 
 	class cSDLEngine : public iEngineSetup
 	{
@@ -22,8 +23,11 @@ namespace alk {
 		cGraphics* CreateGraphicsModule();
 		cSystem* CreateSystemModule();
 		cInput* CreateInputModule();
+		cResources* CreateResourcesModule();
+
 	private:
 
+		iResources* mpResourcesSDL;
 		iGraphics* mpGraphicsSDL;
 		iSystem* mpSystemSDL;
 		iInput* mpInputSDL;

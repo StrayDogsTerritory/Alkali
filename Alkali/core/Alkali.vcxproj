@@ -225,6 +225,7 @@
     <ClCompile Include="source\resources\ResourceLoader.cpp" />
     <ClCompile Include="source\resources\ResourceManager.cpp" />
     <ClCompile Include="source\resources\Resources.cpp" />
+    <ClCompile Include="source\resources\ResourcesSDL.cpp" />
     <ClCompile Include="source\resources\ShaderManager.cpp" />
     <ClCompile Include="source\resources\SubLoader.cpp" />
     <ClCompile Include="source\resources\SubLoader_Bitmap.cpp" />

@@ -82,7 +82,7 @@ namespace alk {
 		mpGraphics = mpGame->CreateGraphicsModule();
 
 		Log("Creating Resource module\n");
-		mpResources = alkNew(cResources, ());
+		mpResources = mpGame->CreateResourcesModule();
 
 		Log("Creating Input module\n");
 		mpInput = mpGame->CreateInputModule();

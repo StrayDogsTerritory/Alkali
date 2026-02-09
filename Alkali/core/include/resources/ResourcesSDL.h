@@ -5,8 +5,9 @@
 
 namespace alk {
 
-	class cResourcesSDL : public iResourceInterface
+	class cResourcesSDL : public iResources
 	{
+	public:
 		cResourcesSDL();
 		~cResourcesSDL();
 

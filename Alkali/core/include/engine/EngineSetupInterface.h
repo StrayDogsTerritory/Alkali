@@ -3,6 +3,7 @@
 
 namespace alk {
 
+	class cResources;
 	class cGraphicsSDL;
 	class cGraphics;
 	class cSystem;
@@ -16,6 +17,7 @@ namespace alk {
 		virtual cGraphics* CreateGraphicsModule()=0;
 		virtual cSystem* CreateSystemModule()=0;
 		virtual cInput* CreateInputModule()=0;
+		virtual cResources* CreateResourcesModule()=0;
 	};
 
 }

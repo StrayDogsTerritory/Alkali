@@ -4,14 +4,17 @@
 #include "engine/LogWriter.h"
 #include "graphics/Graphics.h"
 
-#include "SDL3/SDL.h"
-
 #include "system/FlagBits.h"
 #include "system/SystemSDL.h"
 #include "system/System.h"
 
 #include "input/InputSDL.h"
 #include "input/Input.h"
+
+#include "resources/Resources.h"
+#include "resources/ResourcesSDL.h"
+
+#include <SDL3/SDL.h>
 
 namespace alk {
 
@@ -29,6 +32,7 @@ namespace alk {
    		mpGraphicsSDL = alkNew(cGraphicsSDL, ());
 		mpSystemSDL = alkNew(cSystemSDL, ());
 		mpInputSDL = alkNew(cInputSDL, (mpGraphicsSDL));
+		mpResourcesSDL = alkNew(cResourcesSDL, ());
 	}
 
 	cSDLEngine::~cSDLEngine()
@@ -49,10 +53,17 @@ namespace alk {
 		cSystem* pSystem = alkNew(cSystem, (mpSystemSDL));
 		return pSystem;
 	}
+
 	cInput* cSDLEngine::CreateInputModule()
 	{
 		cInput* pInput = alkNew(cInput, (mpInputSDL));
 		return pInput;
+	}
+
+	cResources* cSDLEngine::CreateResourcesModule()
+	{
+		cResources* pResources = alkNew(cResources, (mpResourcesSDL));
+		return pResources;
 	}
 }
 
