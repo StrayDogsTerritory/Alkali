@@ -110,6 +110,7 @@ namespace alk {
 
 		// add engine updates
 		mpUpdater->AddEngineModule(mpSystem);
+		mpUpdater->AddEngineModule(mpResources);
 		mpUpdater->AddEngineModule(mpInput);
 		mpUpdater->AddEngineModule(mpGraphics);
 		

@@ -2,6 +2,7 @@
 #define ALK_RESOURCES_H
 
 #include "system/String.h"
+#include "engine/Updateable.h"
 
 #include <map>
 #include <list>
@@ -23,7 +24,7 @@ namespace alk {
 	typedef std::list<iResourceLoader*> tLoaderList;
 	typedef tLoaderList::iterator tLoaderIterator;
 
-	class cResources
+	class cResources : public iUpdateable
 	{
 	public:
 		cResources(iResources* apResources);
@@ -31,6 +32,8 @@ namespace alk {
 
 		bool Init(cGraphics* apGraphics);
 		
+		void OnUpdate(float afStep);
+
 		iResources* GetResources() { return mpResources; }
 
 		cFileSearcher* GetFileSearcher() { return mpFileSearcher; }
@@ -49,7 +52,7 @@ namespace alk {
 		tManagerList lManagerList;
 		tLoaderList lLoaderList;
 		
-		
+		static bool bTest;
 
 		cShaderManager* mpShaderManager;
 

@@ -14,7 +14,9 @@
 
 namespace alk {
 
-	cResources::cResources(iResources* apResources)
+	bool cResources::bTest = true;
+
+	cResources::cResources(iResources* apResources) : iUpdateable("Resources")
 	{
 		mpResources = apResources;
 		mpGraphics = NULL;
@@ -33,6 +35,10 @@ namespace alk {
 		Log("Exiting resource managers\n");
 		alkDelete(mpShaderManager);
 		Log(" Shader manager\n");
+
+		Log("Exiting resource loaders\n");
+		alkDelete(mpBitmapLoader);
+		Log(" Bitmap Loader\n");
 
 		Log("Exiting filesearcher\n");
 		alkDelete(mpFileSearcher);
@@ -60,13 +66,27 @@ namespace alk {
 		lLoaderList.push_back(mpBitmapLoader);
 
 		Log("Setup external sub-loaders\n");
-		
+		mpResources->SetupBitmapLoader(mpBitmapLoader);
 
 		Log("Adding resource directories\n");
 		//AddDirectory(L"./", true);
 
 		Log("---------------------------------------------\n");
 		return true;
+	}
+
+	void cResources::OnUpdate(float afStep)
+	{
+		twString sPath = L"X:/Alkali/Toronto/redist/test/progress_screen.png";
+		twString sPathWin = cString::ReplaceW(sPath, L"/", L"\\");
+
+		if (bTest)
+		{
+			cBitmap* pBitmap = mpBitmapLoader->LoadBitmap(sPathWin);
+			bTest = false;
+
+			alkDelete(pBitmap);
+		}
 	}
 
 	// temp

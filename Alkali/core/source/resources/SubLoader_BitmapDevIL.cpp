@@ -27,13 +27,13 @@ namespace alk {
 
 	cBitmap* cSubLoader_BitmapDevIL::LoadBitmap(const twString& asFile)
 	{
-		ILuint lImageID = 0;
+		ILuint lImageID;
 		ilGenImages(1, (ILuint*)&lImageID);
 		ilBindImage(lImageID);
 
 		if (!cDevILBitmapLoaderHelper::LoadBitmapDevIL(asFile))
 		{
-			Error("Couldn't load Bitmap '%s'!\n",cString::To8BitChar(asFile));
+			Error("Couldn't load Bitmap '%s'!\n",cString::To8BitChar(asFile).c_str());
 			ilDeleteImages(1, (ILuint*)&lImageID);
 			return NULL;
 		}

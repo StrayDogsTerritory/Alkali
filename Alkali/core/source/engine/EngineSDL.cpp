@@ -40,6 +40,7 @@ namespace alk {
 		alkDelete(mpGraphicsSDL);
 		alkDelete(mpSystemSDL);
 		alkDelete(mpInputSDL);
+		alkDelete(mpResourcesSDL);
 	}
 
 	cGraphics* cSDLEngine::CreateGraphicsModule()

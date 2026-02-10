@@ -26,18 +26,20 @@ namespace alk {
 	bool cDevILBitmapLoaderHelper::LoadBitmapDevIL(const twString& asFile)
 	{
 		// monster function call :o
-		tString sExt = cString::To8BitChar(cString::ToLowerCaseW(cString::FileExtensionW(asFile)));
+		//tString sExt = cString::To8BitChar(cString::ToLowerCaseW(cString::FileExtensionW(asFile)));
 
 		FILE* pFile = cPlatform::OpenFile(asFile, L"rb");
-		if (pFile)
+
+		if (pFile ==  NULL)
 		{
-			ILboolean bRet = ilLoadF(IL_PNG, (ILHANDLE)pFile);
-			fclose(pFile);
-			return (bool)bRet;
+			Error("Couldn't open file '%s' for reading!\n", cString::To8BitChar(asFile).c_str());
+			return false;
 		}
 
-		Error("Couldn't open file '%s' for reading!\n", cString::To8BitChar(asFile));
-		return false;
+		int bRet = ilLoadF(IL_PNG, pFile);
+		fclose(pFile);
+		return (bool)bRet;
+		
 	}
 
 }
