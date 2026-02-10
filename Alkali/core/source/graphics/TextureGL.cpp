@@ -5,10 +5,11 @@
 
 namespace alk {
 
-	cTextureGL::cTextureGL() : iTexture()
+	cTextureGL::cTextureGL(const tString& asName) : iTexture(asName)
 	{
 		// do something here...
-		
+		mlMemorySize = 0;
+		msName = asName;
 	}
 
 	cTextureGL::~cTextureGL()
@@ -37,7 +38,7 @@ namespace alk {
 		cBitmapData* pData = apBitmap->GetData(0, 0);
 		if (pData)
 		{
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, apBitmap->GetLength(), apBitmap->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, (void*)pData);
+			glTexImage2D(GL_TEXTURE_2D, 0, apBitmap->GetBitmapFormat(), apBitmap->GetLength(), apBitmap->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, pData);
 			CreateMipMaps();
 		}
 

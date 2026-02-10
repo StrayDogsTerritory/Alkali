@@ -3,6 +3,8 @@
 
 #include "resources/SubLoader_Bitmap.h"
 
+#include <IL/il.h>
+
 namespace alk {
 
 	class cSubLoader_BitmapDevIL : public iSubloader_Bitmap
@@ -16,6 +18,9 @@ namespace alk {
 
 		 void SaveBitmap(cBitmap* apBitmap,const twString& asFile);
 		 cBitmap* LoadBitmap(const twString& asFile);
+
+	private:
+		 eBitmapFormat ILtoEnum(ILint aFormat);
 	};
 }
 

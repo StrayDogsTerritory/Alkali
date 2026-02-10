@@ -21,14 +21,25 @@ namespace alk {
 		eTextureFilter_Trilinear,
 	};
 
+	class cBitmap;
+
 	class iTexture : public iResourceBase
 	{
 	public:
-		iTexture();
+		iTexture(const tString& asName) : iResourceBase(asName, L"") {}
 		virtual ~iTexture() {}
 
-		bool CreateCubemap();
-		bool CreateTexture();
+		// get to this later
+		void Unload() {}
+		bool Reload() { return false; }
+		void Destroy() {}
+
+		virtual	bool CreateTextureFromBitmap(tVector3l avDimensions, cBitmap* apBitmap)=0;
+		 bool CreateTextureFromRawData(tVector3l avDimensions, void* apData);
+		 bool CreateCubeMap();
+		 bool CreateAnimation();
+
+		
 
 	protected:
 	};

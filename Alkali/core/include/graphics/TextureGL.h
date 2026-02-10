@@ -17,7 +17,7 @@ namespace alk
 	class cTextureGL : public iTexture
 	{
 	public:
-		cTextureGL();
+		cTextureGL(const tString& asName);
 		~cTextureGL();
 
 		void GenerateTextureIDs(int alNumToGen);
@@ -30,9 +30,13 @@ namespace alk
 		
 
 	private:
+		GLint EnumToGLPixelFormat();
+
+
 		bool CreateMipMaps();
 		void SetupGLFromBitmap(cBitmap* apBitmap);
 
+		tString msName;
 		tVector3l mvDimensions;
 		size_t mlMemorySize;
 		std::vector<GLint> mvIDs;

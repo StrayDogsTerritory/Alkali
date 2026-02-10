@@ -70,8 +70,9 @@ namespace alk {
 		ilInit();
 
 		Log("---DevIL Specifics---\n");
+		Log("Vendor: %s\n", ilGetString(IL_VENDOR));
 		Log("Version: %s\n",ilGetString(IL_VERSION_NUM));
-		Log("Vendor: %s\n",ilGetString(IL_VENDOR));
+		Log("Version Number: %d", ilGetInteger(IL_VERSION_NUM));
 		Log("\n");
 
 		ilSetRead(DevILOpen, DevILClose, DevILEoF, DevILGetC, DevILRead, DevILSeek, DevILTell);

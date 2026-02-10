@@ -53,6 +53,9 @@ namespace alk {
 		int GetHeight() const { return mvBitmapDimensions.y; }
 		int GetDepth() const { return mvBitmapDimensions.z; }
 
+		int GetBytesPerPixel() const { return mlBytesPerPixel; }
+		int GetBitmapFormat() const { return mBitmapFormat; }
+
 		void SetSize(tVector3l avSize) { mvBitmapDimensions = avSize; }
 		void SetFormat(eBitmapFormat aFormat) { mBitmapFormat = aFormat; }
 		void SetBytesPerPixel(int albbp) { mlBytesPerPixel = albbp; }

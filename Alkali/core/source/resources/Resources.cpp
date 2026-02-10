@@ -11,6 +11,9 @@
 #include "system/SystemTypes.h"
 
 #include "graphics/Graphics.h"
+// remove these
+#include "graphics/Texture.h"
+#include "graphics/GraphicsInterface.h"
 
 namespace alk {
 
@@ -62,11 +65,13 @@ namespace alk {
 		lManagerList.push_back(mpShaderManager);
 
 		Log("Creating resource loaders\n");
+		Log(" Bitmap Loader");
 		mpBitmapLoader = alkNew(cBitmapLoader, (this));
 		lLoaderList.push_back(mpBitmapLoader);
 
-		Log("Setup external sub-loaders\n");
+		Log("Setup external sub-loaders...\n");
 		mpResources->SetupBitmapLoader(mpBitmapLoader);
+		Log("Done\n");
 
 		Log("Adding resource directories\n");
 		//AddDirectory(L"./", true);
@@ -77,13 +82,18 @@ namespace alk {
 
 	void cResources::OnUpdate(float afStep)
 	{
-		twString sPath = L"X:/Alkali/Toronto/redist/test/progress_screen.png";
+		//@TODO: this is so unbelievably bad that I should be banned from programming. Remove all of this later
+
+		twString sPath = L"test/photomode_03072025_150327.png";
 		twString sPathWin = cString::ReplaceW(sPath, L"/", L"\\");
 
 		if (bTest)
 		{
 			cBitmap* pBitmap = mpBitmapLoader->LoadBitmap(sPathWin);
 			bTest = false;
+
+			iTexture* pTexture = mpGraphics->GetLowGraphics()->CreateTexture(cString::To8BitChar(cString::FileNameW(sPath)));
+			pTexture->CreateTextureFromBitmap(pBitmap->GetDimensions(), pBitmap);
 
 			alkDelete(pBitmap);
 		}

@@ -17,6 +17,7 @@ namespace alk {
 	class iShader;
 	class iGpuProgram;
 	class iVertexBuffer;
+	class iTexture;
 
 	class cGraphicsSDL : public iGraphics
 	{
@@ -32,6 +33,7 @@ namespace alk {
 		iShader* CreateShader(const tString& asName, eShaderType aType);
 		iGpuProgram* CreateProgram(const tString& asName);
 		iVertexBuffer* CreateVertexBuffer(eVertexBufferDrawType aDrawType, eVertexBufferPrimitiveAssemblyType aPrimAssemblyType);
+		iTexture* CreateTexture(const tString& asName);
 
 		void SwapBuffer(); // don't call it SwapBuffers cuz windows gets all weird about it.
 		void FlushRender();

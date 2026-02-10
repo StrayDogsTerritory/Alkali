@@ -49,6 +49,8 @@ namespace alk {
 		mvBitmapDimensions = 0;
 		mlNumImages = 1;
 		mlNumMipmaps = 1;
+		mlBytesPerPixel = 0;
+		mBitmapFormat = eBitmapFormat_LastEnum;
 	}
 
 	cBitmap::~cBitmap()
@@ -83,7 +85,7 @@ namespace alk {
 		if (mvBitmapDimensions.y <= 0) mvBitmapDimensions.y = 1;
 		if (mvBitmapDimensions.z <= 0) mvBitmapDimensions.z = 1;
 
-		size_t lSize = (size_t)(mvBitmapDimensions.x * mvBitmapDimensions.y * mvBitmapDimensions.z  * GetBytesPerPixel(aBitmapFormat)); 
+		size_t lSize = (size_t)(mvBitmapDimensions.x * mvBitmapDimensions.y * mvBitmapDimensions.z  * GetBytesPerPixel()); 
  
 		cBitmapData* pData = GetData(alImage, alMipMap);
 		pData->SetData(lSize, apData);

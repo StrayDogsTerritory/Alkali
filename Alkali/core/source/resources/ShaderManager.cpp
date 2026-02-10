@@ -25,7 +25,7 @@ namespace alk {
 
 	iShader* cShaderManager::CreateShader(const tString& asName, eShaderType aType)
 	{
-		twString sPath;
+		twString sPath = cPlatform::GetFullFilePath(cString::ToWideChar(asName));
 		iShader* pShader = static_cast<iShader*> (FindResource(asName, sPath));
 
 		if (pShader == NULL && sPath != L"")

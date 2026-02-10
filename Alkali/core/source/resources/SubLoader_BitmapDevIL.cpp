@@ -40,10 +40,17 @@ namespace alk {
 
 		cBitmap* pBitmap = alkNew(cBitmap, ());
 
-		int lNumImages = ilGetInteger(IL_NUM_IMAGES);
-		int lNumMipMaps = ilGetInteger(IL_NUM_MIPMAPS);
+		int lBytesPerPixel = ilGetInteger(IL_IMAGE_BYTES_PER_PIXEL);
+		pBitmap->SetBytesPerPixel(lBytesPerPixel);
 
-		pBitmap->SetUpData(lNumImages, lNumMipMaps);
+		ILint lPixelFormat = ilGetInteger(IL_IMAGE_FORMAT);
+		pBitmap->SetFormat(ILtoEnum(lPixelFormat));
+
+		int lNumImages = ilGetInteger(IL_NUM_IMAGES);
+		int lNumMipMaps = 1; //ilGetInteger(IL_NUM_MIPMAPS) + 1; // 1 because we consider the first image a mip map
+
+		if (lNumImages > 1)
+			pBitmap->SetUpData(lNumImages, lNumMipMaps);
 
 		tVector3l vDimensions;
 		vDimensions.x = ilGetInteger(IL_IMAGE_WIDTH);
@@ -52,25 +59,32 @@ namespace alk {
 		pBitmap->SetSize(vDimensions);
 
 		// if the bitmap has mipmaps, load it differently
-		if (lNumImages < 1)
+		int lCount = lNumImages > 0 ? lNumImages : 1;
+		for (int i = 0; i < lCount; ++i)
 		{
-			for (int i = 0; i < lNumImages; ++i)
-			{
+			if (lNumImages > 1)
 				ilActiveImage(i);
 
-				cBitmapData* pBitmapData = pBitmap->GetData(i, 0);
+			cBitmapData* pBitmapData = pBitmap->GetData(i, 0);
 
-				size_t lSize = (size_t)ilGetInteger(IL_IMAGE_SIZE_OF_DATA);
-				pBitmapData->SetData(lSize, ilGetData());
-			}
-		}
-		else
-		{
-			
+			size_t lSize = (size_t)ilGetInteger(IL_IMAGE_SIZE_OF_DATA);
+			pBitmapData->SetData(lSize, ilGetData());
 		}
 
 		ilDeleteImages(1, (ILuint*)&lImageID);
 
 		return pBitmap;
+	}
+
+
+	eBitmapFormat cSubLoader_BitmapDevIL::ILtoEnum(ILint aFormat)
+	{
+		switch (aFormat)
+		{
+		case IL_RGB: return eBitmapFormat_RGB;
+		case IL_RGBA: return eBitmapFormat_RGBA;
+
+		default: return eBitmapFormat_LastEnum;
+		}
 	}
 }

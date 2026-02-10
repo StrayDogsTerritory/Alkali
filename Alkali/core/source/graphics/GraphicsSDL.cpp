@@ -3,15 +3,16 @@
 #include "graphics/Graphics.h"
 #include "graphics/ShaderGLSL.h"
 #include "graphics/GpuProgramGLSL.h"
-
-#include "system/Platform.h"
 #include "graphics/Shader.h"
 #include "graphics/GpuProgram.h"
 #include "graphics/Colour.h"
 #include "graphics/VertexBuffer.h"
 #include "graphics/VertexBufferGL.h"
+#include "graphics/Texture.h"
+#include "graphics/TextureGL.h"
 
 #include "system/String.h"
+#include "system/Platform.h"
 
 #pragma comment(lib, "OpenGL32.lib")
 #pragma comment(lib, "GLu32.lib")
@@ -140,6 +141,11 @@ namespace alk {
 	iVertexBuffer* cGraphicsSDL::CreateVertexBuffer(eVertexBufferDrawType aDrawType, eVertexBufferPrimitiveAssemblyType aPrimAssemblyType)
 	{
 		return alkNew(cVertexBufferGL, (aDrawType, aPrimAssemblyType));
+	}
+
+	iTexture* cGraphicsSDL::CreateTexture(const tString& asName)
+	{
+		return alkNew(cTextureGL, (asName));
 	}
 
 
