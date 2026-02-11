@@ -36,8 +36,9 @@ namespace alk {
 		glBindTexture(GL_TEXTURE_2D, mvIDs[0]);
 
 		cBitmapData* pData = apBitmap->GetData(0, 0);
+		unsigned char* pLowData = pData[0].mpData;
 
-			glTexImage2D(GL_TEXTURE_2D, 0, EnumToGLPixelFormat(apBitmap->GetBitmapFormat()), apBitmap->GetLength(), apBitmap->GetHeight(), 0, EnumToGLPixelFormat(apBitmap->GetBitmapFormat()), GL_UNSIGNED_BYTE, pData);
+			glTexImage2D(GL_TEXTURE_2D, 0, EnumToGLPixelFormat(apBitmap->GetBitmapFormat()), apBitmap->GetLength(), apBitmap->GetHeight(), 0, EnumToGLPixelFormat(apBitmap->GetBitmapFormat()), GL_UNSIGNED_BYTE, pLowData);
 			//CreateMipMaps();
 		
 
@@ -64,6 +65,14 @@ namespace alk {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	}
 
+
+	void cTextureGL::Bind(int alUnit)
+	{
+		glActiveTexture(GL_TEXTURE0 + alUnit);
+
+		glBindTexture(GL_TEXTURE_2D, mvIDs[0]);
+		glEnable(GL_TEXTURE_2D);
+	}
 
 	GLint cTextureGL::EnumToGLPixelFormat(eBitmapFormat aFormat)
 	{

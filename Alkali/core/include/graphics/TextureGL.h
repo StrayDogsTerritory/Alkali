@@ -27,7 +27,7 @@ namespace alk
 		bool CreateCubeMap();
 		bool CreateAnimation();
 
-		
+		void Bind(int alUnit);
 
 	private:
 		GLint EnumToGLPixelFormat(eBitmapFormat aFormat);

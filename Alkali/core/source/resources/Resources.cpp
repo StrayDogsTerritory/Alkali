@@ -82,21 +82,7 @@ namespace alk {
 
 	void cResources::OnUpdate(float afStep)
 	{
-		//@TODO: this is so unbelievably bad that I should be banned from programming. Remove all of this later
-
-		twString sPath = L"test/photomode_03072025_150327.png";
-		twString sPathWin = cString::ReplaceW(sPath, L"/", L"\\");
-
-		if (bTest)
-		{
-			cBitmap* pBitmap = mpBitmapLoader->LoadBitmap(sPathWin);
-			bTest = false;
-
-			iTexture* pTexture = mpGraphics->GetLowGraphics()->CreateTexture(cString::To8BitChar(cString::FileNameW(sPath)));
-			pTexture->CreateTextureFromBitmap(pBitmap->GetDimensions(), pBitmap);
-
-			alkDelete(pBitmap);
-		}
+	
 	}
 
 	// temp

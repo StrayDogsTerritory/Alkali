@@ -47,7 +47,7 @@ namespace alk {
 		pBitmap->SetFormat(ILtoEnum(lPixelFormat));
 
 		int lNumImages = ilGetInteger(IL_NUM_IMAGES);
-		int lNumMipMaps = 1; //ilGetInteger(IL_NUM_MIPMAPS) + 1; // 1 because we consider the first image a mip map
+		int lNumMipMaps = ilGetInteger(IL_NUM_MIPMAPS) + 1; // 1 because we consider the first image a mip map
 
 		if (lNumImages > 1)
 			pBitmap->SetUpData(lNumImages, lNumMipMaps);
@@ -64,7 +64,7 @@ namespace alk {
 		{
 			if (lNumImages > 1)
 				ilActiveImage(i);
-
+			
 			cBitmapData* pBitmapData = pBitmap->GetData(i, 0);
 
 			size_t lSize = (size_t)ilGetInteger(IL_IMAGE_SIZE_OF_DATA);

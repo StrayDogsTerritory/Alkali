@@ -502,7 +502,7 @@
       <Filter>Resources</Filter>
     </ClCompile>
     <ClCompile Include="source\graphics\Bitmap.cpp">
-      <Filter>Graphics\API Specific\GL</Filter>
+      <Filter>Graphics</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

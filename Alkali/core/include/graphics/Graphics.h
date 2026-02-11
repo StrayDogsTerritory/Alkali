@@ -22,6 +22,7 @@ namespace alk {
 	class iGpuProgram;
 	class cResources;
 	class iVertexBuffer;
+	class iTexture;
 
 	typedef std::list<iGpuProgram*> tlProgramList;
 	typedef tlProgramList::iterator tlProgramListIt;
@@ -55,6 +56,7 @@ namespace alk {
 	private:
 		bool mbCreatedProgram;
 		iGpuProgram* mpTestProgram;
+		iTexture* mpTestTexture;
 
 		tlVtxBuffList lVtxBuffList;
 		tlProgramList lProgramList;

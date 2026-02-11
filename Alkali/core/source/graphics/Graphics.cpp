@@ -17,6 +17,7 @@
 #include "resources/ResourceManager.h"
 #include "resources/ShaderManager.h"
 #include "resources/Filesearcher.h"
+#include "resources/BitmapLoader.h" // @TODO: make this the texture manager 
 
 #include "math/Vector2.h"
 #include "math/Vector3.h"
@@ -44,6 +45,8 @@ namespace alk {
 		Log("deleting module created vertex buffers\n");
 		DeleteAll(lVtxBuffList);
 
+		alkDelete(mpTestTexture);
+
 		Log("---------------------------------------------\n\n");
 	}
 
@@ -56,13 +59,13 @@ namespace alk {
 		
 		mpResources->AddDirectory(L"test/shaders", true);
 
-		Log("Testing Bitmaps\n");
-		int pTest[15] = { 0,1,2,3,4,5,6,7,8,9,10,11,12,13,14 };
-
-		cBitmap TestBitmap;
-		//TestBitmap.CreateBitmap(tVector3f(4096.0f, 4096.0f, 0.0f),15,&pTest,false);
-
 		Log("---------------------------------------------\n");
+
+
+		cBitmap* pBitmap = alkNew(cBitmap, ());
+		mpResources->GetBitmapLoader()->LoadBitmap(L"test/photomode_03072025_150327.png");
+		mpTestTexture = mpGraphics->CreateTexture("test");
+		alkDelete(pBitmap);
 
 		return true;
 	}
@@ -78,15 +81,20 @@ namespace alk {
 			//Log("Created Program. Should only be seen once!\n");
 			//Log("Program list size: '%d'", lProgramList.size());
 			mpTestProgram = CreateShaderProgram("TestProgram", "test_frag.glsl", "test_vert.glsl");
+			
 		}
 
 		//CreateTempVtxBuffer(1);
+
+		
 
 		for (tVtxBuffListIt it = lVtxBuffList.begin(); it != lVtxBuffList.end(); ++it)
 		{
 			iVertexBuffer* pBuff = (*it);
 			
 			mpTestProgram->Bind();
+
+			mpTestProgram->SetInt(0, 2);
 
 			pBuff->Bind();
 			pBuff->Draw();

@@ -39,7 +39,7 @@ namespace alk {
 		 bool CreateCubeMap();
 		 bool CreateAnimation();
 
-		
+		 virtual void Bind(int alUnit)=0;
 
 	protected:
 	};
