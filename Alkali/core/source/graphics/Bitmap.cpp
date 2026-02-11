@@ -35,7 +35,7 @@ namespace alk {
 		}
 	}
 
-	void cBitmapData::SetData(size_t alSize, void* apData)
+	void cBitmapData::SetData(size_t alSize, unsigned char* apData)
 	{
 		mlSize = alSize;
 		mpData = alkNewArray(unsigned char, mlSize);
@@ -76,7 +76,7 @@ namespace alk {
 		mvImages.resize((size_t)(alImage * alMipMap));
 	}
 
-	bool cBitmap::CreateBitmap(tVector3l avDimensions, eBitmapFormat aBitmapFormat, int alImage, int alMipMap, void* apData)
+	bool cBitmap::CreateBitmap(tVector3l avDimensions, eBitmapFormat aBitmapFormat, int alImage, int alMipMap, unsigned char* apData)
 	{
 		mvBitmapDimensions = avDimensions;
 		

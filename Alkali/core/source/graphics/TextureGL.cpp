@@ -31,19 +31,22 @@ namespace alk {
 	{
 		mvDimensions = apBitmap->GetDimensions();
 		GenerateTextureIDs(1);
+
+		glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, mvIDs[0]);
+
+		cBitmapData* pData = apBitmap->GetData(0, 0);
+
+			glTexImage2D(GL_TEXTURE_2D, 0, EnumToGLPixelFormat(apBitmap->GetBitmapFormat()), apBitmap->GetLength(), apBitmap->GetHeight(), 0, EnumToGLPixelFormat(apBitmap->GetBitmapFormat()), GL_UNSIGNED_BYTE, pData);
+			//CreateMipMaps();
+		
 
 		SetupGLFromBitmap(apBitmap);
 
-		cBitmapData* pData = apBitmap->GetData(0, 0);
-		if (pData)
-		{
-			glTexImage2D(GL_TEXTURE_2D, 0, apBitmap->GetBitmapFormat(), apBitmap->GetLength(), apBitmap->GetHeight(), 0, GL_RGBA, GL_UNSIGNED_BYTE, pData);
-			CreateMipMaps();
-		}
-
 		return true;
 	}
+
+
 
 	bool cTextureGL::CreateMipMaps()
 	{
@@ -61,4 +64,15 @@ namespace alk {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
 	}
 
+
+	GLint cTextureGL::EnumToGLPixelFormat(eBitmapFormat aFormat)
+	{
+		switch (aFormat)
+		{
+		case eBitmapFormat_RGB: return GL_RGB;
+		case eBitmapFormat_RGBA: return GL_RGBA;
+
+		default: return -1;
+		}
+	}
 }

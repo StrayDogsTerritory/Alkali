@@ -32,10 +32,10 @@ namespace alk {
 		cBitmapData();
 		~cBitmapData();
 
-		void SetData(size_t alSize, void* apData);
+		void SetData(size_t alSize, unsigned char* apData);
 
 		size_t mlSize;
-		void* mpData;
+		unsigned char* mpData;
 	};
 
 
@@ -54,7 +54,7 @@ namespace alk {
 		int GetDepth() const { return mvBitmapDimensions.z; }
 
 		int GetBytesPerPixel() const { return mlBytesPerPixel; }
-		int GetBitmapFormat() const { return mBitmapFormat; }
+		eBitmapFormat GetBitmapFormat() const { return mBitmapFormat; }
 
 		void SetSize(tVector3l avSize) { mvBitmapDimensions = avSize; }
 		void SetFormat(eBitmapFormat aFormat) { mBitmapFormat = aFormat; }
@@ -62,7 +62,7 @@ namespace alk {
 
 		void SetUpData(int alImage, int alMipMap);
 
-		bool CreateBitmap(tVector3l avDimensions, eBitmapFormat aBitmapFormat, int alImage, int alMipMap, void* apData);
+		bool CreateBitmap(tVector3l avDimensions, eBitmapFormat aBitmapFormat, int alImage, int alMipMap, unsigned char* apData);
 
 	private:
 		std::vector<cBitmapData> mvImages;

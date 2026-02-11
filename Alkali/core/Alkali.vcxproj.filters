@@ -477,9 +477,6 @@
     <ClCompile Include="source\math\Quaternion.cpp">
       <Filter>Math</Filter>
     </ClCompile>
-    <ClCompile Include="source\graphics\Bitmap.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="source\graphics\TextureGL.cpp">
       <Filter>Graphics\API Specific\GL</Filter>
     </ClCompile>
@@ -503,6 +500,9 @@
     </ClCompile>
     <ClCompile Include="source\resources\ResourcesSDL.cpp">
       <Filter>Resources</Filter>
+    </ClCompile>
+    <ClCompile Include="source\graphics\Bitmap.cpp">
+      <Filter>Graphics\API Specific\GL</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

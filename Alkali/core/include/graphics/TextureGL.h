@@ -30,7 +30,7 @@ namespace alk
 		
 
 	private:
-		GLint EnumToGLPixelFormat();
+		GLint EnumToGLPixelFormat(eBitmapFormat aFormat);
 
 
 		bool CreateMipMaps();
