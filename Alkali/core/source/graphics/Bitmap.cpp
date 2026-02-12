@@ -55,7 +55,7 @@ namespace alk {
 
 	cBitmap::~cBitmap()
 	{
-		DeleteAll(mvImages);
+		//DeleteAll(mvImages);
 	}
 
 
@@ -64,7 +64,7 @@ namespace alk {
 		if (alImage < 0) return NULL;
 		if (mlNumMipmaps <= alMipmapLevel) return NULL;
 
-		return mvImages[(size_t)(alImage * mlNumMipmaps + alMipmapLevel)];
+		return &mvImages[(size_t)(alImage * mlNumMipmaps + alMipmapLevel)];
 	}
 
 

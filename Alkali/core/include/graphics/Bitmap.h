@@ -65,7 +65,7 @@ namespace alk {
 		bool CreateBitmap(tVector3l avDimensions, eBitmapFormat aBitmapFormat, int alImage, int alMipMap, unsigned char* apData);
 
 	private:
-		std::vector<cBitmapData*> mvImages;
+		std::vector<cBitmapData> mvImages;
 
 		tVector3l mvBitmapDimensions;
 		int mlNumImages;

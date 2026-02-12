@@ -41,14 +41,14 @@ namespace alk {
 		
 		eArrayFormat_LastEnum
 	};
-
-	enum eVertexElementArrayType
+	
+	enum eVertexElementArrayType 
 	{
 		eElementArrayType_Position,
 		eElementArrayType_Normals,
 		eElementArrayType_Colour,
-		eElementArrayType_Tangent,
 		eElementArrayType_Texture,
+		eElementArrayType_Tangent,
 
 		eElementArrayType_LastEnum
 	};

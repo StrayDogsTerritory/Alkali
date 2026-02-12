@@ -12,6 +12,7 @@
 #include "graphics/VertexBufferGL.h"
 #include "graphics/VertexBuffer.h"
 #include "graphics/Bitmap.h"
+#include "graphics/Texture.h"
 
 #include "resources/Resources.h"
 #include "resources/ResourceManager.h"
@@ -45,7 +46,7 @@ namespace alk {
 		Log("deleting module created vertex buffers\n");
 		DeleteAll(lVtxBuffList);
 
-		alkDelete(mpTestTexture);
+		//alkDelete(mpTestTexture);
 
 		Log("---------------------------------------------\n\n");
 	}
@@ -62,9 +63,9 @@ namespace alk {
 		Log("---------------------------------------------\n");
 
 
-		cBitmap* pBitmap = alkNew(cBitmap, ());
-		mpResources->GetBitmapLoader()->LoadBitmap(L"test/photomode_03072025_150327.png");
-		mpTestTexture = mpGraphics->CreateTexture("test");
+		cBitmap* pBitmap = mpResources->GetBitmapLoader()->LoadBitmap(L"test/photomode_03072025_150327.png");
+		//mpTestTexture = mpGraphics->CreateTexture("test");
+		//mpTestTexture->CreateTextureFromBitmap(pBitmap->GetDimensions(), pBitmap);
 		alkDelete(pBitmap);
 
 		return true;
@@ -94,7 +95,9 @@ namespace alk {
 			
 			mpTestProgram->Bind();
 
-			mpTestProgram->SetInt(0, 2);
+			//mpTestProgram->SetInt(1, 2);
+
+//			mpTestTexture->Bind(0);
 
 			pBuff->Bind();
 			pBuff->Draw();

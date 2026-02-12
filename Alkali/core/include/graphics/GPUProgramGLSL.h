@@ -22,6 +22,29 @@ namespace alk {
 	};
 
 
+	/*formalize hiarchy here : LAYOUT MUST ALWAYS BE :
+	1. Vertex Position
+	2. Vertex Normals
+	3. Vertex Colour
+	4. Vertex UV Coords
+	5. Vertex Tangents
+	6. Vertex BiNormals
+	7. Diffuse Sampler
+	8. Normal Sampler
+	9. Specular Sampler
+	10. Height Sampler
+	11. Relief Sampler
+	12. Liquid Sampler
+	13. RESERVED Sampler
+	14. RESERVED Sampler
+	15. RESERVED Sampler
+	16. RESERVED
+	17. RESERVED
+	18. RESERVED
+	19. RESERVED
+	20. RESERVED
+	*/
+
 	class cGLSLGpuProgram : public iGpuProgram
 	{
 	public:
