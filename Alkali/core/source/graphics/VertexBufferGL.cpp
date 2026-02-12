@@ -205,7 +205,7 @@ namespace alk {
 			// check if we need to use glVertexAttribIPointer
 			// @TODO: could optimize this in the future since the type will always be GL_FLOAT
 			GLenum eFormat = GetGLFormatFromEnum(pElem->mFormat);
-			Log("Binding Vertex Array:'%d'\n", pElem->mType);
+			//Log("Binding Vertex Array:'%d'\n", pElem->mType);
 
 			glEnableVertexAttribArray(i);
 

@@ -2,18 +2,18 @@
 
 #extension GL_ARB_explicit_uniform_location : enable
 
- layout(location=2) in vec4 Colour;
- layout(location=3) in vec3 UV;
+layout(location=0) in vec4 vColour;
+// new line to quickly test this
+layout(location=1) in vec3 avUV;
 
-out vec4 vFragColour;
+layout(location=0) out vec4 vFragColour;
 
-layout(location=0) uniform sampler2D Test;
+uniform sampler2D aTex_Diffuse;
 
 void main()
 {
-    // vFragColour = texture(Test, UV.xy);
-	 
-	// vFragColour = texture2D(Test, UV.xy);
-	 vFragColour *= Colour;
 
+	vec2 vTexCoord = avUV.xy;
+	vFragColour = texture(aTex_Diffuse,avUV.xy);
+	vFragColour = vec4(vColour);
 }

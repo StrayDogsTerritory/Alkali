@@ -46,7 +46,7 @@ namespace alk {
 		Log("deleting module created vertex buffers\n");
 		DeleteAll(lVtxBuffList);
 
-		//alkDelete(mpTestTexture);
+		alkDelete(mpTestTexture);
 
 		Log("---------------------------------------------\n\n");
 	}
@@ -64,8 +64,8 @@ namespace alk {
 
 
 		cBitmap* pBitmap = mpResources->GetBitmapLoader()->LoadBitmap(L"test/photomode_03072025_150327.png");
-		//mpTestTexture = mpGraphics->CreateTexture("test");
-		//mpTestTexture->CreateTextureFromBitmap(pBitmap->GetDimensions(), pBitmap);
+		mpTestTexture = mpGraphics->CreateTexture("aTex_Diffuse");
+		mpTestTexture->CreateTextureFromBitmap(pBitmap->GetDimensions(), pBitmap);
 		alkDelete(pBitmap);
 
 		return true;
@@ -93,11 +93,11 @@ namespace alk {
 		{
 			iVertexBuffer* pBuff = (*it);
 			
+			//mpTestProgram->SetInt(0, 0);
+
+			mpTestTexture->Bind(0);
+
 			mpTestProgram->Bind();
-
-			//mpTestProgram->SetInt(1, 2);
-
-//			mpTestTexture->Bind(0);
 
 			pBuff->Bind();
 			pBuff->Draw();
@@ -235,7 +235,8 @@ namespace alk {
 						int idx = GetBoxIdx(i, x, y, z);
 						tVector3f vTex = GetBoxTex(i, x, y, z, vAdd);
 
-						pBox->AddVertexColour(eElementArrayType_Colour, cMath::Rand(cColour(0,0,0,0),cColour(1,1,1,1)));
+						//pBox->AddVertexColour(eElementArrayType_Colour, cMath::Rand(cColour(0,0,0,0),cColour(1,1,1,1)));
+						pBox->AddVertexColour(eElementArrayType_Colour,cColour(1,1,1,1));
 						pBox->AddVertex(eElementArrayType_Position, (vDir + vAdd[idx]) * avSize);
 						pBox->AddVertex(eElementArrayType_Normals, vDir);
 

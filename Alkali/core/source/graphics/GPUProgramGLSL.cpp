@@ -50,7 +50,8 @@ namespace alk {
 		}
 		
 		// test
-		GLint lTest = glGetUniformLocation(mlProgramID, "Test");
+		GLint lTest = glGetUniformLocation(mlProgramID, "aTex_Diffuse");
+		SetInt(lTest, 0);
 		Debug("'%d'\n", lTest);
 
 		return true;

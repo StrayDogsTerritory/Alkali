@@ -68,10 +68,10 @@ namespace alk {
 
 	void cTextureGL::Bind(int alUnit)
 	{
-		glActiveTexture(GL_TEXTURE0 + alUnit);
+		glActiveTexture(GL_TEXTURE0);
 
 		glBindTexture(GL_TEXTURE_2D, mvIDs[0]);
-		glEnable(GL_TEXTURE_2D);
+		//glEnable(GL_TEXTURE_2D);
 	}
 
 	GLint cTextureGL::EnumToGLPixelFormat(eBitmapFormat aFormat)
