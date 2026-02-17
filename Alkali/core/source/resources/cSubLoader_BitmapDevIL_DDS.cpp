@@ -32,6 +32,8 @@ namespace alk {
 		ilGenImages(1, (ILuint*)&lImageID);
 		ilBindImage(lImageID);
 
+		ilSetInteger(IL_KEEP_DXTC_DATA, IL_TRUE);
+
 		if (!cDevILBitmapLoaderHelper::LoadBitmapDevIL(asFile))
 		{
 			Error("Couldn't load Bitmap '%s'!\n", cString::To8BitChar(asFile).c_str());
@@ -43,9 +45,6 @@ namespace alk {
 
 		int lBytesPerPixel = ilGetInteger(IL_IMAGE_BYTES_PER_PIXEL);
 		pBitmap->SetBytesPerPixel(lBytesPerPixel);
-
-		ILint lPixelFormat = ilGetInteger(IL_IMAGE_FORMAT);
-		pBitmap->SetFormat(ILtoEnum(lPixelFormat));
 
 		int lCompressionFormat = ilGetInteger(IL_DXTC_DATA_FORMAT);
 
@@ -62,18 +61,18 @@ namespace alk {
 		vDimensions.z = ilGetInteger(IL_IMAGE_DEPTH);
 		pBitmap->SetSize(vDimensions);
 
-		Log("Bitmap Properties:\n");
-		Log("Bitmap Dimensions: %s\n", vDimensions.ToString().c_str());
-		Log("Bitmap Format: %d\n", lPixelFormat);
-		Log("Bitmap Bytes per pixel: %d\n", lBytesPerPixel);
-		Log("Bitmap Images: %d\n", lNumImages);
-		Log("Bitmap Mip maps: %d\n", lNumMipMaps);
-		Log("Bitmap Compression: %d\n", lCompressionFormat != IL_DXT_NO_COMP);
+		if (lCompressionFormat != IL_DXT_NO_COMP)
+		{
+			ILint lPixelFormat = ilGetInteger(IL_IMAGE_FORMAT);
+			pBitmap->SetFormat(ILtoEnum(lCompressionFormat));
+		}
+		else
 
-		// if the bitmap has mipmaps, load it differently
-		int lCount = lNumImages > 0 ? lNumImages : 1;
-		for (int i = 0; i < lCount; ++i)
-		for (int m = 0; m < lCount; ++m)
+		ILint lPixelFormat = ilGetInteger(IL_IMAGE_FORMAT);
+		pBitmap->SetFormat(ILtoEnum(lPixelFormat));
+
+		for (int i = 0; i < lNumImages > 0 ? lNumImages : 1; ++i)
+		for (int m = 0; m < lNumImages > 0 ? lNumImages : 1; ++m)
 		{
 			if (lNumImages > 1)
 				ilActiveImage(i);
