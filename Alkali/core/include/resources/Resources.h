@@ -17,6 +17,7 @@ namespace alk {
 	class cFileSearcher;
 	class cGraphics;
 	class iResources;
+	class cTextureManager;
 
 	typedef std::list<iResourceManager*> tManagerList;
 	typedef tManagerList::iterator tManagerListIt;
@@ -38,7 +39,8 @@ namespace alk {
 
 		cFileSearcher* GetFileSearcher() { return mpFileSearcher; }
 
-		cShaderManager* GetShaderManager();
+		cShaderManager* GetShaderManager() { return mpShaderManager; }
+		cTextureManager* GetTextureManager() { return mpTextureManager; }
 
 		cBitmapLoader* GetBitmapLoader() { return mpBitmapLoader; }
 
@@ -55,6 +57,7 @@ namespace alk {
 		static bool bTest;
 
 		cShaderManager* mpShaderManager;
+		cTextureManager* mpTextureManager;
 
 		cBitmapLoader* mpBitmapLoader;
 	};

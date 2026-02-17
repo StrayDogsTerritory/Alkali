@@ -1,9 +1,7 @@
 #include "graphics/Graphics.h"
 #include "system/MemoryManager.h"
 #include "graphics/Shader.h"
-#include "graphics/ShaderGLSL.h"
 #include "graphics/GPUProgram.h"
-#include "graphics/GPUProgramGLSL.h"
 #include "engine/LogWriter.h"
 #include "system/String.h"
 
@@ -18,12 +16,10 @@
 #include "resources/ResourceManager.h"
 #include "resources/ShaderManager.h"
 #include "resources/Filesearcher.h"
-#include "resources/BitmapLoader.h" // @TODO: make this the texture manager 
+#include "resources/TextureManager.h" // @TODO: make this the texture manager 
 
 #include "math/Vector2.h"
 #include "math/Vector3.h"
-
-#include <IL/il.h>
 
 namespace alk {
 
@@ -46,7 +42,7 @@ namespace alk {
 		Log("deleting module created vertex buffers\n");
 		DeleteAll(lVtxBuffList);
 
-		alkDelete(mpTestTexture);
+		//alkDelete(mpTestTexture);
 
 		Log("---------------------------------------------\n\n");
 	}
@@ -63,10 +59,12 @@ namespace alk {
 		Log("---------------------------------------------\n");
 
 
-		cBitmap* pBitmap = mpResources->GetBitmapLoader()->LoadBitmap(L"test/photomode_03072025_150327.png");
+		/*cBitmap* pBitmap = mpResources->GetBitmapLoader()->LoadBitmap(L"test/photomode_03072025_150327.png");
 		mpTestTexture = mpGraphics->CreateTexture("aTex_Diffuse");
 		mpTestTexture->CreateTextureFromBitmap(pBitmap->GetDimensions(), pBitmap);
-		alkDelete(pBitmap);
+		alkDelete(pBitmap);*/
+		
+		
 
 		return true;
 	}
@@ -82,6 +80,7 @@ namespace alk {
 			//Log("Created Program. Should only be seen once!\n");
 			//Log("Program list size: '%d'", lProgramList.size());
 			mpTestProgram = CreateShaderProgram("TestProgram", "test_frag.glsl", "test_vert.glsl");
+			mpTestTexture = mpResources->GetTextureManager()->Create2DTexture("eiffel_tower.dds");
 			
 		}
 

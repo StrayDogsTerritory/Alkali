@@ -7,13 +7,11 @@
 #include "resources/FileSearcher.h"
 #include "resources/ResourceLoader.h"
 #include "resources/BitmapLoader.h"
+#include "resources/TextureManager.h"
 
 #include "system/SystemTypes.h"
 
 #include "graphics/Graphics.h"
-// remove these
-#include "graphics/Texture.h"
-#include "graphics/GraphicsInterface.h"
 
 namespace alk {
 
@@ -37,7 +35,9 @@ namespace alk {
 		Log("---------------------------------------------\n");
 		Log("Exiting resource managers\n");
 		alkDelete(mpShaderManager);
-		Log(" Shader manager\n");
+		Log(" Shader Manager\n");
+		alkDelete(mpTextureManager);
+		Log(" Texture Manager\n");
 
 		Log("Exiting resource loaders\n");
 		alkDelete(mpBitmapLoader);
@@ -63,15 +63,19 @@ namespace alk {
 		Log(" Shader Manager\n");
 		mpShaderManager = alkNew(cShaderManager, (mpGraphics, this));
 		lManagerList.push_back(mpShaderManager);
+		Log(" Texture Manager\n");
+		mpTextureManager = alkNew(cTextureManager, (this, mpGraphics));
+		lManagerList.push_back(mpTextureManager);
 
 		Log("Creating resource loaders\n");
-		Log(" Bitmap Loader");
+		Log(" Bitmap Loader\n");
 		mpBitmapLoader = alkNew(cBitmapLoader, (this));
 		lLoaderList.push_back(mpBitmapLoader);
 
-		Log("Setup external sub-loaders...\n");
+		Log("Setting up external sub-loaders...\n");
 		mpResources->SetupBitmapLoader(mpBitmapLoader);
 		Log("Done\n");
+		Log("\n");
 
 		Log("Adding resource directories\n");
 		//AddDirectory(L"./", true);
@@ -83,12 +87,6 @@ namespace alk {
 	void cResources::OnUpdate(float afStep)
 	{
 	
-	}
-
-	// temp
-	cShaderManager* cResources::GetShaderManager()
-	{
-		return mpShaderManager;
 	}
 
 	void cResources::AddDirectory(const twString& asDir, bool abAddSubDirs, const tString& asFilter)

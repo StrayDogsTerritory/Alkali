@@ -32,14 +32,14 @@ namespace alk {
 		mvDimensions = apBitmap->GetDimensions();
 		GenerateTextureIDs(1);
 
-		glEnable(GL_TEXTURE_2D);
+		//glEnable(GL_TEXTURE_2D);
 		glBindTexture(GL_TEXTURE_2D, mvIDs[0]);
 
 		cBitmapData* pData = apBitmap->GetData(0, 0);
 		unsigned char* pLowData = pData[0].mpData;
 
-			glTexImage2D(GL_TEXTURE_2D, 0, EnumToGLPixelFormat(apBitmap->GetBitmapFormat()), apBitmap->GetLength(), apBitmap->GetHeight(), 0, EnumToGLPixelFormat(apBitmap->GetBitmapFormat()), GL_UNSIGNED_BYTE, pLowData);
-			//CreateMipMaps();
+		glTexImage2D(GL_TEXTURE_2D, 0, EnumToGLPixelFormat(apBitmap->GetBitmapFormat()), apBitmap->GetLength(), apBitmap->GetHeight(), 0, EnumToGLPixelFormat(apBitmap->GetBitmapFormat()), GL_UNSIGNED_BYTE, pLowData);
+		//CreateMipMaps();
 		
 
 		SetupGLFromBitmap(apBitmap);
@@ -61,14 +61,14 @@ namespace alk {
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	}
 
 
 	void cTextureGL::Bind(int alUnit)
 	{
-		glActiveTexture(GL_TEXTURE0);
+		glActiveTexture(GL_TEXTURE0 + alUnit);
 
 		glBindTexture(GL_TEXTURE_2D, mvIDs[0]);
 		//glEnable(GL_TEXTURE_2D);

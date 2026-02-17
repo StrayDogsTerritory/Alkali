@@ -1,6 +1,8 @@
 #include "resources/ResourcesSDL.h"
 #include "resources/SubLoader_BitmapDevIL.h"
+#include "resources/cSubLoader_BitmapDevIL_DDS.h"
 #include "resources/ResourceLoader.h"
+
 #include "engine/LogWriter.h"
 
 #include <cstdlib>
@@ -86,6 +88,7 @@ namespace alk {
 	void cResourcesSDL::SetupBitmapLoader(iResourceLoader* apResourceLoader)
 	{
 		apResourceLoader->AddSubLoader(alkNew(cSubLoader_BitmapDevIL, ()));
+		apResourceLoader->AddSubLoader(alkNew(cSubLoader_BitmapDevIL_DDS, ()));
 	}
 
 }

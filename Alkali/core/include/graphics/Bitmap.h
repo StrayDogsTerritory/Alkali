@@ -20,7 +20,12 @@ namespace alk {
 		eBitmapFormat_BGRA,
 		eBitmapFormat_Luminance,
 		eBitmapFormat_LuminanceAlpha,
-
+		eBitmapCompressionFormat_DXT1,
+		eBitmapCompressionFormat_DXT2,
+		eBitmapCompressionFormat_DXT3,
+		eBitmapCompressionFormat_DXT4,
+		eBitmapCompressionFormat_DXT5,
+		eBitmapCompressionFormat_3DC,
 		eBitmapFormat_LastEnum
 	};
 
@@ -56,9 +61,12 @@ namespace alk {
 		int GetBytesPerPixel() const { return mlBytesPerPixel; }
 		eBitmapFormat GetBitmapFormat() const { return mBitmapFormat; }
 
+		bool GetIsCompressed() const { return mbCompressed; }
+
 		void SetSize(tVector3l avSize) { mvBitmapDimensions = avSize; }
 		void SetFormat(eBitmapFormat aFormat) { mBitmapFormat = aFormat; }
 		void SetBytesPerPixel(int albbp) { mlBytesPerPixel = albbp; }
+		void SetIsCompressed(bool abCompressed) { mbCompressed = abCompressed; }
 
 		void SetUpData(int alImage, int alMipMap);
 
@@ -67,6 +75,7 @@ namespace alk {
 	private:
 		std::vector<cBitmapData> mvImages;
 
+		bool mbCompressed;
 		tVector3l mvBitmapDimensions;
 		int mlNumImages;
 		int mlNumMipmaps;

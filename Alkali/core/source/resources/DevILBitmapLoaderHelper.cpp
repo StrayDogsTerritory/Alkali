@@ -26,7 +26,11 @@ namespace alk {
 	bool cDevILBitmapLoaderHelper::LoadBitmapDevIL(const twString& asFile)
 	{
 		// monster function call :o
-		//tString sExt = cString::To8BitChar(cString::ToLowerCaseW(cString::FileExtensionW(asFile)));
+		tString sExt = cString::To8BitChar(cString::ToLowerCaseW(cString::FileExtensionW(asFile)));
+
+		Log("'%s'\n", sExt.c_str());
+
+		ILint lFormat = GetILFormatFromExt(sExt);
 
 		FILE* pFile = cPlatform::OpenFile(asFile, L"rb");
 
@@ -36,10 +40,19 @@ namespace alk {
 			return false;
 		}
 
-		int bRet = ilLoadF(IL_PNG, pFile);
+		int bRet = ilLoadF(lFormat, pFile);
 		fclose(pFile);
 		return (bool)bRet;
 		
+	}
+
+	ILint cDevILBitmapLoaderHelper::GetILFormatFromExt(const tString& asExt)
+	{
+		if (asExt == "png") return IL_PNG;
+		else if (asExt == "tga") return IL_TGA;
+		else if (asExt == "jpg" || asExt == "jpeg") return IL_JPG;
+		else if (asExt == "dds") return IL_DDS;
+		else return -1;
 	}
 
 }

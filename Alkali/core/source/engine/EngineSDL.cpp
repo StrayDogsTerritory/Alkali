@@ -29,7 +29,7 @@ namespace alk {
 		SDL_DisableScreenSaver();
 
 
-   		mpGraphicsSDL = alkNew(cGraphicsSDL, ());
+		mpGraphicsSDL = alkNew(cGraphicsSDL, ());
 		mpSystemSDL = alkNew(cSystemSDL, ());
 		mpInputSDL = alkNew(cInputSDL, (mpGraphicsSDL));
 		mpResourcesSDL = alkNew(cResourcesSDL, ());

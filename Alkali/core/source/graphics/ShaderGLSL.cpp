@@ -3,7 +3,6 @@
 #include "system/MemoryManager.h"
 #include "system/Platform.h"
 #include "engine/LogWriter.h"
-#include "io.h"
 
 namespace alk {
 
@@ -36,7 +35,7 @@ namespace alk {
 
 	bool cGLSLShader::CreateFromString(const char* apString)
 	{
-		//Log("Shader Source: '%s'", apString);
+		Log("Shader Source: '%s'", apString);
 
 		glShaderSource(mlShaderID, 1, &apString, NULL);
 

@@ -37,7 +37,6 @@ namespace alk {
 		else
 			Log("unmodified!\n");
 
-
 		Log("---------------------------------------------\n");
 		return true;
 	}

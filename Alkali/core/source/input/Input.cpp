@@ -28,14 +28,14 @@ namespace alk {
 		Log("Quitting Input module\n");
 		Log("---------------------------------------------\n");
 
-		Log("Quitting input devices\n");
+		Log("Quitting Input devices\n");
 		if (mpKeyboard)alkDelete(mpKeyboard); Log(" Keyboard\n");
 		if (mpMouse)alkDelete(mpMouse); Log(" Mouse\n");
 
 		Log("Quitting Gamepads\n");
 		DeleteAll(mLstGamepad);
 
-		Log("Deleting actions\n");
+		Log("Deleting Actions\n");
 		DeleteAllMap(mMapActionName);
 
 		Log("---------------------------------------------\n\n");
@@ -44,8 +44,12 @@ namespace alk {
 	bool cInput::Init()
 	{
 		Log("---------------------------------------------\n");
+		Log("Creating Input devices\n");
+
+		Log(" Keyboard\n");
 		mpKeyboard = mpInput->CreateKeyboard();
 		mLstDevice.push_back(mpKeyboard);
+		Log(" Mouse\n");
 		mpMouse = mpInput->CreateMouse();
 		mLstDevice.push_back(mpMouse);
 
@@ -125,9 +129,30 @@ namespace alk {
 		return false;
 	}
 
+	bool cInput::IsTriggered(int alID)
+	{
+		cAction* pAction = GetAction(alID);
+		if (pAction->IsTriggered())
+			return true;
+
+		return false;
+	}
+
+
 	bool cInput::BecameTriggered(const tString& asName)
 	{
 		cAction* pAction = GetAction(asName);
+		if (pAction->BecameTriggered())
+		{
+			return true;
+		}
+
+		return false;
+	}
+
+	bool cInput::BecameTriggered(int alID)
+	{
+		cAction* pAction = GetAction(alID);
 		if (pAction->BecameTriggered())
 		{
 			return true;

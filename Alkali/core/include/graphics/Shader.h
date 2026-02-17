@@ -13,7 +13,7 @@ namespace alk {
 		eShaderType_ePixelShader,
 		
 		////////////
-		// Don't think these are used in OGL at all... EDIT: very, *very* wrong about this... please make fun of me
+		// Don't think these are used in OGL at all...yes they are dipshit
 		eShaderType_eGeometryShader,
 		eShaderType_eTessellationShader,
 		eShaderType_eComputeShader

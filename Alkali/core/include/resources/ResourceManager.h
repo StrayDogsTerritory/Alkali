@@ -44,7 +44,7 @@ namespace alk {
 		iResourceBase* FindResource(const tString& asName, twString &asFilePath);
 
 		cFileSearcher* mpFileSearcher;
-		iGraphics* mpGraphicsI;
+		iGraphics* mpiGraphics;
 
 		tmResources mResources;
 	};

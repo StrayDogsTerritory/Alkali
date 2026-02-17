@@ -337,6 +337,9 @@
     <ClInclude Include="include\resources\BitmapLoader.h">
       <Filter>Resources\Loaders</Filter>
     </ClInclude>
+    <ClInclude Include="include\resources\cSubLoader_BitmapDevIL_DDS.h">
+      <Filter>Resources\Loaders\API Specific\DevIL</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">
@@ -503,6 +506,12 @@
     </ClCompile>
     <ClCompile Include="source\graphics\Bitmap.cpp">
       <Filter>Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="source\resources\TextureManager.cpp">
+      <Filter>Resources\Managers</Filter>
+    </ClCompile>
+    <ClCompile Include="source\resources\cSubLoader_BitmapDevIL_DDS.cpp">
+      <Filter>Resources\Loaders\API Specific\DevIL</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -167,7 +167,7 @@ namespace alk {
 		tString ToString()
 		{
 			char Buf[256];
-			sprintf(Buf, "[%d, %d,]", x, y);
+			sprintf(Buf, "[%f, %f,]", x, y);
 			return Buf;
 		}
 	};

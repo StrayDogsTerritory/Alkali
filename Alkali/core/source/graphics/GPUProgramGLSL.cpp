@@ -49,10 +49,14 @@ namespace alk {
 			return false;
 		}
 		
+		glUseProgram(mlProgramID);
+
 		// test
 		GLint lTest = glGetUniformLocation(mlProgramID, "aTex_Diffuse");
-		SetInt(lTest, 0);
+		glUniform1i(lTest, 0);
 		Debug("'%d'\n", lTest);
+		
+		glUseProgram(0);
 
 		return true;
 	}

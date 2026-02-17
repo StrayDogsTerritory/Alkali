@@ -15,5 +15,5 @@ void main()
 
 	vec2 vTexCoord = avUV.xy;
 	vFragColour = texture(aTex_Diffuse,avUV.xy);
-	vFragColour = vec4(vColour);
+	vFragColour *= vec4(vColour);
 }

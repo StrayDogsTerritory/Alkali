@@ -62,8 +62,8 @@ namespace alk {
 
 	twString cPlatform::GetFullFilePath(const twString& asFile)
 	{
-		wchar_t sBuff[2048];
-		int blah = GetFullPathNameW(asFile.c_str(), 2048, sBuff, NULL);
+		wchar_t sBuff[4096];
+		int blah = GetFullPathNameW(asFile.c_str(), 4096, sBuff, NULL);
 		return sBuff;
 	}
 
@@ -409,6 +409,16 @@ namespace alk {
 	unsigned long long cPlatform::GetSysUpTime()
 	{
 		return GetTickCount64();
+	}
+
+	twString cPlatform::GetProfileName()
+	{
+		wchar_t buf[256];
+		DWORD bufsize = 256;
+		if (GetUserName(buf, (LPDWORD)&bufsize) != TRUE)
+			return L"";
+
+		return twString(buf);
 	}
 
 	void cPlatform::CreateMessageBoxPlatform(eMessageBoxType aeMessageBoxType, const wchar_t* asCaption, const wchar_t* fmt, va_list aVaList)

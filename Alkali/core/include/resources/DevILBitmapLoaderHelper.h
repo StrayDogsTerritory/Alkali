@@ -3,6 +3,8 @@
 
 #include "system/String.h"
 
+#include <IL/il.h>
+
 namespace alk {
 
 	class cBitmap;
@@ -12,6 +14,9 @@ namespace alk {
 	public:
 		static bool SaveBitmapDevIL(cBitmap* apBitmap, const twString& asFile);
 		static bool LoadBitmapDevIL(const twString& asFile);
+
+	private:
+		static ILint GetILFormatFromExt(const tString& asName);
 
 	};
 

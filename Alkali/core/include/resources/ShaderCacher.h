@@ -7,7 +7,7 @@ namespace alk {
 
 	class cXmlDocument;
 
-	class cShaderCache // should this derive from a base cache file?
+	class cShaderCache // should this derive from a base cache class?
 	{
 	public:
 		cShaderCache(const char* asShaderBinary);

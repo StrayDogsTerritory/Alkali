@@ -51,6 +51,7 @@ namespace alk {
 		mlNumMipmaps = 1;
 		mlBytesPerPixel = 0;
 		mBitmapFormat = eBitmapFormat_LastEnum;
+		mbCompressed = false;
 	}
 
 	cBitmap::~cBitmap()

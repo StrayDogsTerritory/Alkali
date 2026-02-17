@@ -11,7 +11,7 @@ namespace alk {
 	iResourceManager::iResourceManager(cFileSearcher* apFileSearcher, iGraphics* apGraphics)
 	{
 		mpFileSearcher = apFileSearcher;
-		mpGraphicsI = apGraphics;
+		mpiGraphics = apGraphics;
 	}
 
 	void iResourceManager::AddResource(iResourceBase* apResource)
@@ -86,6 +86,7 @@ namespace alk {
 	void iResourceManager::DestroyAll()
 	{
 		tmResourcesIterator it = mResources.begin();
+		Debug("Resource: %s UserCount: %u, Hash: %u\n", it->second->GetName().c_str(), it->second->NumUsers(), it->first);
 		while (it != mResources.end())
 		{
 			iResourceBase* pResource = it->second;

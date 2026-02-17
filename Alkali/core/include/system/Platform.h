@@ -57,6 +57,8 @@ namespace alk {
 
 		static void CreateThread();
 		
+		static twString GetProfileName();
+
 	private:
 		static void CreateMessageBoxPlatform(eMessageBoxType aeMessageBoxType, const wchar_t* asCaption, const wchar_t* fmt, va_list aVaList);
 	};

@@ -5,13 +5,16 @@
 
 #include "engine/LogWriter.h"
 
-#include <IL/il.h>
+//#include <IL/il.h>
 
 namespace alk {
 
 	cSubLoader_BitmapDevIL::cSubLoader_BitmapDevIL()
 	{
 		AddExtension("png");
+		AddExtension("jpg");
+		AddExtension("jpeg");
+		AddExtension("tga");
 	}
 
 	cSubLoader_BitmapDevIL::~cSubLoader_BitmapDevIL()

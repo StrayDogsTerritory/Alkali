@@ -30,11 +30,11 @@ namespace alk {
 
 		if (pShader == NULL && sPath != L"")
 		{
-			pShader = mpGraphicsI->CreateShader(asName, aType);
+			pShader = mpiGraphics->CreateShader(asName, aType);
 
 			if (!pShader->CreateFromFile(sPath))
 			{
-				Error("Could not Create Shader '%s' at '%s'!\n", asName.c_str(), cString::To8BitChar(sPath).c_str());
+				Error("Could not create shader '%s' at '%s'!\n", asName.c_str(), cString::To8BitChar(sPath).c_str());
 				alkDelete(pShader);
 				return NULL;
 			}
