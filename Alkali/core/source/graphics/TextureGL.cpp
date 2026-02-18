@@ -27,7 +27,7 @@ namespace alk {
 		glGenTextures(alNumToGen, (GLuint*)&mvIDs[alNumToGen-lNewTextures]);
 	}
 
-	bool cTextureGL::CreateTextureFromBitmap(tVector3l avDimensions, cBitmap* apBitmap)
+	bool cTextureGL::CreateTextureFromBitmap( cBitmap* apBitmap)
 	{
 		mvDimensions = apBitmap->GetDimensions();
 		GenerateTextureIDs(1);
@@ -38,7 +38,9 @@ namespace alk {
 		cBitmapData* pData = apBitmap->GetData(0, 0);
 		unsigned char* pLowData = pData[0].mpData;
 
-		glTexImage2D(GL_TEXTURE_2D, 0, EnumToGLPixelFormat(apBitmap->GetBitmapFormat()), apBitmap->GetLength(), apBitmap->GetHeight(), 0, EnumToGLPixelFormat(apBitmap->GetBitmapFormat()), GL_UNSIGNED_BYTE, pLowData);
+		glCompressedTexImage2D(GL_TEXTURE_2D, 0, GL_COMPRESSED_RGBA_S3TC_DXT3_EXT, apBitmap->GetLength(), apBitmap->GetHeight(), 0, pData->mlSize, pLowData);
+
+		//glTexImage2D(GL_TEXTURE_2D, 0, EnumToGLPixelFormat(apBitmap->GetBitmapFormat()), apBitmap->GetLength(), apBitmap->GetHeight(), 0, EnumToGLPixelFormat(apBitmap->GetBitmapFormat()), GL_UNSIGNED_BYTE, pLowData);
 		//CreateMipMaps();
 		
 

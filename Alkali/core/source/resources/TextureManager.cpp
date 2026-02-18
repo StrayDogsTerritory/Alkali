@@ -43,7 +43,7 @@ namespace alk {
 			}
 
 			// temp debugging
-			bool bRet = pTexture->CreateTextureFromBitmap(0, pBitmap);
+			bool bRet = pTexture->CreateTextureFromBitmap(pBitmap);
 
 			int lDummy = 1;
 

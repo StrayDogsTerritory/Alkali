@@ -22,7 +22,7 @@ namespace alk
 
 		void GenerateTextureIDs(int alNumToGen);
 
-		bool CreateTextureFromBitmap(tVector3l avDimensions,cBitmap* apBitmap);
+		bool CreateTextureFromBitmap(cBitmap* apBitmap);
 		bool CreateTextureFromRawData(tVector3l avDimensions, void* apData);
 		bool CreateCubeMap();
 		bool CreateAnimation();
@@ -34,6 +34,8 @@ namespace alk
 
 
 		bool CreateMipMaps();
+
+		void CreateTextureFromProperties(tVector3l avDimensions, eBitmapFormat aFormat, int alMipMapLevel);
 		void SetupGLFromBitmap(cBitmap* apBitmap);
 
 		tString msName;

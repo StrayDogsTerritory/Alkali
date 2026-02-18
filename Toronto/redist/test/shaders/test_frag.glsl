@@ -12,8 +12,11 @@ uniform sampler2D aTex_Diffuse;
 
 void main()
 {
+	float fFdx = dFdx(avUV.x);
+	float fFdy = dFdy(avUV.y);
 
 	vec2 vTexCoord = avUV.xy;
-	vFragColour = texture(aTex_Diffuse,avUV.xy);
+	//vFragColour = texture(aTex_Diffuse,avUV.xy);
+	vFragColour = textureGrad(aTex_Diffuse, avUV.xy, vec2(fFdx), vec2(fFdy));
 	vFragColour *= vec4(vColour);
 }

@@ -34,7 +34,7 @@ namespace alk {
 		bool Reload() { return false; }
 		void Destroy() {}
 
-		virtual	bool CreateTextureFromBitmap(tVector3l avDimensions, cBitmap* apBitmap)=0;
+		virtual	bool CreateTextureFromBitmap( cBitmap* apBitmap)=0;
 		 bool CreateTextureFromRawData(tVector3l avDimensions, void* apData);
 		 bool CreateCubeMap();
 		 bool CreateAnimation();
