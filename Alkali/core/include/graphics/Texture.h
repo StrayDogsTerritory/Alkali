@@ -21,6 +21,18 @@ namespace alk {
 		eTextureFilter_Trilinear,
 	};
 
+	enum eTextureType
+	{
+		eTextureType_1D,
+		eTextureType_2D,
+		eTextureType_Rect,
+		eTextureType_CubeMap,
+		eTextureType_3D,
+
+		eTextureType_LastEnum
+	};
+
+
 	class cBitmap;
 
 	class iTexture : public iResourceBase

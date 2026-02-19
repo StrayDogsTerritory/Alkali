@@ -34,13 +34,20 @@ namespace alk
 
 
 		bool CreateMipMaps();
-
+		 
 		void CreateTextureFromProperties(tVector3l avDimensions, eBitmapFormat aFormat, int alMipMapLevel);
 		void SetupGLFromBitmap(cBitmap* apBitmap);
+
+
+		eTextureFilter mTextureFilter;
+		eTextureWrappingMode mTextureWrappingMode;
+		eTextureType mTextureType;
 
 		tString msName;
 		tVector3l mvDimensions;
 		size_t mlMemorySize;
+		float mfAnisotropicFilteringDegree;
+
 		std::vector<GLint> mvIDs;
 	};
 
