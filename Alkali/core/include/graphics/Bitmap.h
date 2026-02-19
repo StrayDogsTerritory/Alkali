@@ -58,6 +58,9 @@ namespace alk {
 		int GetHeight() const { return mvBitmapDimensions.y; }
 		int GetDepth() const { return mvBitmapDimensions.z; }
 
+		int GetNumberMipMaps() const { return mlNumMipmaps; }
+		int GetNumberImages() const { return mlNumImages; }
+
 		int GetBytesPerPixel() const { return mlBytesPerPixel; }
 		eBitmapFormat GetBitmapFormat() const { return mBitmapFormat; }
 

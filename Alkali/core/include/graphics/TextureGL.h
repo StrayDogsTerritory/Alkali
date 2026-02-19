@@ -30,13 +30,20 @@ namespace alk
 		void Bind(int alUnit);
 
 	private:
-		GLint EnumToGLPixelFormat(eBitmapFormat aFormat);
+		GLenum EnumToGLPixelFormat(eBitmapFormat aFormat);
+		GLenum EnumToGLTextureType(eTextureType aTextureType);
+		GLenum EnumToGLTextureWrapMode(eTextureWrappingMode aTextureWrappingMode);
+		GLenum EnumToGLTextureFilter(eTextureFilter aTextureFilter);
 
 
 		bool CreateMipMaps();
-		 
-		void CreateTextureFromProperties(tVector3l avDimensions, eBitmapFormat aFormat, int alMipMapLevel);
+		bool CreateTexture(int alID, cBitmapData* apBitmapData, int alNumberOfMipMaps,  tVector3l avSize, eBitmapFormat aFormat, bool abIsCompressed);
+
+		bool CreateTextureFromBitmapIdx(cBitmap* apBitmap, int alIdx);
+		bool CopyTextureDataToGL(GLenum TypeGL, GLenum Format, int alMipMapLevel,unsigned char* apData, size_t mlDataSize, tVector3l avSize, bool abIsCompressed);
+
 		void SetupGLFromBitmap(cBitmap* apBitmap);
+
 
 
 		eTextureFilter mTextureFilter;
