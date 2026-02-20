@@ -40,7 +40,7 @@ namespace alk
 		bool CreateTexture(int alID, cBitmapData* apBitmapData, int alNumberOfMipMaps,  tVector3l avSize, eBitmapFormat aFormat, bool abIsCompressed);
 
 		bool CreateTextureFromBitmapIdx(cBitmap* apBitmap, int alIdx);
-		bool CopyTextureDataToGL(GLenum TypeGL, GLenum Format, int alMipMapLevel,unsigned char* apData, size_t mlDataSize, tVector3l avSize, bool abIsCompressed);
+		bool CopyTextureDataToGL(eBitmapFormat Format, int alMipMapLevel,unsigned char* apData, size_t mlDataSize, tVector3l avSize, bool abIsCompressed);
 
 		void SetupGLFromBitmap(cBitmap* apBitmap);
 

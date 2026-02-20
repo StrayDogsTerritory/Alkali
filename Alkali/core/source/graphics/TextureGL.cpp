@@ -85,7 +85,7 @@ namespace alk {
 			unsigned char* pData = apBitmapData[i].mpData;
 			size_t lSize = apBitmapData[i].mlSize;
 
-			if (!CopyTextureDataToGL(Type,Format, pData,lSize,vResize, abIsCompressed))
+			if (!CopyTextureDataToGL(aFormat, i, pData,lSize,vResize, abIsCompressed))
 			{
 				bRet = false;
 				break;
@@ -102,8 +102,11 @@ namespace alk {
 		return true;
 	}
 
-	bool cTextureGL::CopyTextureDataToGL(GLenum TypeGL, GLenum FormatGL, int alMipMapLevel, unsigned char* apData, size_t alDataSize, tVector3l avSize, bool abIsCompressed)
+	bool cTextureGL::CopyTextureDataToGL(eBitmapFormat aFormat, int alMipMapLevel, unsigned char* apData, size_t alDataSize, tVector3l avSize, bool abIsCompressed)
 	{
+		GLenum lType = EnumToGLTextureType(mTextureType);
+		GLenum lFormat = EnumToGLPixelFormat(aFormat);
+
 		while (glGetError() != GL_NO_ERROR); // clear the error log
 
 		mlMemorySize += alDataSize;
@@ -112,9 +115,36 @@ namespace alk {
 		{
 			if (mTextureType == eTextureType_1D)
 			{
-				glCompressedTexImage1D()
+				glCompressedTexImage1D(lType, alMipMapLevel, lFormat, avSize.x,0, alDataSize, apData);
+			}
+			else if (mTextureType == eTextureType_2D ||mTextureType == eTextureType_CubeMap || mTextureType == eTextureType_Rect)
+			{
+				glCompressedTexImage2D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, 0, alDataSize, apData);
+			}
+			else if (mTextureType == eTextureType_3D)
+			{
+				glCompressedTexImage3D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, avSize.z, 0, alDataSize, apData);
 			}
 		}
+		else
+		{
+			if (mTextureType == eTextureType_1D)
+			{
+				glTexImage1D(lType, alMipMapLevel, lFormat, avSize.x, 0, lFormat, GL_UNSIGNED_BYTE, apData);
+			}
+			else if (mTextureType == eTextureType_2D || mTextureType == eTextureType_CubeMap || mTextureType == eTextureType_Rect)
+			{
+				glTexImage2D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, 0, lFormat, GL_UNSIGNED_BYTE, apData);
+			}
+			else if (mTextureType == eTextureType_3D)
+			{
+				glTexImage3D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, avSize.z, 0, GL_UNSIGNED_BYTE, lFormat, apData);
+			}
+		}
+
+		if (glGetError != GL_NO_ERROR) return false;
+
+		return true;
 	}
 
 	void cTextureGL::SetupGLFromBitmap(cBitmap* apBitmap)
