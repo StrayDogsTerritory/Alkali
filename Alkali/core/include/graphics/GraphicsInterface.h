@@ -7,6 +7,7 @@
 
 #include "graphics/Shader.h"
 #include "graphics/VertexBuffer.h"
+#include "graphics/Texture.h"
 
 enum eGpuMaximum
 {
@@ -44,7 +45,7 @@ namespace alk {
 		virtual iShader* CreateShader(const tString& asName, eShaderType aType)=0;
 		virtual iGpuProgram* CreateProgram(const tString& asName)=0;
 		virtual iVertexBuffer* CreateVertexBuffer(eVertexBufferDrawType aDrawType, eVertexBufferPrimitiveAssemblyType aPrimAssemblyType)=0;
-		virtual iTexture* CreateTexture(const tString& asName)=0;
+		virtual iTexture* CreateTexture(const tString& asName, eTextureType aType, eTextureFilter aFilter, eTextureWrappingMode aMode)=0;
 
 		virtual void SwapBuffer()=0;
 		virtual bool SetCursorVisibility(bool abx) = 0;

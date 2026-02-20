@@ -1,15 +1,25 @@
 #include "graphics/TextureGL.h"
 #include "graphics/Bitmap.h"
 
+#include "engine/LogWriter.h"
+
 #include <GL/glew.h>
 
 namespace alk {
 
-	cTextureGL::cTextureGL(const tString& asName) : iTexture(asName)
+	cTextureGL::cTextureGL(const tString& asName, eTextureType aType, eTextureFilter aFilter, eTextureWrappingMode aMode) : iTexture(asName)
 	{
 		// do something here...
 		mlMemorySize = 0;
 		msName = asName;
+
+		mbUseMipMaps = false;
+		mFilter = aFilter;
+		mTextureType = aType;
+		mWrappingMode = aMode;
+
+		// get around to this later
+		mfAnisotropicFilteringDegree = 0.0f;
 	}
 
 	cTextureGL::~cTextureGL()
@@ -45,6 +55,8 @@ namespace alk {
 
 	bool cTextureGL::CreateTextureFromBitmapIdx(cBitmap* apBitmap, int alIdx)
 	{
+		mbUseMipMaps = apBitmap->GetNumberMipMaps() > 1 ? true : false;
+
 		if (mTextureType == eTextureType_CubeMap)
 		{
 			// do nothing for now...
@@ -85,7 +97,7 @@ namespace alk {
 			unsigned char* pData = apBitmapData[i].mpData;
 			size_t lSize = apBitmapData[i].mlSize;
 
-			if (!CopyTextureDataToGL(aFormat, i, pData,lSize,vResize, abIsCompressed))
+			if (CopyTextureDataToGL(aFormat, i, pData,lSize,vResize, abIsCompressed) == false)
 			{
 				bRet = false;
 				break;
@@ -96,14 +108,17 @@ namespace alk {
 			vResize.z >>= 1;
 
 		}
+		if (bRet == false) return false;
 
-		if (bRet == false)
-
+		// setup the texture settings 
+		SetupTextureProperties(alID);
 		return true;
 	}
 
 	bool cTextureGL::CopyTextureDataToGL(eBitmapFormat aFormat, int alMipMapLevel, unsigned char* apData, size_t alDataSize, tVector3l avSize, bool abIsCompressed)
 	{
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+
 		GLenum lType = EnumToGLTextureType(mTextureType);
 		GLenum lFormat = EnumToGLPixelFormat(aFormat);
 
@@ -117,7 +132,7 @@ namespace alk {
 			{
 				glCompressedTexImage1D(lType, alMipMapLevel, lFormat, avSize.x,0, alDataSize, apData);
 			}
-			else if (mTextureType == eTextureType_2D ||mTextureType == eTextureType_CubeMap || mTextureType == eTextureType_Rect)
+			else if (mTextureType == eTextureType_2D || mTextureType == eTextureType_CubeMap || mTextureType == eTextureType_Rect)
 			{
 				glCompressedTexImage2D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, 0, alDataSize, apData);
 			}
@@ -126,7 +141,7 @@ namespace alk {
 				glCompressedTexImage3D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, avSize.z, 0, alDataSize, apData);
 			}
 		}
-		else
+		else // uncompressed image
 		{
 			if (mTextureType == eTextureType_1D)
 			{
@@ -142,19 +157,45 @@ namespace alk {
 			}
 		}
 
-		if (glGetError != GL_NO_ERROR) return false;
+		GLint lInt = glGetError();
+
+		if (glGetError() != GL_NO_ERROR) { Log("%u\n", glGetError()); return false; }
 
 		return true;
 	}
 
-	void cTextureGL::SetupGLFromBitmap(cBitmap* apBitmap)
+	void cTextureGL::SetupTextureProperties(int alIdx)
 	{
-		// @TODO: DO NOT HARD CODE ANY OF THIS!!!
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+		GLenum lType = EnumToGLTextureType(mTextureType);
+		GLenum lWrapMode = EnumToGLTextureWrapMode(mWrappingMode);
 
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		// test 
+		lWrapMode = GL_CLAMP_TO_EDGE;
+
+		glBindTexture(lType, alIdx);
+
+		// texture filtering
+		if (mFilter == eTextureFilter_Trilinear && mbUseMipMaps)
+		{
+			glTexParameteri(lType, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+			glTexParameteri(lType, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+		}
+		else
+		{
+			glTexParameteri(lType, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+			glTexParameteri(lType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		}
+
+		// texture wrapping
+		glTexParameteri(lType, GL_TEXTURE_WRAP_S, lWrapMode);
+		glTexParameteri(lType, GL_TEXTURE_WRAP_T, lWrapMode);
+		glTexParameteri(lType, GL_TEXTURE_WRAP_R, lWrapMode);
+
+		while (glGetError() != GL_NO_ERROR)
+		{
+			Log("'%u'\n", glGetError());
+		}
+
 	}
 
 
@@ -175,6 +216,10 @@ namespace alk {
 		case eBitmapFormat_RGB: return GL_RGB;
 		case eBitmapFormat_RGBA: return GL_RGBA;
 
+		case eBitmapCompressionFormat_DXT1: return GL_COMPRESSED_RGBA_S3TC_DXT1_EXT;
+		case eBitmapCompressionFormat_DXT3: return GL_COMPRESSED_RGBA_S3TC_DXT3_EXT;
+		case eBitmapCompressionFormat_DXT5: return GL_COMPRESSED_RGBA_S3TC_DXT5_EXT;
+		case eBitmapCompressionFormat_3DC: return GL_3DC_XY_AMD;
 		default: return -1;
 		}
 	}

@@ -3,6 +3,7 @@
 
 #include "graphics/GraphicsInterface.h"
 #include "graphics/VertexBuffer.h"
+#include "graphics/Texture.h"
 
 #include "system/FlagBits.h"
 
@@ -33,7 +34,7 @@ namespace alk {
 		iShader* CreateShader(const tString& asName, eShaderType aType);
 		iGpuProgram* CreateProgram(const tString& asName);
 		iVertexBuffer* CreateVertexBuffer(eVertexBufferDrawType aDrawType, eVertexBufferPrimitiveAssemblyType aPrimAssemblyType);
-		iTexture* CreateTexture(const tString& asName);
+		iTexture* CreateTexture(const tString& asName, eTextureType aType, eTextureFilter aFilter, eTextureWrappingMode aMode);
 
 		void SwapBuffer(); // don't call it SwapBuffers cuz windows gets all weird about it.
 		void FlushRender();

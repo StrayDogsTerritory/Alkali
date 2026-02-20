@@ -34,7 +34,7 @@ namespace alk {
 
 		if (pTexture == NULL && sPath != L"")
 		{
-			pTexture = mpiGraphics->CreateTexture(asName);
+			pTexture = mpiGraphics->CreateTexture(asName, eTextureType_2D, eTextureFilter_Trilinear, eTextureWrappingMode_Repeat);
 
 			cBitmap* pBitmap = mpResources->GetBitmapLoader()->LoadBitmap(sPath);
 			if (pBitmap == NULL) {

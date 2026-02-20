@@ -80,7 +80,7 @@ namespace alk {
 			//Log("Created Program. Should only be seen once!\n");
 			//Log("Program list size: '%d'", lProgramList.size());
 			mpTestProgram = CreateShaderProgram("TestProgram", "test_frag.glsl", "test_vert.glsl");
-			mpTestTexture = mpResources->GetTextureManager()->Create2DTexture("photomode_03072025_150327.dds");
+			mpTestTexture = mpResources->GetTextureManager()->Create2DTexture("choir_pillar_lantern_nrm.dds");
 			
 		}
 

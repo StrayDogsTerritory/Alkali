@@ -143,9 +143,9 @@ namespace alk {
 		return alkNew(cVertexBufferGL, (aDrawType, aPrimAssemblyType));
 	}
 
-	iTexture* cGraphicsSDL::CreateTexture(const tString& asName)
+	iTexture* cGraphicsSDL::CreateTexture(const tString& asName, eTextureType aType, eTextureFilter aFilter, eTextureWrappingMode aMode)
 	{
-		return alkNew(cTextureGL, (asName));
+		return alkNew(cTextureGL, (asName, aType, aFilter, aMode));
 	}
 
 

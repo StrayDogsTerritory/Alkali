@@ -17,7 +17,7 @@ namespace alk
 	class cTextureGL : public iTexture
 	{
 	public:
-		cTextureGL(const tString& asName);
+		cTextureGL(const tString& asName, eTextureType aType, eTextureFilter aFilter, eTextureWrappingMode aMode);
 		~cTextureGL();
 
 		void GenerateTextureIDs(int alNumToGen);
@@ -42,12 +42,14 @@ namespace alk
 		bool CreateTextureFromBitmapIdx(cBitmap* apBitmap, int alIdx);
 		bool CopyTextureDataToGL(eBitmapFormat Format, int alMipMapLevel,unsigned char* apData, size_t mlDataSize, tVector3l avSize, bool abIsCompressed);
 
-		void SetupGLFromBitmap(cBitmap* apBitmap);
+		void SetupTextureProperties(int alIdx);
 
 
 
-		eTextureFilter mTextureFilter;
-		eTextureWrappingMode mTextureWrappingMode;
+		bool mbUseMipMaps;
+
+		eTextureFilter mFilter;
+		eTextureWrappingMode mWrappingMode;
 		eTextureType mTextureType;
 
 		tString msName;

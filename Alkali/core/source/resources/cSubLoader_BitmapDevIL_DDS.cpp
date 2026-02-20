@@ -91,8 +91,8 @@ namespace alk {
 			pBitmap->SetIsCompressed(false);
 			pBitmap->SetFormat(ILtoEnum(lPixelFormat));
 
-			for (int i = 0; i < lNumImages > 0 ? lNumImages : 1; ++i)
-				for (int m = 0; m < lNumImages > 0 ? lNumImages : 1; ++m)
+			for (int i = 0; i < (lNumImages > 0 ? lNumImages : 1); ++i)
+				for (int m = 0; m < (lNumMipMaps > 0 ? lNumMipMaps : 1); ++m)
 				{
 					if (lNumImages > 1)
 						ilActiveImage(i);
