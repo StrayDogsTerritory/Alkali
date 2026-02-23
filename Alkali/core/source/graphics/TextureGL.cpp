@@ -144,7 +144,6 @@ namespace alk {
 			else if (mTextureType == eTextureType_2D || mTextureType == eTextureType_CubeMap || mTextureType == eTextureType_Rect)
 			{
 				glCompressedTexImage2D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, 0, alDataSize, apData);
-				Log("'%u'\n", glGetError());
 			}
 			else if (mTextureType == eTextureType_3D)
 			{
@@ -181,7 +180,7 @@ namespace alk {
 
 	void cTextureGL::SetupTextureProperties(int alIdx)
 	{
-		GLenum lType = EnumToGLTextureType(mTextureType);
+ 		GLenum lType = EnumToGLTextureType(mTextureType);
 		GLenum lWrapMode = EnumToGLTextureWrapMode(mWrappingMode);
 
 		// test 
