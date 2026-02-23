@@ -1,0 +1,28 @@
+{
+    "rdocCaptureSettings": 1,
+    "settings": {
+        "autoStart": false,
+        "commandLine": "/JMC /MP /ifcOutput \"..\\..\\int\\\" /GS /W3 /Zc:wchar_t /I\"..\\..\\..\\Alkali\\dependencies\\include\" /I\"..\\..\\..\\Alkali\\core\\include\" /ZI /Gm- /Od /Fd\"..\\..\\int\\vc143.pdb\" /Zc:inline /fp:precise /D \"_CONSOLE\" /D \"_MBCS\" /errorReport:prompt /WX- /Zc:forScope /RTC1 /Gd /MDd /std:c++17 /FC /Fa\"..\\..\\int\\\" /EHsc /nologo /Fo\"..\\..\\int\\\" /Fp\"..\\..\\int\\Toronto.pch\" /diagnostics:column ",
+        "environment": [
+        ],
+        "executable": "X:\\Alkali\\Toronto\\redist\\Toronto.exe",
+        "inject": false,
+        "numQueuedFrames": 0,
+        "options": {
+            "allowFullscreen": true,
+            "allowVSync": true,
+            "apiValidation": false,
+            "captureAllCmdLists": false,
+            "captureCallstacks": false,
+            "captureCallstacksOnlyDraws": false,
+            "debugOutputMute": true,
+            "delayForDebugger": 0,
+            "hookIntoChildren": false,
+            "refAllResources": false,
+            "softMemoryLimit": 0,
+            "verifyBufferAccess": false
+        },
+        "queuedFrameCap": 0,
+        "workingDir": "X:/Alkali/Toronto/redist"
+    }
+}

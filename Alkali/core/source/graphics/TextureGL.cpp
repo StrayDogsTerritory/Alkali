@@ -55,7 +55,7 @@ namespace alk {
 
 	bool cTextureGL::CreateTextureFromBitmapIdx(cBitmap* apBitmap, int alIdx)
 	{
-		mbUseMipMaps = apBitmap->GetNumberMipMaps() > 1 ? true : false;
+		mbUseMipMaps = apBitmap->GetIsCompressed();
 
 		if (mTextureType == eTextureType_CubeMap)
 		{
@@ -65,11 +65,15 @@ namespace alk {
 		else
 		{
 
-			bool bRet = CreateTexture(alIdx,apBitmap->GetData(0,0), apBitmap->GetNumberMipMaps(), apBitmap->GetDimensions(),apBitmap->GetBitmapFormat(), apBitmap->GetIsCompressed());
+			bool bRet = CreateTexture(mvIDs[alIdx], apBitmap->GetData(0, 0), apBitmap->GetNumberMipMaps(), apBitmap->GetDimensions(), apBitmap->GetBitmapFormat(), apBitmap->GetIsCompressed());
+
+			//SetupTextureProperties(alIdx);
 
 			return bRet;
 		}
 		
+		// setup the texture settings 
+		//SetupTextureProperties(alIdx);
 
 		return false;
 	}
@@ -84,9 +88,12 @@ namespace alk {
 		mvDimensions = avSize;
 
 		glBindTexture(Type, alID);
+		//glEnable(Type);
 
 		bool bRet = true;
 		tVector3l vResize = mvDimensions;
+
+	//	CopyTextureDataToGL(aFormat, 0, apBitmapData[0].mpData, apBitmapData[0].mlSize, vResize, abIsCompressed);
 
 		for (int i = 0; i < alNumberOfMipMaps; ++i)
 		{
@@ -110,14 +117,16 @@ namespace alk {
 		}
 		if (bRet == false) return false;
 
-		// setup the texture settings 
+	//	glDisable(Type);
+		
 		SetupTextureProperties(alID);
+
 		return true;
 	}
 
 	bool cTextureGL::CopyTextureDataToGL(eBitmapFormat aFormat, int alMipMapLevel, unsigned char* apData, size_t alDataSize, tVector3l avSize, bool abIsCompressed)
 	{
-		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	//	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 		GLenum lType = EnumToGLTextureType(mTextureType);
 		GLenum lFormat = EnumToGLPixelFormat(aFormat);
@@ -135,6 +144,7 @@ namespace alk {
 			else if (mTextureType == eTextureType_2D || mTextureType == eTextureType_CubeMap || mTextureType == eTextureType_Rect)
 			{
 				glCompressedTexImage2D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, 0, alDataSize, apData);
+				Log("'%u'\n", glGetError());
 			}
 			else if (mTextureType == eTextureType_3D)
 			{
@@ -150,6 +160,7 @@ namespace alk {
 			else if (mTextureType == eTextureType_2D || mTextureType == eTextureType_CubeMap || mTextureType == eTextureType_Rect)
 			{
 				glTexImage2D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, 0, lFormat, GL_UNSIGNED_BYTE, apData);
+				//Log("'%u'\n", glGetError());
 			}
 			else if (mTextureType == eTextureType_3D)
 			{
@@ -157,9 +168,13 @@ namespace alk {
 			}
 		}
 
-		GLint lInt = glGetError();
+		//glDisable(lType);
 
-		if (glGetError() != GL_NO_ERROR) { Log("%u\n", glGetError()); return false; }
+		 if (glGetError() != GL_NO_ERROR)
+		 {
+			 Error("Couldn't load Texture '%s'\n", msName.c_str());
+			 return false;
+		 }
 
 		return true;
 	}
@@ -170,41 +185,48 @@ namespace alk {
 		GLenum lWrapMode = EnumToGLTextureWrapMode(mWrappingMode);
 
 		// test 
-		lWrapMode = GL_CLAMP_TO_EDGE;
+		//lWrapMode = GL_CLAMP_TO_EDGE;
 
+		//glEnable(lType);
 		glBindTexture(lType, alIdx);
 
-		// texture filtering
-		if (mFilter == eTextureFilter_Trilinear && mbUseMipMaps)
+		if (mbUseMipMaps && mTextureType != eTextureType_Rect)
 		{
-			glTexParameteri(lType, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-			glTexParameteri(lType, GL_TEXTURE_MAG_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+			if (mFilter != eTextureFilter_Bilinear)
+				glTexParameteri(lType, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+			else
+				glTexParameteri(lType, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
 		}
-		else
-		{
+		else {
 			glTexParameteri(lType, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-			glTexParameteri(lType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 		}
+	
+		glTexParameteri(lType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-		// texture wrapping
-		glTexParameteri(lType, GL_TEXTURE_WRAP_S, lWrapMode);
-		glTexParameteri(lType, GL_TEXTURE_WRAP_T, lWrapMode);
-		glTexParameteri(lType, GL_TEXTURE_WRAP_R, lWrapMode);
-
-		while (glGetError() != GL_NO_ERROR)
+		if (mTextureType == eTextureType_Rect)
 		{
-			Log("'%u'\n", glGetError());
+			mWrappingMode = eTextureWrappingMode_ClampToEdge;
 		}
+
+		glTexParameteri(lType, GL_TEXTURE_WRAP_S, EnumToGLTextureWrapMode(mWrappingMode));
+		glTexParameteri(lType, GL_TEXTURE_WRAP_T, EnumToGLTextureWrapMode(mWrappingMode));
+		glTexParameteri(lType, GL_TEXTURE_WRAP_R, EnumToGLTextureWrapMode(mWrappingMode));
+
+	//	glTexParameterf(lType, GL_TEXTURE_MAX_ANISOTROPY, 0.0f);
+
+		//glDisable(lType);
 
 	}
 
 
 	void cTextureGL::Bind(int alUnit)
 	{
+		GLenum lType = EnumToGLTextureType(mTextureType);
+
 		glActiveTexture(GL_TEXTURE0 + alUnit);
 
-		glBindTexture(GL_TEXTURE_2D, mvIDs[0]);
-		//glEnable(GL_TEXTURE_2D);
+		glBindTexture(lType, mvIDs[0]);
+		//glEnable(lType);
 	}
 
 

@@ -73,25 +73,26 @@ namespace alk {
 	{
 	//	Log("VtxBuff size: '%d'\n", lVtxBuffList.size());
 
-		
+		//GetLowGraphics()->ClearFrameBuffer(1);
+
 		if (mbCreatedProgram == false)
 		{
 			mbCreatedProgram = true;
 			//Log("Created Program. Should only be seen once!\n");
 			//Log("Program list size: '%d'", lProgramList.size());
 			mpTestProgram = CreateShaderProgram("TestProgram", "test_frag.glsl", "test_vert.glsl");
-			mpTestTexture = mpResources->GetTextureManager()->Create2DTexture("choir_pillar_lantern_nrm.dds");
-			
+			mpTestTexture = mpResources->GetTextureManager()->Create2DTexture("DebugChecker.dds");
+
 		}
-
-		//CreateTempVtxBuffer(1);
-
 		
+	}
 
+	void cGraphics::DrawTemp()
+	{
 		for (tVtxBuffListIt it = lVtxBuffList.begin(); it != lVtxBuffList.end(); ++it)
 		{
 			iVertexBuffer* pBuff = (*it);
-			
+
 			//mpTestProgram->SetInt(0, 0);
 
 			mpTestTexture->Bind(0);

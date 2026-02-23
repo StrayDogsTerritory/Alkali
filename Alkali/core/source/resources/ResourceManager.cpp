@@ -62,7 +62,7 @@ namespace alk {
 
 	void iResourceManager::RemoveResource(iResourceBase* apResource)
 	{
-		unsigned int lHash = cString::Hash(apResource->GetName());
+		unsigned int lHash = cString::Hash(cString::ToLowerCase(apResource->GetName()));
 
 		tmResourcesIterator it = mResources.find(lHash);
 			if (it == mResources.end())
@@ -86,8 +86,10 @@ namespace alk {
 	void iResourceManager::DestroyAll()
 	{
 		tmResourcesIterator it = mResources.begin();
-		Debug("Resource: %s UserCount: %u, Hash: %u\n", it->second->GetName().c_str(), it->second->NumUsers(), it->first);
-		while (it != mResources.end())
+		//Debug("Resource: %s UserCount: %u, Hash: %u\n", it->second->GetName().c_str(), it->second->NumUsers(), it->first);
+		if (it == mResources.end()) return;
+
+		while ((it != mResources.end()))
 		{
 			iResourceBase* pResource = it->second;
 

@@ -158,9 +158,11 @@ namespace alk {
 			}
 			mpLogicTimer->EndLoop();
 
-
 			mpGraphics->GetLowGraphics()->SwapBuffer();
 
+			mpGraphics->GetLowGraphics()->ClearFrameBuffer(1);
+
+			mpGraphics->DrawTemp();
 
 			mpGraphics->GetLowGraphics()->FlushRender();
 		}

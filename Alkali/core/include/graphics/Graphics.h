@@ -40,6 +40,7 @@ namespace alk {
 
 		void OnUpdate(float afStep);
 
+		void DrawTemp();
 
 		iGraphics* GetLowGraphics() { return mpGraphics; }
 

@@ -65,12 +65,13 @@ namespace alk {
 			unsigned long long lInitTime = cPlatform::GetAppTime();
 			unsigned int lHash;
 
-			// using the SHA-1 hash values
+			// some random number I pulled out of my ass...
 			lHash = 0x58Fadb8a;
 
-			
 			size_t lLength = asString.length();
 			const char* sData = asString.c_str();
+
+			// using the SHA-1 hash values
 			unsigned int lMagicNumber[5];
 			lMagicNumber[0] = 0x67452301;
 			lMagicNumber[1] = 0xefcfab89;
@@ -80,17 +81,19 @@ namespace alk {
 
 			for (int i = 0; i<lLength; i++)
 			{
-				lHash = lHash ^ sData[i];
-				lHash *= lMagicNumber[i];
+				lHash ^= sData[i];
+				lHash *= lMagicNumber[i % 5]; // keep it within bounds
 			}
 
 			float lTime = (float)cPlatform::GetAppTime() - (float)lInitTime;
 
-			Log("hashing %s took %f secs\n", asString.c_str(), lTime);
 			for (int i = 0; i < 2; i++)
 			{
-				lHash >> 0x1;
+				lHash >>= 0x1;
 			}
+
+			lHash &= 0xFFFFFFFF; // keep it at a fixed length
+
 			return lHash;
 		}
 

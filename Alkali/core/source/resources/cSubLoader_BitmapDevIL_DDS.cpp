@@ -68,8 +68,8 @@ namespace alk {
 			pBitmap->SetIsCompressed(true);
 			pBitmap->SetFormat(ILtoEnum(lCompressionFormat));
 
-			for (int i = 0; i < (lNumImages > 0 ? lNumImages : 1); ++i)
-				for (int m = 0; m < (lNumMipMaps > 0 ? lNumMipMaps : 1); ++m)
+			for (int i = 0; i < lNumImages; ++i)
+				for (int m = 0; m < lNumMipMaps; ++m)
 				{
 
 					ilBindImage(lImageID);
@@ -94,10 +94,9 @@ namespace alk {
 			for (int i = 0; i < (lNumImages > 0 ? lNumImages : 1); ++i)
 				for (int m = 0; m < (lNumMipMaps > 0 ? lNumMipMaps : 1); ++m)
 				{
-					if (lNumImages > 1)
-						ilActiveImage(i);
-					if (lNumMipMaps > 1)
-						ilActiveMipmap(m);
+					ilBindImage(lImageID); // WTF!?s
+					if (lNumImages > 1) ilActiveImage(i);
+					if (lNumMipMaps > 1) ilActiveMipmap(m);
 
 					cBitmapData* pBitmapData = pBitmap->GetData(i, m);
 
