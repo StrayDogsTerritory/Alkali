@@ -3,8 +3,8 @@
 
 #include "system/String.h"
 
-#include <map>
 #include <vector>
+#include <list>
 
 namespace alk {
 
@@ -21,11 +21,19 @@ namespace alk {
 	class cJsonObject
 	{
 	public:
-		cJsonObject();
+		cJsonObject(const tString& msName);
 		~cJsonObject();
 
+		void AddObject(cJsonObject* apObject);;
+		void RemoveObject(const tString& asName);
+		
+		cJsonObject* GetJsonObject(const tString& asName);
+
 	private:
-		std::map<tString, tString> mMapJsonValue;
+		tString msName;
+		tString msValue;
+
+		std::list<cJsonObject*> mLstJsonObject;
 
 	};
 
@@ -38,7 +46,8 @@ namespace alk {
 
 		void Parse(const twString &asPath);
 
-
+	private:
+		std::list<cJsonObject*> mLstJsonObject;
 	};
 
 }
