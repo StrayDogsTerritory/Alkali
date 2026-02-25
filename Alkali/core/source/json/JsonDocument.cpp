@@ -6,44 +6,53 @@
 
 #include "engine/LogWriter.h"
 
-#include "json/simdjson/picojson.h"
 
 namespace alk {
-
-	iJsonDocument::iJsonDocument() 
+	cJsonNode::cJsonNode(const tString& asName)
 	{
+		msName = asName;
+		msValue = "";
 	}
 
-	iJsonDocument::~iJsonDocument()
+	cJsonNode::~cJsonNode()
 	{
+		DeleteAll(mLstJsonNode);
 	}
 
-	void iJsonDocument::Parse(const twString& asPath)
+	void cJsonNode::AddNode(cJsonNode* apNode)
 	{
-		tString sJson = "[ \"Hello World!\" ]";
-		picojson::value Val;
-		tString sOut = picojson::parse(Val, sJson);
+		mLstJsonNode.push_back(apNode);
+	}
 
-		if (!Val.is<picojson::object>())
+	void cJsonNode::RemoveNode(const tString& asNode)
+	{
+		std::list<cJsonNode*>::iterator it = mLstJsonNode.begin();
+
+		for (; it != mLstJsonNode.end(); ++it)
 		{
-			Error("Json Document '%s' is not valid!\n", cString::To8BitChar(asPath).c_str());
-			
-			const picojson::value::array& arr = Val.get<picojson::array>();
-			for (picojson::value::array::const_iterator i = arr.begin(); i != arr.end(); ++i)
+			tString sName = (*it)->msName;
+			if (sName == asNode)
 			{
-				Log("%s\n",i->to_str().c_str());
+				mLstJsonNode.erase(it);
 			}
 
-			return;
 		}
+	}
 
-		const picojson::value::object& obj = Val.get<picojson::object>();
-		for (picojson::value::object::const_iterator i = obj.begin(); i != obj.end(); ++i)
+	cJsonNode* cJsonNode::GetJsonNode(const tString& asName)
+	{
+		std::list<cJsonNode*>::iterator it = mLstJsonNode.begin();
+
+		for (; it != mLstJsonNode.end(); ++it)
 		{
-			Log("%s : %s\n", i->first, i->second.to_str());
+			tString sName = (*it)->msName;
+			if (sName == asName)
+			{
+				return *(it);
+			}
 		}
 
-		//Log("%s\n", sOut.c_str());
+		return NULL;
 	}
 }
 

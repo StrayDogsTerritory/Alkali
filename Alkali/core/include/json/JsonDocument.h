@@ -3,37 +3,26 @@
 
 #include "system/String.h"
 
-#include <vector>
 #include <list>
 
 namespace alk {
 
-	class cJsonValue
+	class cJsonNode
 	{
 	public:
-		cJsonValue(const tString& asName, const tString& asValue);
-		~cJsonValue();
-		
-		tString msName;
-		std::vector<tString> mvValue;
-	};
+		cJsonNode(const tString& asName);
+		~cJsonNode();
 
-	class cJsonObject
-	{
-	public:
-		cJsonObject(const tString& msName);
-		~cJsonObject();
-
-		void AddObject(cJsonObject* apObject);;
-		void RemoveObject(const tString& asName);
+		void AddNode(cJsonNode* apNode);
+		void RemoveNode(const tString& asName);
 		
-		cJsonObject* GetJsonObject(const tString& asName);
+		cJsonNode* GetJsonNode(const tString& asName);
 
 	private:
 		tString msName;
 		tString msValue;
 
-		std::list<cJsonObject*> mLstJsonObject;
+		std::list<cJsonNode*> mLstJsonNode;
 
 	};
 
@@ -47,7 +36,7 @@ namespace alk {
 		void Parse(const twString &asPath);
 
 	private:
-		std::list<cJsonObject*> mLstJsonObject;
+		std::list<cJsonNode*> mLstJsonSubNodes;
 	};
 
 }
