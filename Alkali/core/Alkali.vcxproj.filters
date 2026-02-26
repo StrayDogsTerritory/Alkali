@@ -340,6 +340,9 @@
     <ClInclude Include="include\resources\cSubLoader_BitmapDevIL_DDS.h">
       <Filter>Resources\Loaders\API Specific\DevIL</Filter>
     </ClInclude>
+    <ClInclude Include="include\json\simdjson\jsmn.h">
+      <Filter>Json\PicoJson</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">

@@ -138,6 +138,7 @@
     <ClInclude Include="include\input\Mouse.h" />
     <ClInclude Include="include\input\MouseSDL.h" />
     <ClInclude Include="include\json\JsonDocument.h" />
+    <ClInclude Include="include\json\simdjson\jsmn.h" />
     <ClInclude Include="include\json\simdjson\picojson.h" />
     <ClInclude Include="include\math\Math.h" />
     <ClInclude Include="include\math\Matrix.h" />
