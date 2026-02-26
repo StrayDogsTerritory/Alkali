@@ -43,7 +43,14 @@ namespace alk {
 
 	FILE* cPlatform::OpenFile(const twString& asFileName, const twString &asMode)
 	{
-		return _wfopen(asFileName.c_str(), asMode.c_str());
+		//return _wfopen(asFileName.c_str(), asMode.c_str());
+		FILE* pFile;
+		int lRet = _wfopen_s(&pFile, asFileName.c_str(), asMode.c_str());
+
+		Log("%u\n", lRet);
+
+		return pFile;
+
 	}
 
 	void cPlatform::RemoveFile(const twString& asFile)

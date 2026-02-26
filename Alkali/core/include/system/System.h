@@ -27,6 +27,8 @@ namespace alk {
 	private:
 		iSystem* mpSystemInterface;
 		static int GetChecksumTest();
+
+		void LogJsonTest(const char* apFileString);
 	};
 
 }
