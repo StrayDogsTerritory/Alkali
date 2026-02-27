@@ -137,9 +137,9 @@
     <ClInclude Include="include\input\KeyboardSDL.h" />
     <ClInclude Include="include\input\Mouse.h" />
     <ClInclude Include="include\input\MouseSDL.h" />
+    <ClInclude Include="include\json\cJson\cJSON.h" />
+    <ClInclude Include="include\json\cJson\cJSON_Utils.h" />
     <ClInclude Include="include\json\JsonDocument.h" />
-    <ClInclude Include="include\json\simdjson\jsmn.h" />
-    <ClInclude Include="include\json\simdjson\picojson.h" />
     <ClInclude Include="include\math\Math.h" />
     <ClInclude Include="include\math\Matrix.h" />
     <ClInclude Include="include\math\Plane.h" />
@@ -216,6 +216,8 @@
     <ClCompile Include="source\input\Keyboard.cpp" />
     <ClCompile Include="source\input\KeyboardSDL.cpp" />
     <ClCompile Include="source\input\MouseSDL.cpp" />
+    <ClCompile Include="source\json\cJson\cJSON.c" />
+    <ClCompile Include="source\json\cJson\cJSON_Utils.c" />
     <ClCompile Include="source\json\JsonDocument.cpp" />
     <ClCompile Include="source\math\Math.cpp" />
     <ClCompile Include="source\math\Matrix.cpp" />

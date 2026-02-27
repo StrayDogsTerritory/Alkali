@@ -40,9 +40,6 @@
     <Filter Include="Json">
       <UniqueIdentifier>{58645e84-565b-4c31-a403-b58555e3d573}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Json\PicoJson">
-      <UniqueIdentifier>{fd497462-39b0-4cfd-851e-c1e6c0c5b0c2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Input\Input Event">
       <UniqueIdentifier>{4d1882dd-2760-443f-83e5-25c5876e9829}</UniqueIdentifier>
     </Filter>
@@ -72,6 +69,9 @@
     </Filter>
     <Filter Include="Resources\Loaders\API Specific\DevIL">
       <UniqueIdentifier>{60c3cd5f-c1b4-4b3f-ae6a-d5c1562141b6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Json\c-Json">
+      <UniqueIdentifier>{fd497462-39b0-4cfd-851e-c1e6c0c5b0c2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -220,9 +220,6 @@
     <ClInclude Include="include\engine\ThreadSystem.h">
       <Filter>Engine</Filter>
     </ClInclude>
-    <ClInclude Include="include\json\simdjson\picojson.h">
-      <Filter>Json\PicoJson</Filter>
-    </ClInclude>
     <ClInclude Include="include\input\Keyboard.h">
       <Filter>Input</Filter>
     </ClInclude>
@@ -340,8 +337,11 @@
     <ClInclude Include="include\resources\cSubLoader_BitmapDevIL_DDS.h">
       <Filter>Resources\Loaders\API Specific\DevIL</Filter>
     </ClInclude>
-    <ClInclude Include="include\json\simdjson\jsmn.h">
-      <Filter>Json\PicoJson</Filter>
+    <ClInclude Include="include\json\cJson\cJSON.h">
+      <Filter>Json\c-Json</Filter>
+    </ClInclude>
+    <ClInclude Include="include\json\cJson\cJSON_Utils.h">
+      <Filter>Json\c-Json</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -515,6 +515,12 @@
     </ClCompile>
     <ClCompile Include="source\resources\cSubLoader_BitmapDevIL_DDS.cpp">
       <Filter>Resources\Loaders\API Specific\DevIL</Filter>
+    </ClCompile>
+    <ClCompile Include="source\json\cJson\cJSON.c">
+      <Filter>Json\c-Json</Filter>
+    </ClCompile>
+    <ClCompile Include="source\json\cJson\cJSON_Utils.c">
+      <Filter>Json\c-Json</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
