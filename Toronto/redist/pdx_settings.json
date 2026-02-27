@@ -1,0 +1,77 @@
+{
+	"game":	{
+		"pause_on_event":	true
+	},
+	"Graphics":	{
+		"buildings_cutoff":	true,
+		"ssao":	true,
+		"depthoffield":	true,
+		"refraction_quality":	"high",
+		"renderer":	"Vulkan",
+		"texture_streaming":	false,
+		"mesh_lod_bias":	"high",
+		"shadowmap_resolution":	"4096x4096",
+		"anti_aliasing":	"MSAAx4",
+		"portrait_multi_sampling":	"x8",
+		"anisotropic_filtering":	"x16",
+		"quality":	"custom"
+	},
+	"interface":	{
+		"show_notification_feed_next_to_outliner":	true,
+		"tooltip":	"SETTING_TOOLTIP_MODE_LOCK_ON_TIMER_OR_ACTION_WIDGET_ANCHOR"
+	},
+	"map_modes":	{
+		"occupation_stripes":	true
+	},
+	"System":	{
+		"user_bindings":	"user_bindings/user.bindings"
+	},
+	"accessibility":	{
+},
+	"Theme":	{
+		"selected_ui_skin_theme":	"gui_skin_ip4",
+		"seen_ui_skin_theme":	"gui_skin_base,gui_skin_votp,gui_skin_ap1,gui_skin_ip2,gui_skin_ip3,gui_skin_ip4",
+		"selected_papermap_theme":	"papermap_ip4_portugal",
+		"seen_papermap_theme":	"papermap_base,papermap_votp,papermap_ap1,papermap_ep1,papermap_ip2,papermap_signup_reward,papermap_ip3,papermap_smd,papermap_ip4_portugal,papermap_ip4_spain",
+		"selected_table_top_theme":	"table_ip4",
+		"seen_table_top_theme":	"table_base,table_votp,table_ap1,table_ip2,table_ip3,table_ip4",
+		"selected_table_asset_1_theme":	"papermap_portugese",
+		"seen_table_asset_1_theme":	"papermap_object_divider,papermap_napoleonic_medal,papermap_hongshanstatue,papermap_yali,papermap_pipe,papermap_netturpetti,papermap_portugese",
+		"selected_table_asset_2_theme":	"papermap_bugbearflask",
+		"seen_table_asset_2_theme":	"papermap_object_compass,papermap_revolutionary_cockade,papermap_candle,papermap_netturpetti,papermap_bugbearflask,papermap_yali,papermap_philippines",
+		"selected_table_asset_3_theme":	"papermap_cigar",
+		"seen_table_asset_3_theme":	"papermap_cigarbox,papermap_grapes,papermap_pocketwatch,papermap_indianknife,papermap_coffeecup,papermap_cigar",
+		"selected_table_asset_4_theme":	"papermap_homemade_bomb",
+		"seen_table_asset_4_theme":	"papermap_letter,papermap_homemade_bomb,papermap_tainostatue,papermap_hairbrooch,papermap_sausage,papermap_beretyrosary",
+		"selected_table_asset_cloth_theme":	"papermap_cloth_indian",
+		"seen_table_asset_cloth_theme":	"papermap_cloth_default,papermap_cloth_indian",
+		"selected_main_menu_image_theme":	"main_menu_image_mp1",
+		"seen_main_menu_image_theme":	"main_menu_image_base,main_menu_image_mp1,main_menu_image_ep1,main_menu_image_votp,main_menu_image_og"
+	},
+	"daynight_cycle":	{
+		"daynight_systemtime":	true,
+		"sunrise":	6
+	},
+	"Tools":	{
+},
+	"Audio":	{
+		"audio_device_profile":	"snapshot:/Output/Headphones",
+		"disabled_categories":	"mx_category_00,mx_category_02,mx_category_01",
+		"disabled_tracks":	"",
+		"volume.vca:/MUSIC":	0.400000,
+		"volume.vca:/AMBIENT":	0.700000,
+		"volume.vca:/MUSIC_STINGERS":	0.700000,
+		"volume.vca:/SOUNDTRACK":	0.700000,
+		"volume.vca:/UI":	0.700000,
+		"volume.vca:/SFX":	0.600000,
+		"volume.bus:/":	0.800000
+	},
+	"notifications":	{
+},
+	"Account":	{
+},
+	"GUI":	{
+		"scale":	"1",
+		"tools_gui_scale":	"1"
+	}
+}

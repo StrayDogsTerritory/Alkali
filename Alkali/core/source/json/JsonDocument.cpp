@@ -6,7 +6,7 @@
 
 #include "engine/LogWriter.h"
 
-#include "json/simdjson/jsmn.h"
+#include "json/cJson/cJSON.h"
 
 namespace alk {
 	cJsonNode::cJsonNode(const tString& asName)
@@ -65,15 +65,8 @@ namespace alk {
 	void iJsonDocument::Parse(const twString& asPath)
 	{
 		tString sTest  = "{\"user\": \"Jack\", \"age\": 27}";
-		
-		jsmn_parser* pParser = alkNew(jsmn_parser, ());
-		jsmn_init(pParser);
+	
 
-		jsmntok_t t[512];
-		bool bRet = (bool)jsmn_parse(pParser, sTest.c_str(), sTest.size(), t, 512);
-
-		Debug("User: %s\n", t[2].end - t[2].start);
-		Debug("Age: %s\n", t[2].end - t[2].start);
 
 	}
 }
