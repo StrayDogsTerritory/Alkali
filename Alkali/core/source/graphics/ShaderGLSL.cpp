@@ -23,9 +23,9 @@ namespace alk {
 		size_t lSize = ftell(pFile);
 		rewind(pFile);
 
-		char* pBuffer = (char*)alkMalloc(sizeof(char)* lSize+1); 
+		char* pBuffer = (char*)alkMalloc(sizeof(char)* lSize +1); 
 		fread(pBuffer, sizeof(GLchar), lSize, pFile);
-		pBuffer[lSize] = 0;
+		pBuffer[lSize] = '\0'; // null terminate the string
 		fclose(pFile);
 
 		bool bRet = CreateFromString(pBuffer);

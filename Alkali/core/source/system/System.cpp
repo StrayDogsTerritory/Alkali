@@ -37,35 +37,14 @@ namespace alk {
 		else {
 			Log("unmodified\n");
 		}
-		
-		Log("%s\n", cString::To8BitChar(cPlatform::GetCurrentWorkingDirectory()).c_str());
-
-		// test parsing a file as a string
-		FILE* pFile = cPlatform::OpenFile(L"json.json", L"rb");
-
-		if (pFile == NULL) Warning("Json test didn't load, figure out why...\n");
-
-		if (pFile != NULL)
-		{
-			fseek(pFile, 0, SEEK_END);
-			size_t lSize = ftell(pFile);
-			rewind(pFile);
-
-			char* pBuffer = (char*)alkMalloc(sizeof(char) * lSize + 1);
-			fread(pBuffer, sizeof(char), lSize, pFile);
-			pBuffer[lSize] = 0;
-			tString sTemp = tString(pBuffer);
-
-			//Debug("Json File Contents:\n %s\n", sTemp.c_str());
-
-			Debug("Json File Contents:\n");
-			LogJsonTest(sTemp.c_str());
-
-			alkFree(pBuffer);
-			fclose(pFile);
-		}
 
 		Log("---------------------------------------------\n");
+
+		iJsonDocument* pJsonDoc = alkNew(iJsonDocument, ());
+		pJsonDoc->Parse(L"pdx_settings.json");
+
+		alkDelete(pJsonDoc);
+
 		return true;
 	}
 
@@ -108,28 +87,6 @@ namespace alk {
 	cLogicTimer* cSystem::CreateLogicTimer(unsigned int alUpdatesPerSec)
 	{
 		return alkNew(cLogicTimer, (alUpdatesPerSec));
-	}
-
-	void cSystem::LogJsonTest(const char* apFileString)
-	{
-		int lRow = 1;
-		tString sRowCode = "";
-		for (int i = 0; apFileString[i] != 0; ++i)
-		{
-			char lChar = apFileString[i];
-			if (lChar == '\r') continue;
-
-			if (lChar == '\n')
-			{
-				Log("[%04d] %s\n", lRow, sRowCode.c_str());
-				sRowCode.resize(0);
-				lRow++;
-			}
-			else
-			{
-				sRowCode += lChar;
-			}
-		}
 	}
 
 

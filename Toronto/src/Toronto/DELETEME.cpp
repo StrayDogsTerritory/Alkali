@@ -36,6 +36,7 @@ void cActionTest::OnUpdate(float afStep)
 
 	if (gpBase->GetEngine()->GetInput()->BecameTriggered("TestMouseButton"))
 	{
+		gpBase->GetEngine()->GetGraphics()->GetLowGraphics()->SetClearColour(cMath::Rand(cColour(0, 0, 0, 0), cColour(1, 1, 1, 1)));
 	}
 
 	if (gpBase->GetEngine()->GetInput()->BecameTriggered("TestGamepadButton"))

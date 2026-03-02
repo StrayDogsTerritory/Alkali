@@ -124,7 +124,7 @@ namespace alk {
 
 		void Warning(const char* asMessage, ...)
 		{
-			char Text[2048];
+			char Text[4096];
 			va_list ap;
 			if (asMessage == NULL)
 				return;
@@ -138,7 +138,7 @@ namespace alk {
 
 		void Debug(const char* asMessage, ...)
 		{
-			char Text[2048];
+			char Text[4096];
 			va_list ap;
 			if (asMessage == NULL)
 				return;
@@ -156,7 +156,7 @@ namespace alk {
 
 		void FatalError(const char* asMessage, ...)
 		{
-			char Text[2048];
+			char Text[4096];
 			va_list ap;
 			if (asMessage == NULL)
 				return;

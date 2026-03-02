@@ -62,12 +62,33 @@ namespace alk {
 
 	}
 
+	iJsonDocument::~iJsonDocument() {}
+
 	void iJsonDocument::Parse(const twString& asPath)
 	{
-		tString sTest  = "{\"user\": \"Jack\", \"age\": 27}";
-	
+		tString sJsonFile = "";
+		FILE* pFile = cPlatform::OpenFile(asPath, L"rb");
+		if (pFile)
+		{
+			fseek(pFile, 0, SEEK_END);
+			size_t lSize = ftell(pFile);
+			rewind(pFile);
 
+			char* pBuffer = (char*)alkMalloc(sizeof(char) * lSize + 1);
+			fread(pBuffer, sizeof(char), lSize, pFile);
+			pBuffer[lSize] = 0; // null terminate the string
 
+			sJsonFile = tString(pBuffer);
+			//			Debug("File contents: '%s'\n", sJsonFile.c_str());
+			cJSON* pJson = cJSON_Parse(pBuffer);
+
+			cJSON* pJsonNested = pJson->child;
+
+			cJSON* pJsonNestedNested = pJsonNested->child;
+
+			cJSON* pJsonNestedNestedNested = pJsonNestedNested->next;
+			Log("Dubug breakpoint stopper\n");
+		}
 	}
 }
 
