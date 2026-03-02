@@ -80,14 +80,28 @@ namespace alk {
 
 			sJsonFile = tString(pBuffer);
 			//			Debug("File contents: '%s'\n", sJsonFile.c_str());
-			cJSON* pJson = cJSON_Parse(pBuffer);
+			cJSON* pRoot = cJSON_Parse(pBuffer);
 
-			cJSON* pJsonNested = pJson->child;
+			cJSON* pObject = pRoot->child;
 
-			cJSON* pJsonNestedNested = pJsonNested->child;
+			while (pObject->child != NULL)
+			{
+				Debug("Object Name: %s", pObject->string);
+				cJSON* pTopObject = pObject;
+				while (pObject->child != NULL)
+				{
+				 	if (cJSON_IsString(pObject))Debug("Value name: %s, Value Value: '%s'");
+					else { Debug("Value Name: %s, Value cannot be used, not string"); }
 
-			cJSON* pJsonNestedNestedNested = pJsonNestedNested->next;
-			Log("Dubug breakpoint stopper\n");
+					pObject = pObject->child;
+				}
+
+
+				pObject = pObject->next;
+
+				//exit(0);
+			}
+
 		}
 	}
 }
