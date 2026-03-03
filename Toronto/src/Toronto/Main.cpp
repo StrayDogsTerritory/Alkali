@@ -2,12 +2,12 @@
 
 
 
-cTorGameBase* gpBase = NULL;
+cOzyGameBase* gpBase = NULL;
 
 int AlkaliMain(const tString& asCommandLine)
 {
 
-	gpBase = alkNew(cTorGameBase, ());
+	gpBase = alkNew(cOzyGameBase, ());
 
 	if (gpBase->Init(asCommandLine))
 	{

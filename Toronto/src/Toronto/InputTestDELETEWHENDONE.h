@@ -1,9 +1,8 @@
-#ifndef TOR_INPUTTESTDELETEME_H
-#define TOR_INPUTTESTDELETEME_H
-
+#ifndef OZY_INPUTTESTDELETEME_H
+#define OZY_INPUTTESTDELETEME_H
 #include "BaseGame.h"
 
-#include "TorMain.h"
+#include "OZYMain.h"
 
 class cActionTest : public iUpdateable
 {

@@ -17,7 +17,7 @@ namespace alk {
 	typedef std::list<iUpdateable*> tEngineModuleList;
 	typedef tEngineModuleList::iterator tEngineModuleListIt;
 
-	//@TODO: temp, when Tor matures add more support for game containers
+	//@TODO: temp, when ozy matures add more support for game containers
 	typedef std::map<tString, iUpdateable*> tApplicationModuleMap;
 	typedef tApplicationModuleMap::iterator tAppModuleIt;
 

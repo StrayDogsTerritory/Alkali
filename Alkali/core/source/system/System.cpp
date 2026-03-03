@@ -55,13 +55,13 @@ namespace alk {
 
 	int cSystem::GetChecksumTest()
 	{
-		FILE* pFile = cPlatform::OpenFile(L"Toronto.exe", L"rb");
+		FILE* pFile = cPlatform::OpenFile(L"Ozyonto.exe", L"rb");
 
 		if (pFile == NULL)
 		{
 			Error("Couldn't Find Alkali.exe! Current working directory is '%s'\n", cString::To8BitChar(cPlatform::GetCurrentWorkingDirectory()).c_str());
 			//	fclose(pFile);
-			//FatalError("Couldn't find Toronto.exe!\n");
+			//FatalError("Couldn't find Ozyonto.exe!\n");
 			//exit(1);
 			return NULL;
 		}

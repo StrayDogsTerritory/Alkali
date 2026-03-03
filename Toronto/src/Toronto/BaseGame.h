@@ -1,16 +1,16 @@
-#ifndef TOR_BASEGAME_H
-#define TOR_BASEGAME_H
+#ifndef OZY_BASEGAME_H
+#define OZY_BASEGAME_H
 
 #include "InputTestDELETEWHENDONE.h"
-#include "TorMain.h"
+#include "OzyMain.h"
 
 class cActionTest;
 
-class cTorGameBase
+class cOzyGameBase
 {
 public:
-	cTorGameBase();
-	~cTorGameBase();
+	cOzyGameBase();
+	~cOzyGameBase();
 
 	bool Init(const tString& asCommandLine);
 
@@ -33,7 +33,7 @@ private:
 };
 
 
-extern cTorGameBase* gpBase;
+extern cOzyGameBase* gpBase;
 
 #endif 
 

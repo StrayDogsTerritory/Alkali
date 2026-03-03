@@ -82,25 +82,31 @@ namespace alk {
 			//			Debug("File contents: '%s'\n", sJsonFile.c_str());
 			cJSON* pRoot = cJSON_Parse(pBuffer);
 
-			cJSON* pObject = pRoot->child;
-
-			while (pObject->child != NULL)
-			{
-				Debug("Object Name: %s", pObject->string);
-				cJSON* pTopObject = pObject;
-				while (pObject->child != NULL)
-				{
-				 	if (cJSON_IsString(pObject))Debug("Value name: %s, Value Value: '%s'");
-					else { Debug("Value Name: %s, Value cannot be used, not string"); }
-
-					pObject = pObject->child;
-				}
+			cJSON* pObject = NULL;
 
 
-				pObject = pObject->next;
-
-				//exit(0);
+			cJSON_ArrayForEach(pObject, pRoot) {
+				Log("Name: %s Value: %s\n", pObject->string, pObject->valuestring);
 			}
+			//while (pObject->child != NULL)
+			//{
+			//	Debug("Object Name: %s\n", pObject->string);
+			//	cJSON* pTopObject = pObject;
+			//	while (pObject->child != NULL)
+			//	{
+			//	 	if (cJSON_IsString(pObject))Debug("Value name: %s, Value Value: '%s'\n",pObject->string, pObject->valuestring);
+			//		else { Debug("Value Name: %s, Value cannot be used, not string\n",pObject->string); }
+
+			//	
+
+			//		//pObject = pObject->child;
+			//	}
+
+
+			//	pObject = pObject->next;
+
+			//	//exit(0);
+			//}
 
 		}
 	}

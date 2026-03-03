@@ -2,17 +2,17 @@
 
 
 
-cTorGameBase::cTorGameBase()
+cOzyGameBase::cOzyGameBase()
 {
 	mpEngine = NULL;
 }
 
-cTorGameBase::~cTorGameBase()
+cOzyGameBase::~cOzyGameBase()
 {
 	ExitEngine();
 }
 
-bool cTorGameBase::Init(const tString &asCommandLine)
+bool cOzyGameBase::Init(const tString &asCommandLine)
 {
 	if (!ParseCommandLine(asCommandLine)) return false;
 	if (!InitEngine()) return false;
@@ -22,18 +22,18 @@ bool cTorGameBase::Init(const tString &asCommandLine)
 }
 
 
-void cTorGameBase::Run()
+void cOzyGameBase::Run()
 {
 	mpEngine->Run();
 }
 
-void cTorGameBase::Exit()
+void cOzyGameBase::Exit()
 {
 	alkDelete(mpA);
 }
 
 
-void cTorGameBase::ExitEngine()
+void cOzyGameBase::ExitEngine()
 {
 	DestroyAlkaliEngine(mpEngine);
 }
@@ -41,7 +41,7 @@ void cTorGameBase::ExitEngine()
 
 
 
-bool cTorGameBase::ParseCommandLine(const tString& asCommandLine)
+bool cOzyGameBase::ParseCommandLine(const tString& asCommandLine)
 {
 	if (asCommandLine == "-urltest")
 	{
@@ -54,7 +54,7 @@ bool cTorGameBase::ParseCommandLine(const tString& asCommandLine)
 }
 
 
-bool cTorGameBase::InitGame()
+bool cOzyGameBase::InitGame()
 {
 	//@TODO: add this
 	// temp for action testing
@@ -64,7 +64,7 @@ bool cTorGameBase::InitGame()
 	return true;
 }
 
-bool cTorGameBase::InitEngine()
+bool cOzyGameBase::InitEngine()
 {
 	mpEngine = CreateAlkaliEngine(eEngineInit_All, eEngineAPI_eOpenGl);
 	mpA = alkNew(cActionTest, ());

@@ -1,5 +1,5 @@
-#ifndef	TOR_SDAFX_H
-#define TOR_SDAFX_H
+#ifndef	OZY_SDAFX_H
+#define OZY_SDAFX_H
 
 #include "Alkali.h"
 
