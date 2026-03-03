@@ -343,6 +343,9 @@
     <ClInclude Include="include\json\cJson\cJSON_Utils.h">
       <Filter>Json\c-Json</Filter>
     </ClInclude>
+    <ClInclude Include="include\json\JsonDocumentCJSON.h">
+      <Filter>Json</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\engine\LogWriter.cpp">
@@ -521,6 +524,9 @@
     </ClCompile>
     <ClCompile Include="source\json\cJson\cJSON_Utils.c">
       <Filter>Json\c-Json</Filter>
+    </ClCompile>
+    <ClCompile Include="source\json\JsonDocumentCJSON.cpp">
+      <Filter>Json</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

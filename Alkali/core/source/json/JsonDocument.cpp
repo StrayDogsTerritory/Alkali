@@ -64,51 +64,13 @@ namespace alk {
 
 	iJsonDocument::~iJsonDocument() {}
 
-	void iJsonDocument::Parse(const twString& asPath)
+	void iJsonDocument::LoadDocument(const twString& asFile)
 	{
-		tString sJsonFile = "";
-		FILE* pFile = cPlatform::OpenFile(asPath, L"rb");
-		if (pFile)
-		{
-			fseek(pFile, 0, SEEK_END);
-			size_t lSize = ftell(pFile);
-			rewind(pFile);
-
-			char* pBuffer = (char*)alkMalloc(sizeof(char) * lSize + 1);
-			fread(pBuffer, sizeof(char), lSize, pFile);
-			pBuffer[lSize] = 0; // null terminate the string
-
-			sJsonFile = tString(pBuffer);
-			//			Debug("File contents: '%s'\n", sJsonFile.c_str());
-			cJSON* pRoot = cJSON_Parse(pBuffer);
-
-			cJSON* pObject = NULL;
+		FILE* pFile = cPlatform::OpenFile(asFile, L"rb");
 
 
-			cJSON_ArrayForEach(pObject, pRoot) {
-				Log("Name: %s Value: %s\n", pObject->string, pObject->valuestring);
-			}
-			//while (pObject->child != NULL)
-			//{
-			//	Debug("Object Name: %s\n", pObject->string);
-			//	cJSON* pTopObject = pObject;
-			//	while (pObject->child != NULL)
-			//	{
-			//	 	if (cJSON_IsString(pObject))Debug("Value name: %s, Value Value: '%s'\n",pObject->string, pObject->valuestring);
-			//		else { Debug("Value Name: %s, Value cannot be used, not string\n",pObject->string); }
-
-			//	
-
-			//		//pObject = pObject->child;
-			//	}
-
-
-			//	pObject = pObject->next;
-
-			//	//exit(0);
-			//}
-
-		}
 	}
+	
+
 }
 

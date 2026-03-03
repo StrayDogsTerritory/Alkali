@@ -28,8 +28,6 @@ namespace alk {
 		// monster function call :o
 		tString sExt = cString::To8BitChar(cString::ToLowerCaseW(cString::FileExtensionW(asFile)));
 
-		Log("'%s'\n", sExt.c_str());
-
 		ILint lFormat = GetILFormatFromExt(sExt);
 
 		FILE* pFile = cPlatform::OpenFile(asFile, L"rb");

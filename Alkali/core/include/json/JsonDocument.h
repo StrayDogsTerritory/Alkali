@@ -1,5 +1,5 @@
 #ifndef ALK_JSONDOCUMENT_H
-#define JSONDOCUMENT_H
+#define ALK_JSONDOCUMENT_H
 
 #include "system/String.h"
 
@@ -12,16 +12,17 @@
 
 namespace alk {
 
-	class cJsonNode
+
+	class iJsonDocument
 	{
 	public:
-		cJsonNode(const tString& asName);
-		~cJsonNode();
+		iJsonDocument();
+		~iJsonDocument();
 
-		void AddNode(cJsonNode* apNode);
-		void RemoveNode(const tString& asName);
-		
-		cJsonNode* GetJsonNode(const tString& asName);
+		void LoadDocument(const twString& asFilePath);
+		void SaveDocument(const twString& asFilePath);
+
+		void SetValue(const tString& asName, const tString& asValue, bool abConvertToNonStringFormat = false);
 
 		tString GetValueString(const tString& asName, int alIdx = 0);
 		int GetValueInt(const tString& asName, size_t alIdx = 0);
@@ -33,25 +34,10 @@ namespace alk {
 		tMatrixf GetValueMatrixf(const tString& asName, size_t alIdx = 0);
 		cQuaternion GetValueQuaternion(const tString& asName, size_t alIdx = 0);
 
-	private:
-		tString msName;
-		tString msValue;
+		virtual void Parse(char* apString)=0;
 
-		std::list<cJsonNode*> mLstJsonNode;
-
-	};
-
-
-	class iJsonDocument
-	{
-	public:
-		iJsonDocument();
-		~iJsonDocument();
-
-		void Parse(const twString &asPath);
-
-	private:
-		std::list<cJsonNode*> mLstJsonSubNodes;
+	protected:
+		std::map<tString, tString> mMapValues;
 	};
 
 }

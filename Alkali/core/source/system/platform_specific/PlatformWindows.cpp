@@ -47,7 +47,7 @@ namespace alk {
 		FILE* pFile;
 		int lRet = _wfopen_s(&pFile, asFileName.c_str(), asMode.c_str());
 
-		Log("%u\n", lRet);
+		//Log("%u\n", lRet);
 
 		return pFile;
 

@@ -54,7 +54,7 @@ namespace alk {
 		// test
 		GLint lTest = glGetUniformLocation(mlProgramID, "aTex_Diffuse");
 		glUniform1i(lTest, 0);
-		Debug("'%d'\n", lTest);
+		//sDebug("'%d'\n", lTest);
 		
 		glUseProgram(0);
 
