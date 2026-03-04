@@ -4,6 +4,9 @@
 
 #include "engine/LogWriter.h"
 
+#include "json/JsonDocument.h"
+#include "json/JsonDocumentCJSON.h"
+
 namespace alk {
 
 	cSystem::cSystem(iSystem* apSystemInterface) 
@@ -40,8 +43,8 @@ namespace alk {
 
 		Log("---------------------------------------------\n");
 
-		iJsonDocument* pJsonDoc = alkNew(iJsonDocument, ());
-		pJsonDoc->Parse(L"pdx_settings.json");
+		iJsonDocument* pJsonDoc = alkNew(cJsonDocumentCJSON, ());
+		pJsonDoc->LoadDocument(L"pdx_settings.json");
 
 		alkDelete(pJsonDoc);
 

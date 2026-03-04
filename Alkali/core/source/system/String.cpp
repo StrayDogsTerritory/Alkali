@@ -97,6 +97,31 @@ namespace alk {
 			return lHash;
 		}
 
+		static char gsBuf[1024];
+		tString cString::ToStringInt(int alX, const tString& asFallback)
+		{
+			if (alX == NULL) return asFallback;
+
+			sprintf(gsBuf, "%d", alX);
+			return gsBuf;
+		}
+
+		tString cString::ToStringFloat(float afX, const tString& asFallback)
+		{
+			if (afX == NULL) return asFallback;
+
+			sprintf(gsBuf, "%f", afX);
+			return gsBuf;
+		}
+
+		tString cString::ToStringBool(bool abX, const tString& asFallback)
+		{
+			if (abX == NULL) return asFallback;
+
+			sprintf(gsBuf, "%s", abX == true ? "true" : "false");
+			return gsBuf;
+		}
+
 		tString cString::ToLowerCase(const tString& asString)
 		{
 			tString sTemp;

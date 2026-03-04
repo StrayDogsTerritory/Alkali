@@ -9,53 +9,6 @@
 #include "json/cJson/cJSON.h"
 
 namespace alk {
-	cJsonNode::cJsonNode(const tString& asName)
-	{
-		msName = asName;
-		msValue = "";
-	}
-
-	cJsonNode::~cJsonNode()
-	{
-		DeleteAll(mLstJsonNode);
-	}
-
-	void cJsonNode::AddNode(cJsonNode* apNode)
-	{
-		mLstJsonNode.push_back(apNode);
-	}
-
-	void cJsonNode::RemoveNode(const tString& asNode)
-	{
-		std::list<cJsonNode*>::iterator it = mLstJsonNode.begin();
-
-		for (; it != mLstJsonNode.end(); ++it)
-		{
-			tString sName = (*it)->msName;
-			if (sName == asNode)
-			{
-				mLstJsonNode.erase(it);
-			}
-
-		}
-	}
-
-	cJsonNode* cJsonNode::GetJsonNode(const tString& asName)
-	{
-		std::list<cJsonNode*>::iterator it = mLstJsonNode.begin();
-
-		for (; it != mLstJsonNode.end(); ++it)
-		{
-			tString sName = (*it)->msName;
-			if (sName == asName)
-			{
-				return *(it);
-			}
-		}
-
-		return NULL;
-	}
-
 
 	iJsonDocument::iJsonDocument()
 	{
@@ -68,7 +21,25 @@ namespace alk {
 	{
 		FILE* pFile = cPlatform::OpenFile(asFile, L"rb");
 
+		if (pFile == NULL)
+		{
+			Error("File '%s' could not be opened!\n", cString::To8BitChar(asFile));
+			return;
+		}
+		///////////////
+		// read file in as a C string
+		fseek(pFile, 0, SEEK_END);
+		size_t lSize = ftell(pFile);
+		rewind(pFile);
 
+		char* pBuffer = (char*)alkMalloc(sizeof(char) * lSize + 1);
+		fread(pBuffer, sizeof(char), lSize, pFile);
+		pBuffer[lSize] = 0;
+		fclose(pFile);
+		// parse the document
+		Parse(pBuffer);
+		alkFree(pBuffer);
+		
 	}
 	
 

@@ -43,6 +43,9 @@ namespace alk {
 
 		static unsigned int Hash(const tString& asString);
 
+		static tString ToStringInt(int alX, const tString &asFallback);
+		static tString ToStringFloat(float afX, const tString& asFallback);
+		static tString ToStringBool(bool abX, const tString& asFallback);
 
 		/////////////////////
 		// STRING MODIFICATION AND SEARCHING

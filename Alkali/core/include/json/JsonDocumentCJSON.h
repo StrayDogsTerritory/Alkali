@@ -15,9 +15,10 @@ namespace alk {
 
 		void Parse(char* apString);
 
-		void ConvertToString(cJSON* apJSON)
+		tString ConvertToString(cJSON* apJSON);
+
+		float GetNumber(cJSON* apJSON);
 	};
 
 }
-
 #endif
