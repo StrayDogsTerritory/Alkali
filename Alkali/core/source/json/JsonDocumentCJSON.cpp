@@ -15,7 +15,7 @@ namespace alk {
 
 	}
 
-	void cJsonDocumentCJSON::Parse(char* apString)
+	bool cJsonDocumentCJSON::Parse(char* apString)
 	{
 		cJSON* pRoot = cJSON_Parse(apString);
 		cJSON* pObject = NULL;
@@ -30,13 +30,15 @@ namespace alk {
 				cJSON_ArrayForEach(pSubObject, pObject)
 				{
 					//Log("Name: %s, Value: %s\n", pSubObject->string, ConvertToString(pSubObject).c_str());
-					mMapValues.insert(std::map<tString, tString>::value_type(pSubObject->string, ConvertToString(pSubObject)));
+					mMapValues.insert(tMapValues::value_type(pSubObject->string, ConvertToString(pSubObject)));
 				}
 			}
 		}
 
 		cJSON_Delete(pObject);
 		cJSON_Delete(pRoot);
+
+		return true;
 	}
 
 	tString cJsonDocumentCJSON::ConvertToString(cJSON* apJSON)

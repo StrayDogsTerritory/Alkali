@@ -13,7 +13,7 @@ namespace alk {
 		cJsonDocumentCJSON();
 		~cJsonDocumentCJSON();
 
-		void Parse(char* apString);
+		bool Parse(char* apString);
 
 		tString ConvertToString(cJSON* apJSON);
 

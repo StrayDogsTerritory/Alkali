@@ -12,6 +12,9 @@
 
 namespace alk {
 
+	typedef std::map<tString, tString> tMapValues;
+	typedef tMapValues::iterator tMapValIterator;
+
 
 	class iJsonDocument
 	{
@@ -19,16 +22,17 @@ namespace alk {
 		iJsonDocument();
 		~iJsonDocument();
 
-		void LoadDocument(const twString& asFilePath);
+		bool LoadDocument(const twString& asFilePath);
 		void SaveDocument(const twString& asFilePath);
 
-		virtual void Parse(char* apString) = 0;
+		virtual bool Parse(char* apString) = 0;
 
 		void SetValue(const tString& asName, const tString& asValue, bool abConvertToNonStringFormat = false);
 
 		tString GetValueString(const tString& asName, int alIdx = 0);
 		int GetValueInt(const tString& asName, size_t alIdx = 0);
 		float GetValueFloat(const tString& asName, size_t alIdx = 0);
+		bool GetValueBool(const tString& asName, bool abFallback);
 		tVector2l GetValueVector2l(const tString& asName, size_t alIdx = 0);
 		tVector2f GetValueVector2f(const tString& asName, size_t alIdx = 0);
 		tVector3l GetValueVector3l(const tString& asName, size_t alIdx = 0);
@@ -37,7 +41,7 @@ namespace alk {
 		cQuaternion GetValueQuaternion(const tString& asName, size_t alIdx = 0);
 
 	protected:
-		std::map<tString, tString> mMapValues;
+		tMapValues mMapValues;
 	};
 
 }
