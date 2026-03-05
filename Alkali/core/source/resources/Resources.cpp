@@ -15,14 +15,13 @@
 
 namespace alk {
 
-	bool cResources::bTest = true;
-
 	cResources::cResources(iResources* apResources) : iUpdateable("Resources")
 	{
 		mpResources = apResources;
 		mpGraphics = NULL;
 
 		mpShaderManager = NULL;
+		mpTextureManager = NULL;
 
 		mpBitmapLoader = NULL;
 

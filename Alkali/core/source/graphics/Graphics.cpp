@@ -17,9 +17,12 @@
 #include "resources/ShaderManager.h"
 #include "resources/Filesearcher.h"
 #include "resources/TextureManager.h" // @TODO: make this the texture manager 
+#include "resources/ResourceInterface.h"
 
 #include "math/Vector2.h"
 #include "math/Vector3.h"
+
+#include "json/JsonDocument.h"
 
 namespace alk {
 
@@ -54,7 +57,7 @@ namespace alk {
 		mpGraphics->Init(alHeight, alWidth, alWindowMode);
 
 		
-		mpResources->AddDirectory(L"test/shaders", true);
+		mpResources->AddDirectory(L"test", true);
 
 		Log("---------------------------------------------\n");
 
@@ -80,8 +83,14 @@ namespace alk {
 			mbCreatedProgram = true;
 			//Log("Created Program. Should only be seen once!\n");
 			//Log("Program list size: '%d'", lProgramList.size());
+			iJsonDocument* pDoc = mpResources->GetResources()->CreateJsonDocument();
+			pDoc->LoadDocument(L"TextureTest.json");
+			tString sFile = pDoc->GetValueString("diffuse_texture", "");
+			alkDelete(pDoc);
+
 			mpTestProgram = CreateShaderProgram("TestProgram", "test_frag.glsl", "test_vert.glsl");
-			mpTestTexture = mpResources->GetTextureManager()->Create2DTexture("DebugChecker.dds");
+			mpTestTexture = mpResources->GetTextureManager()->Create2DTexture(sFile);
+
 
 		}
 		

@@ -18,6 +18,9 @@ namespace alk {
 		tString ConvertToString(cJSON* apJSON);
 
 		float GetNumber(cJSON* apJSON);
+		
+
+		char* GetErrorMsg();
 	};
 
 }

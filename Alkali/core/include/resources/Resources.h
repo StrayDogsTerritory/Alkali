@@ -18,7 +18,7 @@ namespace alk {
 	class cGraphics;
 	class iResources;
 	class cTextureManager;
-
+	class iJsonDocument;
 	typedef std::list<iResourceManager*> tManagerList;
 	typedef tManagerList::iterator tManagerListIt;
 
@@ -54,7 +54,7 @@ namespace alk {
 		tManagerList lManagerList;
 		tLoaderList lLoaderList;
 		
-		static bool bTest;
+		//static bool bTest;
 
 		cShaderManager* mpShaderManager;
 		cTextureManager* mpTextureManager;

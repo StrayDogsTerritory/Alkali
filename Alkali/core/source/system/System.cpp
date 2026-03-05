@@ -46,9 +46,9 @@ namespace alk {
 		iJsonDocument* pJsonDoc = alkNew(cJsonDocumentCJSON, ());
 		pJsonDoc->LoadDocument(L"pdx_settings.json");
 
-		tString sVal = pJsonDoc->GetValueString("user_bindings");
-		int lVal = pJsonDoc->GetValueInt("scale");
-		float fVal = pJsonDoc->GetValueFloat("volume.vca:/AMBIENT");
+		tString sVal = pJsonDoc->GetValueString("user_bindings", "fallback");
+		int lVal = pJsonDoc->GetValueInt("scale",0);
+		float fVal = pJsonDoc->GetValueFloat("volume.vca:/AMBIENT",0.0f);
 		bool bVal = pJsonDoc->GetValueBool("ssao", false);
 
 		Debug("Test String Val: '%s'\n", sVal.c_str());

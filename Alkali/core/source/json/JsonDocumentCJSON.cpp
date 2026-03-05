@@ -58,4 +58,14 @@ namespace alk {
 
 		return NULL;
 	}
+
+
+
+
+	char* cJsonDocumentCJSON::GetErrorMsg()
+	{
+		const char* sRet = cJSON_GetErrorPtr();
+
+		return (char*)sRet;
+	}
 }

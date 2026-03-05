@@ -5,6 +5,8 @@
 
 namespace alk {
 
+	class iJsonDocument;
+
 	class cResourcesSDL : public iResources
 	{
 	public:
@@ -14,6 +16,9 @@ namespace alk {
 		bool Init();
 
 		void SetupBitmapLoader(iResourceLoader* apResourceLoader);
+
+
+		iJsonDocument* CreateJsonDocument();
 	};
 
 }

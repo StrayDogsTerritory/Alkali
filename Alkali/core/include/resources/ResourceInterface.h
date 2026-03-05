@@ -6,6 +6,7 @@
 namespace alk {
 
 	class iResourceLoader;
+	class iJsonDocument;
 
 	class iResources
 	{
@@ -15,6 +16,8 @@ namespace alk {
 
 		virtual void SetupBitmapLoader(iResourceLoader* apResourceLoader)=0;
 		virtual bool Init() = 0;
+
+		virtual iJsonDocument* CreateJsonDocument()=0;
 	};
 
 }

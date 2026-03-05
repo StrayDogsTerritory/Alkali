@@ -15,7 +15,10 @@ namespace alk {
 
 	}
 
-	iJsonDocument::~iJsonDocument() {}
+	iJsonDocument::~iJsonDocument() 
+	{
+		
+	}
 
 	bool  iJsonDocument::LoadDocument(const twString& asFile)
 	{
@@ -38,39 +41,34 @@ namespace alk {
 		fclose(pFile);
 		// parse the document
 		bool bRet = Parse(pBuffer);
+
 		alkFree(pBuffer);
 		
 		return bRet;
 	}
 	
-	tString iJsonDocument::GetValueString(const tString& asName, int alIdx)
+	tString iJsonDocument::GetValueString(const tString& asName, const char* asFallback)
 	{
 		tMapValIterator it = mMapValues.find(asName);
-		if(it == mMapValues.end()) return "";
+		if(it == mMapValues.end()) return asFallback;
 
-		if (it->second.c_str() == NULL) return "";
-
-		return it->second;
+		return cString::toString(it->second.c_str(), asFallback);
 	}
 
-	int iJsonDocument::GetValueInt(const tString& asName, size_t alIdx)
+	int iJsonDocument::GetValueInt(const tString& asName, int alFallback)
 	{
 		tMapValIterator it = mMapValues.find(asName);
-		if (it == mMapValues.end()) return NULL;
+		if (it == mMapValues.end()) return alFallback;
 
-		if (it->second.c_str() == NULL) return NULL;
-
-		return cString::ToInt(it->second.c_str(),0);
+		return cString::ToInt(it->second.c_str(),alFallback);
 	}
 
-	float iJsonDocument::GetValueFloat(const tString& asName, size_t alIdx)
+	float iJsonDocument::GetValueFloat(const tString& asName, float afFallback)
 	{
 		tMapValIterator it = mMapValues.find(asName);
-		if (it == mMapValues.end()) return NULL;
+		if (it == mMapValues.end()) return afFallback;
 
-		if (it->second.c_str() == NULL) return NULL;
-
-		return cString::ToFloat(it->second.c_str(), 0.0f);
+		return cString::ToFloat(it->second.c_str(), afFallback);
 	}
 
 	bool iJsonDocument::GetValueBool(const tString& asName, bool abFallback)

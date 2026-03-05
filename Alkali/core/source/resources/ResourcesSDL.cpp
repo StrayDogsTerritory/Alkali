@@ -3,6 +3,9 @@
 #include "resources/cSubLoader_BitmapDevIL_DDS.h"
 #include "resources/ResourceLoader.h"
 
+#include "json/JsonDocument.h"
+#include "json/JsonDocumentCJSON.h"
+
 #include "engine/LogWriter.h"
 
 #include <cstdlib>
@@ -89,6 +92,11 @@ namespace alk {
 	{
 		apResourceLoader->AddSubLoader(alkNew(cSubLoader_BitmapDevIL, ()));
 		apResourceLoader->AddSubLoader(alkNew(cSubLoader_BitmapDevIL_DDS, ()));
+	}
+
+	iJsonDocument* cResourcesSDL::CreateJsonDocument()
+	{
+		return alkNew(cJsonDocumentCJSON, ());
 	}
 
 }

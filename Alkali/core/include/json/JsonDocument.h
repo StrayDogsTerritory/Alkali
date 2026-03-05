@@ -29,9 +29,9 @@ namespace alk {
 
 		void SetValue(const tString& asName, const tString& asValue, bool abConvertToNonStringFormat = false);
 
-		tString GetValueString(const tString& asName, int alIdx = 0);
-		int GetValueInt(const tString& asName, size_t alIdx = 0);
-		float GetValueFloat(const tString& asName, size_t alIdx = 0);
+		tString GetValueString(const tString& asName, const char* asFallback);
+		int GetValueInt(const tString& asName, int alFallback);
+		float GetValueFloat(const tString& asName, float afFallback);
 		bool GetValueBool(const tString& asName, bool abFallback);
 		tVector2l GetValueVector2l(const tString& asName, size_t alIdx = 0);
 		tVector2f GetValueVector2f(const tString& asName, size_t alIdx = 0);
@@ -41,6 +41,8 @@ namespace alk {
 		cQuaternion GetValueQuaternion(const tString& asName, size_t alIdx = 0);
 
 	protected:
+		virtual char* GetErrorMsg()=0;
+
 		tMapValues mMapValues;
 	};
 
