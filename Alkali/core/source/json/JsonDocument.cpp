@@ -58,7 +58,7 @@ namespace alk {
 	int iJsonDocument::GetValueInt(const tString& asName, int alFallback)
 	{
 		tMapValIterator it = mMapValues.find(asName);
-		if (it == mMapValues.end()) return alFallback;
+		if (it == mMapValues.end()) return alFallback; 
 
 		return cString::ToInt(it->second.c_str(),alFallback);
 	}
@@ -75,8 +75,6 @@ namespace alk {
 	{
 		tMapValIterator it = mMapValues.find(asName);
 		if (it == mMapValues.end()) return NULL;
-
-		if (it->second.c_str() == NULL) return NULL;
 
 		return cString::ToBool(it->second.c_str(), abFallback);
 	}

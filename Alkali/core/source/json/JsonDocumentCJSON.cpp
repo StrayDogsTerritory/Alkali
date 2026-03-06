@@ -18,24 +18,33 @@ namespace alk {
 	bool cJsonDocumentCJSON::Parse(char* apString)
 	{
 		cJSON* pRoot = cJSON_Parse(apString);
-		cJSON* pObject = NULL;
+		cJSON* pSubRoot = NULL;
+		if (pRoot == NULL) return false;
 
-		cJSON_ArrayForEach(pObject, pRoot) {
+		tString sName = cString::toString(pRoot->valuestring, "");
+		tString sValue = ConvertToString(pRoot);
 
-			//Log("Object Name: %s\n", pObject->string);
+		mMapValues.insert(tMapValues::value_type(sName, sValue));
 
-			if (pObject->type == cJSON_Object)
-			{
-				cJSON* pSubObject = NULL;
-				cJSON_ArrayForEach(pSubObject, pObject)
-				{
-					//Log("Name: %s, Value: %s\n", pSubObject->string, ConvertToString(pSubObject).c_str());
-					mMapValues.insert(tMapValues::value_type(pSubObject->string, ConvertToString(pSubObject)));
-				}
-			}
+		cJSON_ArrayForEach(pSubRoot, pRoot)
+		{
+			Parse
 		}
+		//cJSON_ArrayForEach(pObject, pRoot) {
 
-		cJSON_Delete(pObject);
+		//	//Log("Object Name: %s\n", pObject->string);
+		//	mMapValues.insert(tMapValues::value_type(pObject->string, ConvertToString(pObject)));
+		//	if (pObject->type == cJSON_Object)
+		//	{
+		//		cJSON* pSubObject = NULL;
+		//		cJSON_ArrayForEach(pSubObject, pObject)
+		//		{
+		//			//Log("Name: %s, Value: %s\n", pSubObject->string, ConvertToString(pSubObject).c_str());
+		//			
+		//		}
+		//	}
+	//}
+
 		cJSON_Delete(pRoot);
 
 		return true;
