@@ -44,6 +44,12 @@ namespace alk {
 
 		alkFree(pBuffer);
 		
+		tMapValues::iterator it = mMapValues.begin();
+		for (; it != mMapValues.end(); ++it)
+		{
+			Debug("Name: '%s' Value: '%s'\n", it->first.c_str(), it->second.c_str());
+		}
+
 		return bRet;
 	}
 	

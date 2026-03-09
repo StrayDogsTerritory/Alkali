@@ -18,41 +18,62 @@ namespace alk {
 	bool cJsonDocumentCJSON::Parse(char* apString)
 	{
 		cJSON* pRoot = cJSON_Parse(apString);
-		cJSON* pSubRoot = NULL;
-		if (pRoot == NULL) return false;
-
-		tString sName = cString::toString(pRoot->valuestring, "");
-		tString sValue = ConvertToString(pRoot);
-
-		mMapValues.insert(tMapValues::value_type(sName, sValue));
-
-		cJSON_ArrayForEach(pSubRoot, pRoot)
+		cJSON* pObject = NULL;
+		
+		cJSON_ArrayForEach(pObject, pRoot)
 		{
-			Parse
+			// does the object have children?
+			LoadJsonObject(pObject);
 		}
-		//cJSON_ArrayForEach(pObject, pRoot) {
 
-		//	//Log("Object Name: %s\n", pObject->string);
-		//	mMapValues.insert(tMapValues::value_type(pObject->string, ConvertToString(pObject)));
-		//	if (pObject->type == cJSON_Object)
-		//	{
-		//		cJSON* pSubObject = NULL;
-		//		cJSON_ArrayForEach(pSubObject, pObject)
-		//		{
-		//			//Log("Name: %s, Value: %s\n", pSubObject->string, ConvertToString(pSubObject).c_str());
-		//			
-		//		}
-		//	}
-	//}
+		/*LoadJsonObject(pRoot);
 
 		cJSON_Delete(pRoot);
+
+		tMapValIterator it = mMapValues.begin();
+
+		for (; it != mMapValues.end(); ++it)
+		{
+			Log("Name: '%s'\n", it->first.c_str());
+			Log("Value: '%s'\n", it->second.c_str());
+		}*/
+
+		return true;
+	}
+
+	bool cJsonDocumentCJSON::LoadJsonObject(cJSON* apJSON)
+	{
+		cJSON* pJSON = apJSON;
+		if (apJSON == NULL) return false;
+
+		if (pJSON->type != cJSON_Object)
+		{
+			if (!cJSON_IsNull(pJSON))
+			{
+				tString sName = cString::toString(pJSON->string, "");
+				tString sValue = ConvertToString(pJSON);
+
+				int lRep = mMapValues.count(sName);
+				if (true)//lRep <= 0)
+				{
+					mMapValues.insert(tMapValues::value_type(sName, sValue));
+				}
+				else
+				Warning("Value '%s' already exists! skipping\n", sName.c_str());
+			}
+		}
+		cJSON* pChild = NULL;
+		cJSON_ArrayForEach(pChild, pJSON)
+		{
+			LoadJsonObject(pChild);
+		}
 
 		return true;
 	}
 
 	tString cJsonDocumentCJSON::ConvertToString(cJSON* apJSON)
 	{
-		if (apJSON->type == cJSON_String) return apJSON->valuestring;
+		if (apJSON->type == cJSON_String) return cString::toString(apJSON->valuestring, "");
 		else if (apJSON->type == cJSON_Number) return cString::ToStringFloat(GetNumber(apJSON), "0.0f");
 
 		else return apJSON->type == cJSON_True ? "true" : "false";
