@@ -12,20 +12,27 @@
 
 namespace alk {
 
+	enum eJsonObjectType
+	{
+		eJsonObjectType_Object,
+		eJsonObjectType_Array,
+		eJsonObjectType_LastEnum
+	};
+
+
 	typedef std::multimap<tString, tString> tMapValues;
 	typedef tMapValues::iterator tMapValIterator;
 
 	class cJsonObject
 	{
 	public:
-		cJsonObject() : mpParent(NULL){}
+		cJsonObject(const tString& asName) : mpParent(NULL){}
 		~cJsonObject() {}
 
 
 		cJsonObject* GetChildObject(const tString& asName);
 
-
-		void SetParent(cJsonObject* apObject);
+		void AddChild(cJsonObject* apObject);
 
 		tString GetValueString(const tString& asName, const char* asFallback);
 		int GetValueInt(const tString& asName, int alFallback);
@@ -35,6 +42,8 @@ namespace alk {
 		tVector2f GetValueVector2f(const tString& asName, size_t alIdx = 0);
 		tVector3l GetValueVector3l(const tString& asName, size_t alIdx = 0);
 		tVector3f GetValueVector3f(const tString& asName, size_t alIdx = 0);
+
+		tString msName;
 
 		cJsonObject* mpParent;
 
@@ -47,18 +56,13 @@ namespace alk {
 	class iJsonDocument : public cJsonObject
 	{
 	public:
-		iJsonDocument();
+		iJsonDocument(const tString& asName);
 		~iJsonDocument();
 
 		bool LoadDocument(const twString& asFilePath);
 		void SaveDocument(const twString& asFilePath);
 
 		virtual bool Parse(char* apString) = 0;
-
-	
-
-	protected:
-		virtual char* GetErrorMsg()=0;
 	};
 
 }

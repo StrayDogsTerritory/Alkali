@@ -10,7 +10,43 @@
 
 namespace alk {
 
-	iJsonDocument::iJsonDocument()
+
+	tString cJsonObject::GetValueString(const tString& asName, const char* asFallback)
+	{
+		tMapValIterator it = mMapValues.find(asName);
+		if (it == mMapValues.end()) return asFallback;
+
+		return cString::toString(it->second.c_str(), asFallback);
+	}
+
+	int cJsonObject::GetValueInt(const tString& asName, int alFallback)
+	{
+		tMapValIterator it = mMapValues.find(asName);
+		if (it == mMapValues.end()) return alFallback;
+
+		return cString::ToInt(it->second.c_str(), alFallback);
+	}
+
+	float cJsonObject::GetValueFloat(const tString& asName, float afFallback)
+	{
+		tMapValIterator it = mMapValues.find(asName);
+		if (it == mMapValues.end()) return afFallback;
+
+		return cString::ToFloat(it->second.c_str(), afFallback);
+	}
+
+	bool cJsonObject::GetValueBool(const tString& asName, bool abFallback)
+	{
+		tMapValIterator it = mMapValues.find(asName);
+		if (it == mMapValues.end()) return NULL;
+
+		return cString::ToBool(it->second.c_str(), abFallback);
+	}
+
+
+
+	iJsonDocument::iJsonDocument(const tString& asName)
+		: cJsonObject(asName)
 	{
 
 	}
@@ -53,37 +89,7 @@ namespace alk {
 		return bRet;
 	}
 	
-	tString iJsonDocument::GetValueString(const tString& asName, const char* asFallback)
-	{
-		tMapValIterator it = mMapValues.find(asName);
-		if(it == mMapValues.end()) return asFallback;
-
-		return cString::toString(it->second.c_str(), asFallback);
-	}
-
-	int iJsonDocument::GetValueInt(const tString& asName, int alFallback)
-	{
-		tMapValIterator it = mMapValues.find(asName);
-		if (it == mMapValues.end()) return alFallback; 
-
-		return cString::ToInt(it->second.c_str(),alFallback);
-	}
-
-	float iJsonDocument::GetValueFloat(const tString& asName, float afFallback)
-	{
-		tMapValIterator it = mMapValues.find(asName);
-		if (it == mMapValues.end()) return afFallback;
-
-		return cString::ToFloat(it->second.c_str(), afFallback);
-	}
-
-	bool iJsonDocument::GetValueBool(const tString& asName, bool abFallback)
-	{
-		tMapValIterator it = mMapValues.find(asName);
-		if (it == mMapValues.end()) return NULL;
-
-		return cString::ToBool(it->second.c_str(), abFallback);
-	}
+	
 
 
 }

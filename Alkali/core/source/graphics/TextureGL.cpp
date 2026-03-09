@@ -267,6 +267,7 @@ namespace alk {
 		case eTextureWrappingMode_ClampToBorder: return GL_CLAMP_TO_BORDER;
 		}
 	}
+
 	GLenum cTextureGL::EnumToGLTextureFilter(eTextureFilter aTextureFilter)
 	{
 		switch (aTextureFilter)

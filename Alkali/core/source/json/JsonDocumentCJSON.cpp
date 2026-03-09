@@ -5,7 +5,7 @@
 namespace alk {
 
 	cJsonDocumentCJSON::cJsonDocumentCJSON()
-	: iJsonDocument()
+	: iJsonDocument("")
 	{
 
 	}
@@ -18,58 +18,31 @@ namespace alk {
 	bool cJsonDocumentCJSON::Parse(char* apString)
 	{
 		cJSON* pRoot = cJSON_Parse(apString);
-		cJSON* pObject = NULL;
-		
-		cJSON_ArrayForEach(pObject, pRoot)
+		cJSON* pObject = pRoot->child;
+
+		cJsonObject* pRootObject = alkNew(cJsonObject, ("document_root"));
+	
+		cJsonObject* pFirstElement = alkNew(cJsonObject, (cString::toString(pObject->string, "")));
+		pRootObject->AddChild(pFirstElement);
+
+		while (pObject->next != NULL)
 		{
-			// does the object have children?
-			LoadJsonObject(pObject);
-		}
+			pObject = pObject->next;
+			cJsonObject
 
-		/*LoadJsonObject(pRoot);
-
-		cJSON_Delete(pRoot);
-
-		tMapValIterator it = mMapValues.begin();
-
-		for (; it != mMapValues.end(); ++it)
-		{
-			Log("Name: '%s'\n", it->first.c_str());
-			Log("Value: '%s'\n", it->second.c_str());
-		}*/
-
-		return true;
-	}
-
-	bool cJsonDocumentCJSON::LoadJsonObject(cJSON* apJSON)
-	{
-		cJSON* pJSON = apJSON;
-		if (apJSON == NULL) return false;
-
-		if (pJSON->type != cJSON_Object)
-		{
-			if (!cJSON_IsNull(pJSON))
+			while (pObject->child != NULL)
 			{
-				tString sName = cString::toString(pJSON->string, "");
-				tString sValue = ConvertToString(pJSON);
 
-				int lRep = mMapValues.count(sName);
-				if (true)//lRep <= 0)
-				{
-					mMapValues.insert(tMapValues::value_type(sName, sValue));
-				}
-				else
-				Warning("Value '%s' already exists! skipping\n", sName.c_str());
 			}
+			
 		}
-		cJSON* pChild = NULL;
-		cJSON_ArrayForEach(pChild, pJSON)
-		{
-			LoadJsonObject(pChild);
-		}
+		
 
-		return true;
+
+		return false;
 	}
+
+	
 
 	tString cJsonDocumentCJSON::ConvertToString(cJSON* apJSON)
 	{
