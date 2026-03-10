@@ -11,6 +11,39 @@
 namespace alk {
 
 
+	cJsonObject::~cJsonObject()
+	{
+		DeleteAll(mLstChildren);
+	}
+
+
+	cJsonObject* cJsonObject::GetChildObject(const tString& asName)
+	{
+		std::list<cJsonObject*>::iterator it = mLstChildren.begin();
+		for (; it != mLstChildren.end(); ++it)
+		{
+			// search the children too
+			cJsonObject* pElement = (*it);
+			if (pElement->GetChildObject(asName) == NULL) continue;
+
+			if (pElement->msName == asName)
+				return pElement;
+
+			if ((*it)->msName == asName)
+				return (*it);
+		}
+	}
+
+	void cJsonObject::AddChild(cJsonObject* apObject)
+	{
+		if (apObject == NULL) return;
+
+		apObject->mpParent = this;
+
+		mLstChildren.push_back(apObject);
+	}
+
+
 	tString cJsonObject::GetValueString(const tString& asName, const char* asFallback)
 	{
 		tMapValIterator it = mMapValues.find(asName);

@@ -43,7 +43,7 @@ namespace alk {
 
 		Log("---------------------------------------------\n");
 
-		iJsonDocument* pJsonDoc = alkNew(cJsonDocumentCJSON, ());
+		iJsonDocument* pJsonDoc = alkNew(cJsonDocumentCJSON, ("test"));
 		pJsonDoc->LoadDocument(L"pdx_settings.json");
 
 		/*tString sVal = pJsonDoc->GetValueString("user_bindings", "fallback");

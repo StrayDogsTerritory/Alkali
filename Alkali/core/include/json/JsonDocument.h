@@ -26,8 +26,8 @@ namespace alk {
 	class cJsonObject
 	{
 	public:
-		cJsonObject(const tString& asName) : mpParent(NULL){}
-		~cJsonObject() {}
+		cJsonObject(const tString& asName) : mpParent(NULL), msName(asName){}
+		~cJsonObject();
 
 
 		cJsonObject* GetChildObject(const tString& asName);

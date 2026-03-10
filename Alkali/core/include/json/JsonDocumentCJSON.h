@@ -10,7 +10,7 @@ namespace alk {
 	class cJsonDocumentCJSON : public iJsonDocument
 	{
 	public:
-		cJsonDocumentCJSON();
+		cJsonDocumentCJSON(const tString& asName);
 		~cJsonDocumentCJSON();
 
 		bool Parse(char* apString);

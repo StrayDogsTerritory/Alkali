@@ -4,8 +4,8 @@
 
 namespace alk {
 
-	cJsonDocumentCJSON::cJsonDocumentCJSON()
-	: iJsonDocument("")
+	cJsonDocumentCJSON::cJsonDocumentCJSON(const tString& asName)
+	: iJsonDocument(asName)
 	{
 
 	}
@@ -28,16 +28,20 @@ namespace alk {
 		while (pObject->next != NULL)
 		{
 			pObject = pObject->next;
-			cJsonObject
+			cJsonObject* pLoopObject = alkNew(cJsonObject, (cString::toString(pObject->string, "")));
+			pRootObject->AddChild(pLoopObject);
 
 			while (pObject->child != NULL)
 			{
+				cJsonObject* pChild = alkNew(cJsonObject, (cString::toString(pObject->string, "")));
+				pLoopObject->AddChild(pChild);
 
+				pObject = pObject->child;
 			}
 			
 		}
 		
-
+		cJSON_Delete(pRoot);
 
 		return false;
 	}

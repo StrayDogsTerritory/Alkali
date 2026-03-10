@@ -96,7 +96,7 @@ namespace alk {
 
 	iJsonDocument* cResourcesSDL::CreateJsonDocument()
 	{
-		return alkNew(cJsonDocumentCJSON, ());
+		return alkNew(cJsonDocumentCJSON, (""));
 	}
 
 }
