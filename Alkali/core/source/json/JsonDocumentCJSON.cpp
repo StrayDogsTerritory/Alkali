@@ -31,6 +31,8 @@ namespace alk {
 			cJsonObject* pLoopObject = alkNew(cJsonObject, (cString::toString(pObject->string, "")));
 			pRootObject->AddChild(pLoopObject);
 
+			//lets see if this commits...
+
 			while (pObject->child != NULL)
 			{
 				cJsonObject* pChild = alkNew(cJsonObject, (cString::toString(pObject->string, "")));
