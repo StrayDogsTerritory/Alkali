@@ -37,7 +37,7 @@ namespace alk {
 		
 		cJSON_Delete(pRoot);
 
-		return false;
+		return true;
 	}
 
 	bool cJsonDocumentCJSON::LoadJsonObject(cJSON* apJSON, cJsonObject* apObject)
@@ -46,12 +46,14 @@ namespace alk {
 
 		while (apJSON != NULL)
 		{
-			
-			cJsonObject* pLoopObject = alkNew(cJsonObject, (cString::toString(apJSON->string, "")));
-			apObject->AddChild(pLoopObject);
+			cJsonObject* pLoopObject = apObject;
 
-			pLoopObject->mMapValues.insert(tMapValues::value_type(cString::toString(apJSON->string, ""), ConvertToString(apJSON)));
-			//lets see if this commits...
+			if (apJSON->type == cJSON_Object)
+			{
+				pLoopObject = alkNew(cJsonObject, (cString::toString(apJSON->string, "")));
+				apObject->AddChild(pLoopObject);
+			}
+				pLoopObject->mMapValues.insert(tMapValues::value_type(cString::toString(apJSON->string, ""), ConvertToString(apJSON)));
 
 			while (apJSON->child != NULL)
 			{
@@ -60,9 +62,9 @@ namespace alk {
 				cJsonObject* pChild = alkNew(cJsonObject, (cString::toString(apJSON->string, "")));
 				pLoopObject->AddChild(pChild);
 
-				pLoopObject->mMapValues.insert(tMapValues::value_type(cString::toString(apJSON->string, ""), ConvertToString(apJSON)));
+				pChild->mMapValues.insert(tMapValues::value_type(cString::toString(apJSON->string, ""), ConvertToString(apJSON)));
 
-				
+				LoadJsonObject(apJSON, pChild);
 			}
 
 			apJSON = apJSON->next;
