@@ -15,7 +15,7 @@ namespace alk {
 
 		bool Parse(char* apString);
 
-		bool LoadJsonObject(cJSON* apJSON);
+		bool LoadJsonObject(cJSON* apJSON, cJsonObject* apObject);
 
 		tString ConvertToString(cJSON* apJSON);
 

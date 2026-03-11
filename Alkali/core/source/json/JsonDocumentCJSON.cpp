@@ -18,34 +18,57 @@ namespace alk {
 	bool cJsonDocumentCJSON::Parse(char* apString)
 	{
 		cJSON* pRoot = cJSON_Parse(apString);
+
+		if (pRoot == NULL) return false;
+
 		cJSON* pObject = pRoot->child;
-
-		cJsonObject* pRootObject = alkNew(cJsonObject, ("document_root"));
 	
-		cJsonObject* pFirstElement = alkNew(cJsonObject, (cString::toString(pObject->string, "")));
-		pRootObject->AddChild(pFirstElement);
-
-		while (pObject->next != NULL)
+		while (pObject != NULL)
 		{
-			pObject = pObject->next;
-			cJsonObject* pLoopObject = alkNew(cJsonObject, (cString::toString(pObject->string, "")));
-			pRootObject->AddChild(pLoopObject);
-
-			//lets see if this commits...
-
-			while (pObject->child != NULL)
-			{
-				cJsonObject* pChild = alkNew(cJsonObject, (cString::toString(pObject->string, "")));
-				pLoopObject->AddChild(pChild);
-
-				pObject = pObject->child;
-			}
+			cJsonObject* pElement = alkNew(cJsonObject, (cString::toString(pObject->string, "")));
+			AddChild(pElement);
 			
+			cJSON* pChild = pObject->child;
+			if (pChild)LoadJsonObject(pChild, pElement);
+			
+
+			pObject = pObject->next;
 		}
 		
 		cJSON_Delete(pRoot);
 
 		return false;
+	}
+
+	bool cJsonDocumentCJSON::LoadJsonObject(cJSON* apJSON, cJsonObject* apObject)
+	{
+		//apJSON = apJSON->child;
+
+		while (apJSON != NULL)
+		{
+			
+			cJsonObject* pLoopObject = alkNew(cJsonObject, (cString::toString(apJSON->string, "")));
+			apObject->AddChild(pLoopObject);
+
+			pLoopObject->mMapValues.insert(tMapValues::value_type(cString::toString(apJSON->string, ""), ConvertToString(apJSON)));
+			//lets see if this commits...
+
+			while (apJSON->child != NULL)
+			{
+				apJSON = apJSON->child;
+
+				cJsonObject* pChild = alkNew(cJsonObject, (cString::toString(apJSON->string, "")));
+				pLoopObject->AddChild(pChild);
+
+				pLoopObject->mMapValues.insert(tMapValues::value_type(cString::toString(apJSON->string, ""), ConvertToString(apJSON)));
+
+				
+			}
+
+			apJSON = apJSON->next;
+		}
+
+		return true;
 	}
 
 	
