@@ -20,7 +20,7 @@ namespace alk {
 	};
 
 
-	typedef std::map<tString, tString> tMapValues;
+	typedef std::multimap<tString, tString> tMapValues;
 	typedef tMapValues::iterator tMapValIterator;
 
 	class cJsonObject
