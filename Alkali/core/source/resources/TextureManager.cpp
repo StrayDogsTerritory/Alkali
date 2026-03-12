@@ -45,8 +45,6 @@ namespace alk {
 			// temp debugging
 			bool bRet = pTexture->CreateTextureFromBitmap(pBitmap);
 
-			int lDummy = 1;
-
 			if (bRet == false)
 			{
 				Error("Texture Manager: Couldn't create texture '%s' from bitmap!\n", asName.c_str());

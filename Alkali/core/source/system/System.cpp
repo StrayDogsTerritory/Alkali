@@ -44,7 +44,7 @@ namespace alk {
 		Log("---------------------------------------------\n");
 
 		iJsonDocument* pJsonDoc = alkNew(cJsonDocumentCJSON, ("test"));
-		pJsonDoc->LoadDocument(L"pdx_settings.json");
+		pJsonDoc->LoadDocument(L"TestJson.json");
 
 		/*tString sVal = pJsonDoc->GetValueString("user_bindings", "fallback");
 		int lVal = pJsonDoc->GetValueInt("scale",0);

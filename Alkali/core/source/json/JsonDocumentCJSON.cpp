@@ -55,16 +55,16 @@ namespace alk {
 			}
 				pLoopObject->mMapValues.insert(tMapValues::value_type(cString::toString(apJSON->string, ""), ConvertToString(apJSON)));
 
-			while (apJSON->child != NULL)
+			cJSON* pChildJson = apJSON->child;
+			while (pChildJson != NULL)
 			{
-				apJSON = apJSON->child;
-
-				cJsonObject* pChild = alkNew(cJsonObject, (cString::toString(apJSON->string, "")));
+				cJsonObject* pChild = alkNew(cJsonObject, (cString::toString(pChildJson->string, "")));
 				pLoopObject->AddChild(pChild);
 
-				pChild->mMapValues.insert(tMapValues::value_type(cString::toString(apJSON->string, ""), ConvertToString(apJSON)));
+				pChild->mMapValues.insert(tMapValues::value_type(cString::toString(pChildJson->string, ""), ConvertToString(pChildJson)));
 
-				LoadJsonObject(apJSON, pChild);
+				//LoadJsonObject(pChildJson, pChild);
+				pChildJson = pChildJson->child;
 			}
 
 			apJSON = apJSON->next;
