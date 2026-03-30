@@ -2,6 +2,7 @@
 #define ALK_VERTEXBUFFER_H
 
 #include "system/String.h"
+#include "system/SystemTypes.h"
 #include "system/FlagBits.h"
 
 #include "math/Math.h"

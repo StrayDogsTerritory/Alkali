@@ -46,11 +46,23 @@ namespace alk {
 		iJsonDocument* pJsonDoc = alkNew(cJsonDocumentCJSON, ("TestJson"));
 		pJsonDoc->LoadDocument(L"TestJson.json");
 
+		cJsonObject* pNewObject = pJsonDoc->CreateChildObject("serialized_object");
+
+		cJsonObject* pChangeObject = pJsonDoc->GetChildObject("address");
+		if (pChangeObject) pChangeObject->SetValue("zipCode", "D45 0G1");
+
+		for (int i = 0; i < 10; ++i)
+		{
+			pNewObject->mMapValues.insert(tMapValues::value_type("serialized number", cString::ToStringInt(i,"")));
+		}
+
+		pJsonDoc->SaveDocument(L"test_me_please.json");
+
 		/*tString sVal = pJsonDoc->GetValueString("user_bindings", "fallback");
 		int lVal = pJsonDoc->GetValueInt("scale",0);
 		float fVal = pJsonDoc->GetValueFloat("volume.vca:/AMBIENT",0.0f);
 		bool bVal = pJsonDoc->GetValueBool("ssao", false);
-
+		
 		Debug("Test String Val: '%s'\n", sVal.c_str());
 		Debug("Test Int Val: '%d'\n", lVal);
 		Debug("Test Float Val: '%f'\n", fVal);
@@ -58,6 +70,21 @@ namespace alk {
 
 		alkDelete(pJsonDoc);
 
+		iJsonDocument* pDoc = alkNew(cJsonDocumentCJSON, ("TextureTest"));
+		pDoc->LoadDocument(L"TextureTest.json");
+
+		cJsonObject* pObj = pDoc->GetChildObject("TextureData");
+		tVector2l vVec2l = pObj->GetValueVector2l("vector2l test");
+		tVector2f vVec2f = pObj->GetValueVector2f("vector2f test");
+		tVector3l vVec3l = pObj->GetValueVector3l("vector3l test");
+		tVector3f vVec3f = pObj->GetValueVector3f("vector3f test");
+
+		Debug("Vec: '%s'\n", vVec2l.ToString().c_str());
+		Debug("Vec: '%s'\n", vVec2f.ToString().c_str());
+		Debug("Vec: '%s'\n", vVec3l.ToString().c_str());
+		Debug("Vec: '%s'\n", vVec3f.ToString().c_str());
+		
+		alkDelete(pDoc);
 		return true;
 	}
 

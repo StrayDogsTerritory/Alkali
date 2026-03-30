@@ -1,6 +1,7 @@
 #include "xml/XmlDocument.h"
 
 #include "system/SystemTypes.h"
+#include "system/String.h"
 
 namespace alk {
 

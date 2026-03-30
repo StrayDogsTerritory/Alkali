@@ -3,7 +3,7 @@
 
 // for translate
 #include "math/Vector3.h"
-#include "system/String.h"
+#include "system/SystemTypes.h"
 #include <stdlib.h>
 
 namespace alk {

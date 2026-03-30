@@ -70,7 +70,7 @@ namespace alk {
 	twString cPlatform::GetFullFilePath(const twString& asFile)
 	{
 		wchar_t sBuff[4096];
-		int blah = GetFullPathNameW(asFile.c_str(), 4096, sBuff, NULL);
+		GetFullPathNameW(asFile.c_str(), 4096, sBuff, NULL);
 		return sBuff;
 	}
 
@@ -117,7 +117,7 @@ namespace alk {
 		{
 			wchar_t sBuff[2048];
 			FormatMessageW(FORMAT_MESSAGE_FROM_SYSTEM, NULL, GetLastError(), 0, sBuff, 2048, NULL);
-			Error("Could not remove directory %s: %s\n", cString::To8BitChar(sTempDir).c_str(), cString::To8BitChar(sBuff).c_str());
+			Error("Could not remove directory %s: %s!\n", cString::To8BitChar(sTempDir).c_str(), cString::To8BitChar(sBuff).c_str());
 			return false;
 		}
 

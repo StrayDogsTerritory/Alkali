@@ -1,7 +1,7 @@
 #ifndef ALK_DEVILBITMAPLAODERHELPER_H
 #define ALK_DEVILBITMAPLOADERHELPER_H
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 #include <IL/il.h>
 

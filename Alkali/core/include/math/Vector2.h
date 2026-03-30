@@ -3,7 +3,10 @@
 
 #include <Math.h>
 //#include <stdio.h>
-#include "system/String.h"
+#include "system/SystemTypes.h"
+
+typedef std::string tTest_t;
+
 namespace alk {
 
 	template<class T>
@@ -27,115 +30,115 @@ namespace alk {
 			return *this;
 		}
 
-		inline cVector2<T>& operator==(const cVector2<T>& avVec) const {
+		inline bool operator==(const cVector2<T>& avVec)  {
 			if (x == avVec.x && y == avVec.y) return true;
 			else return false;
 		}
 
-		inline cVector2<T>& operator!=(const cVector2<T>& avVec) const {
+		inline bool operator!=(const cVector2<T>& avVec) {
 			if (x == avVec.x && y == avVec.y) return false;
 			else return true;
 		}
 		
-		inline cVector2<T>& operator+(const cVector2<T>& avVec) const {
+		inline cVector2<T>& operator+(const cVector2<T>& avVec) {
 			cVector2<T> vVec;
 			vVec.x = x + avVec.x;
 			vVec.y = y + avVec.y;
 			return vVec;
 		}
 
-		inline cVector2<T>& operator-(const cVector2<T>& avVec) const {
+		inline cVector2<T>& operator-(const cVector2<T>& avVec) {
 			cVector2<T> vVec;
 			vVec.x = x - avVec.x;
 			vVec.y = y - avVec.y;
 			return vVec;
 		}
 
-		inline cVector2<T>& operator*(const cVector2<T> avVec) const {
+		inline cVector2<T>& operator*(const cVector2<T> avVec) {
 			cVector2<T> vVec;
 			vVec.x = x * avVec.x;
 			vVec.y = y * avVec.y;
 			return vVec;
 		}
 
-		inline cVector2<T>& operator/(const cVector2<T> avVec) const {
+		inline cVector2<T>& operator/(const cVector2<T> avVec) {
 			cVector2<T> vVec;
 			vVec.x = x / avVec.x;
 			vVec.y = y / avVec.y;
 			return vVec;
 		}
 
-		inline cVector2<T>& operator+(const T atX) const {
+		inline cVector2<T>& operator+(const T atX) {
 			cVector2<T> vVec;
 			vVec.x = x + atX;
 			vVec.y = y + atX;
 			return vVec;
 		}
 
-		inline cVector2<T>& operator-(const T atX) const {
+		inline cVector2<T>& operator-(const T atX) {
 			cVector2<T> vVec;
 			vVec.x = x - atX;
 			vVec.y = y - atX;
 			return vVec;
 		}
 
-		inline cVector2<T>& operator*(const T atX) const {
+		inline cVector2<T>& operator*(const T atX) {
 			cVector2<T> vVec;
 			vVec.x = x * atX;
 			vVec.y = y * atX;
 			return vVec;
 		}
 
-		inline cVector2<T>& operator/(const T atX) const {
+		inline cVector2<T>& operator/(const T atX) {
 			cVector2<T> vVec;
 			vVec.x = x / atX;
 			vVec.y = y / atX;
 			return vVec;
 		}
 
-		inline cVector2<T>& operator+=(const cVector2<T>& avVec) const{
+		inline cVector2<T>& operator+=(const cVector2<T>& avVec){
 			x += avVec.x;
 			y += avVec.y;
 			return *this;
 		}
 
-		inline cVector2<T>& operator-=(const cVector2<T>& avVec) const{
+		inline cVector2<T>& operator-=(const cVector2<T>& avVec){
 			x -= avVec.x;
 			y -= avVec.y;
 			return *this;
 		}
 
-		inline cVector2<T>& operator*=(const cVector2<T> avVec) const{
+		inline cVector2<T>& operator*=(const cVector2<T> avVec){
 			x *= avVec.x;
 			y *= avVec.y;
 			return *this;
 		}
 
-		inline cVector2<T>& operator/=(const cVector2<T> avVec) const{
+		inline cVector2<T>& operator/=(const cVector2<T> avVec){
 			x /= avVec.x;
 			y /= avVec.y;
 			return *this;
 		}
 
-		inline cVector2<T>& operator+=(const T atX) const{
+		inline cVector2<T>& operator+=(const T atX){
 			x += atX;
 			y += atX;
 			return *this;
 		}
 
-		inline cVector2<T>& operator-=(const T atX) const{
+		inline cVector2<T>& operator-=(const T atX) {
 			x -= atX;
 			y -= atX;
 			return *this;
 		}
 
-		inline cVector2<T>& operator*=(const T atX) const{
+		inline cVector2<T>& operator*=(const T atX) {
 			x *= atX;
 			y *= atX;
 			return *this;
 		}
 
-		inline cVector2<T>& operator/=(const T atX) const{
+		inline cVector2<T>& operator/=(const T atX) {
 			x /= atX;
 			y /= atX;
 			return *this;
@@ -167,8 +170,15 @@ namespace alk {
 		tString ToString()
 		{
 			char Buf[256];
-			sprintf(Buf, "[%f, %f,]", x, y);
-			return Buf;
+			sprintf(Buf, "[%g, %g]", (float)x, (float)y);
+			return tString(Buf);
+		}
+
+		tString ToFileString()
+		{
+			char buf[256];
+			sprintf(buf, "%g %g", x, y);
+			return tString(buf);
 		}
 	};
 

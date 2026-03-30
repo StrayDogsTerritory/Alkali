@@ -1,7 +1,7 @@
 #ifndef ALK_SHADERCACHER_H
 #define ALK_SHADERCACHER_H
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 namespace alk {
 

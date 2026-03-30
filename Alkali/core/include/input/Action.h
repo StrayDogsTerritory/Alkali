@@ -1,7 +1,7 @@
 #ifndef ALK_ACTION_H
 #define ALK_ACTION_H
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 #include "input/Keyboard.h"
 #include "input/Mouse.h"

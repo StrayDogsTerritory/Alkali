@@ -1,7 +1,7 @@
 #ifndef ALK_SYSTEM_H
 #define ALK_SYSTEM_H
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 #include "engine/Updateable.h"
 
 

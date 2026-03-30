@@ -1,7 +1,7 @@
 #ifndef ALK_SUBLOADER_H
 #define ALK_SUBLOADER_H
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 #include <list>
 #include <vector>

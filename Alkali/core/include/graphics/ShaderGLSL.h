@@ -4,7 +4,7 @@
 #include "GL\glew.h"
 
 #include "graphics/Shader.h"
-#include "system/String.h"
+#include "system/SystemTypes.h"
 #include <map>
 
 #include <stdio.h>

@@ -3,7 +3,7 @@
 
 
 #include "system/FlagBits.h"
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 #include "graphics/Shader.h"
 #include "graphics/VertexBuffer.h"

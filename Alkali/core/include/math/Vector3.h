@@ -2,7 +2,7 @@
 #define ALK_VECTOR3_H
 
 #include "math/Vector2.h"
-#include "system/String.h"
+#include "system/SystemTypes.h"
 namespace alk {
 
 	template<class T>
@@ -27,22 +27,22 @@ namespace alk {
 			return *this;
 		}
 
-		inline cVector3<T>& operator==(const cVector3<T>& avVec) const {
+		inline bool operator==(const cVector3<T>& avVec) {
 			if (x == avVec.x && y == avVec.y && z == avVec.z) return true;
 			else return false;
 		}
 
-		inline cVector3<T>& operator>(const cVector3<T>& avVec) const {
+		inline bool operator>(const cVector3<T>& avVec)  {
 			if (x > avVec.x && y > avVec.y && z > avVec.z) return true;
 			else return false;
 		}
 
-		inline cVector3<T>& operator<(const cVector3<T>& avVec) const {
+		inline bool operator<(const cVector3<T>& avVec)  {
 			if (x < avVec.x && y < avVec.y && z < avVec.z) return true;
 			else return false;
 		}
 
-		inline cVector3<T>& operator!=(const cVector3<T>& avVec) const {
+		inline bool operator!=(const cVector3<T>& avVec)  {
 			if (x == avVec.x && y == avVec.y && z == avVec.z) return false;
 			else return true;
 		}
@@ -194,8 +194,15 @@ namespace alk {
 		tString ToString()
 		{
 			char Buf[256];
-			sprintf(Buf, "[%f, %f, %f]", x, y,z);
-			return Buf;
+			sprintf(Buf, "[%g, %g, %g]", (float)x, (float)y,(float)z);
+			return tString(Buf);
+		}
+
+		tString ToFileString()
+		{
+			char Buf[256];
+			sprintf(Buf, "%g, %g, %g", x, y, z);
+			return tString(Buf);
 		}
 	};
 

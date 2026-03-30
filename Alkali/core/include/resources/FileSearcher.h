@@ -1,7 +1,7 @@
 #ifndef ALK_FILESEARCHER_H
 #define ALK_FILESEARCHER_H
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 #include <map>
 

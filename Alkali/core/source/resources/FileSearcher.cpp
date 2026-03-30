@@ -1,5 +1,6 @@
 #include "resources/FileSearcher.h"
 #include "system/Platform.h"
+#include "system/String.h"
 
 #include "engine/LogWriter.h"
 

@@ -1,0 +1,30 @@
+{
+	"user":	{
+		"userId":	"user123",
+		"username":	"alicew",
+		"contact":	{
+			"email":	"alice.w@example.com",
+			"phone":	{
+				"countryCode":	"+1",
+				"number":	"555-0102"
+			},
+			"address":	{
+				"city":	"Anystate",
+				"street":	"123 Wonderland Ave",
+				"zipCode":	"D45 0G1"
+			}
+		}
+	},
+	"serialized_object":	{
+		"serialized number":	"0",
+		"serialized number":	"1",
+		"serialized number":	"2",
+		"serialized number":	"3",
+		"serialized number":	"4",
+		"serialized number":	"5",
+		"serialized number":	"6",
+		"serialized number":	"7",
+		"serialized number":	"8",
+		"serialized number":	"9"
+	}
+}

@@ -3,7 +3,7 @@
 
 #include "graphics/Shader.h"
 #include "graphics/ShaderGLSL.h"
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 #include "math/Matrix.h"
 #include "math/Vector2.h"

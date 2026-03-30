@@ -1,7 +1,7 @@
 #ifndef  ALK_RESOURCELOADER_H
 #define ALK_RESOURCELOADER_H
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 #include <list>
 #include <vector>

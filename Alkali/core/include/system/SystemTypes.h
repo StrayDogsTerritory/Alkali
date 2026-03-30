@@ -2,8 +2,13 @@
 #define ALK_SYSTEMTYPES_H
 
 #include "system/MemoryManager.h"
+
+#include <vector>
 //----------------------------
 namespace alk {
+
+	typedef std::string tString;
+	typedef std::wstring twString;
 
 	enum eMessageType
 	{
@@ -29,10 +34,8 @@ namespace alk {
 		eSystemSpecialPath_eLast_Enum
 	};
 
-	///////////////////
-	// defines
-
-	// debug timing
+	typedef std::vector<int> tIntVector;
+	typedef std::vector<float> tFloatVector;
 
 
 

@@ -60,6 +60,54 @@ namespace alk {
 			return sTemp == "true" ? true : false;
 		}
 
+		tVector2l cString::ToVector2l(const char* asString, tVector2l avFallback)
+		{
+			if (asString == NULL) return avFallback;
+
+			tIntVector vVec; 
+			GetVecFromInt(asString, vVec);
+
+			if (vVec.size() != 2) return avFallback;
+
+			return tVector2l(vVec[0], vVec[1]);
+		}
+
+		tVector2f cString::ToVector2f(const char* asString, tVector2f avFallback)
+		{
+			if (asString == NULL) return avFallback;
+
+			tFloatVector vVec;
+			GetVecFromFloat(asString, vVec);
+
+			if (vVec.size() != 2) return avFallback;
+
+			return tVector2f(vVec[0], vVec[1]);
+		}
+
+		tVector3l cString::ToVector3l(const char* asString, tVector3l avFallback)
+		{
+			if (asString == NULL) return avFallback;
+
+			tIntVector vVec;
+			GetVecFromInt(asString, vVec);
+
+			if (vVec.size() != 3) return avFallback;
+
+			return tVector3l(vVec[0], vVec[1], vVec[2]);
+		}
+
+		tVector3f cString::ToVector3f(const char* asString, tVector3f avFallback)
+		{
+			if (asString == NULL) return avFallback;
+
+			tFloatVector vVec;
+			GetVecFromFloat(asString, vVec);
+
+			if (vVec.size() != 3) return avFallback;
+
+			return tVector3f(vVec[0], vVec[1], vVec[2]);
+		}
+
 		unsigned int cString::Hash(const tString& asString)
 		{
 			unsigned long long lInitTime = cPlatform::GetAppTime();
@@ -100,7 +148,7 @@ namespace alk {
 		static char gsBuf[1024];
 		tString cString::ToStringInt(int alX, const tString& asFallback)
 		{
-			if (alX == NULL) return asFallback;
+		//	if (alX == NULL) return asFallback;
 
 			sprintf(gsBuf, "%d", alX);
 			return gsBuf;
@@ -108,7 +156,7 @@ namespace alk {
 
 		tString cString::ToStringFloat(float afX, const tString& asFallback)
 		{
-			if (afX == NULL) return asFallback;
+	//		if (afX == NULL) return asFallback;
 
 			sprintf(gsBuf, "%f", afX);
 			return gsBuf;
@@ -116,10 +164,102 @@ namespace alk {
 
 		tString cString::ToStringBool(bool abX, const tString& asFallback)
 		{
-			if (abX == NULL) return asFallback;
+		//	if (abX == NULL) return asFallback;
 
 			sprintf(gsBuf, "%s", abX == true ? "true" : "false");
 			return gsBuf;
+		}
+
+		tString cString::ToStringVector2l(tVector2l avVec, const tString& asFallback)
+		{
+			sprintf(gsBuf, "%s", avVec.ToFileString().c_str());
+			return gsBuf;
+		}
+
+		tString cString::ToStringVector2f(tVector2f avVec, const tString& asFallback)
+		{
+			sprintf(gsBuf, "%s", avVec.ToFileString().c_str());
+			return gsBuf;
+		}
+
+		tString cString::ToStringVector3l(tVector3l avVec, const tString& asFallback)
+		{
+			sprintf(gsBuf, "%s", avVec.ToFileString().c_str());
+			return gsBuf;
+		}
+		
+		tString cString::ToStringVector3f(tVector3f avVec, const tString& asFallback)
+		{
+			sprintf(gsBuf, "%s", avVec.ToFileString().c_str());
+			return gsBuf;
+		}
+
+		tStringVector& cString::GetVecFromString(const tString& asString, tStringVector& avVec)
+		{
+			tString sTemp = "";
+			tString sStr = "";
+
+			bool bNew = false;
+
+			for (size_t i = 0; i < asString.size(); ++i)
+			{
+				bool bNewWord = false;
+
+				sStr = asString.substr(i, 1);
+
+				if (sStr[0] == ' ' ||
+					sStr[0] == '\n' ||
+					sStr[0] == '\t' ||
+					sStr[0] == ',' ||
+					sStr[0] == '\\' ||
+					sStr[0] == '/')
+				{
+					bNewWord = true;
+				}
+				if (bNewWord)
+				{
+					if (bNew)
+					{
+						avVec.push_back(sTemp);
+						bNew = false;
+						sTemp = "";
+					}
+				}
+				else
+				{
+					bNew = true;
+					sTemp += sStr;
+					if (i == asString.size() - 1) avVec.push_back(sTemp);
+				}
+			}
+
+			return avVec;
+		}
+
+		tIntVector cString::GetVecFromInt(const tString& asString, tIntVector& avVec)
+		{
+			tStringVector sVec;
+			GetVecFromString(asString, sVec);
+
+			for (int i = 0; i < sVec.size(); ++i)
+			{
+				avVec.push_back(ToInt(sVec[i].c_str(), 0));
+			}
+
+			return avVec;
+		}
+
+		tFloatVector cString::GetVecFromFloat(const tString& asString, tFloatVector& avVec)
+		{
+			tStringVector sVec;
+			GetVecFromString(asString, sVec);
+
+			for (int i = 0; i < sVec.size(); ++i)
+			{
+				avVec.push_back(ToFloat(sVec[i].c_str(), 0.0f));
+			}
+
+			return avVec;
 		}
 
 		tString cString::ToLowerCase(const tString& asString)
@@ -345,6 +485,28 @@ namespace alk {
 				sSepp = L"/";
 
 			return asNewPath + sSepp + FileNameW(asFileName);
+		}
+
+		tString cString::AddSlashAtEnd(const tString& asString, char asSlash)
+		{
+			if (asString.size() == 0) return "";
+
+			char lLastChar = (asString.size() - 1);
+
+			if (lLastChar == '\\' || lLastChar == '/') return asString;
+
+			return asString + asSlash;
+		}
+
+		twString cString::AddSlashAtEndW(const twString& asString, wchar_t asSlash)
+		{
+			if (asString.size() == 0) return L"";
+
+			wchar_t lLastChar = (asString.size() - 1);
+
+			if (lLastChar == L'\\' || lLastChar == L'/') return asString;
+
+			return asString + asSlash;
 		}
 
 

@@ -1,7 +1,7 @@
 #ifndef ALK_UPDATEABLE_H
 #define ALK_UPDATEABLE_H
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 namespace alk {
 

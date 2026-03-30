@@ -4,7 +4,7 @@
 #include "GL/glew.h"
 #include "graphics/GPUProgram.h"
 #include "graphics/ShaderGLSL.h"
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 #include "math/Vector2.h"
 #include "math/Vector3.h"

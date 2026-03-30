@@ -1,7 +1,7 @@
 #ifndef ALK_KEYBOARD_H
 #define ALK_KEYBOARD_H
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 #include "input/InputDevice.h"
 

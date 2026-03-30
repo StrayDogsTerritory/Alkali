@@ -2,7 +2,7 @@
 #define ALK_SHADERMANAGER_H
 
 #include <map>
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 #include "resources/ResourceManager.h"
 

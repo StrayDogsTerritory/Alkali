@@ -3,7 +3,7 @@
 
 #include "engine/Updateable.h"
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 #include "input/InputDevice.h"
 #include "input/Keyboard.h"

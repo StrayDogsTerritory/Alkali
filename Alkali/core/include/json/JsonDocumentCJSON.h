@@ -13,16 +13,20 @@ namespace alk {
 		cJsonDocumentCJSON(const tString& asName);
 		~cJsonDocumentCJSON();
 
+
+	public:
 		bool Parse(char* apString);
+		char* Save();
 
 		bool LoadJsonObject(cJSON* apJSON, cJsonObject* apObject);
+		bool SaveJsonObject(cJSON* apJSON, cJsonObject* apObject);
 
 		tString ConvertToString(cJSON* apJSON);
 
-		float GetNumber(cJSON* apJSON);
+		float inline GetNumber(cJSON* apJSON);
 		
 
-		char* GetErrorMsg();
+		const char* GetErrorMsg();
 	};
 
 }

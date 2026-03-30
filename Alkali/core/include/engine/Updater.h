@@ -6,7 +6,7 @@
 
 #include "engine/Updateable.h"
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 
 namespace alk {

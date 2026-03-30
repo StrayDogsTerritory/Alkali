@@ -1,7 +1,7 @@
 #ifndef ALK_SHA1_H
 #define ALK_SHA1_H
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 namespace alk {
 

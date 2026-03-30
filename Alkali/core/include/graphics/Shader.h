@@ -1,7 +1,7 @@
 #ifndef ALK_SHADER_H
 #define ALK_SHADER_H
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
  
 
 #include "resources/ResourceBase.h"

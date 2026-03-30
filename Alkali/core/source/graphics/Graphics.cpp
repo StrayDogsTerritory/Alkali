@@ -85,14 +85,16 @@ namespace alk {
 			//Log("Program list size: '%d'", lProgramList.size());
 			iJsonDocument* pDoc = mpResources->GetResources()->CreateJsonDocument();
 			pDoc->LoadDocument(L"TextureTest.json");
-			cJsonObject* pFile = pDoc->GetChildObject("TextureData");
-			tString sFile = pFile->GetValueString("diffuse_texture", "");
-			alkDelete(pDoc);
+			if (pDoc)
+			{
+				cJsonObject* pFile = pDoc->GetChildObject("TextureData");
 
+				Log("");
+				tString sFile = pFile->GetValueString("diffuse_texture", "");
+				alkDelete(pDoc);
+				mpTestTexture = mpResources->GetTextureManager()->Create2DTexture(sFile);
+			}
 			mpTestProgram = CreateShaderProgram("TestProgram", "test_frag.glsl", "test_vert.glsl");
-			mpTestTexture = mpResources->GetTextureManager()->Create2DTexture(sFile);
-
-
 		}
 		
 	}

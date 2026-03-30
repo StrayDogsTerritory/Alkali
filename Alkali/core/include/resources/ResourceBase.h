@@ -1,7 +1,7 @@
 #ifndef ALK_RESOURCEBASE_H
 #define ALK_RESOURCEBASE_H
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 #include <map>
 

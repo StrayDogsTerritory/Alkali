@@ -3,7 +3,7 @@
 
 #include "GL\glew.h"
 #include "system/FlagBits.h"
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 #include "graphics/Colour.h"
 #include "graphics/Shader.h"

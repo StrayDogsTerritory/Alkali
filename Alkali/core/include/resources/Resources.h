@@ -1,7 +1,7 @@
 #ifndef ALK_RESOURCES_H
 #define ALK_RESOURCES_H
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 #include "engine/Updateable.h"
 
 #include <map>

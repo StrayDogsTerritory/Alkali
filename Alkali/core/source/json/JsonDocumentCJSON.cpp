@@ -23,7 +23,9 @@ namespace alk {
 
 		cJSON* pObject = pRoot->child;
 	
-		while (pObject != NULL)
+		LoadJsonObject(pObject, this);
+
+		/*while (pObject != NULL)
 		{
 			cJsonObject* pElement = alkNew(cJsonObject, (cString::toString(pObject->string, "")));
 			AddChild(pElement);
@@ -33,51 +35,124 @@ namespace alk {
 			
 
 			pObject = pObject->next;
-		}
+		}*/
 		
 		cJSON_Delete(pRoot);
 
 		return true;
 	}
 
+	char* cJsonDocumentCJSON::Save()
+	{
+		cJSON* pRoot = cJSON_CreateObject();
+
+		SaveJsonObject(pRoot, this);
+
+		char* sRet = cJSON_Print(pRoot);
+		cJSON_Delete(pRoot);
+
+		return sRet;
+
+	}
+
+	bool cJsonDocumentCJSON::SaveJsonObject(cJSON* apJSON, cJsonObject* apObject)
+	{
+		std::list<cJsonObject*>::iterator it = apObject->mLstChildren.begin();
+		for (; it != apObject->mLstChildren.end(); ++it)
+		{
+			cJSON* pChild = cJSON_CreateObject();
+
+			cJsonObject* pChildObject = (*it);
+
+			tMapValues Map = pChildObject->mMapValues;
+
+			for (tMapValIterator it = Map.begin(); it != Map.end(); ++it)
+			{
+				cJSON_AddStringToObject(pChild, it->first.c_str(), it->second.c_str());
+			}
+
+			cJSON_AddItemToObject(apJSON, pChildObject->msName.c_str(), pChild);
+
+			// run this recursivly for each child
+			SaveJsonObject(pChild, pChildObject);
+		}
+
+		return true;
+	}
+
 	bool cJsonDocumentCJSON::LoadJsonObject(cJSON* apJSON, cJsonObject* apObject)
 	{
-		//apJSON = apJSON->child;
 
 		while (apJSON != NULL)
 		{
-			cJsonObject* pLoopObject = apObject;
-
-			if (apJSON->type == cJSON_Object || apJSON->type == cJSON_Array)
+			if (apJSON->type == cJSON_Array)
 			{
-				pLoopObject = alkNew(cJsonObject, (cString::toString(apJSON->string, "")));
-				apObject->AddChild(pLoopObject);
-			}
-			else { 
-				pLoopObject->mMapValues.insert(tMapValues::value_type(cString::toString(apJSON->string, ""), ConvertToString(apJSON))); 
+				Warning("Object '%s' could not be loaded! JSON arrays are not supported!\n", apJSON->string); 
+				return false;
 			}
 
-			
-			if (apJSON != NULL && (apJSON->type == cJSON_Object || apJSON->type == cJSON_Array))
+			if (apJSON->type != cJSON_Object)
 			{
-				cJSON* pChildJson = apJSON;
-				while (pChildJson != NULL)
+				apObject->mMapValues.insert(tMapValues::value_type(cString::toString(apJSON->string, ""), ConvertToString(apJSON)));
+			}
+
+			else
+			{
+				cJsonObject* pSubObject = apObject->CreateChildObject(cString::toString(apJSON->string, ""));
+
+				cJSON* pJSONChild = apJSON->child;
+				while (pJSONChild != NULL)
 				{
-					pChildJson = pChildJson->child;
+					LoadJsonObject(pJSONChild, pSubObject);
 
-					cJsonObject* pChild = pLoopObject;
-					
-					pChild = alkNew(cJsonObject, (cString::toString(pChildJson->string, "")));
-					
-					pLoopObject->AddChild(pChild);
-					
-					LoadJsonObject(pChildJson, pChild);
+					pJSONChild = pJSONChild->child;
 				}
 			}
+
 			apJSON = apJSON->next;
 		}
 
 		return true;
+
+		////////////////
+		// temp old code
+		
+		////apJSON = apJSON->child;
+
+		//while (apJSON != NULL)
+		//{
+		//	cJsonObject* pLoopObject = apObject;
+
+		//	if (apJSON->type == cJSON_Object || apJSON->type == cJSON_Array)
+		//	{
+		//		pLoopObject = alkNew(cJsonObject, (cString::toString(apJSON->string, "")));
+		//		apObject->AddChild(pLoopObject);
+		//	}
+		//	else { 
+		//		pLoopObject->mMapValues.insert(tMapValues::value_type(cString::toString(apJSON->string, ""), ConvertToString(apJSON))); 
+		//	}
+
+		//	
+		//	if (apJSON != NULL && (apJSON->type == cJSON_Object || apJSON->type == cJSON_Array))
+		//	{
+		//		cJSON* pChildJson = apJSON;
+		//		while (pChildJson != NULL)
+		//		{
+		//			pChildJson = pChildJson->child;
+
+		//			cJsonObject* pChild = pLoopObject;
+		//			
+		//			pChild = alkNew(cJsonObject, (cString::toString(pChildJson->string, "")));
+		//			
+		//			pLoopObject->AddChild(pChild);
+		//			
+		//			LoadJsonObject(pChildJson, pChild);
+		//		}
+		//	}
+		//	apJSON = apJSON->next;
+		//}
+
+		
 	}
 
 	
@@ -92,7 +167,7 @@ namespace alk {
 
 
 
-	float cJsonDocumentCJSON::GetNumber(cJSON* apJSON)
+	float inline cJsonDocumentCJSON::GetNumber(cJSON* apJSON)
 	{
 		if (apJSON->valueint != NULL) return (float)apJSON->valueint;
 		else if (apJSON->valuedouble != NULL) return (float)apJSON->valuedouble;
@@ -103,10 +178,8 @@ namespace alk {
 
 
 
-	char* cJsonDocumentCJSON::GetErrorMsg()
+	const char* cJsonDocumentCJSON::GetErrorMsg()
 	{
-		const char* sRet = cJSON_GetErrorPtr();
-
-		return (char*)sRet;
+		return cJSON_GetErrorPtr();
 	}
 }

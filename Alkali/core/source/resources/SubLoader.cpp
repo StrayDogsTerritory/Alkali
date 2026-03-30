@@ -1,5 +1,7 @@
 #include "resources/SubLoader.h"
 
+#include "system/String.h"
+
 namespace alk {
 
 	bool iSubLoader::IsSupported(const tString& asExtension)

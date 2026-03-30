@@ -1,7 +1,7 @@
 #ifndef ALK_BITMAP_H
 #define ALK_BITMAP_H
 
-#include "system/String.h"
+#include "system/SystemTypes.h"
 
 #include "math/Vector2.h"
 #include "math/Vector3.h"
