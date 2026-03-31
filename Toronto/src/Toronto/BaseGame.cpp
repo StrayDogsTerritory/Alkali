@@ -15,6 +15,7 @@ cOzyGameBase::~cOzyGameBase()
 bool cOzyGameBase::Init(const tString &asCommandLine)
 {
 	if (!ParseCommandLine(asCommandLine)) return false;
+	Log("%ls\n", cPlatform::GetCurrentWorkingDirectory());
 	if (!InitEngine()) return false;
 	if (!InitGame()) return false;
 

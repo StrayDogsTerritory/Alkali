@@ -1,6 +1,6 @@
-#ifndef	OZY_SDAFX_H
-#define OZY_SDAFX_H
+#ifndef OZY_STDAFX_H
+#define OZY_STDAFX_H
 
-#include "Alkali.h"
+#include <Alkali.h>
 
 #endif
