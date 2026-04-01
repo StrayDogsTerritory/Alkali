@@ -7,6 +7,8 @@
 #include "json/JsonDocument.h"
 #include "json/JsonDocumentCJSON.h"
 
+#include "system/SHA1.h"
+
 namespace alk {
 
 	cSystem::cSystem(iSystem* apSystemInterface) 
@@ -42,6 +44,12 @@ namespace alk {
 		}
 
 		Log("---------------------------------------------\n");
+
+		SHA1 mSha;
+
+		tString sMess = "HelloWorld!";
+		tString sEmpt;
+		mSha << sMess >> sEmpt << SHA1::reset;
 
 		return true;
 	}
