@@ -47,7 +47,7 @@ namespace alk {
 
 		SHA1 mSha;
 
-		tString sMess = "HelloWorld!";
+		tString sMess = "Application checksum is modified! If this hasn't been modified there is an error in the game files!";
 		tString sEmpt;
 		mSha << sMess >> sEmpt << SHA1::reset;
 
