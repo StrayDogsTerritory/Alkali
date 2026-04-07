@@ -45,11 +45,15 @@ namespace alk {
 
 		Log("---------------------------------------------\n");
 
-		SHA1 mSha;
+		
 
 		tString sMess = "Application checksum is modified! If this hasn't been modified there is an error in the game files!";
 		tString sEmpt;
-		mSha << sMess >> sEmpt << SHA1::reset;
+		cSHA1  mSHA;
+
+		tString sTest = "Hello World!";
+		mSHA.Hash(sTest);
+		mSHA.Reset();
 
 		return true;
 	}
