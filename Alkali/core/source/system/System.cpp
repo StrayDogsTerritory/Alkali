@@ -51,7 +51,7 @@ namespace alk {
 		tString sEmpt;
 		cSHA1  mSHA;
 
-		tString sTest = "abc";
+		tString sTest = "Hello World!";
 		Debug("%s\n", mSHA.Hash(sTest).c_str());
 		mSHA.Reset();
 
