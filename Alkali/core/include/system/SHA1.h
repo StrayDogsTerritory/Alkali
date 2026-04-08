@@ -24,7 +24,11 @@ namespace alk {
 		void PadMessage();
 		void ProcessMessage();
 
-		char* Format() const;
+		tString Format() const;
+
+		unsigned int mlLength;
+
+		unsigned int ROTL(unsigned int W, unsigned int N);
 
 		unsigned int mlMessageBlockIndex;
 		unsigned char mlMessageBlock[64];
