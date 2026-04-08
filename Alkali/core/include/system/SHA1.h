@@ -14,8 +14,8 @@ namespace alk {
 		void Reset();
 
 		tString Hash(const tString& asString);
+
 		twString Hash(const twString& asString);
-		
 
 	private:
 

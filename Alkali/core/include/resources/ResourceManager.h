@@ -1,12 +1,11 @@
 #ifndef ALK_RESOURCEMANAGER_H
 #define ALK_RESOURCEMANAGER_H
 
+#include "system/SystemTypes.h"
+#include "system/SHA1.h"
+
 #include <list>
 #include <map>
-#include "system/SystemTypes.h"
-
-
-
 
 namespace alk {
 
@@ -15,7 +14,7 @@ namespace alk {
 	class cResources;
 	class iGraphics;
 
-	typedef std::multimap<unsigned int, iResourceBase* > tmResources;
+	typedef std::multimap<tString, iResourceBase* > tmResources;
 	typedef tmResources::iterator tmResourcesIterator;
 
 
@@ -47,6 +46,7 @@ namespace alk {
 		iGraphics* mpiGraphics;
 
 		tmResources mResources;
+		cSHA1 mSHA;
 	};
 
 }

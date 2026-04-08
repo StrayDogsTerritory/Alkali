@@ -17,7 +17,8 @@ namespace alk {
 	void iResourceManager::AddResource(iResourceBase* apResource)
 	{
 		tString sName = cString::ToLowerCase(apResource->GetName());
-		unsigned int lHash = cString::Hash(sName);
+		tString lHash = mSHA.Hash(sName);
+		mSHA.Reset();
 
 		mResources.insert(tmResources::value_type(lHash, apResource));
 	}
@@ -26,7 +27,8 @@ namespace alk {
 
 	iResourceBase* iResourceManager::GetResource(const twString& asPath)
 	{
-		unsigned int lHash = cString::Hash(cString::To8BitChar(cString::ToLowerCaseW(asPath)));
+		tString lHash = mSHA.Hash(cString::To8BitChar(cString::ToLowerCaseW(asPath)));
+		mSHA.Reset();
 
 		tmResourcesIterator it = mResources.find(lHash);
 		if (it == mResources.end()) {
@@ -62,7 +64,8 @@ namespace alk {
 
 	void iResourceManager::RemoveResource(iResourceBase* apResource)
 	{
-		unsigned int lHash = cString::Hash(cString::ToLowerCase(apResource->GetName()));
+		tString lHash = mSHA.Hash(cString::ToLowerCase(apResource->GetName()));
+		mSHA.Reset();
 
 		tmResourcesIterator it = mResources.find(lHash);
 			if (it == mResources.end())

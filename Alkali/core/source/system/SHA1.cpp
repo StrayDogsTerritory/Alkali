@@ -208,7 +208,7 @@ namespace alk {
 	tString cSHA1::Format() const
 	{
 		tString sRet = "";
-		char buf[64];
+		char buf[16];
 		for (int i = 0; i < 5; i++)
 		{
 			sprintf(buf, "%08x", H[i]);
