@@ -9,6 +9,9 @@
 
 #include "system/SHA1.h"
 
+// temp
+#include <cmath>
+
 namespace alk {
 
 	cSystem::cSystem(iSystem* apSystemInterface) 
@@ -44,16 +47,6 @@ namespace alk {
 		}
 
 		Log("---------------------------------------------\n");
-
-		
-
-		tString sMess = "Application checksum is modified! If this hasn't been modified there is an error in the game files!";
-		tString sEmpt;
-		cSHA1  mSHA;
-
-		tString sTest = "Hello World!";
-		Debug("%s\n", mSHA.Hash(sTest).c_str());
-		mSHA.Reset();
 
 		return true;
 	}
