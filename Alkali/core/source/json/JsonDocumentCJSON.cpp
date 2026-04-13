@@ -24,18 +24,6 @@ namespace alk {
 		cJSON* pObject = pRoot->child;
 	
 		LoadJsonObject(pObject, this);
-
-		/*while (pObject != NULL)
-		{
-			cJsonObject* pElement = alkNew(cJsonObject, (cString::toString(pObject->string, "")));
-			AddChild(pElement);
-			
-			cJSON* pChild = pObject->child;
-			if (pChild)LoadJsonObject(pChild, pElement);
-			
-
-			pObject = pObject->next;
-		}*/
 		
 		cJSON_Delete(pRoot);
 
@@ -113,46 +101,6 @@ namespace alk {
 		}
 
 		return true;
-
-		////////////////
-		// temp old code
-		
-		////apJSON = apJSON->child;
-
-		//while (apJSON != NULL)
-		//{
-		//	cJsonObject* pLoopObject = apObject;
-
-		//	if (apJSON->type == cJSON_Object || apJSON->type == cJSON_Array)
-		//	{
-		//		pLoopObject = alkNew(cJsonObject, (cString::toString(apJSON->string, "")));
-		//		apObject->AddChild(pLoopObject);
-		//	}
-		//	else { 
-		//		pLoopObject->mMapValues.insert(tMapValues::value_type(cString::toString(apJSON->string, ""), ConvertToString(apJSON))); 
-		//	}
-
-		//	
-		//	if (apJSON != NULL && (apJSON->type == cJSON_Object || apJSON->type == cJSON_Array))
-		//	{
-		//		cJSON* pChildJson = apJSON;
-		//		while (pChildJson != NULL)
-		//		{
-		//			pChildJson = pChildJson->child;
-
-		//			cJsonObject* pChild = pLoopObject;
-		//			
-		//			pChild = alkNew(cJsonObject, (cString::toString(pChildJson->string, "")));
-		//			
-		//			pLoopObject->AddChild(pChild);
-		//			
-		//			LoadJsonObject(pChildJson, pChild);
-		//		}
-		//	}
-		//	apJSON = apJSON->next;
-		//}
-
-		
 	}
 
 	
