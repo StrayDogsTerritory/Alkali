@@ -14,17 +14,16 @@
 #include "system/String.h"
 #include "system/Platform.h"
 
-#define CALLBACK __stdcall
-
 #pragma comment(lib, "OpenGL32.lib")
 #pragma comment(lib, "GLu32.lib")
 
 namespace alk {
 
-
-	void CALLBACK OGLDebugOutputCallback(GLenum source, GLenum type, GLuint id, GLenum severity, GLsizei length, const GLchar* message, const GLvoid* userParam)
+	
+	void __stdcall OGLDebugOutputCallback(GLenum aSource, GLenum aType, GLuint alId, GLenum aSeverity, GLsizei alLength, const GLchar* apMessage, const GLvoid* apUserParam)
 	{
-		Debug("Source: %d Type: %d Id: %d Severity: %d '%s'\n", source, type, id, severity, message);
+		Debug("Source: %d Type: %d Id: %d Severity: %d '%s'\n", aSource, aType, alId, aSeverity, apMessage);
+		__debugbreak();
 	}
 
 	cGraphicsSDL::cGraphicsSDL()
