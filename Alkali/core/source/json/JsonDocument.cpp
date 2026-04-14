@@ -10,66 +10,72 @@
 
 namespace alk {
 
+	//-----------------------------------------------------------------
 
 	cJsonObject::~cJsonObject()
 	{
-		DeleteAll(mLstChildren);
+		DeleteAll(mLstChildren); // delete all the children when we're being deleted (this is also called for each child)
 	}
 
+	//-----------------------------------------------------------------
 
 	cJsonObject* cJsonObject::GetChildObject(const tString& asName)
 	{
-		std::list<cJsonObject*>::iterator it = mLstChildren.begin();
-		for (; it != mLstChildren.end(); ++it)
+		std::list<cJsonObject*>::iterator it = mLstChildren.begin(); // get child list iterator
+		for (; it != mLstChildren.end(); ++it) // loop through child list
 		{
-			cJsonObject* pObject = (*it);
-			cJsonObject* pChild = NULL;
+			cJsonObject* pObject = (*it); // points to the object at the value of the iterator
+			cJsonObject* pChild = NULL; // allocate for sub child
 
-			if (pObject->msName == asName)
-				return pObject;
+			if (pObject->msName == asName) // check if its a sibling
+				return pObject; // if it is, return it
 
 			// if not found, search the children recursively
-			pChild = pObject->GetChildObject(asName);
-			if (pChild != NULL) return pChild;
+			pChild = pObject->GetChildObject(asName); // check each child of current object
+			if (pChild != NULL) return pChild; // if it's found, return it
 		}
 
-		return NULL;
+		return NULL; // if no child by the specified name is found, return NULL
 	}
+
+	//-----------------------------------------------------------------
 
 	cJsonObject* cJsonObject::CreateChildObject(const tString& asName)
 	{
-		cJsonObject* pObject = alkNew(cJsonObject, (asName));
-		AddChild(pObject);
+		cJsonObject* pObject = alkNew(cJsonObject, (asName)); // allocated heap memory for a new child
+		AddChild(pObject); // add it is a child to current object
 
-		return pObject;
+		return pObject; // return the created child
 	}
+
+	//-----------------------------------------------------------------
 
 	void cJsonObject::DestroyChildObject(const tString& asName)
 	{
-		if (asName == "") return;
+		if (asName == "") return; // if the name is empty, don't bother deleting anything
 
-		for (std::list<cJsonObject*>::iterator it = mLstChildren.begin(); it != mLstChildren.end(); ++it)
+		for (std::list<cJsonObject*>::iterator it = mLstChildren.begin(); it != mLstChildren.end(); ++it) // loop through children list
 		{
-			cJsonObject* pObject = (*it);
-			if (pObject->msName == asName)
+			cJsonObject* pObject = (*it); // points to the object at the value of the iterator
+			if (pObject->msName == asName) // if a child with the specifed name is found
 			{
-				alkDelete(pObject);
+				alkDelete(pObject); // delete said child
 			}
 		}
 	}
 
-
+	//-----------------------------------------------------------------
 
 	void cJsonObject::AddChild(cJsonObject* apObject)
 	{
-		if (apObject == NULL) return;
+		if (apObject == NULL) return; // if no object is specified, don't add anything
 
-		apObject->mpParent = this;
+		apObject->mpParent = this; // set the child's parent to current object
 
-		mLstChildren.push_back(apObject);
+		mLstChildren.push_back(apObject); // add to the parents child list
 	}
 
-
+	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValue(const tString& asName, const tString asVal)
 	{
@@ -79,63 +85,63 @@ namespace alk {
 		it->second = asVal;
 	}
 
-
+	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueString(const tString& asName, const tString& asValue, const tString& asFallBack)
 	{
 		SetValue(asName, asValue);
 	}
 
-
+	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueInt(const tString& asName, int alX, const tString& asFallBack)
 	{
 		SetValue(asName,cString::ToStringInt(alX, asFallBack));
 	}
 
-
+	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueFloat(const tString& asName, float afX, const tString& asFallBack)
 	{
 		SetValue(asName, cString::ToStringFloat(afX, asFallBack));
 	}
 
-
+	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueBool(const tString& asName, bool abX, const tString& asFallBack)
 	{
 		SetValue(asName, cString::ToStringBool(abX, asFallBack));
 	}
 
-
+	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueVector2l(const tString& asName, tVector2l avVec, const tString& asFallback)
 	{
 		SetValue(asName, cString::ToStringVector2l(avVec, asFallback));
 	}
 
-
+	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueVector2f(const tString& asName, tVector2f avVec, const tString& asFallback)
 	{
 		SetValue(asName, cString::ToStringVector2f(avVec, asFallback));
 	}
 
-
+	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueVector3l(const tString& asName, tVector3l avVec, const tString& asFallback)
 	{
 		SetValue(asName, cString::ToStringVector3l(avVec, asFallback));
 	}
 
-
+	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueVector3f(const tString& asName, tVector3f avVec, const tString& asFallback)
 	{
 		SetValue(asName, cString::ToStringVector3f(avVec, asFallback));
 	}
 
-
+	//-----------------------------------------------------------------
 
 	tString cJsonObject::GetValue(const tString& asName)
 	{
@@ -145,63 +151,63 @@ namespace alk {
 		return it->second;
 	}
 
-
+	//-----------------------------------------------------------------
 
 	tString cJsonObject::GetValueString(const tString& asName, const char* asFallback)
 	{
 		return cString::toString(GetValue(asName).c_str(), asFallback);
 	}
 
-
+	//-----------------------------------------------------------------
 
 	int cJsonObject::GetValueInt(const tString& asName, int alFallback)
 	{
 		return cString::ToInt(GetValue(asName).c_str(), alFallback);
 	}
 
-
+	//-----------------------------------------------------------------
 
 	float cJsonObject::GetValueFloat(const tString& asName, float afFallback)
 	{
 		return cString::ToFloat(GetValue(asName).c_str(), afFallback);
 	}
 
-
+	//-----------------------------------------------------------------
 
 	bool cJsonObject::GetValueBool(const tString& asName, bool abFallback)
 	{
 		return cString::ToBool(GetValue(asName).c_str(), abFallback);
 	}
 
-
+	//-----------------------------------------------------------------
 
 	tVector2l cJsonObject::GetValueVector2l(const tString& asName, tVector2l avFallback)
 	{
 		return cString::ToVector2l(GetValue(asName).c_str(), avFallback);
 	}
 
-
+	//-----------------------------------------------------------------
 
 	tVector2f cJsonObject::GetValueVector2f(const tString& asName, tVector2f avFallback)
 	{
 		return cString::ToVector2f(GetValue(asName).c_str(), avFallback);
 	}
 
-
+	//-----------------------------------------------------------------
 
 	tVector3l cJsonObject::GetValueVector3l(const tString& asName, tVector3l avFallback)
 	{
 		return cString::ToVector3l(GetValue(asName).c_str(), avFallback);
 	}
 
-
+	//-----------------------------------------------------------------
 
 	tVector3f cJsonObject::GetValueVector3f(const tString& asName, tVector3f avFallback)
 	{
 		return cString::ToVector3f(GetValue(asName).c_str(), avFallback);
 	}
 
-
+	//-----------------------------------------------------------------
 
 	iJsonDocument::iJsonDocument(const tString& asName)
 		: cJsonObject(asName)
@@ -209,10 +215,14 @@ namespace alk {
 
 	}
 
+	//-----------------------------------------------------------------
+
 	iJsonDocument::~iJsonDocument() 
 	{
 		
 	}
+
+	//-----------------------------------------------------------------
 
 	bool  iJsonDocument::LoadDocument(const twString& asFile)
 	{
@@ -245,6 +255,8 @@ namespace alk {
 
 		return true;
 	}
+	
+	//-----------------------------------------------------------------
 
 	bool iJsonDocument::SaveDocument(const twString& asFilePath)
 	{
@@ -267,8 +279,7 @@ namespace alk {
 		fprintf(pFile, "%s", sFile);
 	}
 	
-	
-
+	//-----------------------------------------------------------------
 
 }
 
