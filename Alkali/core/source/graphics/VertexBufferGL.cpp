@@ -1,8 +1,14 @@
+/*
+* This code is able to save verticies (a point in space as it relates to an object) into the graphics card's memory.
+* This enables the computer to be able to display it. It can look like a 3d model, an image, or any other usage of 
+* computer graphics.
+*/
+
 #include "graphics/VertexBufferGL.h"
 
 #include "engine/LogWriter.h"
 
-#include "GL/glew.h"
+#include <GL/glew.h>
 
 namespace alk {
 

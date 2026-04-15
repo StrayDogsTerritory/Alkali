@@ -1,3 +1,9 @@
+/*
+* This code loads and saves a JSON (JavaScript Object Notation) file.
+* JSON is one of the most prolific file formats in use today.
+* It is primarily used in the transfer of data between servers,
+* but also has uses in saving any data a program could need into the computer's storage.
+*/
 #include "json/JsonDocumentCJSON.h"
 
 #include "engine/LogWriter.h"

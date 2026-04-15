@@ -1,10 +1,13 @@
+/*
+* This code takes a string of charaters (e.g., a password) and returns a series of numbers and charaters that is unique to the input (known as the hash)
+* This is interesting as no two inputs will ever share an output, making it very safe for sensitive data.
+* This code has been written to the specification of the US Department of Commerce Secure Hash Standard (SHS),
+* The original paper can be found free of charge here http://dx.doi.org/10.6028/NIST.FIPS.180-4.
+*/
 #include "system/SHA1.h"
 #include "system/String.h"
 
 namespace alk {
-
-
-
 	cSHA1::cSHA1()
 	{
 		Reset();
