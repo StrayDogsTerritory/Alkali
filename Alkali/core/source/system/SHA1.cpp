@@ -10,11 +10,12 @@
 namespace alk {
 	cSHA1::cSHA1()
 	{
-		Reset();
+		Reset(); // reset our values to default
 	}
 
 	cSHA1::~cSHA1()
 	{
+		// does nothing
 	}
 
 	void cSHA1::Reset()
