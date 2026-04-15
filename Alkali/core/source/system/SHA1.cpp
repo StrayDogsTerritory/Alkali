@@ -3,16 +3,20 @@
 
 namespace alk {
 
-
+	//----------------------------------------------------------
 
 	cSHA1::cSHA1()
 	{
 		Reset();
 	}
 
+	//----------------------------------------------------------
+
 	cSHA1::~cSHA1()
 	{
 	}
+
+	//----------------------------------------------------------
 
 	void cSHA1::Reset()
 	{
@@ -27,6 +31,8 @@ namespace alk {
 		H[4] = 0xc3d2e1f0;
 	}
 
+	//----------------------------------------------------------
+
 	tString cSHA1::Hash(const tString& asString)
 	{
 		Input((const unsigned char*)asString.c_str(), asString.size());
@@ -38,6 +44,8 @@ namespace alk {
 		return Format();
 	}
 
+	//----------------------------------------------------------
+
 	twString cSHA1::Hash(const twString& asString)
 	{
 		Input((const unsigned char*)cString::To8BitChar(asString).c_str(), cString::To8BitChar(asString).size());
@@ -48,6 +56,8 @@ namespace alk {
 
 		return cString::ToWideChar(Format());
 	}
+
+	//----------------------------------------------------------
 
 	void cSHA1::Input(const unsigned char* asMessage, unsigned int alLength)
 	{
@@ -70,6 +80,8 @@ namespace alk {
 			asMessage++;
 		}
 	}
+
+	//----------------------------------------------------------
 
 	void cSHA1::PadMessage()
 	{
@@ -113,6 +125,8 @@ namespace alk {
 		mlMessageBlock[62] = (mlLength >> 8) & 0xFF;
 		mlMessageBlock[63] = (mlLength) & 0xFF;
 	}
+
+	//----------------------------------------------------------
 
 	void cSHA1::ProcessMessage()
 	{
@@ -203,25 +217,34 @@ namespace alk {
 		mlMessageBlockIndex = 0;
 	}
 
-
+	//----------------------------------------------------------
 
 	tString cSHA1::Format() const
 	{
-		tString sRet = "";
-		char buf[16];
-		for (int i = 0; i < 5; i++)
+		tString sRet = ""; // initialize a std::string to return
+		char buf[16]; // create some stack memory for a buffer
+		for (int i = 0; i < 5; i++) // for every hash value
 		{
-			sprintf(buf, "%08x", H[i]);
-			sRet += buf;
+			sprintf(buf, "%08x", H[i]); // format bytes into character buffer
+			sRet += buf; // add the created formatted bytes to the string
 		}
 
 		return sRet;
 	}
 
+	//----------------------------------------------------------
+
 	unsigned int cSHA1::ROTL(unsigned int W, unsigned int N)
 	{
+		/*
+		* kinda hard to explain well, so it gets the big comment
+		* shifts the word, W by N bits,
+		* then it ORs it with W shifted by word length subtracted by N.
+		* Hope that helps!
+		*/
+
 		return ((W << N)) | ((W) >> (32 - N));
 	}
 
-
+	//----------------------------------------------------------
 }
