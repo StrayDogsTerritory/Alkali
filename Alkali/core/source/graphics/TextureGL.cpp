@@ -10,52 +10,55 @@ namespace alk {
 	cTextureGL::cTextureGL(const tString& asName, eTextureType aType, eTextureFilter aFilter, eTextureWrappingMode aMode) : iTexture(asName)
 	{
 		// do something here...
-		mlMemorySize = 0;
-		msName = asName;
+		mlMemorySize = 0; //set memory size to 0
+		msName = asName; //input name is instance name
 
-		mbUseMipMaps = false;
-		mFilter = aFilter;
-		mTextureType = aType;
-		mWrappingMode = aMode;
+		mbUseMipMaps = false; //whether or not texture uses mipmaps
+		mFilter = aFilter; // specified filter is texture filter
+		mTextureType = aType; // specified type is texture filter
+		mWrappingMode = aMode; // specified wrapping mode is texture wrapping mode
 
 		// get around to this later
-		mfAnisotropicFilteringDegree = 0.0f;
+		mfAnisotropicFilteringDegree = 0.0f; // set anisotropic degree to 0
 	}
 
 	cTextureGL::~cTextureGL()
 	{
-		for (int i = 0; i < mvIDs.size(); ++i)
+		for (int i = 0; i < mvIDs.size(); ++i) // for every ID
 		{
-			glDeleteTextures(1, (GLuint*)&mvIDs[i]);
+			glDeleteTextures(1, (GLuint*)&mvIDs[i]); //frees GPU memory held by each texture handle
 		}
 	}
 
 	void cTextureGL::GenerateTextureIDs(int alNumToGen)
 	{
-		int lNewTextures = alNumToGen - mvIDs.size();
-		mvIDs.resize(alNumToGen);
-		glGenTextures(alNumToGen, (GLuint*)&mvIDs[alNumToGen-lNewTextures]);
+		if (mvIDs.size() < alNumToGen) //not optimimal, but std::vector.resize() plays badly without this
+		{
+			int lNewTextures = alNumToGen - mvIDs.size(); //find the amount of new texture to be added to std::vector
+			mvIDs.resize(alNumToGen); //resize the vector to size of textures to generate
+			glGenTextures(alNumToGen, (GLuint*)&mvIDs[alNumToGen-lNewTextures]); //creates the texure handles sequentially
+		}
 	}
 
 	bool cTextureGL::CreateTextureFromBitmap( cBitmap* apBitmap)
 	{
 
-		GenerateTextureIDs(1);
+		GenerateTextureIDs(1); //create 1 handle for the 1 image being used
 
-		return CreateTextureFromBitmapIdx(apBitmap, 0);
+		return CreateTextureFromBitmapIdx(apBitmap, 0); //create a texture from the specified bitmap
 	}
 
 
 
 	bool cTextureGL::CreateMipMaps()
 	{
-		glGenerateMipmap(GL_TEXTURE_2D);
+		glGenerateMipmap(GL_TEXTURE_2D); // UNUSED
 		return true;
 	}
 
 	bool cTextureGL::CreateTextureFromBitmapIdx(cBitmap* apBitmap, int alIdx)
 	{
-		mbUseMipMaps = apBitmap->GetIsCompressed();
+		mbUseMipMaps = apBitmap->GetIsCompressed(); //not used currently, was a testing thing
 
 		if (mTextureType == eTextureType_CubeMap)
 		{
@@ -65,11 +68,11 @@ namespace alk {
 		else
 		{
 
-			bool bRet = CreateTexture(mvIDs[alIdx], apBitmap->GetData(0, 0), apBitmap->GetNumberMipMaps(), apBitmap->GetDimensions(), apBitmap->GetBitmapFormat(), apBitmap->GetIsCompressed());
+			bool bRet = CreateTexture(mvIDs[alIdx], apBitmap->GetData(0, 0), apBitmap->GetNumberMipMaps(), apBitmap->GetDimensions(), apBitmap->GetBitmapFormat(), apBitmap->GetIsCompressed()); //forward the bitmap data to OpenGL
 
 			//SetupTextureProperties(alIdx);
 
-			return bRet;
+			return bRet; //returns whether the texure was created successfully or not
 		}
 		
 		// setup the texture settings 
@@ -82,44 +85,44 @@ namespace alk {
 
 	bool cTextureGL::CreateTexture(int alID, cBitmapData* apBitmapData, int alNumberOfMipMaps, tVector3l avSize, eBitmapFormat aFormat, bool abIsCompressed)
 	{
-		GLenum Type = EnumToGLTextureType(mTextureType);
-		GLenum Format = EnumToGLPixelFormat(aFormat);
+		GLenum Type = EnumToGLTextureType(mTextureType); // convert engine texture type to OpenGL texture type
+		GLenum Format = EnumToGLPixelFormat(aFormat); // convert engine texture format to OpenGL texture format
 
-		mvDimensions = avSize;
+		mvDimensions = avSize; // set the size of the texture
 
-		glBindTexture(Type, alID);
+		glBindTexture(Type, alID); //let OpenGL know to set the current texture as active
 		//glEnable(Type);
 
-		bool bRet = true;
-		tVector3l vResize = mvDimensions;
+		bool bRet = true; // what we should return after looping
+		tVector3l vResize = mvDimensions; //temp dimensions for loading mipmaps into openGL
 
 	//	CopyTextureDataToGL(aFormat, 0, apBitmapData[0].mpData, apBitmapData[0].mlSize, vResize, abIsCompressed);
 
 		for (int i = 0; i < alNumberOfMipMaps; ++i)
 		{
-			if (vResize.x == 0) vResize.x = 1;
-			if (vResize.y == 0) vResize.y = 1;
-			if (vResize.z == 0) vResize.z = 1;
+			if (vResize.x == 0) vResize.x = 1; // texture Can't have side length 0, correct it if so!
+			if (vResize.y == 0) vResize.y = 1;// texture Can't have side length 0, correct it if so!
+			if (vResize.z == 0) vResize.z = 1;// texture Can't have side length 0, correct it if so!
 
-			unsigned char* pData = apBitmapData[i].mpData;
-			size_t lSize = apBitmapData[i].mlSize;
+			unsigned char* pData = apBitmapData[i].mpData; //gets the data of the bitmap
+			size_t lSize = apBitmapData[i].mlSize; // gets the size in bytes of the data
 
-			if (CopyTextureDataToGL(aFormat, i, pData,lSize,vResize, abIsCompressed) == false)
+			if (CopyTextureDataToGL(aFormat, i, pData,lSize,vResize, abIsCompressed) == false) // sends OpenGl the texure data per mip map specified. If data fails to be copied to OpenGL, stop loading
 			{
-				bRet = false;
-				break;
+				bRet = false; // return false
+				break; //exit loop
 			}
 
-			vResize.x >>= 1;
-			vResize.y >>= 1;
-			vResize.z >>= 1;
+			vResize.x >>= 1;// shifts the dimensions by the nearest multiple of 2, for mip maps
+			vResize.y >>= 1;// shifts the dimensions by the nearest multiple of 2, for mip maps
+			vResize.z >>= 1;// shifts the dimensions by the nearest multiple of 2, for mip maps
 
 		}
-		if (bRet == false) return false;
+		if (bRet == false) return false; //actually return false if false
 
 	//	glDisable(Type);
 		
-		SetupTextureProperties(alID);
+		SetupTextureProperties(alID); //setup the OpenGL properties of the texture
 
 		return true;
 	}
