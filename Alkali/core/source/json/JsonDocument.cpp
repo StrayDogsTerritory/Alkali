@@ -79,132 +79,132 @@ namespace alk {
 
 	void cJsonObject::SetValue(const tString& asName, const tString asVal)
 	{
-		tMapValIterator it = mMapValues.find(asName);
-		if (it == mMapValues.end()) return;
+		tMapValIterator it = mMapValues.find(asName); // finds the value in the map by name
+		if (it == mMapValues.end()) return; // if it cannot be found, just return
 
-		it->second = asVal;
+		it->second = asVal; // set the value in the map to our specified value 
 	}
 
 	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueString(const tString& asName, const tString& asValue, const tString& asFallBack)
 	{
-		SetValue(asName, asValue);
+		SetValue(asName, asValue); // call to setValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueInt(const tString& asName, int alX, const tString& asFallBack)
 	{
-		SetValue(asName,cString::ToStringInt(alX, asFallBack));
+		SetValue(asName,cString::ToStringInt(alX, asFallBack));// call to setValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueFloat(const tString& asName, float afX, const tString& asFallBack)
 	{
-		SetValue(asName, cString::ToStringFloat(afX, asFallBack));
+		SetValue(asName, cString::ToStringFloat(afX, asFallBack));// call to setValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueBool(const tString& asName, bool abX, const tString& asFallBack)
 	{
-		SetValue(asName, cString::ToStringBool(abX, asFallBack));
+		SetValue(asName, cString::ToStringBool(abX, asFallBack));// call to setValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueVector2l(const tString& asName, tVector2l avVec, const tString& asFallback)
 	{
-		SetValue(asName, cString::ToStringVector2l(avVec, asFallback));
+		SetValue(asName, cString::ToStringVector2l(avVec, asFallback));// call to setValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueVector2f(const tString& asName, tVector2f avVec, const tString& asFallback)
 	{
-		SetValue(asName, cString::ToStringVector2f(avVec, asFallback));
+		SetValue(asName, cString::ToStringVector2f(avVec, asFallback));// call to setValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueVector3l(const tString& asName, tVector3l avVec, const tString& asFallback)
 	{
-		SetValue(asName, cString::ToStringVector3l(avVec, asFallback));
+		SetValue(asName, cString::ToStringVector3l(avVec, asFallback));// call to setValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	void cJsonObject::SetValueVector3f(const tString& asName, tVector3f avVec, const tString& asFallback)
 	{
-		SetValue(asName, cString::ToStringVector3f(avVec, asFallback));
+		SetValue(asName, cString::ToStringVector3f(avVec, asFallback));// call to setValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	tString cJsonObject::GetValue(const tString& asName)
 	{
-		tMapValIterator it = mMapValues.find(asName);
-		if (it == mMapValues.end()) return "";
+		tMapValIterator it = mMapValues.find(asName); // finds the value in the map by name
+		if (it == mMapValues.end()) return "";// if it cannot be found, just return
 
-		return it->second;
+		return it->second;// return the retrieved value
 	}
 
 	//-----------------------------------------------------------------
 
 	tString cJsonObject::GetValueString(const tString& asName, const char* asFallback)
 	{
-		return cString::toString(GetValue(asName).c_str(), asFallback);
+		return cString::toString(GetValue(asName).c_str(), asFallback); // call to GetValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	int cJsonObject::GetValueInt(const tString& asName, int alFallback)
 	{
-		return cString::ToInt(GetValue(asName).c_str(), alFallback);
+		return cString::ToInt(GetValue(asName).c_str(), alFallback);// call to GetValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	float cJsonObject::GetValueFloat(const tString& asName, float afFallback)
 	{
-		return cString::ToFloat(GetValue(asName).c_str(), afFallback);
+		return cString::ToFloat(GetValue(asName).c_str(), afFallback);// call to GetValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	bool cJsonObject::GetValueBool(const tString& asName, bool abFallback)
 	{
-		return cString::ToBool(GetValue(asName).c_str(), abFallback);
+		return cString::ToBool(GetValue(asName).c_str(), abFallback);// call to GetValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	tVector2l cJsonObject::GetValueVector2l(const tString& asName, tVector2l avFallback)
 	{
-		return cString::ToVector2l(GetValue(asName).c_str(), avFallback);
+		return cString::ToVector2l(GetValue(asName).c_str(), avFallback);// call to GetValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	tVector2f cJsonObject::GetValueVector2f(const tString& asName, tVector2f avFallback)
 	{
-		return cString::ToVector2f(GetValue(asName).c_str(), avFallback);
+		return cString::ToVector2f(GetValue(asName).c_str(), avFallback);// call to GetValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	tVector3l cJsonObject::GetValueVector3l(const tString& asName, tVector3l avFallback)
 	{
-		return cString::ToVector3l(GetValue(asName).c_str(), avFallback);
+		return cString::ToVector3l(GetValue(asName).c_str(), avFallback);// call to GetValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
 
 	tVector3f cJsonObject::GetValueVector3f(const tString& asName, tVector3f avFallback)
 	{
-		return cString::ToVector3f(GetValue(asName).c_str(), avFallback);
+		return cString::ToVector3f(GetValue(asName).c_str(), avFallback);// call to GetValue with our possibly converted value
 	}
 
 	//-----------------------------------------------------------------
@@ -212,44 +212,44 @@ namespace alk {
 	iJsonDocument::iJsonDocument(const tString& asName)
 		: cJsonObject(asName)
 	{
-
+		//does nothing
 	}
 
 	//-----------------------------------------------------------------
 
 	iJsonDocument::~iJsonDocument() 
 	{
-		
+		// does nothing
 	}
 
 	//-----------------------------------------------------------------
 
 	bool  iJsonDocument::LoadDocument(const twString& asFile)
 	{
-		FILE* pFile = cPlatform::OpenFile(asFile, L"rb");
+		FILE* pFile = cPlatform::OpenFile(asFile, L"rb"); // opens the named file on disk, in read binary format 
 
-		if (pFile == NULL)
+		if (pFile == NULL) // if it can't be found...
 		{
-			Error("File '%s' could not be opened!\n", cString::To8BitChar(asFile));
+			Error("File '%s' could not be opened!\n", cString::To8BitChar(asFile)); // tell user it can't be found
 			return false;
 		} 
 		///////////////
 		// read file in as a C string
-		fseek(pFile, 0, SEEK_END);
-		size_t lSize = ftell(pFile);
-		rewind(pFile);
+		fseek(pFile, 0, SEEK_END); // tell the file pointer to find the last byte of the file
+		size_t lSize = ftell(pFile); // report back the size it traversed, in bytes
+		rewind(pFile); // bring the file pointer back to the start of file
 
-		char* pBuffer = (char*)alkMalloc(sizeof(char) * lSize +1);
-		fread(pBuffer, sizeof(char), lSize, pFile);
-		pBuffer[lSize] = 0;
-		fclose(pFile);
+		char* pBuffer = (char*)alkMalloc(sizeof(char) * lSize +1); // allocate heap memory (the old fashioned way) for the text of the file, + 1 because it is a string,and must have the final byte be \0
+		fread(pBuffer, sizeof(char), lSize, pFile); //reads the string of the file into the heap buffer 
+		pBuffer[lSize] = 0; // null-terminate the string so that it is a properly formatted string
+		fclose(pFile); //release the handle on the file, operating system takes control of it from here
 		// parse the document
-		bool bRet = Parse(pBuffer);
-		alkFree(pBuffer);
+		bool bRet = Parse(pBuffer); // call the implementation-specific funtion here
+		alkFree(pBuffer); // free the buffer's memory
 
-		if (bRet == false)
+		if (bRet == false) // if it fails to load
 		{
-			Error("Json document '%s' could not be loaded! Reason: '%s'\n", msName.c_str(), GetErrorMsg());
+			Error("Json document '%s' could not be loaded!\n", msName.c_str()); // let the user know it failed to load
 			return false;
 		}
 
@@ -260,23 +260,24 @@ namespace alk {
 
 	bool iJsonDocument::SaveDocument(const twString& asFilePath)
 	{
-		FILE* pFile = cPlatform::OpenFile(asFilePath, L"w");
+		FILE* pFile = cPlatform::OpenFile(asFilePath, L"w"); // opens the named file in write mode
 
-		if (pFile == NULL)
+		if (pFile == NULL) // if we can't open it for whatever reason
 		{
-			Error("Could not open file '%s' for saving!\n", cString::To8BitChar(asFilePath).c_str());
+			Error("Could not open file '%s' for saving!\n", cString::To8BitChar(asFilePath).c_str()); //let the user know
 			return false;
 		}
 
-		char* sFile = Save();
+		char* sFile = Save(); // call implementation-specific saving function
 
-		if (sFile == NULL)
+		if (sFile == NULL) // if it can't create the string
 		{
-			Error("Could not save file '%s'\n", cString::To8BitChar(asFilePath).c_str());
+			Error("Could not save file '%s'\n", cString::To8BitChar(asFilePath).c_str()); // let the user know it failed to save
 			return false;
 		}
 
-		fprintf(pFile, "%s", sFile);
+		fprintf(pFile, "%s", sFile); // copy the saved JSON data into the file
+
 	}
 	
 	//-----------------------------------------------------------------

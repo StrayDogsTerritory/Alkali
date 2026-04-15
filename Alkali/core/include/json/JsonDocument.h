@@ -110,8 +110,11 @@ namespace alk {
 	class iJsonDocument : public cJsonObject
 	{
 	public:
+		//-----------------------------------------------------------------
+
 		iJsonDocument(const tString& asName); // constructor
 		~iJsonDocument(); //destructor
+		
 		//-----------------------------------------------------------------
 
 		bool LoadDocument(const twString& asFilePath); // standard file loading function
