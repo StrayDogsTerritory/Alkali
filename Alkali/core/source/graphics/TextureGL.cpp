@@ -22,6 +22,8 @@ namespace alk {
 		mfAnisotropicFilteringDegree = 0.0f; // set anisotropic degree to 0
 	}
 
+	//-------------------------------------------------------------------------------------
+
 	cTextureGL::~cTextureGL()
 	{
 		for (int i = 0; i < mvIDs.size(); ++i) // for every ID
@@ -29,6 +31,8 @@ namespace alk {
 			glDeleteTextures(1, (GLuint*)&mvIDs[i]); //frees GPU memory held by each texture handle
 		}
 	}
+
+	//-------------------------------------------------------------------------------------
 
 	void cTextureGL::GenerateTextureIDs(int alNumToGen)
 	{
@@ -48,13 +52,15 @@ namespace alk {
 		return CreateTextureFromBitmapIdx(apBitmap, 0); //create a texture from the specified bitmap
 	}
 
-
+	//-------------------------------------------------------------------------------------
 
 	bool cTextureGL::CreateMipMaps()
 	{
 		glGenerateMipmap(GL_TEXTURE_2D); // UNUSED
 		return true;
 	}
+
+	//-------------------------------------------------------------------------------------
 
 	bool cTextureGL::CreateTextureFromBitmapIdx(cBitmap* apBitmap, int alIdx)
 	{
@@ -81,7 +87,7 @@ namespace alk {
 		return false;
 	}
 
-	
+	//-------------------------------------------------------------------------------------
 
 	bool cTextureGL::CreateTexture(int alID, cBitmapData* apBitmapData, int alNumberOfMipMaps, tVector3l avSize, eBitmapFormat aFormat, bool abIsCompressed)
 	{
@@ -127,92 +133,96 @@ namespace alk {
 		return true;
 	}
 
+	//-------------------------------------------------------------------------------------
+
 	bool cTextureGL::CopyTextureDataToGL(eBitmapFormat aFormat, int alMipMapLevel, unsigned char* apData, size_t alDataSize, tVector3l avSize, bool abIsCompressed)
 	{
-	//	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+	//	glPixelStorei(GL_UNPACK_ALIGNMENT, 1); // temp crash fixer
 
-		GLenum lType = EnumToGLTextureType(mTextureType);
-		GLenum lFormat = EnumToGLPixelFormat(aFormat);
+		GLenum lType = EnumToGLTextureType(mTextureType); // convert engine texture type to OpenGL texture type
+		GLenum lFormat = EnumToGLPixelFormat(aFormat); // convert engine texture format to OpenGL texture type
 
-		while (glGetError() != GL_NO_ERROR); // clear the error log
+		while (glGetError() != GL_NO_ERROR); // clear the error log to make error testing feasable
 
-		mlMemorySize += alDataSize;
+		mlMemorySize += alDataSize; // set memory size of texture to that of the bitmaps
 
-		if (abIsCompressed)
+		if (abIsCompressed) // if the texture is compressed, needs to be loaded differently
 		{
-			if (mTextureType == eTextureType_1D)
+			if (mTextureType == eTextureType_1D) // 1D texture
 			{
-				glCompressedTexImage1D(lType, alMipMapLevel, lFormat, avSize.x,0, alDataSize, apData);
+				glCompressedTexImage1D(lType, alMipMapLevel, lFormat, avSize.x,0, alDataSize, apData); // finally, we get to actually load data into the texture buffer
 			}
 			else if (mTextureType == eTextureType_2D || mTextureType == eTextureType_CubeMap || mTextureType == eTextureType_Rect)
 			{
-				glCompressedTexImage2D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, 0, alDataSize, apData);
+				glCompressedTexImage2D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, 0, alDataSize, apData);// finally, we get to actually load data into the texture buffer
 			}
 			else if (mTextureType == eTextureType_3D)
 			{
-				glCompressedTexImage3D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, avSize.z, 0, alDataSize, apData);
+				glCompressedTexImage3D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, avSize.z, 0, alDataSize, apData);// finally, we get to actually load data into the texture buffer
 			}
 		}
-		else // uncompressed image
+		else // little different load, needs to specify bitmap format, in this case, all unsigned byte
 		{
 			if (mTextureType == eTextureType_1D)
 			{
-				glTexImage1D(lType, alMipMapLevel, lFormat, avSize.x, 0, lFormat, GL_UNSIGNED_BYTE, apData);
+				glTexImage1D(lType, alMipMapLevel, lFormat, avSize.x, 0, lFormat, GL_UNSIGNED_BYTE, apData);// finally, we get to actually load data into the texture buffer
 			}
 			else if (mTextureType == eTextureType_2D || mTextureType == eTextureType_CubeMap || mTextureType == eTextureType_Rect)
 			{
-				glTexImage2D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, 0, lFormat, GL_UNSIGNED_BYTE, apData);
+				glTexImage2D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, 0, lFormat, GL_UNSIGNED_BYTE, apData);// finally, we get to actually load data into the texture buffer
 				//Log("'%u'\n", glGetError());
 			}
 			else if (mTextureType == eTextureType_3D)
 			{
-				glTexImage3D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, avSize.z, 0, GL_UNSIGNED_BYTE, lFormat, apData);
+				glTexImage3D(lType, alMipMapLevel, lFormat, avSize.x, avSize.y, avSize.z, 0, GL_UNSIGNED_BYTE, lFormat, apData);// finally, we get to actually load data into the texture buffer
 			}
 		}
 
 		//glDisable(lType);
 
-		 if (glGetError() != GL_NO_ERROR)
+		 if (glGetError() != GL_NO_ERROR) // if there's an error
 		 {
-			 Error("Couldn't load Texture '%s'\n", msName.c_str());
+			 Error("Couldn't load Texture '%s'\n", msName.c_str());// tell the user the load failed
 			 return false;
 		 }
 
 		return true;
 	}
 
+	//-------------------------------------------------------------------------------------
+
 	void cTextureGL::SetupTextureProperties(int alIdx)
 	{
- 		GLenum lType = EnumToGLTextureType(mTextureType);
-		GLenum lWrapMode = EnumToGLTextureWrapMode(mWrappingMode);
+ 		GLenum lType = EnumToGLTextureType(mTextureType);// convert engine texture type to OpenGL texture type
+		GLenum lWrapMode = EnumToGLTextureWrapMode(mWrappingMode);// convert engine texture wrap mode to OpenGL texture type
 
 		// test 
 		//lWrapMode = GL_CLAMP_TO_EDGE;
 
 		//glEnable(lType);
-		glBindTexture(lType, alIdx);
+		glBindTexture(lType, alIdx);//let OpenGL know to set the current texture as active
 
-		if (mbUseMipMaps && mTextureType != eTextureType_Rect)
+		if (mbUseMipMaps && mTextureType != eTextureType_Rect) // if we use mipmaps use bilinear/trilinear filtering
 		{
-			if (mFilter != eTextureFilter_Bilinear)
+			if (mFilter != eTextureFilter_Bilinear) //trilinear filting
 				glTexParameteri(lType, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-			else
+			else// bilinear filtering
 				glTexParameteri(lType, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_NEAREST);
 		}
-		else {
+		else { //otherwise use linear filtering
 			glTexParameteri(lType, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		}
 	
-		glTexParameteri(lType, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		glTexParameteri(lType, GL_TEXTURE_MAG_FILTER, GL_LINEAR); // magnifying is always linear
 
-		if (mTextureType == eTextureType_Rect)
+		if (mTextureType == eTextureType_Rect) // rectangle texture can only be clamp to edge
 		{
 			mWrappingMode = eTextureWrappingMode_ClampToEdge;
 		}
 
-		glTexParameteri(lType, GL_TEXTURE_WRAP_S, EnumToGLTextureWrapMode(mWrappingMode));
-		glTexParameteri(lType, GL_TEXTURE_WRAP_T, EnumToGLTextureWrapMode(mWrappingMode));
-		glTexParameteri(lType, GL_TEXTURE_WRAP_R, EnumToGLTextureWrapMode(mWrappingMode));
+		glTexParameteri(lType, GL_TEXTURE_WRAP_S, EnumToGLTextureWrapMode(mWrappingMode)); //set the wrap mode
+		glTexParameteri(lType, GL_TEXTURE_WRAP_T, EnumToGLTextureWrapMode(mWrappingMode));//set the wrap mode
+		glTexParameteri(lType, GL_TEXTURE_WRAP_R, EnumToGLTextureWrapMode(mWrappingMode));//set the wrap mode
 
 	//	glTexParameterf(lType, GL_TEXTURE_MAX_ANISOTROPY, 0.0f);
 
@@ -220,18 +230,23 @@ namespace alk {
 
 	}
 
+	//-------------------------------------------------------------------------------------
 
 	void cTextureGL::Bind(int alUnit)
 	{
-		GLenum lType = EnumToGLTextureType(mTextureType);
+		GLenum lType = EnumToGLTextureType(mTextureType);// convert engine texture type to OpenGL texture type
 
-		glActiveTexture(GL_TEXTURE0 + alUnit);
+		glActiveTexture(GL_TEXTURE0 + alUnit); //tell OGL to activate the texture, + the texture unit we want (only 1 unit supported currently)
 
-		glBindTexture(lType, mvIDs[0]);
+		glBindTexture(lType, mvIDs[0]); //binds the texture (only the 0th ID for now)
 		//glEnable(lType);
 	}
 
+	//-------------------------------------------------------------------------------------
 
+	/*
+	* no comments for each of these, just converts engine formats into OpenGL formats and vice versa
+	*/
 
 	GLenum cTextureGL::EnumToGLPixelFormat(eBitmapFormat aFormat)
 	{
@@ -248,6 +263,8 @@ namespace alk {
 		}
 	}
 
+	//-------------------------------------------------------------------------------------
+
 	GLenum cTextureGL::EnumToGLTextureType(eTextureType aTextureType)
 	{
 		switch (aTextureType)
@@ -260,6 +277,8 @@ namespace alk {
 		}
 	}
 
+	//-------------------------------------------------------------------------------------
+
 	GLenum cTextureGL::EnumToGLTextureWrapMode(eTextureWrappingMode aTextureWrappingMode)
 	{
 		switch (aTextureWrappingMode)
@@ -270,6 +289,9 @@ namespace alk {
 		case eTextureWrappingMode_ClampToBorder: return GL_CLAMP_TO_BORDER;
 		}
 	}
+
+	//-------------------------------------------------------------------------------------
+
 	GLenum cTextureGL::EnumToGLTextureFilter(eTextureFilter aTextureFilter)
 	{
 		switch (aTextureFilter)
@@ -278,4 +300,6 @@ namespace alk {
 		case eTextureFilter_Trilinear: return GL_LINEAR_MIPMAP_LINEAR;
 		}
 	}
+
+	//-------------------------------------------------------------------------------------
 }

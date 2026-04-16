@@ -9,17 +9,25 @@
 #include <stdlib.h>
 #include <vector>
 
+/*
+* Created by Simon Stroomer
+* 
+* Class that can hold bitmap data of a speccific format for textures or other engine applications of images.
+*/
+
 namespace alk {
 
-	enum eBitmapFormat
+
+	enum eBitmapFormat// supported bitmap formats enum
 	{
 		eBitmapFormat_RGB,
 		eBitmapFormat_RGBA,
 		eBitmapFormat_Alpha,
 		eBitmapFormat_BGR,
 		eBitmapFormat_BGRA,
-		eBitmapFormat_Luminance,
-		eBitmapFormat_LuminanceAlpha,
+		eBitmapFormat_Luminance, //black and white image, no colour data
+		eBitmapFormat_LuminanceAlpha, // same as before but with alpha
+		// compressed formats
 		eBitmapCompressionFormat_DXT1,
 		eBitmapCompressionFormat_DXT2,
 		eBitmapCompressionFormat_DXT3,
@@ -29,61 +37,100 @@ namespace alk {
 		eBitmapFormat_LastEnum
 	};
 
-	extern int GetBytesPerPixel(eBitmapFormat aFormat);
+	extern int GetBytesPerPixel(eBitmapFormat aFormat); //extern so texture classes can call this without issue
 
 	class cBitmapData
 	{
 	public:
-		cBitmapData();
-		~cBitmapData();
 
-		void SetData(size_t alSize, unsigned char* apData);
+		cBitmapData(); //constructor
+		~cBitmapData(); //destructor
+		//-------------------------------------------------------------------------------------
 
-		size_t mlSize;
-		unsigned char* mpData;
+		void SetData(size_t alSize, unsigned char* apData); //set specified bitmap data
+
+		//-------------------------------------------------------------------------------------
+
+		size_t mlSize; //size of data
+		unsigned char* mpData; //raw data
 	};
 
 
 	class cBitmap
 	{
 	public:
-		cBitmap();
-		~cBitmap();
+		cBitmap(); //constructor
+		~cBitmap(); // destructor
 
-		cBitmapData* GetData(int alImage, int alMipmapLevel);
+		//-------------------------------------------------------------------------------------
 
-		tVector3l GetDimensions() { return mvBitmapDimensions; }
+		cBitmapData* GetData(int alImage, int alMipmapLevel); //gets specific data from the std::vector
 
-		int GetLength() const { return mvBitmapDimensions.x; }
-		int GetHeight() const { return mvBitmapDimensions.y; }
-		int GetDepth() const { return mvBitmapDimensions.z; }
+		//-------------------------------------------------------------------------------------
 
-		int GetNumberMipMaps() const { return mlNumMipmaps; }
-		int GetNumberImages() const { return mlNumImages; }
+		tVector3l GetDimensions() { return mvBitmapDimensions; } // gets dimension vector of the bitmap
 
-		int GetBytesPerPixel() const { return mlBytesPerPixel; }
-		eBitmapFormat GetBitmapFormat() const { return mBitmapFormat; }
+		//-------------------------------------------------------------------------------------
 
-		bool GetIsCompressed() const { return mbCompressed; }
+		int GetLength() const { return mvBitmapDimensions.x; } // gets the x size of the bitmap
+		int GetHeight() const { return mvBitmapDimensions.y; }// gets the y size of the bitmap
+		int GetDepth() const { return mvBitmapDimensions.z; }// gets the z size of the bitmap
 
-		void SetSize(tVector3l avSize) { mvBitmapDimensions = avSize; }
-		void SetFormat(eBitmapFormat aFormat) { mBitmapFormat = aFormat; }
-		void SetBytesPerPixel(int albbp) { mlBytesPerPixel = albbp; }
-		void SetIsCompressed(bool abCompressed) { mbCompressed = abCompressed; }
+		//-------------------------------------------------------------------------------------
 
-		void SetUpData(int alImage, int alMipMap);
+		int GetNumberMipMaps() const { return mlNumMipmaps; } //gets the amount of mipmaps in the image
 
-		bool CreateBitmap(tVector3l avDimensions, eBitmapFormat aBitmapFormat, int alImage, int alMipMap, unsigned char* apData);
+		//-------------------------------------------------------------------------------------
+
+		int GetNumberImages() const { return mlNumImages; } //gets how many differenct images are in the bitmap (including mip maps)
+
+		//-------------------------------------------------------------------------------------
+
+		int GetBytesPerPixel() const { return mlBytesPerPixel; } //get the bpp of the image
+
+		//-------------------------------------------------------------------------------------
+
+		eBitmapFormat GetBitmapFormat() const { return mBitmapFormat; } // get the format of the bitmap
+
+		//-------------------------------------------------------------------------------------
+
+		bool GetIsCompressed() const { return mbCompressed; } // is the bitmap compressed?
+
+		//-------------------------------------------------------------------------------------
+
+		void SetSize(tVector3l avSize) { mvBitmapDimensions = avSize; } // set the size of the bitmap
+
+		//-------------------------------------------------------------------------------------
+		
+		void SetFormat(eBitmapFormat aFormat) { mBitmapFormat = aFormat; } // set the format of the bitmap
+
+		//-------------------------------------------------------------------------------------
+		
+		void SetBytesPerPixel(int albbp) { mlBytesPerPixel = albbp; }// set the bpp of the bitmap
+		
+		//-------------------------------------------------------------------------------------
+
+		void SetIsCompressed(bool abCompressed) { mbCompressed = abCompressed; }// set if the bitmap is compressed
+
+		//-------------------------------------------------------------------------------------
+
+		void SetUpData(int alImage, int alMipMap); // set up the data
+
+		//-------------------------------------------------------------------------------------
+
+		bool CreateBitmap(tVector3l avDimensions, eBitmapFormat aBitmapFormat, int alImage, int alMipMap, unsigned char* apData); // create a bitmap
+
+		//-------------------------------------------------------------------------------------
 
 	private:
-		std::vector<cBitmapData> mvImages;
+		std::vector<cBitmapData> mvImages; // amount of mipmaps and images in bitmap
 
-		bool mbCompressed;
-		tVector3l mvBitmapDimensions;
-		int mlNumImages;
-		int mlNumMipmaps;
-		eBitmapFormat mBitmapFormat;
-		int mlBytesPerPixel;
+		bool mbCompressed; //is compressed
+		tVector3l mvBitmapDimensions; //dims
+		int mlNumImages; //num images
+		int mlNumMipmaps; // num mipmaps
+		eBitmapFormat mBitmapFormat; //bitmap format
+		int mlBytesPerPixel; // bpp
 
 	};
 

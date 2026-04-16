@@ -3,7 +3,16 @@
 
 #include "resources/ResourceBase.h"
 
+/*
+* Created by Simon Stroomer
+* Base texture class for textures, inherits from resources
+*/
+
 namespace alk {
+
+	/*
+	* Some enums
+	*/
 
 	enum eTextureWrappingMode
 	{
@@ -33,26 +42,45 @@ namespace alk {
 	};
 
 
-	class cBitmap;
+	class cBitmap; //forward declared bitmap class for function prototypes
 
 	class iTexture : public iResourceBase
 	{
 	public:
-		iTexture(const tString& asName) : iResourceBase(asName, L"") {}
-		virtual ~iTexture() {}
+		//-------------------------------------------------------------------------------------
 
+		iTexture(const tString& asName) : iResourceBase(asName, L"") {} //constructor
+		virtual ~iTexture() {} //destructor
+		//-------------------------------------------------------------------------------------
+		
+		//-------------------------------------------------------------------------------------
+		
 		// get to this later
-		void Unload() {}
-		bool Reload() { return false; }
-		void Destroy() {}
+		void Unload() {} // UNUSED: unloads texture
+		bool Reload() { return false; }// UNUSED: reloads texture
+		void Destroy() {}// UNUSED: destroys texture
+
+		//-------------------------------------------------------------------------------------
 
 		virtual	bool CreateTextureFromBitmap( cBitmap* apBitmap)=0;
+
+		//-------------------------------------------------------------------------------------
+
 		 bool CreateTextureFromRawData(tVector3l avDimensions, void* apData);
+
+		 //-------------------------------------------------------------------------------------
+		
 		 bool CreateCubeMap();
+
+		 //-------------------------------------------------------------------------------------
+		
 		 bool CreateAnimation();
+
+		 //-------------------------------------------------------------------------------------
 
 		 virtual void Bind(int alUnit)=0;
 
+		 //-------------------------------------------------------------------------------------
 	protected:
 	};
 

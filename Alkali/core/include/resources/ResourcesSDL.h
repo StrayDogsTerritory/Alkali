@@ -3,17 +3,29 @@
 
 #include "resources/ResourceInterface.h"
 
+/*
+* Created by Simon Stroomer
+* low level initialization of DevIL and its loaders
+*/
+
 namespace alk {
 
 	class cResourcesSDL : public iResources
 	{
 	public:
-		cResourcesSDL();
-		~cResourcesSDL();
 
-		bool Init();
+		//-------------------------------------------------------------------------------------
+		cResourcesSDL(); // constructor
+		~cResourcesSDL(); // destructor
+		//-------------------------------------------------------------------------------------
 
-		void SetupBitmapLoader(iResourceLoader* apResourceLoader);
+		bool Init(); // initialize
+
+		//-------------------------------------------------------------------------------------
+
+		void SetupBitmapLoader(iResourceLoader* apResourceLoader); // sets up the bitmap
+
+		//-------------------------------------------------------------------------------------
 	};
 
 }

@@ -10,51 +10,54 @@ namespace alk {
 
 	iResourceLoader::iResourceLoader(cResources* apResources)
 	{
-		mpResources = apResources;
+		mpResources = apResources; // points to the main resource module
 	}
 
-
+	//-------------------------------------------------------------------------------------
 
 	iResourceLoader::~iResourceLoader()
 	{
-		DeleteAll(mvSubLoaders);
+		DeleteAll(mvSubLoaders); // deletes every sub loader pointer in the array
 	}
 
-
+	//-------------------------------------------------------------------------------------
 
 	void iResourceLoader::AddSubLoader(iSubLoader* apSubLoader)
 	{
-		mvSubLoaders.push_back(apSubLoader);
+		mvSubLoaders.push_back(apSubLoader); // add the subloader to the array
 
 		// loader specific setup
 		SetupSubLoader(apSubLoader);
 
 		// add supported extensions to loader
-		tStringList::iterator it = apSubLoader->mLstExtensions.begin();
+		tStringList::iterator it = apSubLoader->mLstExtensions.begin(); // create an iterator
 		for (; it != apSubLoader->mLstExtensions.end(); ++it)
 		{
-			tString sExt = *it;
-			mLstSupportedExtensions.push_back(sExt);
+			tString sExt = *it; // dereference the value in the iterator into a variable
+			mLstSupportedExtensions.push_back(sExt); //add the extensions to this loader
 		}
 	}
 
-
+	//-------------------------------------------------------------------------------------
 
 	iSubLoader* iResourceLoader::GetSubLoaderForFile(const twString& asFile)
 	{
-		tString sExt = cString::To8BitChar(cString::FileExtensionW(asFile));
+		tString sExt = cString::To8BitChar(cString::FileExtensionW(asFile)); // get the ASCII file extension from the std::wstring file
 
-		for (int i = 0; i < mvSubLoaders.size(); ++i)
+		for (int i = 0; i < mvSubLoaders.size(); ++i) // for every sub loader
 		{
-			iSubLoader* pSubLoader = mvSubLoaders[i];
-			if (pSubLoader) {
-				if (pSubLoader->IsSupported(sExt))
+			iSubLoader* pSubLoader = mvSubLoaders[i]; // save it in scope
+			if (pSubLoader) { // if the value at i is non-NULL
+				if (pSubLoader->IsSupported(sExt)) // if the extension is supported by one of the sub loaders
 				{
-					return pSubLoader;
+					return pSubLoader; // return it
 				}
 			}
 		}
-		Error("Couldn't find suitable sub-loader for file extension '%s'\n", sExt.c_str());
-		return NULL;
+		// if we can't find anything good
+		Error("Couldn't find suitable sub-loader for file extension '%s'\n", sExt.c_str()); //let the user know we couldn't find a good sub loader
+		return NULL; //return NULL
 	}
+
+	//-------------------------------------------------------------------------------------
 }

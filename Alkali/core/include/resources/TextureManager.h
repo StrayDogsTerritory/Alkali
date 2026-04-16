@@ -12,22 +12,34 @@ namespace alk {
 	class cTextureManager : public iResourceManager
 	{
 	public:
-		cTextureManager(cResources* apResources, cGraphics* apGraphics);
-		~cTextureManager();
 
-		iTexture* Create2DTexture(const tString& asName);
+		//-------------------------------------------------------------------------------------
 
+		cTextureManager(cResources* apResources, cGraphics* apGraphics); //constructor
+		~cTextureManager(); //destructor
 
-		void Unload(iResourceBase* apResource) {}
-		void Delete(iResourceBase* apResource);
-		void Reload(iResourceBase* apResource) {}
-		void Preload(iResourceBase* apResource) {}
+		//-------------------------------------------------------------------------------------
+
+		iTexture* Create2DTexture(const tString& asName); //create 2D texture
+
+		//-------------------------------------------------------------------------------------
+
+		void Unload(iResourceBase* apResource) {}//UNUSED
+		void Delete(iResourceBase* apResource);//UNUSED
+		void Reload(iResourceBase* apResource) {}//UNUSED
+		void Preload(iResourceBase* apResource) {}//UNUSED
+
+		//-------------------------------------------------------------------------------------
 
 	private:
-		cResources* mpResources;
-		cGraphics* mpGraphics;
+		cResources* mpResources; // pointer to the resources module
+		cGraphics* mpGraphics; //pointer to the graphics module
 
-		iTexture* CreateImageTexture(const tString& asName);
+		//-------------------------------------------------------------------------------------
+
+		iTexture* CreateImageTexture(const tString& asName); //UNUSED
+		
+		//-------------------------------------------------------------------------------------
 	};
 
 }
